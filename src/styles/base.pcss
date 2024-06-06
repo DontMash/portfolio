@@ -1,0 +1,11 @@
+@import "./utils.pcss";
+@import "./typography.pcss";
+@import "./button.pcss";
+
+:root {
+  @apply bg-neutral text-neutral-content;
+}
+
+.drawer-toggle:checked ~ .drawer-side > .drawer-overlay {
+  @apply bg-base-300 bg-opacity-25 backdrop-blur-sm transition;
+}

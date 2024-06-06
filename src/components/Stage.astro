@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+
+import avatar from '/src/assets/images/avatar.jpg';
+---
+
+<section
+  id='why'
+  class='dots relative min-h-[calc(100vh_-_theme(height.20))] space-y-8 px-4 py-16'
+>
+  <hgroup class='space-y-6'>
+    <p class='flex items-center gap-x-4'>
+      <span
+        class='rounded-btn shadow-pop border-3 h-16 overflow-hidden px-0 transition-all hover:translate-x-2 hover:translate-y-2 hover:shadow-none'
+      >
+        <Image src={avatar} alt='soren avatar' loading='eager' width='120' height='64' />
+      </span>
+      <span class='text-primary heading-2'>Hi, I'm Sören</span>
+    </p>
+    <h2 class='heading-1'> Software engineer & digital explorer </h2>
+  </hgroup>
+
+  <p class='paragraph'>
+    Transforming visions into reality, one line of code at a time. Let's build the future
+    together with innovation, precision, and passion.
+  </p>
+
+  <ul class='flex gap-x-4'>
+    <li>
+      <a href='#contact' title='Projects' class='btn btn-pop btn-primary gap-x-2'>
+        <Icon name='material-symbols:alternate-email' size={24} />
+        <span>Say hello</span>
+      </a>
+    </li>
+    <li>
+      <a
+        href='https://github.com/dontmash'
+        target='_blank'
+        rel='noreferrer'
+        title='soren.codes GitHub'
+        class='btn btn-circle btn-pop'
+      >
+        <Icon name='tabler:brand-github' size={24} />
+        <span class='sr-only'>soren.codes GitHub</span>
+      </a>
+    </li>
+    <li>
+      <a
+        href='https://www.linkedin.com/in/smaschmann'
+        target='_blank'
+        rel='noreferrer'
+        title='Sören Maschmann LinkedIn'
+        class='btn btn-circle btn-pop'
+      >
+        <Icon name='tabler:brand-linkedin' size={24} />
+        <span class='sr-only'>Sören Maschmann LinkedIn</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class='absolute bottom-4 left-1/2 hidden -translate-x-1/2 lg:block'>
+    <a href='#how' title='Technologies' class='btn btn-circle'>
+      <Icon name='material-symbols:keyboard-double-arrow-down-rounded' size={24} />
+    </a>
+  </div>
+</section>
