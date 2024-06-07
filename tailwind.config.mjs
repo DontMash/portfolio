@@ -26,8 +26,9 @@ export default {
 			"sm": "640px",
 			"md": "768px",
 			"lg": "1080px",
-			"xl": "1440px",
-			"2xl": "1600px",
+			"xl": "1200px",
+			"2xl": "1440px",
+			"3xl": "1600px",
 		},
 		extend: {
 			borderWidth: {

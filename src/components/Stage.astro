@@ -7,16 +7,16 @@ import avatar from '/src/assets/images/avatar.jpg';
 
 <section
   id='why'
-  class='dots relative min-h-[calc(100vh_-_theme(height.20))] space-y-8 px-4 py-16'
+  class='dots relative mx-auto min-h-[calc(100vh_-_theme(height.20))] max-w-screen-xl space-y-8 px-4 py-16'
 >
   <hgroup class='space-y-6'>
     <p class='flex items-center gap-x-4'>
       <span
-        class='rounded-btn shadow-pop border-3 h-16 overflow-hidden px-0 transition-all hover:translate-x-2 hover:translate-y-2 hover:shadow-none'
+        class='h-16 overflow-hidden rounded-btn border-3 px-0 shadow-pop transition-all hover:translate-x-2 hover:translate-y-2 hover:shadow-none'
       >
         <Image src={avatar} alt='soren avatar' loading='eager' width='120' height='64' />
       </span>
-      <span class='text-primary heading-2'>Hi, I'm Sören</span>
+      <span class='heading-2 text-primary'>Hi, I'm Sören</span>
     </p>
     <h2 class='heading-1'> Software engineer & digital explorer </h2>
   </hgroup>
@@ -28,7 +28,7 @@ import avatar from '/src/assets/images/avatar.jpg';
 
   <ul class='flex gap-x-4'>
     <li>
-      <a href='#contact' title='Projects' class='btn btn-pop btn-primary gap-x-2'>
+      <a href='#contact' title='Projects' class='btn-pop btn-primary btn gap-x-2'>
         <Icon name='material-symbols:alternate-email' size={24} />
         <span>Say hello</span>
       </a>
@@ -39,7 +39,7 @@ import avatar from '/src/assets/images/avatar.jpg';
         target='_blank'
         rel='noreferrer'
         title='soren.codes GitHub'
-        class='btn btn-circle btn-pop'
+        class='btn-pop btn btn-circle'
       >
         <Icon name='tabler:brand-github' size={24} />
         <span class='sr-only'>soren.codes GitHub</span>
@@ -51,7 +51,7 @@ import avatar from '/src/assets/images/avatar.jpg';
         target='_blank'
         rel='noreferrer'
         title='Sören Maschmann LinkedIn'
-        class='btn btn-circle btn-pop'
+        class='btn-pop btn btn-circle'
       >
         <Icon name='tabler:brand-linkedin' size={24} />
         <span class='sr-only'>Sören Maschmann LinkedIn</span>
