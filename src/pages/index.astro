@@ -3,10 +3,12 @@ import { Icon } from 'astro-icon/components';
 
 import Layout from '../layouts/Layout.astro';
 import Stage from '../components/Stage.astro';
+import Technology from '../components/Technology.astro';
+import Projects from '../components/Projects.astro';
 ---
 
 <Layout title='soren.codes'>
-  <header id="top">
+  <header id='top'>
     <div class='navbar mx-auto h-20 w-full max-w-screen-2xl justify-between px-4'>
       <a
         href='/'
@@ -28,6 +30,8 @@ import Stage from '../components/Stage.astro';
     <h1 class='sr-only'>my portfolio</h1>
 
     <Stage />
+    <Technology />
+    <Projects />
   </main>
 
   <footer class='bg-base-300'>

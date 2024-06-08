@@ -1,0 +1,21 @@
+<section id='what' class='space-y-4 px-4 py-16'>
+  <h2 class='heading-3 text-center text-primary'>Featured projects</h2>
+
+  <ul class='grid grid-cols-1 place-items-center gap-x-8 gap-y-4'>
+    {
+      [{}, {}, {}].map(() => (
+        <li class='aspect-[368/408] space-y-4'>
+          <div class='card image-full h-full w-full overflow-hidden bg-neutral shadow-pop'>
+            <figure>
+              <img
+                src='https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg'
+                alt='Shoes'
+              />
+            </figure>
+          </div>
+          <h3 class='heading-2 mx-4'>Project Name</h3>
+        </li>
+      ))
+    }
+  </ul>
+</section>

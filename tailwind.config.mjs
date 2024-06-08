@@ -74,7 +74,8 @@ export default {
 		}),
 
 		require('daisyui'),
-		require("@xpd/tailwind-3dtransforms"),
+		require('@xpd/tailwind-3dtransforms'),
+		require('tailwind-scrollbar-hide'),
 	],
 
 	daisyui: {
