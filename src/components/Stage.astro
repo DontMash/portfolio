@@ -9,9 +9,9 @@ import Shapes from './Shapes.svelte';
 
 <section
   id='why'
-  class='dots relative mx-auto grid min-h-[calc(100vh_-_theme(height.20))] max-w-screen-xl grid-rows-2 lg:grid-rows-none lg:grid-cols-2 place-items-center gap-16 px-4 py-16 lg:pt-16 lg:pb-32'
+  class='dots relative mx-auto grid min-h-[calc(100vh_-_theme(height.20))] max-w-screen-xl grid-rows-2 place-items-center gap-16 px-4 pb-24 pt-16 lg:grid-cols-2 lg:grid-rows-none lg:pb-32 lg:pt-16'
 >
-  <div class='space-y-8 max-w-screen-sm mr-auto'>
+  <div class='mr-auto max-w-screen-sm space-y-8'>
     <hgroup class='space-y-6'>
       <p class='flex items-center gap-x-4'>
         <span
@@ -37,7 +37,7 @@ import Shapes from './Shapes.svelte';
 
     <ul class='flex gap-x-4'>
       <li>
-        <a href='#contact' title='Projects' class='btn-pop btn-primary btn gap-x-2'>
+        <a href='#contact' title='Contact' class='btn-pop btn-primary btn gap-x-2'>
           <Icon name='material-symbols:alternate-email' size={24} />
           <span>Say hello</span>
         </a>
@@ -69,13 +69,14 @@ import Shapes from './Shapes.svelte';
     </ul>
   </div>
 
-  <div class='aspect-square min-w-0 w-full max-w-[30rem]'>
+  <div class='aspect-square w-full min-w-0 max-w-[30rem]'>
     <Shapes client:idle />
   </div>
 
-  <div class='absolute bottom-4 left-1/2 hidden -translate-x-1/2 lg:block'>
+  <div class='absolute bottom-4 left-1/2 -translate-x-1/2'>
     <a href='#how' title='Technologies' class='btn btn-circle'>
       <Icon name='material-symbols:keyboard-double-arrow-down-rounded' size={24} />
+      <span class='sr-only'>Go to technologies</span>
     </a>
   </div>
 </section>

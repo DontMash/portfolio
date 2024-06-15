@@ -17,6 +17,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource-variable/azeret-mono": "^5.0.21",
     "@iconify-json/material-symbols": "^1.1.81",
+    "@iconify-json/simple-icons": "^1.1.105",
     "@iconify-json/tabler": "^1.1.113",
     "@types/three": "^0.165.0",
     "@xpd/tailwind-3dtransforms": "^1.0.3",

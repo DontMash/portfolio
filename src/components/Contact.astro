@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+
+import avatar from '/src/assets/images/avatar.jpg';
+---
+
+<section id='contact' class='relative border-y-3 bg-accent px-4 pb-32 pt-16'>
+  <div class='mx-auto grid max-w-screen-xl grid-cols-1 gap-8'>
+    <div>
+      <span
+        class='inline-block overflow-hidden rounded-btn border-3 px-0 shadow-pop transition-all hover:translate-x-2 hover:translate-y-2 hover:shadow-none'
+      >
+        <Image src={avatar} alt='soren avatar' loading='eager' width='368' height='196' />
+      </span>
+    </div>
+
+    <div class='space-y-6'>
+      <h2 class='heading-1'>Code the Future. <br />Innovate. Together.</h2>
+      <p
+        >To get in touch with me and start our journey, choose one of the contact options.</p
+      >
+      <ul class='flex gap-x-4'>
+        <li>
+          <a
+            href='mailto:work@soren.codes'
+            title='Mail me'
+            class='btn-primary btn-pop btn gap-x-2'
+          >
+            <Icon name='material-symbols:mail-outline' size={24} />
+            <span>Mail me</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href='https://ko-fi.com/smaschmann'
+            target='_blank'
+            rel='noreferrer'
+            title='Sören Maschmann Ko-fi'
+            class='btn-pop btn btn-circle'
+          >
+            <Icon name='simple-icons:kofi' size={24} />
+            <span class='sr-only'>Ko-fi</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class='absolute bottom-4 left-1/2 -translate-x-1/2'>
+    <a href='#top' title='To' class='btn btn-circle'>
+      <Icon name='material-symbols:keyboard-double-arrow-up-rounded' size={24} />
+      <span class='sr-only'>Back to the top</span>
+    </a>
+  </div>
+</section>
