@@ -1,5 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Button from '@/components/button/button.astro';
+import { button } from '@/components/button/button';
 ---
 
 <Layout title='404 - soren.codes'>
@@ -10,5 +12,7 @@ import Layout from '@/layouts/Layout.astro';
       <span> 404 </span>
       <span class='pt-12 sm:pt-0 sm:pl-12'> Not Found </span>
     </h1>
+
+    <Button class={button({ shadow: 'pop' })} href="/" title="Back">Go back</Button>
   </section>
 </Layout>
