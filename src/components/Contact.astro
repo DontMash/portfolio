@@ -2,55 +2,58 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 
-import avatar from '/src/assets/images/avatar.jpg';
+import AvatarImage from '/src/assets/images/avatar.jpg';
+
+import Button from '@/components/button/button.astro';
+import { button } from '@/components/button/button';
 ---
 
-<section id='contact' class='relative border-y-3 bg-accent px-4 pb-32 pt-16'>
-  <div class='mx-auto grid max-w-screen-xl grid-cols-1 gap-8'>
-    <div>
-      <span
-        class='inline-block overflow-hidden rounded-btn border-3 px-0 shadow-pop transition-all hover:translate-x-2 hover:translate-y-2 hover:shadow-none'
-      >
-        <Image src={avatar} alt='soren avatar' loading='eager' width='368' height='196' />
-      </span>
-    </div>
+<section
+  id='contact'
+  class='flex flex-col-reverse lg:grid lg:grid-cols-[4fr,3fr] gap-16 px-4 sm:px-12 py-24 border-y-0.75 bg-muted'
+>
+  <div class="max-w-screen-sm">
+    <h2 class="mt-0">Code the Future. <br />Innovate. Together.</h2>
 
-    <div class='space-y-6'>
-      <h2 class='heading-1'>Code the Future. <br />Innovate. Together.</h2>
-      <p
-        >To get in touch with me and start our journey, choose one of the contact options.</p
-      >
-      <ul class='flex gap-x-4'>
-        <li>
-          <a
-            href='mailto:work@soren.codes'
-            title='Mail me'
-            class='btn-primary btn-pop btn gap-x-2'
-          >
-            <Icon name='material-symbols:mail-outline' size={24} />
-            <span>Mail me</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href='https://ko-fi.com/smaschmann'
-            target='_blank'
-            rel='noreferrer'
-            title='Sören Maschmann Ko-fi'
-            class='btn-pop btn btn-circle'
-          >
-            <Icon name='simple-icons:kofi' size={24} />
-            <span class='sr-only'>Ko-fi</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+    <p>
+      Let's work together to turn innovative ideas into products for the future! To get in
+      touch with me and start our journey, choose one of the options below.
+    </p>
+
+    <ul class='not-prose flex flex-wrap gap-4 mt-8'>
+      <li>
+        <Button
+          class={button({ shadow: 'pop' })}
+          title='Send me an email'
+          href='mailto:work@soren.codes'
+        >
+          <Icon name='tabler:mail' size={24} />
+          <span>Mail me</span>
+        </Button>
+      </li>
+      <li>
+        <Button
+          class={button({ intent: 'accent', size: 'icon', shadow: 'pop' })}
+          title='Look at my Ko-fi'
+          href='https://ko-fi.com/smaschmann'
+          target='_blank'
+          rel='noreferrer'
+        >
+          <Icon name='simple-icons:kofi' size={24} />
+          <span class='sr-only'>Ko-fi - soren.codes</span>
+        </Button>
+      </li>
+    </ul>
   </div>
 
-  <div class='absolute bottom-4 left-1/2 -translate-x-1/2'>
-    <a href='#top' title='To' class='btn btn-circle'>
-      <Icon name='material-symbols:keyboard-double-arrow-up-rounded' size={24} />
-      <span class='sr-only'>Back to the top</span>
-    </a>
+  <div class='pr-4'>
+    <span class:list={[button({ shadow: 'pop-lg' }), 'h-32', '!p-0', 'overflow-hidden']}>
+      <Image
+        src={AvatarImage}
+        alt='soren avatar'
+        width='256'
+        height='128'
+      />
+    </span>
   </div>
 </section>

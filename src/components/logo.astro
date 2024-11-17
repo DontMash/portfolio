@@ -1,0 +1,20 @@
+---
+import { Icon } from 'astro-icon/components';
+import Button from './button/button.astro';
+import { button } from './button/button';
+
+export type Props = {
+  theme?: 'light' | 'dark';
+};
+const { theme = 'light' } = Astro.props;
+---
+
+<Button class:list={[button({kind:'link'}), '!p-0']} href='/' title='To the frontpage'>
+  <Icon
+    name=`logomark_${theme}`
+    title='Logomark of soren.codes'
+    width={132}
+    height={48}
+  />
+  <span class='sr-only'>Go to the frontpage</span>
+</Button>

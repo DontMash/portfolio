@@ -2,81 +2,104 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 
-import avatar from '/src/assets/images/avatar.jpg';
+import Button from '@/components/button/button.astro';
+import { button } from '@/components/button/button';
 
-import Shapes from './Shapes.svelte';
+import AvatarImage from '/src/assets/images/avatar.jpg';
+import CoverImage from '/src/assets/images/cover.png';
 ---
 
 <section
   id='why'
-  class='dots relative mx-auto grid min-h-[calc(100vh_-_theme(height.20))] max-w-screen-xl grid-rows-2 place-items-center gap-16 px-4 pb-24 pt-16 lg:grid-cols-2 lg:grid-rows-none lg:pb-32 lg:pt-16'
+  class='relative flex flex-col lg:grid lg:grid-cols-[4fr,3fr] gap-8 lg:gap-16 py-24 px-4 sm:px-12'
 >
-  <div class='mr-auto max-w-screen-sm space-y-8'>
-    <hgroup class='space-y-6'>
-      <p class='flex items-center gap-x-4'>
-        <span
-          class='h-16 overflow-hidden rounded-btn border-3 px-0 shadow-pop transition-all hover:translate-x-2 hover:translate-y-2 hover:shadow-none'
+  <div class="max-w-screen-sm">
+    <hgroup class='space-y-8'>
+      <div class='flex flex-col lg:flex-row items-start lg:items-center gap-4 flex-none'>
+        <Button
+          class:list={[
+            button({ shadow: 'pop' }),
+            'h-16',
+            '!p-0',
+            'overflow-hidden',
+          ]}
+          href='#contact'
         >
           <Image
-            src={avatar}
+            src={AvatarImage}
             alt='soren avatar'
             loading='eager'
             width='120'
             height='64'
           />
-        </span>
-        <span class='heading-2 text-primary'>Hi, I'm Sören</span>
-      </p>
-      <h2 class='heading-1'> Software engineer & digital explorer </h2>
+        </Button>
+        <span class='text-lg text-primary font-semibold'>Hi, I'm Søren.</span>
+      </div>
+      <h2>Software engineer & <br />digital explorer</h2>
     </hgroup>
 
-    <p class='paragraph'>
-      Transforming visions into reality, one line of code at a time. Let's build the
+    <p>
+      Transforming visions into reality, one line of code at a time. We can shape the
       future together with innovation, precision, and passion.
     </p>
 
-    <ul class='flex gap-x-4'>
+    <ul class='not-prose flex flex-wrap gap-4 mt-8'>
       <li>
-        <a href='#contact' title='Contact' class='btn-pop btn-primary btn gap-x-2'>
-          <Icon name='material-symbols:alternate-email' size={24} />
+        <Button
+          class={button({ shadow: 'pop' })}
+          title='Send me an email'
+          href='#contact'
+        >
+          <Icon name='tabler:at' size={24} />
           <span>Say hello</span>
-        </a>
+        </Button>
       </li>
       <li>
-        <a
+        <Button
+          class={button({ intent: 'accent', size: 'icon', shadow: 'pop' })}
+          title='Look at my GitHub'
           href='https://github.com/dontmash'
           target='_blank'
           rel='noreferrer'
-          title='soren.codes GitHub'
-          class='btn-pop btn btn-circle'
         >
           <Icon name='tabler:brand-github' size={24} />
-          <span class='sr-only'>soren.codes GitHub</span>
-        </a>
+          <span class='sr-only'>GitHub - soren.codes</span>
+        </Button>
       </li>
       <li>
-        <a
+        <Button
+          class={button({ intent: 'accent', size: 'icon', shadow: 'pop' })}
+          title='Look at my LinkedIn'
           href='https://www.linkedin.com/in/smaschmann'
           target='_blank'
           rel='noreferrer'
-          title='Sören Maschmann LinkedIn'
-          class='btn-pop btn btn-circle'
         >
           <Icon name='tabler:brand-linkedin' size={24} />
-          <span class='sr-only'>Sören Maschmann LinkedIn</span>
-        </a>
+          <span class='sr-only'>LinkedIn - Sören Maschmann</span>
+        </Button>
       </li>
     </ul>
   </div>
 
-  <div class='aspect-square w-full min-w-0 max-w-[30rem]'>
-    <Shapes client:idle />
+  <div>
+    <Image
+      class='not-prose mx-auto'
+      src={CoverImage}
+      alt=''
+      loading='eager'
+      width='480'
+      height='480'
+    />
   </div>
 
-  <div class='absolute bottom-4 left-1/2 -translate-x-1/2'>
-    <a href='#how' title='Technologies' class='btn btn-circle'>
-      <Icon name='material-symbols:keyboard-double-arrow-down-rounded' size={24} />
-      <span class='sr-only'>Go to technologies</span>
-    </a>
+  <div class='absolute bottom-8 left-1/2 -translate-x-1/2'>
+    <Button
+      class={button({ intent: 'accent', size: 'icon' })}
+      href='#contact'
+      title='Contact'
+    >
+      <Icon name='tabler:chevron-down' size={24} />
+      <span class='sr-only'>Go to contact</span>
+    </Button>
   </div>
 </section>

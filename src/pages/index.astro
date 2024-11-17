@@ -1,56 +1,12 @@
 ---
-import { Icon } from 'astro-icon/components';
-
-import Layout from '../layouts/Layout.astro';
-import Contact from '../components/Contact.astro';
-import Projects from '../components/Projects.astro';
-import Stage from '../components/Stage.astro';
-import Technology from '../components/Technology.astro';
+import Layout from '@/layouts/Layout.astro';
+import Contact from '@/components/Contact.astro';
+import Stage from '@/components/Stage.astro';
 ---
 
 <Layout title='soren.codes'>
-  <header id='top'>
-    <div class='navbar mx-auto h-20 w-full max-w-screen-2xl justify-between px-4'>
-      <a
-        href='/'
-        title='Home'
-        class='-mx-4 rounded-btn focus-visible:outline-dashed focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-base-300'
-      >
-        <Icon
-          name='logomark_light'
-          title='Logomark of soren.codes'
-          width={132}
-          height={48}
-        />
-        <span class='sr-only'>Navigate back home</span>
-      </a>
-    </div>
-  </header>
-
-  <main class='min-h-[calc(100vh_-_theme(height.20))]'>
-    <h1 class='sr-only'>my portfolio</h1>
+    <h1 class='sr-only'>Portfolio of soren.codes</h1>
 
     <Stage />
-    <Technology />
-    <Projects />
     <Contact />
-  </main>
-
-  <footer class='bg-base-300'>
-    <div class='mx-auto max-w-screen-xl'>
-      <a
-        href='#top'
-        title='To top'
-        class='-mx-4 rounded-btn focus-visible:outline-dashed focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-base-300'
-      >
-        <Icon
-          name='logomark_dark'
-          title='Logomark of soren.codes'
-          width={132}
-          height={48}
-        />
-        <span class='sr-only'>Back to the top</span>
-      </a>
-    </div>
-  </footer>
 </Layout>

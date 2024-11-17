@@ -1,0 +1,125 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import Button from '@/components/button/button.astro';
+import { button } from '@/components/button/button';
+import Logo from '@/components/logo.astro';
+---
+
+<footer class='prose-invert py-12 bg-foreground text-background'>
+  <div
+    class='relative grid grid-rows-3 sm:grid-rows-1 sm:grid-cols-2 gap-8 max-w-screen-xl min-h-60 px-4 sm:px-12 mx-auto'
+  >
+    <div class='flex flex-col gap-6 items-start'>
+      <Logo theme='dark' />
+
+      <p class='grow max-w-96 text-sm'>
+        Software development is the process of transforming imagination into reality.
+      </p>
+
+      <ul class='not-prose flex flex-wrap gap-2'>
+        <li>
+          <Button
+            class={button({ intent: 'neutral', size: 'icon' })}
+            title='Send me an email'
+            href='mailto:work@soren.codes'
+          >
+            <Icon name='tabler:mail' size={24} />
+            <span class='sr-only'>Mail me</span>
+          </Button>
+        </li>
+        <li>
+          <Button
+            class={button({ intent: 'neutral', size: 'icon' })}
+            title='Look at my Ko-fi'
+            href='https://ko-fi.com/smaschmann'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <Icon name='simple-icons:kofi' size={24} />
+            <span class='sr-only outline'>Ko-fi - soren.codes</span>
+          </Button>
+        </li>
+        <li>
+          <Button
+            class={button({ intent: 'neutral', size: 'icon' })}
+            title='Look at my GitHub'
+            href='https://github.com/dontmash'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <Icon name='tabler:brand-github' size={24} />
+            <span class='sr-only'>GitHub - soren.codes</span>
+          </Button>
+        </li>
+        <li>
+          <Button
+            class={button({ intent: 'neutral', size: 'icon' })}
+            title='Look at my LinkedIn'
+            href='https://www.linkedin.com/in/smaschmann'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <Icon name='tabler:brand-linkedin' size={24} />
+            <span class='sr-only'>LinkedIn - Sören Maschmann</span>
+          </Button>
+        </li>
+      </ul>
+
+      <span class='text-sm'>©{new Date().getUTCFullYear()} soren.codes</span>
+    </div>
+
+    <div class='flex flex-col gap-6 sm:text-right'>
+      <ul class='not-prose flex flex-col gap-2 grow'>
+        <li>
+          <Button
+            class={button({ kind: 'link', intent: 'neutral' })}
+            title='To the contact information'
+            href='/#contact'
+          >
+            Contact
+          </Button>
+        </li>
+        <li>
+          <Button
+            class={button({ kind: 'link', intent: 'neutral' })}
+            title='To the imprint'
+            href='/imprint'
+          >
+            Imprint
+          </Button>
+        </li>
+        <li>
+          <Button
+            class={button({ kind: 'link', intent: 'neutral' })}
+            title='To the imprint'
+            href='/privacy'
+          >
+            Privacy Policy
+          </Button>
+        </li>
+      </ul>
+
+      <span class="text-sm">Made with <Icon class="inline align-middle text-primary" name="tabler:heart" size={16} /> by me</span>
+    </div>
+
+    <div class='flex flex-col items-center sm:col-span-2'>
+      <Button
+        class={button({ intent: 'neutral', size: 'icon-lg' })}
+        title='To the top'
+        href='#top'
+      >
+        <Icon name='tabler:chevron-up' size={32} />
+        <span class='sr-only'>Go back to the top</span>
+      </Button>
+    </div>
+
+    <a
+      class='absolute right-0 bottom-0 size-8'
+      href='/style'
+      tabindex='-1'
+      aria-label='style'
+      aria-hidden='true'
+      no-index></a>
+  </div>
+</footer>

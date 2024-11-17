@@ -1,12 +1,47 @@
-@import "./utils.pcss";
-@import "./typography.pcss";
-@import "./button.pcss";
-@import "./card.pcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  @apply bg-neutral text-neutral-content;
+@layer base {
+  :root {
+    --base-100: 0 0% 100%;
+    --base-200: 0, 0%, 89%;
+    --base-300: 0, 0%, 78%;
+    --base-400: 0, 0%, 55%;
+    --base-500: 0, 0%, 33%;
+    --base-600: 255, 4%, 22%;
+    --base-700: 255, 5%, 17%;
+    --base-800: 255, 6%, 14%;
+    --base-900: 255 7% 11%;
+    --orange-100: 16, 100%, 61%;
+    --orange-200: 10, 100%, 61%;
+    --orange-300: 6, 100%, 61%;
+    --peach-100: 15, 100%, 96%;
+    --peach-200: 15, 100%, 92%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+
+    --background: var(--base-100);
+    --foreground: var(--base-900);
+
+    @apply bg-background text-foreground;
+  }
 }
 
-.drawer-toggle:checked ~ .drawer-side > .drawer-overlay {
-  @apply bg-base-300 bg-opacity-25 backdrop-blur-sm transition;
+@layer components {
+  .dots {
+    --dot-size: 1px;
+    --dot-spacing: 48px;
+
+    background-image: radial-gradient(
+      circle at var(--dot-size) var(--dot-size),
+      theme(colors.foreground / 30%) var(--dot-size),
+      transparent 0
+    );
+    background-size: var(--dot-spacing) var(--dot-spacing);
+    background-position: 50%;
+  }
 }
