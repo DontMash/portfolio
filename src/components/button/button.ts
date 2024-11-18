@@ -11,7 +11,7 @@ export const button = cva(
     'align-middle',
     'text-base',
     'font-semibold',
-    '!leading-none',
+    'leading-xl',
     'transition',
     'focus-visible:outline-current',
     'focus-visible:outline-dashed',
@@ -101,7 +101,7 @@ export const button = cva(
       {
         kind: 'default',
         size: 'md',
-        class: ['h-12', 'px-5', 'py-2'],
+        class: ['min-h-12', 'px-5', 'py-2'],
       },
       {
         kind: 'link',
