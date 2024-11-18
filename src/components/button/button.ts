@@ -37,6 +37,7 @@ export const button = cva(
       shadow: {
         'none': ['shadow-none'],
         'pop': [
+          'mb-2',
           'shadow-pop-md',
           'hover:translate-x-2',
           'hover:translate-y-2',
@@ -46,6 +47,7 @@ export const button = cva(
           'focus-visible:shadow-none',
         ],
         'pop-lg': [
+          'mb-4',
           'shadow-pop-lg',
           'hover:translate-x-4',
           'hover:translate-y-4',

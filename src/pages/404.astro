@@ -1,18 +1,44 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 import Layout from '@/layouts/Layout.astro';
 import Button from '@/components/button/button.astro';
 import { button } from '@/components/button/button';
 ---
 
 <Layout title='404 - soren.codes'>
-  <section class='flex flex-col justify-center items-center min-h-screen px-4 sm:px-12'>
+  <section
+    class='flex flex-col justify-center items-center max-w-screen-md min-h-screen px-4 sm:px-12 py-24 mx-auto text-center'
+  >
     <h1
-      class='flex flex-col sm:flex-row gap-12 divide-y-4 sm:divide-y-0 sm:divide-x-4 divide-foreground text-4xl text-center'
+      class='flex flex-col sm:flex-row gap-4 sm:gap-12 divide-y-4 sm:divide-y-0 sm:divide-x-4 divide-foreground text-4xl text-center'
     >
       <span> 404 </span>
-      <span class='pt-12 sm:pt-0 sm:pl-12'> Not Found </span>
+      <span class='pt-4 sm:pt-0 sm:pl-12'> Not Found </span>
     </h1>
 
-    <Button class={button({ shadow: 'pop' })} href="/" title="Back">Go back</Button>
+    <p class='text-lg'>
+      In this case you may have not found what you were looking for. If so be sure to get
+      in touch with me!
+    </p>
+
+    <ul class='not-prose flex flex-wrap justify-center gap-4 mt-8'>
+      <li>
+        <Button class={button({ shadow: 'pop' })} href='/' title='Back'>
+          <Icon name='tabler:arrow-left' size={24} />
+          Go back
+        </Button>
+      </li>
+      <li>
+        <Button
+          class={button({ intent: 'accent', shadow: 'pop' })}
+          href='/#contact'
+          title='To the contact information'
+        >
+          <Icon name='tabler:at' size={24} />
+          Say Hello
+        </Button>
+      </li>
+    </ul>
   </section>
 </Layout>
