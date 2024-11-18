@@ -1,0 +1,26 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title='Imprint - soren.codes'>
+  <section class='px-4 sm:px-12 py-24'>
+    <h1>Imprint</h1>
+
+    <h2>soren.codes | Sören Maschmann</h2>
+    <p>
+      <Icon class='inline-block' name='tabler:sign-right' size={24} /> Teutoburger Str. 99
+      <br />
+      <Icon class='inline-block' name='tabler:map-pin' size={24} /> 33607 Bielefeld, Germany
+    </p>
+    <p>
+      <Icon class='inline-block' name='tabler:mail' size={24} />
+      <a href='mailto:work@soren.codes' title='Get in touch'>work@soren.codes</a>
+      <br />
+      <Icon class='inline-block' name='tabler:at' size={24} />
+      <a href='/contact' title='To the contact information'>soren.codes/contact</a>
+    </p>
+    <p>Responsible for content & owner: <br /> Sören Maschmann</p>
+  </section>
+</Layout>

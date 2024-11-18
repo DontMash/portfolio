@@ -9,6 +9,9 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://soren.codes',
+  redirects: {
+    '/contact': '/#contact',
+  },
   integrations: [icon({
     iconDir: 'src/assets/icons',
   }), sitemap(), svelte(), tailwind({ applyBaseStyles: false }), compress()]
