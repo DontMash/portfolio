@@ -11,18 +11,13 @@ import CoverImage from '/src/assets/images/cover.png';
 
 <section
   id='why'
-  class='relative flex flex-col lg:grid lg:grid-cols-[4fr,3fr] gap-8 lg:gap-16 py-24 px-4 sm:px-12'
+  class='relative flex flex-col lg:grid lg:grid-cols-[4fr,3fr] gap-8 lg:gap-16 py-24 px-4 sm:px-12 !border-t-0'
 >
-  <div class="max-w-screen-sm">
+  <div class='max-w-screen-sm'>
     <hgroup class='space-y-8'>
       <div class='flex flex-col lg:flex-row items-start lg:items-center gap-4 flex-none'>
         <Button
-          class:list={[
-            button({ shadow: 'pop' }),
-            'h-16',
-            '!p-0',
-            'overflow-hidden',
-          ]}
+          class:list={[button({ shadow: 'pop' }), 'h-16', '!p-0', 'overflow-hidden']}
           href='#contact'
         >
           <Image
@@ -33,7 +28,7 @@ import CoverImage from '/src/assets/images/cover.png';
             height='64'
           />
         </Button>
-        <span class='text-lg text-primary font-semibold'>Hi, I'm Søren.</span>
+        <h1 class='text-lg text-primary font-semibold m-0'>Hi, I'm Søren.</h1>
       </div>
       <h2>Software engineer & <br />digital explorer</h2>
     </hgroup>
