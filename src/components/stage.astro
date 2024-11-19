@@ -1,0 +1,100 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+
+import Button from '@/components/button/button.astro';
+import { button } from '@/components/button/button';
+
+import AvatarImage from '/src/assets/images/avatar.jpg';
+import CoverImage from '/src/assets/images/cover.png';
+---
+
+<section
+  id='why'
+  class='relative flex flex-col lg:grid lg:grid-cols-[4fr,3fr] gap-8 lg:gap-16 py-24 px-4 sm:px-12 !border-t-0'
+>
+  <div class='max-w-screen-sm'>
+    <hgroup class='space-y-8'>
+      <div class='flex flex-col lg:flex-row items-start lg:items-center gap-4 flex-none'>
+        <Button
+          class:list={[button({ shadow: 'pop' }), 'h-16', '!p-0', 'overflow-hidden']}
+          href='#contact'
+        >
+          <Image
+            src={AvatarImage}
+            alt='soren avatar'
+            loading='eager'
+            width='120'
+            height='64'
+          />
+        </Button>
+        <h1 class='text-lg text-primary font-semibold m-0'>Hi, I'm Søren.</h1>
+      </div>
+      <h2>Software engineer & <br />digital explorer</h2>
+    </hgroup>
+
+    <p>
+      Transforming visions into reality, one line of code at a time. We can shape the
+      future together with innovation, precision, and passion.
+    </p>
+
+    <ul class='not-prose flex flex-wrap gap-4 mt-8'>
+      <li>
+        <Button
+          class={button({ shadow: 'pop' })}
+          title='Send me an email'
+          href='#contact'
+        >
+          <Icon name='tabler:at' size={24} />
+          <span>Say hello</span>
+        </Button>
+      </li>
+      <li>
+        <Button
+          class={button({ intent: 'accent', size: 'icon', shadow: 'pop' })}
+          title='Look at my GitHub'
+          href='https://github.com/dontmash'
+          target='_blank'
+          rel='noreferrer'
+        >
+          <Icon name='tabler:brand-github' size={24} />
+          <span class='sr-only'>GitHub - soren.codes</span>
+        </Button>
+      </li>
+      <li>
+        <Button
+          class={button({ intent: 'accent', size: 'icon', shadow: 'pop' })}
+          title='Look at my LinkedIn'
+          href='https://www.linkedin.com/in/smaschmann'
+          target='_blank'
+          rel='noreferrer'
+        >
+          <Icon name='tabler:brand-linkedin' size={24} />
+          <span class='sr-only'>LinkedIn - Sören Maschmann</span>
+        </Button>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <Image
+      class='not-prose mx-auto'
+      src={CoverImage}
+      alt=''
+      loading='eager'
+      width='480'
+      height='480'
+    />
+  </div>
+
+  <div class='absolute bottom-8 left-1/2 -translate-x-1/2'>
+    <Button
+      class={button({ intent: 'accent', size: 'icon' })}
+      href='#contact'
+      title='Contact'
+    >
+      <Icon name='tabler:chevron-down' size={24} />
+      <span class='sr-only'>Go to contact</span>
+    </Button>
+  </div>
+</section>

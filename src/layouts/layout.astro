@@ -1,0 +1,36 @@
+---
+import '@fontsource-variable/azeret-mono';
+import '@/styles/base.pcss';
+
+import Header from '@/components/header.astro';
+import Footer from '@/components/footer.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html class='scroll-smooth scroll-pt-20' lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='description' content='Astro description' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body id='top'>
+    <Header />
+
+    <main
+      class='dots prose flex flex-col max-w-screen-xl min-h-screen mx-auto xl:border-x-0.75 divide-y-0.75'
+    >
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>
