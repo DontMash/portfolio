@@ -4,6 +4,8 @@ import { Icon } from 'astro-icon/components';
 
 import Button from '@/components/button/button.astro';
 import { button } from '@/components/button/button';
+import { section } from '@/components/section';
+import { textMedia } from '@/components/text-media';
 
 import AvatarImage from '/src/assets/images/avatar.jpg';
 import CoverImage from '/src/assets/images/cover.png';
@@ -11,7 +13,7 @@ import CoverImage from '/src/assets/images/cover.png';
 
 <section
   id='why'
-  class='relative flex flex-col lg:grid lg:grid-cols-[4fr,3fr] gap-8 lg:gap-16 pt-12 pb-24 sm:pt-24 px-4 sm:px-12 !border-t-0'
+  class:list={[section(), textMedia(), 'relative', 'pb-24', '!border-t-0']}
 >
   <div class='max-w-screen-sm'>
     <hgroup class='space-y-8'>

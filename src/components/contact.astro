@@ -6,12 +6,11 @@ import AvatarImage from '/src/assets/images/avatar.jpg';
 
 import Button from '@/components/button/button.astro';
 import { button } from '@/components/button/button';
+import { section } from '@/components/section';
+import { textMedia } from '@/components/text-media';
 ---
 
-<section
-  id='contact'
-  class='flex flex-col lg:grid lg:grid-cols-[3fr,4fr] gap-8 sm:gap-16 px-4 sm:px-12 py-12 sm:py-24'
->
+<section id='contact' class:list={[section(), textMedia({ kind: 'right' })]}>
   <div>
     <Button
       class:list={[button({ shadow: 'pop-lg' }), 'h-32', '!p-0', 'overflow-hidden']}
