@@ -10,12 +10,16 @@ import { button } from '@/components/button/button';
 
 <section
   id='contact'
-  class='flex flex-col-reverse lg:grid lg:grid-cols-[3fr,4fr] gap-16 px-4 sm:px-12 py-12 sm:py-24'
+  class='flex flex-col lg:grid lg:grid-cols-[3fr,4fr] gap-8 sm:gap-16 px-4 sm:px-12 py-12 sm:py-24'
 >
   <div>
-    <span class:list={[button({ shadow: 'pop-lg' }), 'h-32', '!p-0', 'overflow-hidden']}>
+    <Button
+      class:list={[button({ shadow: 'pop-lg' }), 'h-32', '!p-0', 'overflow-hidden']}
+      title='To the frontpage'
+      href='/#top'
+    >
       <Image src={AvatarImage} alt='soren avatar' width='256' height='128' />
-    </span>
+    </Button>
   </div>
 
   <div class='max-w-screen-sm'>
