@@ -12,5 +12,5 @@ export const textMedia = cva(
     defaultVariants: {
       kind: 'left',
     },
-  }
+  },
 );

@@ -13,7 +13,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html class='scroll-smooth scroll-pt-20' lang='en'>
+<html lang='en'>
   <head>
     <meta charset='UTF-8' />
     <meta name='description' content='Astro description' />
@@ -26,7 +26,7 @@ const { title } = Astro.props;
     <Header />
 
     <main
-      class='dots prose flex flex-col max-w-screen-xl min-h-screen mx-auto xl:border-x-3 divide-y-3'
+      class='dots mx-auto flex min-h-screen max-w-screen-xl flex-col divide-y-3 xl:border-x-3'
     >
       <slot />
     </main>

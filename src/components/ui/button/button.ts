@@ -8,9 +8,7 @@ export const button = cva(
     'items-center',
     'gap-x-2',
     'align-middle',
-    'text-base',
-    'font-semibold',
-    'leading-xl',
+    'paragraph-highlight',
     'transition',
     'focus-visible:outline-current',
     'focus-visible:outline-dashed',
@@ -29,13 +27,13 @@ export const button = cva(
         neutral: ['text-neutral-foreground'],
       },
       size: {
-        'md': [],
-        'icon': ['size-12', 'p-2'],
+        md: [],
+        icon: ['size-12', 'p-2'],
         'icon-lg': ['size-16', 'p-2'],
       },
       shadow: {
-        'none': ['shadow-none'],
-        'pop': [
+        none: ['shadow-none'],
+        pop: [
           'mb-2',
           'shadow-pop-md',
           'hover:translate-x-2',
@@ -115,5 +113,5 @@ export const button = cva(
       intent: 'primary',
       size: 'md',
     },
-  }
+  },
 );

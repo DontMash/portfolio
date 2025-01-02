@@ -12,16 +12,16 @@ import CoverImage from '/src/assets/images/cover.png';
 
 <section
   id='why'
-  class='relative pb-24 !border-t-0'
+  class='prose relative pb-24'
   class:list={[section(), textMedia()]}
 >
   <div class='max-w-screen-sm'>
     <hgroup class='space-y-8'>
       <div
-        class='flex flex-col lg:flex-row items-start lg:items-center gap-4 flex-none'
+        class='flex min-w-fit flex-col items-start gap-4 lg:flex-row lg:items-center'
       >
         <Button
-          class='h-16 !p-0 overflow-hidden'
+          class='h-16 overflow-hidden !p-0'
           href='#contact'
           variants={{ shadow: 'pop' }}
         >
@@ -33,17 +33,19 @@ import CoverImage from '/src/assets/images/cover.png';
             height='64'
           />
         </Button>
-        <h1 class='text-lg text-primary font-semibold m-0'>Hi, I'm Søren.</h1>
+        <h1 class='heading-2 m-0 text-primary'>Hi, I'm Søren.</h1>
       </div>
-      <h2>Software engineer & digital explorer</h2>
+      <p class='heading-1 text-foreground'
+        >Software engineer & digital explorer</p
+      >
     </hgroup>
 
-    <p>
+    <p class='paragraph mt-8 lg:mt-16'>
       Transforming visions into reality, one line of code at a time. We can
       shape the future together with innovation, precision, and passion.
     </p>
 
-    <ul class='not-prose flex flex-wrap gap-4 mt-8'>
+    <ul class='not-prose flex flex-wrap gap-4'>
       <li>
         <Button
           title='Send me an email'
@@ -83,7 +85,7 @@ import CoverImage from '/src/assets/images/cover.png';
 
   <div>
     <Image
-      class='not-prose mx-auto'
+      class='mx-auto'
       src={CoverImage}
       alt=''
       loading='eager'

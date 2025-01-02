@@ -5,19 +5,19 @@ import Button from '@/components/ui/button/button.astro';
 import Logo from '@/components/ui/logo.astro';
 ---
 
-<footer class='prose-invert py-12 bg-foreground text-background'>
+<footer class='prose-invert bg-foreground py-12 text-background'>
   <div
-    class='relative grid grid-rows-3 sm:grid-rows-1 sm:grid-cols-2 gap-8 max-w-screen-xl min-h-60 px-4 sm:px-12 mx-auto'
+    class='mx-auto grid min-h-60 max-w-screen-xl grid-rows-3 gap-8 px-4 sm:grid-cols-2 sm:grid-rows-1 sm:px-12'
   >
-    <div class='flex flex-col gap-6 items-start'>
+    <div class='flex flex-col items-start gap-6'>
       <Logo theme='dark' />
 
-      <p class='grow max-w-96 text-sm'>
+      <p class='max-w-96 grow text-sm'>
         Software development is the process of transforming imagination into
         reality.
       </p>
 
-      <ul class='not-prose flex flex-wrap gap-2'>
+      <ul class='flex flex-wrap gap-2'>
         <li>
           <Button
             title='Send me an email'
@@ -70,7 +70,7 @@ import Logo from '@/components/ui/logo.astro';
     </div>
 
     <div class='flex flex-col gap-6 sm:text-right'>
-      <ul class='not-prose flex flex-col gap-2 grow'>
+      <ul class='flex grow flex-col gap-2'>
         <li>
           <Button
             title='To the contact information'
@@ -119,13 +119,5 @@ import Logo from '@/components/ui/logo.astro';
         <span class='sr-only'>Go back to the top</span>
       </Button>
     </div>
-
-    <a
-      class='absolute right-0 bottom-0 size-8'
-      href='/style'
-      tabindex='-1'
-      aria-label='style'
-      aria-hidden='true'
-      no-index></a>
   </div>
 </footer>
