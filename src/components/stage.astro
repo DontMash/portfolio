@@ -2,8 +2,7 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 
-import Button from '@/components/button/button.astro';
-import { button } from '@/components/button/button';
+import Button from '@/components/ui/button/button.astro';
 import { section } from '@/components/section';
 import { textMedia } from '@/components/text-media';
 
@@ -13,14 +12,18 @@ import CoverImage from '/src/assets/images/cover.png';
 
 <section
   id='why'
-  class:list={[section(), textMedia(), 'relative', 'pb-24', '!border-t-0']}
+  class='relative pb-24 !border-t-0'
+  class:list={[section(), textMedia()]}
 >
   <div class='max-w-screen-sm'>
     <hgroup class='space-y-8'>
-      <div class='flex flex-col lg:flex-row items-start lg:items-center gap-4 flex-none'>
+      <div
+        class='flex flex-col lg:flex-row items-start lg:items-center gap-4 flex-none'
+      >
         <Button
-          class:list={[button({ shadow: 'pop' }), 'h-16', '!p-0', 'overflow-hidden']}
+          class='h-16 !p-0 overflow-hidden'
           href='#contact'
+          variants={{ shadow: 'pop' }}
         >
           <Image
             src={AvatarImage}
@@ -36,16 +39,16 @@ import CoverImage from '/src/assets/images/cover.png';
     </hgroup>
 
     <p>
-      Transforming visions into reality, one line of code at a time. We can shape the
-      future together with innovation, precision, and passion.
+      Transforming visions into reality, one line of code at a time. We can
+      shape the future together with innovation, precision, and passion.
     </p>
 
     <ul class='not-prose flex flex-wrap gap-4 mt-8'>
       <li>
         <Button
-          class={button({ shadow: 'pop' })}
           title='Send me an email'
           href='#contact'
+          variants={{ shadow: 'pop' }}
         >
           <Icon name='tabler:at' size={24} />
           <span>Say hello</span>
@@ -53,11 +56,11 @@ import CoverImage from '/src/assets/images/cover.png';
       </li>
       <li>
         <Button
-          class={button({ intent: 'accent', size: 'icon', shadow: 'pop' })}
           title='Look at my GitHub'
           href='https://github.com/dontmash'
           target='_blank'
           rel='noreferrer'
+          variants={{ intent: 'accent', size: 'icon', shadow: 'pop' }}
         >
           <Icon name='tabler:brand-github' size={24} />
           <span class='sr-only'>GitHub - soren.codes</span>
@@ -65,11 +68,11 @@ import CoverImage from '/src/assets/images/cover.png';
       </li>
       <li>
         <Button
-          class={button({ intent: 'accent', size: 'icon', shadow: 'pop' })}
           title='Look at my LinkedIn'
           href='https://www.linkedin.com/in/smaschmann'
           target='_blank'
           rel='noreferrer'
+          variants={{ intent: 'accent', size: 'icon', shadow: 'pop' }}
         >
           <Icon name='tabler:brand-linkedin' size={24} />
           <span class='sr-only'>LinkedIn - Sören Maschmann</span>
@@ -91,9 +94,9 @@ import CoverImage from '/src/assets/images/cover.png';
 
   <div class='absolute bottom-8 left-1/2 -translate-x-1/2'>
     <Button
-      class={button({ intent: 'accent', size: 'icon' })}
       href='#contact'
       title='Contact'
+      variants={{ intent: 'accent', size: 'icon' }}
     >
       <Icon name='tabler:chevron-down' size={24} />
       <span class='sr-only'>Go to contact</span>

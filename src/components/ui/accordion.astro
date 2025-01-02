@@ -1,0 +1,27 @@
+---
+import { Icon } from 'astro-icon/components';
+
+type Props = {
+  items: Array<{ title: string; content: string }>;
+  name?: string;
+};
+const { items, name } = Astro.props;
+---
+
+<div class='space-y-4'>
+  {
+    items.map((item) => (
+      <details class='group' {name}>
+        <summary class='flex cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden p-4 relative border-b-3 font-medium focus-visible:outline-current focus-visible:outline-dashed focus-visible:outline-3 after:absolute after:left-1 after:right-0 after:top-[calc(100%+theme(borderWidth.3))] after:w-full after:h-[theme(borderWidth.3)] after:bg-primary'>
+          <span>{item.title}</span>
+          <Icon
+            class='group-open:rotate-180 min-w-fit self-end transition ml-auto'
+            name='tabler:caret-down'
+            size={24}
+          />
+        </summary>
+        <p class='pt-4 px-4'>{item.content}</p>
+      </details>
+    ))
+  }
+</div>

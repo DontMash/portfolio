@@ -2,8 +2,8 @@
 import { Icon } from 'astro-icon/components';
 
 import Layout from '@/layouts/layout.astro';
-import Button from '@/components/button/button.astro';
-import { button } from '@/components/button/button';
+import Button from '@/components/ui/button/button.astro';
+import { button } from '@/components/ui/button/button';
 ---
 
 <Layout title='404 - soren.codes'>
@@ -18,22 +18,22 @@ import { button } from '@/components/button/button';
     </h1>
 
     <p class='text-lg'>
-      In this case you may have not found what you were looking for. If so be sure to get
-      in touch with me!
+      In this case you may have not found what you were looking for. If so be
+      sure to get in touch with me!
     </p>
 
     <ul class='not-prose flex flex-wrap justify-center gap-4 mt-8'>
       <li>
-        <Button class={button({ shadow: 'pop' })} href='/' title='Back'>
+        <Button href='/' title='Back' variants={{ shadow: 'pop' }}>
           <Icon name='tabler:arrow-left' size={24} />
           Go back
         </Button>
       </li>
       <li>
         <Button
-          class={button({ intent: 'accent', shadow: 'pop' })}
           href='/contact'
           title='To the contact information'
+          variants={{ intent: 'accent', shadow: 'pop' }}
         >
           <Icon name='tabler:at' size={24} />
           Say Hello

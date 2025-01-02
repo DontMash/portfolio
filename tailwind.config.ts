@@ -26,20 +26,20 @@ export default {
 
       primary: {
         DEFAULT: 'hsl(var(--orange-100))',
-        'hover': 'hsl(var(--orange-200))',
-        'active': 'hsl(var(--orange-300))',
+        hover: 'hsl(var(--orange-200))',
+        active: 'hsl(var(--orange-300))',
         foreground: 'hsl(var(--base-900))',
       },
       accent: {
         DEFAULT: 'hsl(var(--background))',
-        'hover': 'hsl(var(--peach-100))',
-        'active': 'hsl(var(--peach-200))',
+        hover: 'hsl(var(--peach-100))',
+        active: 'hsl(var(--peach-200))',
         foreground: 'hsl(var(--base-900))',
       },
       neutral: {
         DEFAULT: 'hsl(var(--base-900))',
-        'hover': 'hsl(var(--base-700))',
-        'active': 'hsl(var(--base-600))',
+        hover: 'hsl(var(--base-700))',
+        active: 'hsl(var(--base-600))',
         foreground: 'hsl(var(--base-100))',
       },
       muted: {
@@ -73,18 +73,19 @@ export default {
 
     extend: {
       borderWidth: {
-        0.75: '0.1875rem',
+        3: '3px',
       },
       outlineWidth: {
         3: '3px',
       },
 
+      // @ts-ignore
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            maxWidth: 'none',
-            fontSize: theme('fontSize.base'),
-            lineHeight: theme('lineHeight.md'),
+            'maxWidth': 'none',
+            'fontSize': theme('fontSize.base'),
+            'lineHeight': theme('lineHeight.xl'),
 
             '--tw-prose-body': theme('colors.foreground'),
             '--tw-prose-headings': theme('colors.foreground'),
@@ -120,17 +121,13 @@ export default {
             '--tw-prose-invert-th-borders': theme('colors.background'),
             '--tw-prose-invert-td-borders': theme('colors.background'),
 
-            'p': {
-              color: theme('colors.neutral.500'),
+            'mark': {
+              'background-color': theme('colors.primary.DEFAULT'),
             },
           },
         },
       }),
     },
   },
-  plugins: [
-    require('@xpd/tailwind-3dtransforms'),
-    require('tailwind-scrollbar-hide'),
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require('@tailwindcss/typography')],
 };

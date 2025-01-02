@@ -3,7 +3,6 @@ import { cva, type VariantProps } from 'class-variance-authority';
 export type ButtonProps = VariantProps<typeof button>;
 export const button = cva(
   [
-    'button',
     'inline-flex',
     'justify-center',
     'items-center',
@@ -21,7 +20,7 @@ export const button = cva(
   {
     variants: {
       kind: {
-        default: ['rounded-full', 'border-0.75', 'no-underline'],
+        default: ['rounded-full', 'border-3', 'no-underline'],
         link: ['hover:underline', 'focus-visible:underline'],
       },
       intent: {

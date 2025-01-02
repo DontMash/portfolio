@@ -1,0 +1,35 @@
+---
+import { section } from '@/components/section';
+import Accordion from '@/components/ui/accordion.astro';
+
+const items = [
+  {
+    title: 'What do I consider a project?',
+    content: '',
+  },
+  {
+    title: 'How long will it take to finish the project?',
+    content:
+      'In agile software development, timelines are flexible and iterative, focusing on delivering value incrementally. Each increment itself should represent the product that can be made available to a user. The total duration of a project depends on the scope and complexity. By inspecting the work done and adepting to issues and changes the timeline can be refined.',
+  },
+  {
+    title: 'What will this project cost?',
+    content: '',
+  },
+  {
+    title: 'What kind of ongoing support will I need?',
+    content: '',
+  },
+];
+---
+
+<section class:list={[section()]} id='faq'>
+  <div class='w-full max-w-screen-sm mx-auto space-y-8'>
+    <hgroup>
+      <h2 class='mt-0'>Still unsure about our project?</h2>
+      <p>You may find your answer here:</p>
+    </hgroup>
+
+    <Accordion {items} />
+  </div>
+</section>

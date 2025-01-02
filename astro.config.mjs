@@ -1,10 +1,7 @@
 import { defineConfig } from 'astro/config';
 
-import compress from "astro-compress";
-import icon from "astro-icon";
-import sitemap from "@astrojs/sitemap";
-import svelte from "@astrojs/svelte";
-import tailwind from "@astrojs/tailwind";
+import icon from 'astro-icon';
+import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,7 +9,10 @@ export default defineConfig({
   redirects: {
     '/contact': '/#contact',
   },
-  integrations: [icon({
-    iconDir: 'src/assets/icons',
-  }), sitemap(), svelte(), tailwind({ applyBaseStyles: false }), compress()]
+  integrations: [
+    icon({
+      iconDir: 'src/assets/icons',
+    }),
+    tailwind({ applyBaseStyles: false }),
+  ],
 });

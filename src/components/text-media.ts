@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const textMedia = cva(
-  ['text-media', 'flex', 'flex-col', 'lg:grid', 'gap-8', 'sm:gap-16'],
+  ['flex', 'flex-col', 'lg:grid', 'gap-8', 'sm:gap-16'],
   {
     variants: {
       kind: {

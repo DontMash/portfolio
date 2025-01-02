@@ -4,18 +4,22 @@ import { Icon } from 'astro-icon/components';
 
 import AvatarImage from '/src/assets/images/avatar.jpg';
 
-import Button from '@/components/button/button.astro';
-import { button } from '@/components/button/button';
+import Button from '@/components/ui/button/button.astro';
 import { section } from '@/components/section';
 import { textMedia } from '@/components/text-media';
 ---
 
-<section id='contact' class:list={[section(), textMedia({ kind: 'right' })]}>
+<section
+  id='contact'
+  class='bg-muted'
+  class:list={[section(), textMedia({ kind: 'right' })]}
+>
   <div>
     <Button
-      class:list={[button({ shadow: 'pop-lg' }), 'h-32', '!p-0', 'overflow-hidden']}
+      class='h-32 !p-0 overflow-hidden'
       title='To the frontpage'
       href='/#top'
+      variants={{ shadow: 'pop-lg' }}
     >
       <Image src={AvatarImage} alt='soren avatar' width='256' height='128' />
     </Button>
@@ -25,16 +29,17 @@ import { textMedia } from '@/components/text-media';
     <h2 class='mt-0'>Code the Future. Innovate. Together.</h2>
 
     <p>
-      Let's work together to turn innovative ideas into products for the future! To get in
-      touch with me and start our journey, choose one of the options below.
+      Let's work together to turn innovative ideas into products for the future!
+      To get in touch with me and start our journey, choose one of the options
+      below.
     </p>
 
     <ul class='not-prose flex flex-wrap gap-4 mt-8'>
       <li>
         <Button
-          class={button({ shadow: 'pop' })}
           title='Send me an email'
           href='mailto:work@soren.codes'
+          variants={{ shadow: 'pop' }}
         >
           <Icon name='tabler:mail' size={24} />
           <span>Mail me</span>
@@ -42,11 +47,11 @@ import { textMedia } from '@/components/text-media';
       </li>
       <li>
         <Button
-          class={button({ intent: 'accent', size: 'icon', shadow: 'pop' })}
           title='Look at my Ko-fi'
           href='https://ko-fi.com/smaschmann'
           target='_blank'
           rel='noreferrer'
+          variants={{ intent: 'accent', size: 'icon', shadow: 'pop' }}
         >
           <Icon name='simple-icons:kofi' size={24} />
           <span class='sr-only'>Ko-fi - soren.codes</span>
