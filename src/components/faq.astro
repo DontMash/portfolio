@@ -5,7 +5,8 @@ import Accordion from '@/components/ui/accordion.astro';
 const items = [
   {
     title: 'What do I consider a project?',
-    content: '',
+    content:
+      'A project is born from an idea that wants to be turned into reality. I see a shared understanding of this idea as the basis for implementation. As long as we successfully exchange ideas, I believe that every idea can be implemented. That\'s why I studied media informatics and have specialized in full-stack web technologies since graduating.',
   },
   {
     title: 'How long will it take to finish the project?',
@@ -14,20 +15,19 @@ const items = [
   },
   {
     title: 'What will this project cost?',
-    content: '',
-  },
-  {
-    title: 'What kind of ongoing support will I need?',
-    content: '',
+    content: 'A project will start with an estimation of the work that needs to be done. Overtime the estimation will become more percise based on the accomplished work and our communication: By setting priorities a minimal viable product should be the first goal of our collaboration. Your budget may decide when a project ends.',
   },
 ];
 ---
 
 <section class:list={[section()]} id='faq'>
-  <div class='w-full max-w-screen-sm mx-auto space-y-8'>
-    <hgroup>
-      <h2 class='mt-0'>Still unsure about our project?</h2>
-      <p>You may find your answer here:</p>
+  <div class='mx-auto w-full max-w-screen-md space-y-8'>
+    <hgroup class='prose'>
+      <h2>Still unsure about our project?</h2>
+      <p>
+        Whether your curious about my process or how we can work together: You
+        will find your answer here.
+      </p>
     </hgroup>
 
     <Accordion {items} />
