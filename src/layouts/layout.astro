@@ -1,12 +1,13 @@
 ---
 import '@fontsource-variable/azeret-mono';
 import '@/styles/base.pcss';
+import { SEO } from "astro-seo";
 
 import Header from '@/components/page/header.astro';
 import Footer from '@/components/page/footer.astro';
 
 interface Props {
-  title: string;
+  title?: string;
 }
 
 const { title } = Astro.props;
@@ -21,7 +22,8 @@ const { title } = Astro.props;
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='generator' content={Astro.generator} />
     <link rel='sitemap' href='/sitemap-index.xml' />
-    <title>{title}</title>
+
+    <SEO {title} titleTemplate='%s - soren.codes' titleDefault='soren.codes' />
   </head>
   <body id='top'>
     <Header />

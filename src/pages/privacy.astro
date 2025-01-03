@@ -4,8 +4,8 @@ import { Icon } from 'astro-icon/components';
 import Layout from '@/layouts/layout.astro';
 ---
 
-<Layout title='Privacy - soren.codes'>
-  <section class='mx-auto max-w-screen-md px-4 py-24 sm:px-12'>
+<Layout title='Privacy'>
+  <section class='prose mx-auto max-w-screen-md px-4 py-24 sm:px-12'>
     <h1>Privacy Policy</h1>
     <p>
       I'm committed to protecting your personal data and your privacy. This
@@ -24,28 +24,35 @@ import Layout from '@/layouts/layout.astro';
         <br />
         <br />
 
-        <span class='font-bold'> soren.codes | Sören Maschmann </span>
+        <strong>soren.codes | Sören Maschmann</strong>
         <br />
-        <Icon class='inline-block' name='tabler:sign-right' size={24} /> Teutoburger
-        Str. 99
+        <strong>
+          <Icon class='inline-block' name='tabler:sign-right' size={24} /> Teutoburger
+          Str. 99
+        </strong>
         <br />
-        <Icon class='inline-block' name='tabler:map-pin' size={24} /> 33607 Bielefeld,
-        Germany
+        <strong>
+          <Icon class='inline-block' name='tabler:map-pin' size={24} /> 33607 Bielefeld,
+          Germany
+        </strong>
         <br />
-
-        <Icon class='inline-block' name='tabler:mail' size={24} />
-        <a href='mailto:work@soren.codes' title='Get in touch'
-          >work@soren.codes</a
-        >
+        <strong>
+          <Icon class='inline-block' name='tabler:mail' size={24} />
+          <a href='mailto:work@soren.codes' title='Get in touch'
+            >work@soren.codes</a
+          >
+        </strong>
         <br />
-        <Icon class='inline-block' name='tabler:at' size={24} />
-        <a href='/contact' title='To the contact information'
-          >soren.codes/contact</a
-        >
+        <strong>
+          <Icon class='inline-block' name='tabler:at' size={24} />
+          <a href='/contact' title='To the contact information'
+            >soren.codes/contact</a
+          >
+        </strong>
       </p>
       <p>
-        If you have any questions about this Privacy Policy or our data
-        processing practices, please contact us using the details provided
+        If you have any questions about this privacy policy or my data
+        processing practices, please contact me using the details provided
         above.
       </p>
     </section>
@@ -227,10 +234,10 @@ import Layout from '@/layouts/layout.astro';
 
     <p>
       If you have any questions or concerns about this privacy policy, please
-      contact me at <a href='mailto:work@soren.codes' title='Get in touch'
-        >work@soren.codes</a
+      contact me at <a href='mailto:work@soren.codes' title='Get in touch'>
+        work@soren.codes</a
       >.
     </p>
-    <strong> Last updated: Nov. 2024 </strong>
+    <strong>Last updated: Nov. 2024</strong>
   </section>
 </Layout>

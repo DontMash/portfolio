@@ -1,8 +1,10 @@
 {
+  "type": "module",
   "name": "portfolio",
   "version": "0.0.1",
   "devDependencies": {
     "@astrojs/check": "0.9.4",
+    "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "5.1.4",
     "@fontsource-variable/azeret-mono": "^5.0.21",
     "@iconify-json/simple-icons": "^1.1.105",
@@ -10,6 +12,7 @@
     "@tailwindcss/typography": "^0.5.15",
     "astro": "5.1.2",
     "astro-icon": "^1.1.0",
+    "astro-seo": "^0.8.4",
     "class-variance-authority": "^0.7.0",
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1",
@@ -24,9 +27,5 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
-  },
-  "type": "module",
-  "dependencies": {
-    "@astrojs/sitemap": "^3.2.1"
   }
 }
