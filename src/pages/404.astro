@@ -6,7 +6,14 @@ import { section } from '@/components/section';
 import Button from '@/components/ui/button/button.astro';
 ---
 
-<Layout title='404'>
+<Layout
+  title='404'
+  openGraph={{
+    title: '404 - Not Found',
+    description:
+      'In this case you may not have found what you were looking for. If so be sure to get in touch with me!',
+  }}
+>
   <section class='prose mx-auto max-w-screen-md' class:list={[section()]}>
     <hgroup>
       <h1

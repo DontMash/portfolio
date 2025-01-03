@@ -7,7 +7,15 @@ import Button from '@/components/ui/button/button.astro';
 import { section } from '@/components/section';
 ---
 
-<Layout title='Style'>
+<Layout
+  title='Style'
+  noindex={true}
+  openGraph={{
+    title: 'Style of soren.codes',
+    description:
+      'A showcase of the style-guide for soren.codes. Displaying typography, colors, components and more.',
+  }}
+>
   <div class='prose'>
     <h1 class:list={[section()]}>Base-Style</h1>
   </div>

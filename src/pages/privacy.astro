@@ -4,7 +4,14 @@ import { Icon } from 'astro-icon/components';
 import Layout from '@/layouts/layout.astro';
 ---
 
-<Layout title='Privacy'>
+<Layout
+  title='Privacy'
+  openGraph={{
+    title: 'Privacy Policy',
+    description:
+      "I'm committed to protecting your personal data and your privacy. This Privacy Policy explains how I collect, use, and protect your information when you visit my website, in accordance with the General Data Protection Regulation (GDPR).",
+  }}
+>
   <section class='prose mx-auto max-w-screen-md px-4 py-24 sm:px-12'>
     <h1>Privacy Policy</h1>
     <p>
