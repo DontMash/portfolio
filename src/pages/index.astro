@@ -5,7 +5,13 @@ import Faq from '@/components/faq.astro';
 import Stage from '@/components/stage.astro';
 ---
 
-<Layout title='soren.codes'>
+<Layout
+  openGraph={{
+    title: "Hi, I'm Søren. Software engineer & digital explorer",
+    description:
+      'Transforming visions into reality, one line of code at a time. We can shape the future together with innovation, precision, and passion.',
+  }}
+>
   <Stage />
   <Contact />
   <Faq />

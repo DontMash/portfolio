@@ -124,7 +124,7 @@ export default {
               "@apply bg-foreground text-primary": "",
             },
 
-            "--tw-prose-body": theme("colors.base.500"),
+            "--tw-prose-body": theme("colors.foreground"),
             "--tw-prose-headings": theme("colors.foreground"),
             "--tw-prose-lead": theme("colors.foreground"),
             "--tw-prose-links": theme("colors.foreground"),
