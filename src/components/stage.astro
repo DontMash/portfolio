@@ -10,13 +10,9 @@ import AvatarImage from '/src/assets/images/avatar.jpg';
 import CoverImage from '/src/assets/images/cover.png';
 ---
 
-<section
-  id='why'
-  class='prose relative pb-24'
-  class:list={[section(), textMedia()]}
->
-  <div class='max-w-screen-sm'>
-    <hgroup class='space-y-8'>
+<section id='why' class='relative pb-24' class:list={[section(), textMedia()]}>
+  <div class='prose max-w-screen-sm'>
+    <hgroup class='space-y-8 heading-2 mb-[1em]'>
       <div
         class='flex min-w-fit flex-col items-start gap-4 lg:flex-row lg:items-center'
       >
@@ -25,20 +21,16 @@ import CoverImage from '/src/assets/images/cover.png';
           href='#contact'
           variants={{ shadow: 'pop' }}
         >
-          <Image
-            src={AvatarImage}
-            alt='soren avatar'
-            loading='eager'
-          />
+          <Image src={AvatarImage} alt='soren avatar' loading='eager' />
         </Button>
-        <h1 class='heading-2 m-0 text-primary'>Hi, I'm Søren.</h1>
+        <h1 class='heading-3 m-0 text-primary'>Hi, I'm Søren.</h1>
       </div>
-      <p class='heading-1 text-foreground'
-        >Software engineer & digital explorer</p
-      >
+      <p class='heading-2 text-foreground'>
+        Software engineer & digital explorer
+      </p>
     </hgroup>
 
-    <p class='paragraph mt-8 lg:mt-16'>
+    <p class='paragraph'>
       Transforming visions into reality, one line of code at a time. We can
       shape the future together with innovation, precision, and passion.
     </p>
@@ -81,9 +73,8 @@ import CoverImage from '/src/assets/images/cover.png';
     </ul>
   </div>
 
-  <div>
+  <div class="w-fit">
     <Image
-      class='mx-auto'
       src={CoverImage}
       alt=''
       loading='eager'

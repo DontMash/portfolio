@@ -6,7 +6,7 @@ import { section } from '@/components/section';
 import { textMedia } from '@/components/text-media';
 import Button from '@/components/ui/button/button.astro';
 
-import AvatarImage from '/src/assets/images/avatar.jpg';
+import AvatarImage from '/src/assets/images/profile.jpg';
 ---
 
 <section
@@ -14,15 +14,8 @@ import AvatarImage from '/src/assets/images/avatar.jpg';
   class='bg-muted'
   class:list={[section(), textMedia({ kind: 'right' })]}
 >
-  <div>
-    <Button
-      class='h-32 w-64 overflow-hidden !p-0'
-      title='To the frontpage'
-      href='/#top'
-      variants={{ shadow: 'pop-lg' }}
-    >
-      <Image src={AvatarImage} alt='soren avatar' />
-    </Button>
+  <div class='rounded-3xl w-fit overflow-hidden border-3 shadow-pop-lg'>
+    <Image src={AvatarImage} alt='soren avatar' />
   </div>
 
   <div class='prose max-w-screen-sm'>

@@ -7,13 +7,6 @@ export default {
   darkMode: ["class"],
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
-    borderRadius: {
-      inherit: "inherit",
-      lg: "var(--radius)",
-      md: "calc(var(--radius) - 2px)",
-      sm: "calc(var(--radius) - 4px)",
-      full: "9999px",
-    },
     boxShadow: {
       none: defaultTheme.boxShadow.none,
       "pop-md": "8px 8px 0 0 currentColor",
@@ -59,10 +52,6 @@ export default {
         800: "hsl(var(--base-800))",
         900: "hsl(var(--base-900))",
       },
-
-      border: "hsl(var(--border))",
-      input: "hsl(var(--input))",
-      ring: "hsl(var(--ring))",
     },
     fontFamily: {
       sans: ["Azeret Mono Variable", ...defaultTheme.fontFamily.sans],
@@ -88,6 +77,10 @@ export default {
     extend: {
       borderWidth: {
         3: "3px",
+      },
+      borderRadius: {
+        inherit: "inherit",
+        full: "9999px",
       },
       outlineWidth: {
         3: "3px",
@@ -192,27 +185,27 @@ export default {
           fontWeight: theme("fontWeight.medium"),
         },
         ".heading-5": {
-          "@apply text-base lg:text-lg": "",
+          "@apply text-lg lg:text-xl": "",
           lineHeight: theme("lineHeight.xl"),
           fontWeight: theme("fontWeight.medium"),
         },
         ".heading-4": {
-          "@apply text-lg lg:text-xl": "",
+          "@apply text-xl lg:text-2xl": "",
           lineHeight: theme("lineHeight.md"),
           fontWeight: theme("fontWeight.medium"),
         },
         ".heading-3": {
-          "@apply text-xl lg:text-2xl": "",
+          "@apply text-2xl lg:text-3xl": "",
           lineHeight: theme("lineHeight.lg"),
           fontWeight: theme("fontWeight.medium"),
         },
         ".heading-2": {
-          "@apply text-2xl lg:text-3xl": "",
+          "@apply text-3xl lg:text-4xl": "",
           lineHeight: theme("lineHeight.xl"),
           fontWeight: theme("fontWeight.semibold"),
         },
         ".heading-1": {
-          "@apply text-3xl lg:text-4xl": "",
+          "@apply text-4xl lg:text-hero": "",
           lineHeight: theme("lineHeight.md"),
           fontWeight: theme("fontWeight.bold"),
         },
