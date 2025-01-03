@@ -27,5 +27,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
+  },
+  "dependencies": {
+    "astro-robots-txt": "^1.0.0"
   }
 }
