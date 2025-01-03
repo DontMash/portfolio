@@ -25,5 +25,8 @@
     "preview": "astro preview",
     "astro": "astro"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1"
+  }
 }
