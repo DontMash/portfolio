@@ -38,7 +38,7 @@ export const button = cva(
           'shadow-pop-md',
           'hover:translate-x-2',
           'hover:translate-y-2',
-          'hover:shadow-none',
+          'hover:shadow-pop-none',
           'focus-visible:translate-x-2',
           'focus-visible:translate-y-2',
           'focus-visible:shadow-none',

@@ -9,6 +9,7 @@ export default {
   theme: {
     boxShadow: {
       none: defaultTheme.boxShadow.none,
+      "pop-none": "0px 0px 0 0 currentColor",
       "pop-md": "8px 8px 0 0 currentColor",
       "pop-lg": "16px 16px 0 0 currentColor",
     },
