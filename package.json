@@ -29,6 +29,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/vercel": "^8.0.1",
     "astro-robots-txt": "^1.0.0"
   }
 }
