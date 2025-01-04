@@ -5,14 +5,14 @@ import Button from '@/components/ui/button/button.astro';
 import Logo from '@/components/ui/logo.astro';
 ---
 
-<footer class='prose-invert bg-foreground py-12 text-background'>
+<footer class='bg-foreground py-12 text-background'>
   <div
-    class='mx-auto grid min-h-60 max-w-screen-xl grid-rows-3 gap-8 px-4 sm:grid-cols-2 sm:grid-rows-1 sm:px-12'
+    class='mx-auto flex min-h-60 max-w-screen-xl flex-col gap-6 px-4 sm:grid sm:grid-cols-2 sm:grid-rows-1 sm:gap-8 sm:px-12'
   >
     <div class='flex flex-col items-start gap-6'>
       <Logo theme='dark' />
 
-      <p class='max-w-96 grow text-sm'>
+      <p class='small w-full max-w-96'>
         Software development is the process of transforming imagination into
         reality.
       </p>
@@ -66,11 +66,11 @@ import Logo from '@/components/ui/logo.astro';
         </li>
       </ul>
 
-      <span class='text-sm'>©{new Date().getUTCFullYear()} soren.codes</span>
+      <span class='small'>©{new Date().getUTCFullYear()} soren.codes</span>
     </div>
 
     <div class='flex flex-col gap-6 sm:text-right'>
-      <ul class='flex grow flex-col gap-2'>
+      <ul class='flex grow flex-col gap-4'>
         <li>
           <Button
             title='To the contact information'
@@ -100,7 +100,7 @@ import Logo from '@/components/ui/logo.astro';
         </li>
       </ul>
 
-      <span class='text-sm'
+      <span class='small'
         >Made with <Icon
           class='inline align-middle text-primary'
           name='tabler:heart'

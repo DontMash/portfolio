@@ -115,7 +115,10 @@ export default {
             },
 
             p: {
-              "@apply paragraph": "",
+              '@apply paragraph': '',
+            },
+            small: {
+              '@apply small': '',
             },
 
             mark: {
@@ -169,10 +172,14 @@ export default {
     tailwindTypography,
     plugin(({ addComponents, theme }) => {
       addComponents({
-        ".paragraph": {
-          "@apply text-base lg:text-lg": "",
-          lineHeight: theme("lineHeight.xl"),
-          color: theme("colors.base.500"),
+        '.small': {
+          '@apply text-sm': '',
+          lineHeight: theme('lineHeight.xl'),
+        },
+        '.paragraph': {
+          '@apply text-base lg:text-lg': '',
+          lineHeight: theme('lineHeight.xl'),
+          color: theme('colors.base.500'),
         },
         ".paragraph-highlight": {
           "@apply text-base lg:text-lg": "",
