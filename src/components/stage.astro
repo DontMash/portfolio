@@ -12,7 +12,7 @@ import CoverImage from '/src/assets/images/cover.png';
 
 <section id='why' class='relative pb-24' class:list={[section(), textMedia()]}>
   <div class='prose max-w-screen-sm'>
-    <hgroup class='space-y-8 heading-2 mb-[1em]'>
+    <hgroup class='heading-2 mb-[1em] space-y-8'>
       <div
         class='flex min-w-fit flex-col items-start gap-4 lg:flex-row lg:items-center'
       >
@@ -38,8 +38,8 @@ import CoverImage from '/src/assets/images/cover.png';
     <ul class='not-prose flex flex-wrap gap-4'>
       <li>
         <Button
-          title='Send me an email'
-          href='#contact'
+          title='Send me a message'
+          href='#form'
           variants={{ shadow: 'pop' }}
         >
           <Icon name='tabler:at' size={24} />
@@ -73,14 +73,8 @@ import CoverImage from '/src/assets/images/cover.png';
     </ul>
   </div>
 
-  <div class="w-fit">
-    <Image
-      src={CoverImage}
-      alt=''
-      loading='eager'
-      width='480'
-      height='480'
-    />
+  <div class='w-fit'>
+    <Image src={CoverImage} alt='' loading='eager' width='480' height='480' />
   </div>
 
   <div class='absolute bottom-8 left-1/2 -translate-x-1/2'>

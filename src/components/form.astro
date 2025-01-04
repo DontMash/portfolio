@@ -1,0 +1,311 @@
+---
+import { actions, isActionError, isInputError } from 'astro:actions';
+import { Icon } from 'astro-icon/components';
+
+import { section } from '@/components/section';
+import { button } from '@/components/ui/button/button';
+import {
+  inputCheckbox,
+  inputError,
+  inputLabel,
+  inputText,
+} from '@/components/ui/input';
+import Button from '@/components/ui/button/button.astro';
+
+const result = Astro.getActionResult(actions.contact);
+---
+
+<section class:list={[section()]} id='form'>
+  <div class='mx-auto flex w-full max-w-screen-md flex-col gap-8'>
+    <div class='prose'>
+      <h2>Got questions?</h2>
+      <p>
+        Thank you for visiting my portfolio! Whether you have a question, want
+        to discuss a potential collaboration, or just want to say hello, I'd
+        love to hear from you:
+      </p>
+    </div>
+
+    <form
+      class='space-y-4 transition-all data-[loading=true]:blur-md'
+      method='post'
+      action={actions.contact}
+      id='form-contact'
+      aria-describedby='form-contact-info'
+    >
+      <div class='not-prose flex flex-col gap-2'>
+        <div class='paragraph'>
+          <label class:list={[inputLabel()]} for='form-contact-name'>
+            <div class='ml-5'>
+              <Icon name='tabler:user' size={24} />
+              <span class='sr-only'>Name</span>
+            </div>
+            <input
+              class='peer'
+              class:list={[inputText()]}
+              type='text'
+              name='name'
+              id='form-contact-name'
+              aria-describedby='form-contact-name-error'
+              placeholder='Name'
+              minlength={3}
+              maxlength={32}
+            />
+            <span
+              class='mr-5 hidden text-base-300 peer-placeholder-shown:inline'
+              >(optional)</span
+            >
+          </label>
+          <p
+            class:list={[inputError()]}
+            id='form-contact-name-error'
+            data-form-error='name'
+          >
+            {
+              result?.error &&
+                isInputError(result.error) &&
+                result.error.fields['name']?.map((issue) => (
+                  <>
+                    <span>{issue}</span>
+                    <br />
+                  </>
+                ))
+            }
+          </p>
+        </div>
+
+        <div class='paragraph'>
+          <label class:list={[inputLabel()]} for='form-contact-company'>
+            <div class='ml-5'>
+              <Icon name='tabler:building' size={24} />
+              <span class='sr-only'>Company</span>
+            </div>
+            <input
+              class='peer'
+              class:list={[inputText()]}
+              type='text'
+              name='company'
+              id='form-contact-company'
+              aria-describedby='form-contact-company-error'
+              placeholder='Company'
+              minlength={3}
+              maxlength={32}
+            />
+            <span
+              class='mr-5 hidden text-base-300 peer-placeholder-shown:inline'
+              >(optional)</span
+            >
+          </label>
+          <p
+            class:list={[inputError()]}
+            id='form-contact-company-error'
+            data-form-error='company'
+          >
+            {
+              result?.error &&
+                isInputError(result.error) &&
+                result.error.fields['company']?.map((issue) => (
+                  <>
+                    <span>{issue}</span>
+                    <br />
+                  </>
+                ))
+            }
+          </p>
+        </div>
+
+        <div class='paragraph'>
+          <label class:list={[inputLabel()]} for='form-contact-email'>
+            <div class='ml-5'>
+              <Icon name='tabler:mail' size={24} />
+              <span class='sr-only'>Email</span>
+            </div>
+            <input
+              class:list={[inputText()]}
+              type='email'
+              name='email'
+              id='form-contact-email'
+              aria-describedby='form-contact-email-error'
+              placeholder='Email'
+              required
+            />
+          </label>
+          <p
+            class:list={[inputError()]}
+            id='form-contact-email-error'
+            data-form-error='email'
+          >
+            {
+              result?.error &&
+                isInputError(result.error) &&
+                result.error.fields['email']?.map((issue) => (
+                  <>
+                    <span>{issue}</span>
+                    <br />
+                  </>
+                ))
+            }
+          </p>
+        </div>
+
+        <div class='paragraph'>
+          <label
+            class='flex-col !items-stretch'
+            class:list={[inputLabel()]}
+            for='form-contact-message'
+          >
+            <div class='flex items-center gap-5 px-5 py-3'>
+              <Icon name='tabler:message' size={24} />
+              <span class='sr-only'>Message</span>
+            </div>
+            <div
+              class='relative inline-grid whitespace-pre-wrap break-all after:invisible after:col-start-1 after:row-start-1 after:px-5 after:py-3 after:content-[attr(data-value)]'
+            >
+              <textarea
+                class='col-start-1 row-start-1 w-full resize-none overflow-hidden bg-transparent px-5 py-3 outline-none'
+                name='message'
+                id='form-contact-message'
+                aria-describedby='form-contact-message-error'
+                oninput='this.parentNode.dataset.value = this.value'
+                onfocus='this.parentNode.dataset.value = this.value'
+                rows={1}
+                placeholder={"Let's work together..."}
+                minlength={3}
+                maxlength={1024}></textarea>
+            </div>
+          </label>
+          <p
+            class:list={[inputError()]}
+            id='form-contact-message-error'
+            data-form-error='message'
+          >
+            {
+              result?.error &&
+                isInputError(result.error) &&
+                result.error.fields['message']?.map((issue) => (
+                  <>
+                    <span>{issue}</span>
+                    <br />
+                  </>
+                ))
+            }
+          </p>
+        </div>
+
+        <div class='paragraph'>
+          <label class='flex gap-2' for='form-contact-terms'>
+            <input
+              class:list={[inputCheckbox()]}
+              type='checkbox'
+              name='terms'
+              id='form-contact-terms'
+              aria-describedby='form-contact-terms-error'
+              required
+            />
+            <span>
+              I have read the <Button
+                class=''
+                href='/privacy'
+                variants={{ kind: 'link' }}>privacy policy</Button
+              > and agree to the processing of my data.
+            </span>
+          </label>
+          <p
+            class:list={[inputError()]}
+            id='form-contact-terms-error'
+            data-form-error='terms'
+          >
+            {
+              result?.error &&
+                isInputError(result.error) &&
+                result.error.fields['terms']?.map((issue) => (
+                  <>
+                    <span>{issue}</span>
+                    <br />
+                  </>
+                ))
+            }
+          </p>
+        </div>
+
+        <button class='self-start' class:list={[button({ shadow: 'pop' })]}>
+          Send
+        </button>
+      </div>
+
+      <p
+        class='data-[form-message=error]:text-error paragraph-highlight before:inline-block before:content-[""] data-[form-message=success]:text-primary'
+        id='form-contact-info'
+        data-form-message={isActionError(result?.error) ? 'error' : 'success'}
+        >{
+          (result?.error &&
+            isActionError(result.error) &&
+            result.error.message) ||
+            (result && !result.error && result.data.message)
+        }</p
+      >
+    </form>
+  </div>
+</section>
+
+<script>
+  import { actions, isActionError, isInputError } from 'astro:actions';
+
+  const form = document.querySelector('#form-contact') as HTMLFormElement;
+  const errorElements = (
+    form.querySelectorAll('[data-form-error]') as NodeListOf<HTMLElement>
+  )
+    .values()
+    .reduce<Record<string, HTMLElement>>((result, current) => {
+      const name = current.dataset.formError;
+      if (name) {
+        result[name] = current;
+      }
+      return result;
+    }, {});
+  const messageElement = form.querySelector(
+    '[data-form-message]'
+  ) as HTMLElement;
+
+  form.addEventListener('submit', async (event: SubmitEvent) => {
+    event.preventDefault();
+
+    const target = event.currentTarget as HTMLFormElement;
+    target.dataset.loading = String(true);
+    const formData = new FormData(target);
+
+    const button = event.submitter as HTMLButtonElement;
+    button.disabled = true;
+
+    Object.values(errorElements).forEach(
+      (element) => (element.textContent = String())
+    );
+    messageElement.textContent = String();
+
+    const { data, error } = await actions.contact(formData);
+    if (error) {
+      if (isActionError(error)) {
+        messageElement.textContent = error.message;
+        messageElement.dataset.formMessage = 'error';
+      }
+      if (isInputError(error)) {
+        Object.entries(error.fields).forEach(([field, issues]) => {
+          const errorElement = errorElements[field];
+          if (!errorElement) {
+            messageElement.textContent =
+              messageElement.textContent + issues.join('\n');
+            messageElement.dataset.formMessage = 'error';
+            return;
+          }
+          errorElement.textContent = issues.join('\n');
+        });
+      }
+    } else {
+      target.reset();
+      messageElement.textContent = data.message;
+      messageElement.dataset.formMessage = 'success';
+    }
+    target.dataset.loading = String(false);
+    button.disabled = false;
+  });
+</script>
