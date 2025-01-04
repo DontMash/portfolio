@@ -35,7 +35,12 @@ const result = Astro.getActionResult(actions.contact);
     >
       <div class='not-prose flex flex-col gap-2'>
         <div class='paragraph'>
-          <label class:list={[inputLabel()]} for='form-contact-name'>
+          <label
+            class='data-[invalid]:border-error'
+            class:list={[inputLabel()]}
+            for='form-contact-name'
+            data-form-input='name'
+          >
             <div class='ml-5'>
               <Icon name='tabler:user' size={24} />
               <span class='sr-only'>Name</span>
@@ -75,7 +80,12 @@ const result = Astro.getActionResult(actions.contact);
         </div>
 
         <div class='paragraph'>
-          <label class:list={[inputLabel()]} for='form-contact-company'>
+          <label
+            class='data-[invalid]:border-error'
+            class:list={[inputLabel()]}
+            for='form-contact-company'
+            data-form-input='company'
+          >
             <div class='ml-5'>
               <Icon name='tabler:building' size={24} />
               <span class='sr-only'>Company</span>
@@ -115,7 +125,12 @@ const result = Astro.getActionResult(actions.contact);
         </div>
 
         <div class='paragraph'>
-          <label class:list={[inputLabel()]} for='form-contact-email'>
+          <label
+            class='data-[invalid]:border-error'
+            class:list={[inputLabel()]}
+            for='form-contact-email'
+            data-form-input='email'
+          >
             <div class='ml-5'>
               <Icon name='tabler:mail' size={24} />
               <span class='sr-only'>Email</span>
@@ -150,9 +165,10 @@ const result = Astro.getActionResult(actions.contact);
 
         <div class='paragraph'>
           <label
-            class='flex-col !items-stretch'
+            class='data-[invalid]:border-error flex-col !items-stretch'
             class:list={[inputLabel()]}
             for='form-contact-message'
+            data-form-input='messages'
           >
             <div class='flex items-center gap-5 px-5 py-3'>
               <Icon name='tabler:message' size={24} />
@@ -195,11 +211,13 @@ const result = Astro.getActionResult(actions.contact);
         <div class='paragraph'>
           <label class='flex gap-2' for='form-contact-terms'>
             <input
+              class='data-[invalid]:border-error'
               class:list={[inputCheckbox()]}
               type='checkbox'
               name='terms'
               id='form-contact-terms'
               aria-describedby='form-contact-terms-error'
+              data-form-input='terms'
               required
             />
             <span>
@@ -252,6 +270,17 @@ const result = Astro.getActionResult(actions.contact);
   import { actions, isActionError, isInputError } from 'astro:actions';
 
   const form = document.querySelector('#form-contact') as HTMLFormElement;
+  const inputElements = (
+    form.querySelectorAll('[data-form-input]') as NodeListOf<HTMLElement>
+  )
+    .values()
+    .reduce<Record<string, HTMLElement>>((result, current) => {
+      const name = current.dataset.formInput;
+      if (name) {
+        result[name] = current;
+      }
+      return result;
+    }, {});
   const errorElements = (
     form.querySelectorAll('[data-form-error]') as NodeListOf<HTMLElement>
   )
@@ -277,6 +306,9 @@ const result = Astro.getActionResult(actions.contact);
     const button = event.submitter as HTMLButtonElement;
     button.disabled = true;
 
+    Object.values(inputElements).forEach(
+      (element) => delete element.dataset.invalid
+    );
     Object.values(errorElements).forEach(
       (element) => (element.textContent = String())
     );
@@ -290,14 +322,21 @@ const result = Astro.getActionResult(actions.contact);
       }
       if (isInputError(error)) {
         Object.entries(error.fields).forEach(([field, issues]) => {
+          console.log(issues);
+
+          const inputElement = inputElements[field];
+          if (inputElement) {
+            inputElement.dataset.invalid = String(true);
+          }
+
           const errorElement = errorElements[field];
-          if (!errorElement) {
+          if (errorElement) {
+            errorElement.textContent = issues.join('\n');
+          } else {
             messageElement.textContent =
               messageElement.textContent + issues.join('\n');
             messageElement.dataset.formMessage = 'error';
-            return;
           }
-          errorElement.textContent = issues.join('\n');
         });
       }
     } else {
