@@ -2,7 +2,7 @@
 export default {
   singleQuote: true,
   jsxSingleQuote: true,
-  
+
   plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
   overrides: [
     {
