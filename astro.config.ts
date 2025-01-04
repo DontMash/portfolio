@@ -8,7 +8,7 @@ import robotsTxt from 'astro-robots-txt';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://soren.codes',
+  site: 'https://www.soren.codes',
   output: 'server',
   adapter: vercel(),
   redirects: {
