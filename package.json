@@ -10,6 +10,9 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "dependencies": {
+    "nodemailer": "^6.9.16"
+  },
   "devDependencies": {
     "@astrojs/check": "0.9.4",
     "@astrojs/sitemap": "^3.2.1",
@@ -19,6 +22,7 @@
     "@iconify-json/simple-icons": "^1.1.105",
     "@iconify-json/tabler": "^1.1.113",
     "@tailwindcss/typography": "^0.5.15",
+    "@types/nodemailer": "^6.4.17",
     "astro": "5.1.2",
     "astro-icon": "^1.1.0",
     "astro-robots-txt": "^1.0.0",

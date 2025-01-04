@@ -41,6 +41,7 @@ export default {
         DEFAULT: 'hsl(var(--peach-100))',
         foreground: 'hsl(var(--base-900))',
       },
+      error: 'hsl(var(--error))',
       base: {
         100: 'hsl(var(--base-100))',
         200: 'hsl(var(--base-200))',
@@ -57,6 +58,7 @@ export default {
       sans: ['Azeret Mono Variable', ...defaultTheme.fontFamily.sans],
     },
     fontSize: {
+      inherit: 'inherit',
       sm: '0.875rem',
       base: '1rem',
       lg: '1.125rem',

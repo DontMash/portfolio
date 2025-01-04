@@ -7,7 +7,6 @@ export const button = cva(
     'justify-center',
     'items-center',
     'gap-x-2',
-    'align-middle',
     'paragraph-highlight',
     'transition',
     'focus-visible:outline-current',
@@ -18,7 +17,14 @@ export const button = cva(
   {
     variants: {
       kind: {
-        default: ['rounded-full', 'border-3', 'no-underline'],
+        default: [
+          'rounded-full',
+          'border-3',
+          'no-underline',
+          'align-middle',
+          'disabled:bg-base-300',
+          'disabled:cursor-not-allowed',
+        ],
         link: ['hover:underline', 'focus-visible:underline'],
       },
       intent: {
@@ -41,7 +47,9 @@ export const button = cva(
           'hover:shadow-pop-none',
           'focus-visible:translate-x-2',
           'focus-visible:translate-y-2',
-          'focus-visible:shadow-none',
+          'focus-visible:shadow-pop-none',
+          'disabled:hover:transform-none',
+          'disabled:hover:shadow-pop-md',
         ],
         'pop-lg': [
           'mb-4',
