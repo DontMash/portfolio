@@ -105,7 +105,7 @@ export const button = cva(
       {
         kind: 'link',
         size: 'md',
-        class: ['py-2'],
+        class: ['p-2', '-m-2'],
       },
     ],
     defaultVariants: {
