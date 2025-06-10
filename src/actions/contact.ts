@@ -1,6 +1,7 @@
 import { ActionError, defineAction } from 'astro:actions';
+import { EMAIL_TARGET, EMAIL_USER, RESEND_API_KEY } from 'astro:env/server';
 import { z } from 'astro:schema';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 export const CONTACT_FORM_SCHEMA = z
   .object({
@@ -9,7 +10,11 @@ export const CONTACT_FORM_SCHEMA = z
       .min(3, { message: 'Name must contain at least 3 characters.' })
       .max(32, { message: 'Name must contain at most 32 characters.' })
       .optional(),
-    company: z.string().min(3, { message: 'Company must contain at least 3 characters.' }).max(32, { message: 'Name must contain at most 32 characters.' }).optional(),
+    company: z
+      .string()
+      .min(3, { message: 'Company must contain at least 3 characters.' })
+      .max(32, { message: 'Name must contain at most 32 characters.' })
+      .optional(),
     email: z.string({ message: 'E-Mail is a required field.' }).email(),
     message: z
       .string({ message: 'Message is a required field.' })
@@ -41,28 +46,21 @@ export default defineAction({
   accept: 'form',
   input: CONTACT_FORM_SCHEMA,
   handler: async (input) => {
-    const transporter = nodemailer.createTransport({
-      host: import.meta.env.SMTP_HOST,
-      port: import.meta.env.SMTP_PORT,
-      secure: true,
-      auth: {
-        user: import.meta.env.SMTP_USER,
-        pass: import.meta.env.SMTP_PASSWORD,
-      },
-    });
+    const client = new Resend(RESEND_API_KEY);
 
     try {
-      const info = await transporter.sendMail({
-        from: {
-          address: import.meta.env.SMTP_USER,
-          name: import.meta.env.SMTP_NAME,
-        },
-        to: import.meta.env.SMTP_TARGET,
+      const result = await client.emails.send({
+        from: `${EMAIL_USER} <${EMAIL_TARGET}>`,
+        to: EMAIL_TARGET,
         subject: 'Contact request',
         text: getMessage(input),
       });
 
-      console.info('Message sent: %s', info.messageId);
+      if (result.error) {
+        throw new Error(result.error.message, { cause: result.error.name });
+      }
+
+      console.info('Message sent: %s', result.data?.id);
     } catch (error) {
       console.error(error, input);
 
