@@ -1,12 +1,14 @@
 import { defineConfig, envField } from 'astro/config';
 
 import vercel from '@astrojs/vercel';
-import tailwind from '@astrojs/tailwind';
-import icon from 'astro-icon';
+import mdx from '@astrojs/mdx';
+import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import tailwind from '@astrojs/tailwind';
+import keystatic from '@keystatic/astro';
+import icon from 'astro-icon';
 import robotsTxt from 'astro-robots-txt';
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://www.soren.codes',
   output: 'server',
@@ -20,6 +22,9 @@ export default defineConfig({
       filter: (page) => !/style/.test(page),
     }),
     robotsTxt(),
+    react(),
+    mdx(),
+    keystatic(),
   ],
   env: {
     schema: {

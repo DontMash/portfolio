@@ -1,0 +1,11 @@
+---
+import { container, type ContainerProps } from './container';
+
+type Props = ContainerProps;
+
+const props = Astro.props;
+---
+
+<div class:list={[container(props)]}>
+  <slot />
+</div>

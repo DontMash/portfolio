@@ -1,0 +1,46 @@
+---
+import { getEntry, render } from 'astro:content';
+
+import Layout from '@/layouts/layout.astro';
+
+import Accordion from '@/components/content/accordion.astro';
+import AccordionItem from '@/components/content/accordion-item.astro';
+import Button from '@/components/content/button.astro';
+import Container from '@/components/content/container.astro';
+import Form from '@/components/content/form.astro';
+import Frame from '@/components/content/frame.astro';
+import Grid from '@/components/content/grid.astro';
+import Icon from '@/components/content/icon.astro';
+import Section from '@/components/content/section.astro';
+import Style from '@/components/content/style.astro';
+
+const { slug } = Astro.params;
+const page = await getEntry('pages', slug ?? 'index');
+if (!page) {
+  return Astro.rewrite('/404');
+}
+const { Content } = await render(page);
+---
+
+<Layout
+  openGraph={{
+    title: "Hi, I'm Søren - Software engineer & digital explorer",
+    description:
+      'Transforming visions into reality, one line of code at a time. We can shape the future together with innovation, precision, and passion.',
+  }}
+>
+  <Content
+    components={{
+      Accordion,
+      AccordionItem,
+      Button,
+      Container,
+      Form,
+      Frame,
+      Grid,
+      Icon,
+      Section,
+      Style,
+    }}
+  />
+</Layout>

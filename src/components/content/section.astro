@@ -1,0 +1,14 @@
+---
+import type { JSX } from 'astro/jsx-runtime';
+import { section, type SectionProps } from './section';
+
+type Props = SectionProps & {
+  id?: string;
+};
+
+const props = Astro.props;
+---
+
+<section id={props.id} class:list={[section(props)]}>
+  <slot />
+</section>

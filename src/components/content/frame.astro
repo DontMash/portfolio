@@ -1,0 +1,16 @@
+---
+import { frame, type FrameProps } from './frame';
+
+type Props = FrameProps & {
+  caption?: string;
+};
+
+const props = Astro.props;
+---
+
+<figure class="not-prose">
+  <div class:list={[frame(props)]}>
+    <slot />
+  </div>
+  {props.caption && <figcaption class="pt-1 pl-4">{props.caption}</figcaption>}
+</figure>
