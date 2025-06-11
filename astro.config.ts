@@ -28,6 +28,24 @@ export default defineConfig({
   ],
   env: {
     schema: {
+      BRAND_NAME: envField.string({
+        context: 'client',
+        access: 'public',
+        optional: true,
+      }),
+      BRAND_LOGO: envField.string({
+        context: 'client',
+        access: 'public',
+        optional: true,
+      }),
+      REPO_OWNER: envField.string({
+        context: 'client',
+        access: 'public',
+      }),
+      REPO_NAME: envField.string({
+        context: 'client',
+        access: 'public',
+      }),
       RESEND_API_KEY: envField.string({ context: 'server', access: 'secret' }),
       EMAIL_USER: envField.string({ context: 'server', access: 'public' }),
       EMAIL_TARGET: envField.string({ context: 'server', access: 'public' }),
