@@ -44,6 +44,7 @@ export const accordionItem = wrapper({
       />
     </svg>
   ),
+  forSpecificLocations: true,
   schema: {
     title: fields.text({
       label: 'Title',
