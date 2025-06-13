@@ -1,6 +1,8 @@
 ---
 import { getEntry, render } from 'astro:content';
 
+import { createSEOProps } from '@/seo';
+
 import Layout from '@/layouts/layout.astro';
 import Accordion from '@/components/content/accordion.astro';
 import AccordionItem from '@/components/content/accordion-item.astro';
@@ -12,6 +14,7 @@ import Grid from '@/components/content/grid.astro';
 import Icon from '@/components/content/icon.astro';
 import Section from '@/components/content/section.astro';
 import Style from '@/components/content/style.astro';
+import Flex from '@/components/content/flex.astro';
 
 const { slug } = Astro.params;
 const page = await getEntry('pages', slug ?? 'index');
@@ -19,21 +22,21 @@ if (!page) {
   return Astro.rewrite('/404');
 }
 const { Content } = await render(page);
+const seo = createSEOProps(Astro.url, {
+  title: page.data.title,
+  description: page.data.description,
+  ...page.data.seo,
+});
 ---
 
-<Layout
-  seo={{
-    title: page.data.title,
-    description: page.data.description,
-    ...page.data.seo,
-  }}
->
+<Layout {seo}>
   <Content
     components={{
       Accordion,
       AccordionItem,
       Button,
       Container,
+      Flex,
       Form,
       Frame,
       Grid,

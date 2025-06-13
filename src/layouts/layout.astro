@@ -2,23 +2,20 @@
 import '@fontsource-variable/azeret-mono';
 import '@/styles/base.pcss';
 
-import { SEO } from 'astro-seo';
+import { SEO, type SEOProps } from 'astro-seo';
 
-import { createSEOProps, type SEOProps } from '@/seo';
 import Header from '@/components/page/header.astro';
 import Footer from '@/components/page/footer.astro';
 
 interface Props {
   seo: SEOProps;
 }
-
-const seoProps = createSEOProps(Astro.url, Astro.props.seo);
 ---
 
 <!doctype html>
 <html lang='en'>
   <head>
-    <SEO {...seoProps} />
+    <SEO {...Astro.props.seo} />
   </head>
   <body id='top'>
     <Header />

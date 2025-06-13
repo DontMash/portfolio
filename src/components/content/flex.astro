@@ -1,0 +1,11 @@
+---
+import { flex, type FlexProps } from './flex';
+
+type Props = FlexProps;
+
+const props = Astro.props;
+---
+
+<div class:list={[flex(props)]}>
+  <slot />
+</div>
