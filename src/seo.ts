@@ -19,8 +19,8 @@ export interface SEOProps
       title: string;
     };
     image?: {
-      url: string;
-      alt: string;
+      url?: string;
+      alt?: string;
     };
     optional?: {
       description?: string;

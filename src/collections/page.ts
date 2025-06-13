@@ -7,7 +7,6 @@ import {
 } from '@/components/content/accordion';
 import { buttonContent } from '@/components/content/button';
 import { containerContent } from '@/components/content/container';
-import { flexContent } from '@/components/content/flex';
 import { formContent } from '@/components/content/form';
 import { frameContent } from '@/components/content/frame';
 import { iconContent } from '@/components/content/icon';
@@ -38,7 +37,10 @@ export const pageCollection = collection({
               { label: 'Basic' },
             ),
             optional: fields.object({
-              description: fields.text({ label: 'Description' }),
+              description: fields.text({
+                label: 'Description',
+                multiline: true,
+              }),
             }),
             image: fields.object(
               {
@@ -47,7 +49,7 @@ export const pageCollection = collection({
                   directory: 'public/images/pages',
                   publicPath: '/images/pages/',
                 }),
-                alt: fields.text({ label: 'Alt' }),
+                alt: fields.text({ label: 'Alt', defaultValue: '' }),
               },
               { label: 'Image' },
             ),
@@ -74,7 +76,6 @@ export const pageCollection = collection({
         AccordionItem: accordionItem,
         Button: buttonContent,
         Container: containerContent,
-        Flex: flexContent,
         Form: formContent,
         Frame: frameContent,
         Grid: gridContent,
@@ -96,8 +97,8 @@ export const pageSchema = z.object({
         title: z.string(),
       }),
       image: z.object({
-        url: z.string().default(''),
-        alt: z.string().default(''),
+        url: z.string().optional(),
+        alt: z.string().optional(),
       }),
       optional: z.object({ description: z.string().optional() }),
     }),
