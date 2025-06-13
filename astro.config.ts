@@ -17,10 +17,8 @@ export default defineConfig({
     icon({
       iconDir: 'src/assets/icons',
     }),
-    tailwind({ applyBaseStyles: false }),
-    sitemap({
-      filter: (page) => !/style/.test(page),
-    }),
+    tailwind(),
+    sitemap(),
     robotsTxt(),
     react(),
     mdx(),
