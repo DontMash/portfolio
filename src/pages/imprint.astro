@@ -6,10 +6,16 @@ import { section } from '@/components/content/section';
 ---
 
 <Layout
-  title='Imprint'
-  openGraph={{
+  seo={{
     title: 'Imprint',
-    description: 'Who is soren.codes? Contact information and more.',
+    openGraph: {
+      basic: {
+        title: 'Imprint',
+      },
+      optional: {
+        description: 'Who is soren.codes? Contact information and more.',
+      },
+    },
   }}
 >
   <section class='prose' class:list={[section()]}>

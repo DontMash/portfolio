@@ -6,11 +6,17 @@ import { section } from '@/components/content/section';
 ---
 
 <Layout
-  title='Privacy'
-  openGraph={{
-    title: 'Privacy Policy',
-    description:
-      "I'm committed to protecting your personal data and your privacy. This Privacy Policy explains how I collect, use, and protect your information when you visit my website, in accordance with the General Data Protection Regulation (GDPR).",
+  seo={{
+    title: 'Privacy',
+    openGraph: {
+      basic: {
+        title: 'Privacy Policy',
+      },
+      optional: {
+        description:
+          "I'm committed to protecting your personal data and your privacy. This Privacy Policy explains how I collect, use, and protect your information when you visit my website, in accordance with the General Data Protection Regulation (GDPR).",
+      },
+    },
   }}
 >
   <section class='prose' class:list={[section()]}>

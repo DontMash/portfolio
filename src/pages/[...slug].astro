@@ -2,7 +2,6 @@
 import { getEntry, render } from 'astro:content';
 
 import Layout from '@/layouts/layout.astro';
-
 import Accordion from '@/components/content/accordion.astro';
 import AccordionItem from '@/components/content/accordion-item.astro';
 import Button from '@/components/content/button.astro';
@@ -23,10 +22,10 @@ const { Content } = await render(page);
 ---
 
 <Layout
-  openGraph={{
-    title: "Hi, I'm Søren - Software engineer & digital explorer",
-    description:
-      'Transforming visions into reality, one line of code at a time. We can shape the future together with innovation, precision, and passion.',
+  seo={{
+    title: page.data.title,
+    description: page.data.description,
+    ...page.data.seo,
   }}
 >
   <Content

@@ -1,121 +1,24 @@
 ---
 import '@fontsource-variable/azeret-mono';
 import '@/styles/base.pcss';
+
 import { SEO } from 'astro-seo';
 
+import { createSEOProps, type SEOProps } from '@/seo';
 import Header from '@/components/page/header.astro';
 import Footer from '@/components/page/footer.astro';
 
-const COMPANY_NAME = 'soren.codes';
-const COMPANY_DESCRIPTION =
-  'Sören Maschmann - software engineer & digital explorer - Transforming visions into reality.';
-const COMPANY_IMAGE = `${Astro.url.origin}/og-image.jpg`;
-const COMPANY_IMAGE_ALT = `${COMPANY_NAME} logo`;
-const COMPANY_KEYWORDS = [
-  'software',
-  'software development',
-  'software developer',
-  'software engineer',
-  'software consultant',
-  'freelance developer',
-  'full-stack developer',
-  'web developer',
-  'portfolio',
-  'software portfolio',
-  'github portfolio',
-  'personal projects',
-  'open source projects',
-  'open source',
-  'Germany software developer',
-  'North Rhine-Westphalia software developer',
-  'Bielefeld software developer',
-  'innovative solutions',
-  'digital explorer',
-  'problem solver',
-  'Hire me',
-  'Hire a software developer',
-  'Hire a software consultant',
-  'Contact me',
-  'Contact a software developer',
-  'Contact a software consultant',
-];
-const COMPANY_TWITTER = 'soren_codes';
-
 interface Props {
-  title?: string;
-  description?: string;
-  keywords?: Array<string>;
-  noindex?: boolean;
-  openGraph?: {
-    title: string;
-    image?: {
-      url: string;
-      alt: string;
-    };
-    description?: string;
-  };
+  seo: SEOProps;
 }
 
-const {
-  title,
-  description = COMPANY_DESCRIPTION,
-  keywords = COMPANY_KEYWORDS,
-  noindex,
-  openGraph = {
-    title: COMPANY_NAME,
-    image: {
-      url: `${Astro.url.origin}/og-image.jpg`,
-      alt: `${COMPANY_NAME} logo`,
-    },
-    description: COMPANY_DESCRIPTION,
-  },
-} = Astro.props;
+const seoProps = createSEOProps(Astro.url, Astro.props.seo);
 ---
 
 <!doctype html>
 <html lang='en'>
   <head>
-    <SEO
-      {title}
-      titleTemplate=`%s - ${COMPANY_NAME}`
-      titleDefault={COMPANY_NAME}
-      description={description}
-      {noindex}
-      charset='UTF-8'
-      openGraph={{
-        basic: {
-          title: openGraph.title,
-          type: 'website',
-          image: openGraph.image?.url ?? COMPANY_IMAGE,
-        },
-        optional: {
-          description: openGraph.description,
-        },
-        image: {
-          alt: openGraph.image?.alt ?? COMPANY_IMAGE_ALT,
-        },
-      }}
-      twitter={{
-        card: 'summary',
-        site: COMPANY_TWITTER,
-        creator: COMPANY_TWITTER,
-        title: openGraph.title,
-        image: openGraph.image?.url,
-        imageAlt: openGraph.image?.alt,
-        description: openGraph.description,
-      }}
-      extend={{
-        link: [
-          { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-          { rel: 'sitemap', href: '/sitemap-index.xml' },
-        ],
-        meta: [
-          { name: 'viewport', content: 'width=device-width' },
-          { name: 'generator', content: Astro.generator },
-          { name: 'keywords', content: keywords?.join(', ') },
-        ],
-      }}
-    />
+    <SEO {...seoProps} />
   </head>
   <body id='top'>
     <Header />

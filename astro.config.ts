@@ -31,13 +31,24 @@ export default defineConfig({
       BRAND_NAME: envField.string({
         context: 'client',
         access: 'public',
+      }),
+      BRAND_DESCRIPTION: envField.string({
+        context: 'server',
+        access: 'public',
         optional: true,
       }),
       BRAND_LOGO: envField.string({
         context: 'client',
         access: 'public',
+      }),
+      BRAND_TWITTER: envField.string({
+        context: 'server',
+        access: 'public',
         optional: true,
       }),
+      RESEND_API_KEY: envField.string({ context: 'server', access: 'secret' }),
+      EMAIL_USER: envField.string({ context: 'server', access: 'public' }),
+      EMAIL_TARGET: envField.string({ context: 'server', access: 'public' }),
       REPO_OWNER: envField.string({
         context: 'client',
         access: 'public',
@@ -46,9 +57,6 @@ export default defineConfig({
         context: 'client',
         access: 'public',
       }),
-      RESEND_API_KEY: envField.string({ context: 'server', access: 'secret' }),
-      EMAIL_USER: envField.string({ context: 'server', access: 'public' }),
-      EMAIL_TARGET: envField.string({ context: 'server', access: 'public' }),
     },
   },
   redirects: {

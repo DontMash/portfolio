@@ -17,6 +17,7 @@
     "@keystatic/core": "^0.5.47",
     "@types/react": "^19.1.7",
     "@types/react-dom": "^19.1.6",
+    "lodash": "^4.17.21",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "resend": "^4.5.2"
