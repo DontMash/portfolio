@@ -9,10 +9,10 @@ import { buttonContent } from '@/components/content/button';
 import { containerContent } from '@/components/content/container';
 import { formContent } from '@/components/content/form';
 import { frameContent } from '@/components/content/frame';
+import { gridContent } from '@/components/content/grid';
 import { iconContent } from '@/components/content/icon';
 import { sectionContent } from '@/components/content/section';
 import { styleContent } from '@/components/content/style';
-import { gridContent } from '@/components/content/grid';
 
 export const pageCollection = collection({
   label: 'Pages',
@@ -21,7 +21,7 @@ export const pageCollection = collection({
   entryLayout: 'content',
   format: { contentField: 'content' },
   schema: {
-    title: fields.slug({ name: { label: 'Title' } }),
+    title: fields.slug({ name: { label: 'Title' }, slug: { label: 'Path' } }),
     description: fields.text({ label: 'Description', multiline: true }),
     seo: fields.object(
       {
