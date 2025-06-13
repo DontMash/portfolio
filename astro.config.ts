@@ -9,17 +9,47 @@ import keystatic from '@keystatic/astro';
 import icon from 'astro-icon';
 import robotsTxt from 'astro-robots-txt';
 
+const SITE = 'https://www.soren.codes';
+const pageFiles = import.meta.glob('./src/content/pages/**/*.mdx');
+const pages = Object.keys(pageFiles).map((pageFile) => {
+  const pagePath = pageFile
+    .replace('./src/content/pages', '')
+    .slice(0, -'.mdx'.length);
+  return new URL(pagePath, SITE).href;
+});
+
 export default defineConfig({
-  site: 'https://www.soren.codes',
+  site: SITE,
   output: 'server',
   adapter: vercel(),
   integrations: [
+    sitemap({
+      customPages: [...pages],
+    }),
+    robotsTxt({
+      transform: (content) => `${content}
+#                               @@@@                "All your base are belong to us"
+#                              @@@@@                
+#                    @@@@@     @@@@                 
+#                  @@@@@@@    @@@@@                 
+#                @@@@@@@@    @@@@@@@@               
+#               @@@@@@@@     @@@@@@@@@              
+#              @@@@@@@@@    @@@@  @@@@@             
+#              @@@@@@@@    @@@@    @@@@             
+#             @@@@@@@@    @@@@@    @@@@@            
+#              @@@@@@     @@@@     @@@@             
+#              @@@@@@    @@@@     @@@@@             
+#               @@@@    @@@@@    @@@@@              
+#                @@     @@@@ @@@@@@@@               
+#                      @@@@@@@@@@@@                 
+#                     @@@@@@@@@@                    
+#                    @@@@@                          
+#                    @@@@                           made by soren.codes | Sören Maschmann`,
+    }),
+    tailwind(),
     icon({
       iconDir: 'src/assets/icons',
     }),
-    tailwind(),
-    sitemap(),
-    robotsTxt(),
     react(),
     mdx(),
     keystatic(),
