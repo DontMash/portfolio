@@ -27,7 +27,7 @@ export const section = {
         true: ['w-full', 'max-w-screen-md', 'mx-auto'],
       },
     },
-    defaultVariants: { max: false },
+    defaultVariants: { max: true },
   }),
 };
 export type SectionProps = VariantProps<typeof section.base> &
@@ -55,7 +55,7 @@ export const sectionContent = wrapper({
   ),
   schema: {
     id: fields.text({ label: 'Id' }),
-    max: fields.checkbox({ label: 'Max width', defaultValue: false }),
+    max: fields.checkbox({ label: 'Max width', defaultValue: true }),
     background: fields.checkbox({ label: 'Background', defaultValue: false }),
   },
 });
