@@ -2,19 +2,24 @@ import { fields } from '@keystatic/core';
 import { wrapper } from '@keystatic/core/content-components';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-export const container = cva([], {
+export const container = cva(['flex', 'flex-wrap', 'gap-4'], {
   variants: {
-    max: {
+    direction: {
+      horizontal: null,
+      vertical: ['flex-col'],
+    },
+    center: {
       false: null,
-      true: ['w-full', 'max-w-screen-md', 'mx-auto'],
+      true: ['justify-center'],
     },
   },
+  defaultVariants: { center: null },
 });
 export type ContainerProps = VariantProps<typeof container>;
 
 export const containerContent = wrapper({
   label: 'Container',
-  description: 'Used to compose content.',
+  description: 'Used to compose & algin content.',
   icon: (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -28,11 +33,19 @@ export const containerContent = wrapper({
         stroke-linecap='round'
         stroke-linejoin='round'
         stroke-width='2'
-        d='M20 4v.01M20 20v.01M20 16v.01M20 12v.01M20 8v.01M8 5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1zM4 4v.01M4 20v.01M4 16v.01M4 12v.01M4 8v.01'
+        d='M7 4H3v16h4M17 4h4v16h-4m-9-4h.01M12 16h.01M16 16h.01'
       />
     </svg>
   ),
   schema: {
-    max: fields.checkbox({ label: 'Max width', defaultValue: false }),
+    direction: fields.select({
+      label: 'Direction',
+      options: [
+        { label: 'Horizontal', value: 'horizontal' },
+        { label: 'Vertical', value: 'vertical' },
+      ],
+      defaultValue: 'horizontal',
+    }),
+    center: fields.checkbox({ label: 'Center', defaultValue: false }),
   },
 });

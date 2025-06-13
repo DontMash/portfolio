@@ -14,7 +14,6 @@ import Grid from '@/components/content/grid.astro';
 import Icon from '@/components/content/icon.astro';
 import Section from '@/components/content/section.astro';
 import Style from '@/components/content/style.astro';
-import Flex from '@/components/content/flex.astro';
 
 const { slug } = Astro.params;
 const page = await getEntry('pages', slug ?? 'index');
@@ -36,7 +35,6 @@ const seo = createSEOProps(Astro.url, {
       AccordionItem,
       Button,
       Container,
-      Flex,
       Form,
       Frame,
       Grid,

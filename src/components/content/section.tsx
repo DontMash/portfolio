@@ -2,24 +2,36 @@ import { fields } from '@keystatic/core';
 import { wrapper } from '@keystatic/core/content-components';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-export const section = cva(['flex', 'flex-col', 'gap-4'], {
-  variants: {
-    x: {
-      false: null,
-      true: ['px-4', 'sm:px-12'],
+export const section = {
+  base: cva([], {
+    variants: {
+      x: {
+        false: null,
+        true: ['px-4', 'sm:px-12'],
+      },
+      y: {
+        false: null,
+        true: ['py-12', 'sm:py-24'],
+      },
+      background: {
+        false: null,
+        true: 'bg-muted',
+      },
     },
-    y: {
-      false: null,
-      true: ['py-12', 'sm:py-24'],
+    defaultVariants: { x: true, y: true, background: false },
+  }),
+  content: cva([], {
+    variants: {
+      max: {
+        false: null,
+        true: ['w-full', 'max-w-screen-md', 'mx-auto'],
+      },
     },
-    background: {
-      false: null,
-      true: 'bg-muted',
-    },
-  },
-  defaultVariants: { x: true, y: true, background: false },
-});
-export type SectionProps = VariantProps<typeof section>;
+    defaultVariants: { max: false },
+  }),
+};
+export type SectionProps = VariantProps<typeof section.base> &
+  VariantProps<typeof section.content>;
 
 export const sectionContent = wrapper({
   label: 'Section',
@@ -43,6 +55,7 @@ export const sectionContent = wrapper({
   ),
   schema: {
     id: fields.text({ label: 'Id' }),
+    max: fields.checkbox({ label: 'Max width', defaultValue: false }),
     background: fields.checkbox({ label: 'Background', defaultValue: false }),
   },
 });
