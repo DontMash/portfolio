@@ -97,16 +97,16 @@ export default {
             lineHeight: theme('lineHeight.xl'),
 
             h1: {
-              '@apply heading-1 mt-8 mb-4': '',
+              '@apply heading-1 mt-8 mb-8': '',
             },
             h2: {
-              '@apply heading-2 mt-6 mb-3': '',
+              '@apply heading-2 mt-6 mb-6': '',
             },
             h3: {
-              '@apply heading-3 mt-4 mb-2': '',
+              '@apply heading-3 mt-4 mb-4': '',
             },
             h4: {
-              '@apply heading-4 mt-2 mb-1': '',
+              '@apply heading-4 mt-2 mb-2': '',
             },
             h5: {
               '@apply heading-5 mt-1 mb-1': '',
@@ -217,7 +217,7 @@ export default {
         },
         '.heading-2': {
           '@apply text-3xl lg:text-4xl': '',
-          lineHeight: theme('lineHeight.xl'),
+          lineHeight: theme('lineHeight.lg'),
           fontWeight: theme('fontWeight.semibold'),
         },
         '.heading-1': {
