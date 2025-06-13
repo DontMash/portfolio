@@ -4,8 +4,14 @@ import { cva, cx, type VariantProps } from 'class-variance-authority';
 import { shadow as shadowBase, type ShadowProps } from '@/components/shadow';
 import { fields } from '@keystatic/core';
 
-const frameBase = cva(['border-3', 'rounded-3xl', 'overflow-hidden'], {
-  variants: {},
+const frameBase = cva([], {
+  variants: {
+    border: {
+      false: null,
+      true: ['border-3', 'rounded-3xl', 'overflow-hidden'],
+    },
+  },
+  defaultVariants: { border: false },
 });
 type FrameBaseProps = VariantProps<typeof frameBase>;
 export interface FrameProps extends FrameBaseProps, ShadowProps {}
@@ -34,6 +40,7 @@ export const frameContent = wrapper({
   ),
   schema: {
     caption: fields.text({ label: 'Caption' }),
+    border: fields.checkbox({ label: 'Border' }),
     shadow: fields.select({
       label: 'Shadow',
       options: [
