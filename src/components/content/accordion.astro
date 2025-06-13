@@ -1,11 +1,10 @@
 ---
 type Props = {
-  items: Array<{ title: string; content: string }>;
   name?: string;
 };
-const { items, name } = Astro.props;
+const { name } = Astro.props;
 ---
 
-<div class='w-full space-y-4'>
+<ul class='w-full list-none space-y-4 pl-0' data-accordion={name}>
   <slot />
-</div>
+</ul>

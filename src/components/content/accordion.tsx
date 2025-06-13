@@ -50,5 +50,8 @@ export const accordionItem = wrapper({
       label: 'Title',
       validation: { isRequired: true },
     }),
+    name: fields.text({
+      label: 'Name',
+    }),
   },
 });
