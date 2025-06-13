@@ -125,12 +125,19 @@ export default {
             mark: {
               'background-color': theme('colors.primary.DEFAULT'),
             },
+            pre: {
+              '@apply paragraph': '',
+              borderRadius: theme('borderRadius.none'),
+            },
+            code: {
+              '@apply paragraph': '',
+            },
             kbd: {
               '@apply bg-foreground text-primary': '',
             },
 
             img: {
-              '@apply my-0': '',
+              '@apply w-full my-0': '',
             },
             hr: {
               '@apply my-0 border-t-3': '',
