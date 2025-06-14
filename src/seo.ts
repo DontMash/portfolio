@@ -80,15 +80,14 @@ export const createSEOProps = (url: URL, props?: SEOProps): AstroSEOProps => {
   };
 
   const result = _.merge(defaultProps, props);
-  if (props?.keywords) {
-    result.extend = _.merge(result.extend, {
-      meta: [
-        {
-          name: 'keywords',
-          content: props.keywords.join(', '),
-        },
-      ],
-    });
+  if (props?.keywords && result.extend?.meta) {
+    result.extend.meta = [
+      ...result.extend.meta,
+      {
+        name: 'keywords',
+        content: props.keywords.join(', '),
+      },
+    ];
   }
 
   return result;
