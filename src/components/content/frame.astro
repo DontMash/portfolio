@@ -11,20 +11,23 @@ type Props = FrameProps & {
 };
 
 const { image, caption } = Astro.props;
-const imageData = (await import(/* @vite-ignore */ image.src)).default as {
-  src: string;
-  width: number;
-  height: number;
-  format: string;
-};
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/content/**/*.{jpeg,jpg,png,gif}',
+);
+if (!images[image.src])
+  throw new Error(
+    `"${image.src}" does not exist in glob: "src/assets/images/content/**/*.{jpeg,jpg,png,gif}"`,
+  );
+const imageData = (await images[image.src]()).default;
 ---
 
 {
   image && (
-    <figure class="">
+    <figure>
       <Image
         class:list={[frame(Astro.props)]}
-        src={image.src}
+        src={imageData.src}
         alt={image.alt}
         width={imageData.width}
         height={imageData.height}
