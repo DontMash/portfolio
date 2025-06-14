@@ -5,18 +5,23 @@ import Layout from '@/layouts/layout.astro';
 import Button from '@/components/content/button.astro';
 import Section from '@/components/content/section.astro';
 import Container from '@/components/content/container.astro';
+import { createSEOProps } from '@/seo';
+
+const seo = createSEOProps(Astro.url, {
+  title: '404',
+  openGraph: {
+    basic: { title: '404 - Not Found' },
+    optional: {
+      description:
+        'In this case you may not have found what you were looking for. If so be sure to get in touch with me!',
+    },
+  },
+});
 ---
 
-<Layout
-  title='404'
-  openGraph={{
-    title: '404 - Not Found',
-    description:
-      'In this case you may not have found what you were looking for. If so be sure to get in touch with me!',
-  }}
->
-  <Section>
-    <Container max center>
+<Layout {seo}>
+  <Section max>
+    <Container center>
       <div>
         <h1
           class='flex flex-col justify-center gap-4 divide-y-4 divide-foreground text-center text-hero sm:flex-row sm:gap-12 sm:divide-x-4 sm:divide-y-0'

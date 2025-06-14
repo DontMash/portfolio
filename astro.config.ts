@@ -1,10 +1,10 @@
 import { defineConfig, envField } from 'astro/config';
 
-import vercel from '@astrojs/vercel';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
+import vercel from '@astrojs/vercel';
 import keystatic from '@keystatic/astro';
 import icon from 'astro-icon';
 import robotsTxt from 'astro-robots-txt';
