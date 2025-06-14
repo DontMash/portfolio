@@ -1,5 +1,5 @@
 ---
-import { Image, Picture } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import { frame, type FrameProps } from './frame';
 
 type Props = FrameProps & {
@@ -8,9 +8,10 @@ type Props = FrameProps & {
     alt: string;
   };
   caption?: string;
+  lazy: boolean;
 };
 
-const { image, caption } = Astro.props;
+const { caption, image, lazy } = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/images/content/**/*.{jpeg,jpg,png,gif}',
@@ -32,6 +33,8 @@ const imageData = (await images[image.src]()).default;
         width={imageData.width}
         height={imageData.height}
         formats={['webp']}
+        loading={lazy ? 'lazy' : 'eager'}
+        fetchpriority={!lazy ? 'high' : undefined}
       />
       {caption && <figcaption class='pl-4 pt-1'>{caption}</figcaption>}
     </figure>

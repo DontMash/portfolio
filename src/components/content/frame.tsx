@@ -76,5 +76,6 @@ export const frameContent = block({
       ],
       defaultValue: 'none',
     }),
+    lazy: fields.checkbox({ label: 'Lazy loading', defaultValue: true }),
   },
 });
