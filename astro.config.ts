@@ -18,13 +18,26 @@ export default defineConfig({
     }),
     react(),
     mdx(),
-    keystatic(),
+    ...(process.env.KEYSTATIC_SKIP ? [] : [keystatic()]),
   ],
   env: {
     schema: {
       PREVIEW_SITE: envField.string({
         context: 'client',
         access: 'public',
+      }),
+      REPO_OWNER: envField.string({
+        context: 'client',
+        access: 'public',
+      }),
+      REPO_NAME: envField.string({
+        context: 'client',
+        access: 'public',
+      }),
+      KEYSTATIC_SKIP: envField.boolean({
+        context: 'server',
+        access: 'public',
+        optional: true,
       }),
       BRAND_NAME: envField.string({
         context: 'client',
@@ -47,14 +60,6 @@ export default defineConfig({
       RESEND_API_KEY: envField.string({ context: 'server', access: 'secret' }),
       EMAIL_USER: envField.string({ context: 'server', access: 'public' }),
       EMAIL_TARGET: envField.string({ context: 'server', access: 'public' }),
-      REPO_OWNER: envField.string({
-        context: 'client',
-        access: 'public',
-      }),
-      REPO_NAME: envField.string({
-        context: 'client',
-        access: 'public',
-      }),
     },
   },
   redirects: {
