@@ -1,4 +1,5 @@
 import { collection, fields } from '@keystatic/core';
+import { PREVIEW_SITE } from 'astro:env/client';
 import { z } from 'astro:schema';
 
 import {
@@ -18,7 +19,9 @@ export const pageCollection = collection({
   label: 'Pages',
   slugField: 'title',
   columns: ['title'],
-  previewUrl: '/{slug}',
+  previewUrl: import.meta.env.DEV
+    ? '/{slug}'
+    : new URL(PREVIEW_SITE).origin + '/{slug}',
   path: 'src/content/pages/*',
   entryLayout: 'content',
   format: { contentField: 'content' },

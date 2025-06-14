@@ -22,6 +22,10 @@ export default defineConfig({
   ],
   env: {
     schema: {
+      PREVIEW_SITE: envField.string({
+        context: 'client',
+        access: 'public',
+      }),
       BRAND_NAME: envField.string({
         context: 'client',
         access: 'public',

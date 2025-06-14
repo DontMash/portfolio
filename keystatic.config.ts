@@ -33,6 +33,7 @@ export default config({
           owner: REPO_OWNER,
           name: REPO_NAME,
         },
+        branchPrefix: 'preview',
       },
   collections: {
     pages: pageCollection,
