@@ -17,6 +17,8 @@ import { styleContent } from '@/components/content/style';
 export const pageCollection = collection({
   label: 'Pages',
   slugField: 'title',
+  columns: ['title'],
+  previewUrl: '/{slug}',
   path: 'src/content/pages/*',
   entryLayout: 'content',
   format: { contentField: 'content' },
