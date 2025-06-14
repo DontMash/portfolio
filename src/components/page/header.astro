@@ -5,8 +5,8 @@ import Button from '@/components/content/button.astro';
 import Logo from '@/components/logo.astro';
 ---
 
-<header class='sticky left-0 top-0 z-50 border-b-3 bg-background'>
-  <div class='mx-auto flex h-20 max-w-screen-xl items-center px-4 sm:px-12'>
+<header class='sticky left-0 top-0 z-50 border-b-3 bg-background' role="banner">
+  <nav class='mx-auto flex h-20 max-w-screen-xl items-center px-4 sm:px-12' aria-label="Main">
     <Logo />
 
     <Button
@@ -17,5 +17,5 @@ import Logo from '@/components/logo.astro';
       <Icon name='tabler:at' size={24} />
       <span>Say hello</span>
     </Button>
-  </div>
+  </nav>
 </header>
