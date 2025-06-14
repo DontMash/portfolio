@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, Picture } from 'astro:assets';
 import { frame, type FrameProps } from './frame';
 
 type Props = FrameProps & {
@@ -25,12 +25,13 @@ const imageData = (await images[image.src]()).default;
 {
   image && (
     <figure>
-      <Image
+      <Picture
         class:list={[frame(Astro.props)]}
-        src={imageData.src}
+        src={import.meta.env.DEV ? image.src : imageData.src}
         alt={image.alt}
         width={imageData.width}
         height={imageData.height}
+        formats={['webp']}
       />
       {caption && <figcaption class='pl-4 pt-1'>{caption}</figcaption>}
     </figure>
