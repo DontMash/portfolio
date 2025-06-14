@@ -46,8 +46,8 @@ export const pageCollection = collection({
               {
                 url: fields.image({
                   label: 'File',
-                  directory: 'public/images/pages',
-                  publicPath: '/images/pages/',
+                  directory: 'public/images/content/pages',
+                  publicPath: '/images/content/pages/',
                 }),
                 alt: fields.text({ label: 'Alt', defaultValue: '' }),
               },
@@ -67,8 +67,8 @@ export const pageCollection = collection({
       label: 'Content',
       options: {
         image: {
-          directory: 'src/assets/images/pages',
-          publicPath: '@/assets/images/pages/',
+          directory: 'src/assets/images/content/pages',
+          publicPath: '@/assets/images/content/pages/',
         },
       },
       components: {

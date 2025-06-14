@@ -1,4 +1,4 @@
-import { wrapper } from '@keystatic/core/content-components';
+import { block } from '@keystatic/core/content-components';
 import { cva, cx, type VariantProps } from 'class-variance-authority';
 
 import { shadow as shadowBase, type ShadowProps } from '@/components/shadow';
@@ -18,7 +18,7 @@ export interface FrameProps extends FrameBaseProps, ShadowProps {}
 export const frame = (props?: FrameProps) =>
   cx(frameBase(props), shadowBase({ shadow: props?.shadow }));
 
-export const frameContent = wrapper({
+export const frameContent = block({
   label: 'Frame',
   description: 'Used to add context & visual fidelity to certain content.',
   icon: (
@@ -38,7 +38,34 @@ export const frameContent = wrapper({
       />
     </svg>
   ),
+  ContentView: ({ value }) =>
+    value.image.src && (
+      <figure style={{ margin: 0 }}>
+        <img
+          style={{ width: '100%' }}
+          src={URL.createObjectURL(
+            new Blob([value.image.src?.data], {
+              type: `image/${value.image.src.extension}`,
+            }),
+          )}
+          alt={value.image.alt}
+        />
+        {value.caption && <figcaption>{value.caption}</figcaption>}
+      </figure>
+    ),
   schema: {
+    image: fields.object(
+      {
+        src: fields.image({
+          label: 'File',
+          validation: { isRequired: true },
+          directory: 'src/assets/images/content/pages',
+          publicPath: '/src/assets/images/content/pages/',
+        }),
+        alt: fields.text({ label: 'Alt', validation: { isRequired: true } }),
+      },
+      { label: 'Image' },
+    ),
     caption: fields.text({ label: 'Caption' }),
     border: fields.checkbox({ label: 'Border' }),
     shadow: fields.select({

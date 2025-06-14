@@ -1,16 +1,35 @@
 ---
+import { Image } from 'astro:assets';
 import { frame, type FrameProps } from './frame';
 
 type Props = FrameProps & {
+  image: {
+    src: string;
+    alt: string;
+  };
   caption?: string;
 };
 
-const props = Astro.props;
+const { image, caption } = Astro.props;
+const imageData = (await import(/* @vite-ignore */ image.src)).default as {
+  src: string;
+  width: number;
+  height: number;
+  format: string;
+};
 ---
 
-<figure class="not-prose">
-  <div class:list={[frame(props)]}>
-    <slot />
-  </div>
-  {props.caption && <figcaption class="pt-1 pl-4">{props.caption}</figcaption>}
-</figure>
+{
+  image && (
+    <figure class="">
+      <Image
+        class:list={[frame(Astro.props)]}
+        src={image.src}
+        alt={image.alt}
+        width={imageData.width}
+        height={imageData.height}
+      />
+      {caption && <figcaption class='pl-4 pt-1'>{caption}</figcaption>}
+    </figure>
+  )
+}
