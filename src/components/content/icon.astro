@@ -1,0 +1,9 @@
+---
+import { Icon as AstroIcon } from 'astro-icon/components';
+
+type Props = Parameters<typeof AstroIcon>[0];
+
+const props = Astro.props;
+---
+
+<AstroIcon size={24} {...props} />

@@ -1,0 +1,42 @@
+---
+import { Picture } from 'astro:assets';
+import { frame, type FrameProps } from './frame';
+
+type Props = FrameProps & {
+  image: {
+    src: string;
+    alt: string;
+  };
+  caption?: string;
+  lazy: boolean;
+};
+
+const { caption, image, lazy } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/content/**/*.{jpeg,jpg,png,gif}',
+);
+if (!images[image.src])
+  throw new Error(
+    `"${image.src}" does not exist in glob: "src/assets/images/content/**/*.{jpeg,jpg,png,gif}"`,
+  );
+const imageData = (await images[image.src]()).default;
+---
+
+{
+  image && (
+    <figure>
+      <Picture
+        class:list={[frame(Astro.props)]}
+        src={import.meta.env.DEV ? image.src : imageData.src}
+        alt={image.alt}
+        width={imageData.width}
+        height={imageData.height}
+        formats={['webp']}
+        loading={lazy ? 'lazy' : 'eager'}
+        fetchpriority={!lazy ? 'high' : undefined}
+      />
+      {caption && <figcaption class='pl-4 pt-1'>{caption}</figcaption>}
+    </figure>
+  )
+}

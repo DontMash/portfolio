@@ -1,0 +1,31 @@
+---
+import type { JSX } from 'astro/jsx-runtime';
+import { button, type ButtonProps } from './button';
+
+import Icon from '@/components/content/icon.astro';
+
+type Props = JSX.AnchorHTMLAttributes & {
+  text?: string;
+  icon?: {
+    before?: string;
+    after?: string;
+  };
+  variants?: ButtonProps;
+};
+
+const props = Astro.props;
+---
+
+<a class:list={['not-prose', props.class, button(props.variants)]} {...props}>
+  <slot>
+    {props.icon && props.icon.before && <Icon name={props.icon.before} />}
+    {
+      props.text && props.variants?.size?.includes('icon') ? (
+        <span class='sr-only'>{props.text}</span>
+      ) : (
+        <>{props.text}</>
+      )
+    }
+    {props.icon && props.icon.after && <Icon name={props.icon.after} />}
+  </slot>
+</a>

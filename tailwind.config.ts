@@ -97,22 +97,22 @@ export default {
             lineHeight: theme('lineHeight.xl'),
 
             h1: {
-              '@apply heading-1': '',
+              '@apply heading-1 mt-8 mb-8': '',
             },
             h2: {
-              '@apply heading-2': '',
+              '@apply heading-2 mt-6 mb-6': '',
             },
             h3: {
-              '@apply heading-3': '',
+              '@apply heading-3 mt-4 mb-4': '',
             },
             h4: {
-              '@apply heading-4': '',
+              '@apply heading-4 mt-2 mb-2': '',
             },
             h5: {
-              '@apply heading-5': '',
+              '@apply heading-5 mt-1 mb-1': '',
             },
             h6: {
-              '@apply heading-6': '',
+              '@apply heading-6 mt-1 mb-1': '',
             },
 
             p: {
@@ -125,8 +125,22 @@ export default {
             mark: {
               'background-color': theme('colors.primary.DEFAULT'),
             },
+            pre: {
+              '@apply paragraph': '',
+              borderRadius: theme('borderRadius.none'),
+            },
+            code: {
+              '@apply paragraph': '',
+            },
             kbd: {
               '@apply bg-foreground text-primary': '',
+            },
+
+            img: {
+              '@apply w-full my-0': '',
+            },
+            hr: {
+              '@apply my-0 border-t-3': '',
             },
 
             '--tw-prose-body': theme('colors.foreground'),
@@ -210,7 +224,7 @@ export default {
         },
         '.heading-2': {
           '@apply text-3xl lg:text-4xl': '',
-          lineHeight: theme('lineHeight.xl'),
+          lineHeight: theme('lineHeight.lg'),
           fontWeight: theme('fontWeight.semibold'),
         },
         '.heading-1': {

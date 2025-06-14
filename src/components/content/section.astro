@@ -1,0 +1,20 @@
+---
+import { section, type SectionProps } from './section';
+
+type Props = SectionProps & {
+  id?: string;
+};
+
+const props = Astro.props;
+---
+
+<section id={props.id} class:list={[section.base(props)]}>
+  {
+    props.max && (
+      <div class:list={[section.content(props)]}>
+        <slot />
+      </div>
+    )
+  }
+  {!props.max && <slot />}
+</section>

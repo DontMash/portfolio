@@ -1,15 +1,15 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-import Button from '@/components/ui/button/button.astro';
-import Logo from '@/components/ui/logo.astro';
+import Button from '@/components/content/button.astro';
+import Logo from '@/components/logo.astro';
 ---
 
-<footer class='bg-foreground py-12 text-background'>
+<footer class='bg-foreground py-12 text-background' role='contentinfo'>
   <div
     class='mx-auto flex min-h-60 max-w-screen-xl flex-col gap-6 px-4 sm:grid sm:grid-cols-2 sm:grid-rows-1 sm:gap-8 sm:px-12'
   >
-    <div class='flex flex-col items-start gap-6'>
+    <nav class='flex flex-col items-start gap-6' aria-label='Contact & Socials'>
       <Logo theme='dark' />
 
       <p class='small w-full max-w-96'>
@@ -67,9 +67,9 @@ import Logo from '@/components/ui/logo.astro';
       </ul>
 
       <span class='small'>©{new Date().getUTCFullYear()} soren.codes</span>
-    </div>
+    </nav>
 
-    <div class='flex flex-col gap-6 sm:text-right'>
+    <nav class='flex flex-col gap-6 sm:text-right' aria-label='Content links'>
       <ul class='flex grow flex-col gap-4'>
         <li>
           <Button
@@ -107,7 +107,7 @@ import Logo from '@/components/ui/logo.astro';
           size={16}
         /> by me</span
       >
-    </div>
+    </nav>
 
     <div class='flex flex-col items-center sm:col-span-2'>
       <Button

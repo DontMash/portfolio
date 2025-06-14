@@ -2,50 +2,62 @@
 import { Icon } from 'astro-icon/components';
 
 import Layout from '@/layouts/layout.astro';
-import { section } from '@/components/section';
-import Button from '@/components/ui/button/button.astro';
+import Button from '@/components/content/button.astro';
+import Section from '@/components/content/section.astro';
+import Container from '@/components/content/container.astro';
+import { createSEOProps } from '@/seo';
+
+const seo = createSEOProps(Astro.url, {
+  title: '404',
+  openGraph: {
+    basic: { title: '404 - Not Found' },
+    optional: {
+      description:
+        'In this case you may not have found what you were looking for. If so be sure to get in touch with me!',
+    },
+  },
+});
 ---
 
-<Layout
-  title='404'
-  openGraph={{
-    title: '404 - Not Found',
-    description:
-      'In this case you may not have found what you were looking for. If so be sure to get in touch with me!',
-  }}
->
-  <section class='prose mx-auto max-w-screen-md' class:list={[section()]}>
-    <div>
-      <h1
-        class='flex flex-col justify-center gap-4 divide-y-4 divide-foreground text-center text-hero sm:flex-row sm:gap-12 sm:divide-x-4 sm:divide-y-0'
-      >
-        <span> 404 </span>
-        <span class='pt-4 sm:pl-12 sm:pt-0'> Not Found </span>
-      </h1>
-
-      <p class='text-center text-lg'>
-        In this case you may not have found what you were looking for. If so be
-        sure to get in touch with me!
-      </p>
-    </div>
-
-    <ul class='not-prose flex flex-wrap justify-center gap-4'>
-      <li>
-        <Button href='/' title='Back' variants={{ shadow: 'pop' }}>
-          <Icon name='tabler:arrow-left' size={24} />
-          Go back
-        </Button>
-      </li>
-      <li>
-        <Button
-          href='/contact'
-          title='To the contact information'
-          variants={{ intent: 'accent', shadow: 'pop' }}
+<Layout {seo}>
+  <Section max>
+    <Container center>
+      <div>
+        <h1
+          class='flex flex-col justify-center gap-4 divide-y-4 divide-foreground text-center text-hero sm:flex-row sm:gap-12 sm:divide-x-4 sm:divide-y-0'
         >
-          <Icon name='tabler:at' size={24} />
-          Say Hello
-        </Button>
-      </li>
-    </ul>
-  </section>
+          <span> 404 </span>
+          <span class='pt-4 sm:pl-12 sm:pt-0'> Not Found </span>
+        </h1>
+
+        <p class='text-center text-lg'>
+          In this case you may not have found what you were looking for. If so
+          be sure to get in touch with me!
+        </p>
+      </div>
+
+      <ul class='not-prose flex flex-wrap justify-center gap-4'>
+        <li>
+          <Button
+            href='/'
+            title='Back'
+            variants={{ intent: 'accent', shadow: 'pop' }}
+          >
+            <Icon name='tabler:arrow-left' size={24} />
+            Go back
+          </Button>
+        </li>
+        <li>
+          <Button
+            href='/#form'
+            title='To the contact form'
+            variants={{ shadow: 'pop' }}
+          >
+            <Icon name='tabler:at' size={24} />
+            Say Hello
+          </Button>
+        </li>
+      </ul>
+    </Container>
+  </Section>
 </Layout>
