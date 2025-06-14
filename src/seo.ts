@@ -8,6 +8,7 @@ export interface SEOProps
     AstroSEOProps,
     | 'charset'
     | 'extend'
+    | 'languageAlternates'
     | 'openGraph'
     | 'titleDefault'
     | 'titleTemplate'
@@ -38,10 +39,13 @@ export const createSEOProps = (url: URL, props?: SEOProps): AstroSEOProps => {
   const ogDescription =
     props?.openGraph.optional?.description ?? BRAND_DESCRIPTION;
 
+  const site = new URL(import.meta.env.SITE);
   const defaultProps: AstroSEOProps = {
     titleTemplate: `%s | ${BRAND_NAME}`,
     titleDefault: BRAND_NAME,
     description: BRAND_DESCRIPTION,
+    noindex: site.origin !== url.origin,
+    nofollow: site.origin !== url.origin,
     openGraph: {
       basic: {
         title: ogTitle,
@@ -69,7 +73,7 @@ export const createSEOProps = (url: URL, props?: SEOProps): AstroSEOProps => {
     extend: {
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'sitemap', href: '/sitemap-index.xml' },
+        { rel: 'sitemap', href: '/sitemap.xml' },
       ],
       meta: [{ name: 'viewport', content: 'width=device-width' }],
     },

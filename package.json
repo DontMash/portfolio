@@ -24,7 +24,6 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.4",
-    "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "5.1.4",
     "@astrojs/vercel": "^8.0.1",
     "@fontsource-variable/azeret-mono": "^5.0.21",
@@ -34,7 +33,6 @@
     "@types/nodemailer": "^6.4.17",
     "astro": "5.1.2",
     "astro-icon": "^1.1.0",
-    "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.4",
     "class-variance-authority": "^0.7.0",
     "prettier": "^3.4.2",

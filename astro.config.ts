@@ -2,50 +2,16 @@ import { defineConfig, envField } from 'astro/config';
 
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import vercel from '@astrojs/vercel';
 import keystatic from '@keystatic/astro';
 import icon from 'astro-icon';
-import robotsTxt from 'astro-robots-txt';
-
-const SITE = 'https://www.soren.codes';
-const pageFiles = import.meta.glob('./src/content/pages/**/*.mdx');
-const pages = Object.keys(pageFiles).map((pageFile) => {
-  const pagePath = pageFile
-    .replace('./src/content/pages', '')
-    .slice(0, -'.mdx'.length);
-  return new URL(pagePath, SITE).href;
-});
 
 export default defineConfig({
-  site: SITE,
+  site: 'https://www.soren.codes',
   output: 'server',
   adapter: vercel(),
   integrations: [
-    sitemap({
-      customPages: [...pages],
-    }),
-    robotsTxt({
-      transform: (content) => `${content}
-#                               @@@@                "All your base are belong to us"
-#                              @@@@@                
-#                    @@@@@     @@@@                 
-#                  @@@@@@@    @@@@@                 
-#                @@@@@@@@    @@@@@@@@               
-#               @@@@@@@@     @@@@@@@@@              
-#              @@@@@@@@@    @@@@  @@@@@             
-#              @@@@@@@@    @@@@    @@@@             
-#             @@@@@@@@    @@@@@    @@@@@            
-#              @@@@@@     @@@@     @@@@             
-#              @@@@@@    @@@@     @@@@@             
-#               @@@@    @@@@@    @@@@@              
-#                @@     @@@@ @@@@@@@@               
-#                      @@@@@@@@@@@@                 
-#                     @@@@@@@@@@                    
-#                    @@@@@                          
-#                    @@@@                           made by soren.codes | Sören Maschmann`,
-    }),
     tailwind(),
     icon({
       iconDir: 'src/assets/icons',
