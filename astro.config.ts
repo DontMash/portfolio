@@ -6,6 +6,7 @@ import vercel from '@astrojs/vercel';
 import keystatic from '@keystatic/astro';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
+// import icon from 'astro-icon';
 
 export default defineConfig({
   site: 'https://www.soren.codes',

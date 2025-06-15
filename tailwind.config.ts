@@ -1,11 +1,7 @@
-import tailwindTypography from '@tailwindcss/typography';
-import plugin from 'tailwindcss/plugin';
-
 /** @type {import('tailwindcss').Config} */
 export default {
   theme: {
     extend: {
-      // @ts-ignore
       typography: {
         DEFAULT: {
           css: {

@@ -3,7 +3,6 @@ import { actions, isActionError, isInputError } from 'astro:actions';
 import { Icon } from 'astro-icon/components';
 
 import { button } from '@/components/content/button';
-import { section } from '@/components/content/section';
 import {
   inputCheckbox,
   inputError,
@@ -166,7 +165,7 @@ const result = Astro.getActionResult(actions.contact);
           class='relative inline-grid break-all whitespace-pre-wrap after:invisible after:col-start-1 after:row-start-1 after:px-5 after:py-3 after:content-[attr(data-value)]'
         >
           <textarea
-            class='placeholder:text-base-300 col-start-1 row-start-1 w-full resize-none overflow-hidden bg-transparent px-5 py-3 outline-hidden'
+            class='placeholder:text-base-300 s col-start-1 row-start-1 w-full resize-none overflow-hidden bg-transparent px-5 py-3 outline-hidden'
             name='message'
             id='form-contact-message'
             aria-describedby='form-contact-message-error'
