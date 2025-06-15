@@ -16,6 +16,9 @@ import Section from '@/components/content/section.astro';
 import Style from '@/components/content/style.astro';
 
 const { slug } = Astro.params;
+if (slug === 'index') {
+  return Astro.redirect('/');
+}
 const page = await getEntry('pages', slug ?? 'index');
 if (!page) {
   return Astro.rewrite('/404');
