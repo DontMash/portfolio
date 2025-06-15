@@ -4,7 +4,7 @@ import { cva, cx, type VariantProps } from 'class-variance-authority';
 import { shadow as shadowBase, type ShadowProps } from '@/components/shadow';
 import { fields } from '@keystatic/core';
 
-const frameBase = cva([], {
+const frameBase = cva(['text-foreground'], {
   variants: {
     border: {
       false: null,

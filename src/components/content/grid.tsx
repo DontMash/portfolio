@@ -15,8 +15,8 @@ export const grid = cva(
   {
     variants: {
       kind: {
-        left: ['lg:grid-cols-[4fr,3fr]'],
-        right: ['lg:grid-cols-[3fr,4fr]'],
+        left: ['lg:grid-cols-[4fr_3fr]'],
+        right: ['lg:grid-cols-[3fr_4fr]'],
       },
     },
     defaultVariants: { kind: 'left' },

@@ -2,9 +2,9 @@ import { defineConfig, envField } from 'astro/config';
 
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
 import vercel from '@astrojs/vercel';
 import keystatic from '@keystatic/astro';
+import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 
 export default defineConfig({
@@ -12,7 +12,6 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   integrations: [
-    tailwind(),
     icon({
       iconDir: 'src/assets/icons',
     }),
@@ -20,6 +19,9 @@ export default defineConfig({
     mdx(),
     ...(process.env.KEYSTATIC_SKIP ? [] : [keystatic()]),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   env: {
     schema: {
       PREVIEW_SITE: envField.string({

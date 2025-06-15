@@ -9,7 +9,7 @@ const { title, name } = Astro.props;
 <li class='pl-0'>
   <details class='group' {name}>
     <summary
-      class='paragraph-highlight relative flex cursor-pointer select-none list-none border-b-3 p-4 after:absolute after:left-1 after:right-0 after:top-[calc(100%+theme(borderWidth.3))] after:h-[theme(borderWidth.3)] after:w-full after:bg-primary focus-visible:outline-dashed focus-visible:outline-3 focus-visible:outline-current [&::-webkit-details-marker]:hidden'
+      class='paragraph-highlight relative flex cursor-pointer select-none list-none border-b-3 p-4 after:absolute after:left-1 after:right-0 after:top-[calc(100%+var(--border-3))] after:h-[var(--border-3)] after:w-full after:bg-primary focus-visible:outline-dashed focus-visible:outline-3 focus-visible:outline-current [&::-webkit-details-marker]:hidden'
     >
       <span>{title}</span>
       <Icon
