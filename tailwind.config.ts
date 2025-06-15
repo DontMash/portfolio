@@ -1,243 +1,118 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
 import tailwindTypography from '@tailwindcss/typography';
 import plugin from 'tailwindcss/plugin';
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
-    boxShadow: {
-      none: defaultTheme.boxShadow.none,
-      'pop-none': '0px 0px 0 0 currentColor',
-      'pop-md': '8px 8px 0 0 currentColor',
-      'pop-lg': '16px 16px 0 0 currentColor',
-    },
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-
-      background: 'hsl(var(--background))',
-      foreground: 'hsl(var(--foreground))',
-
-      primary: {
-        DEFAULT: 'hsl(var(--orange-100))',
-        hover: 'hsl(var(--orange-200))',
-        active: 'hsl(var(--orange-300))',
-        foreground: 'hsl(var(--base-900))',
-      },
-      accent: {
-        DEFAULT: 'hsl(var(--background))',
-        hover: 'hsl(var(--peach-100))',
-        active: 'hsl(var(--peach-200))',
-        foreground: 'hsl(var(--base-900))',
-      },
-      neutral: {
-        DEFAULT: 'hsl(var(--base-900))',
-        hover: 'hsl(var(--base-700))',
-        active: 'hsl(var(--base-600))',
-        foreground: 'hsl(var(--base-100))',
-      },
-      muted: {
-        DEFAULT: 'hsl(var(--peach-100))',
-        foreground: 'hsl(var(--base-900))',
-      },
-      error: 'hsl(var(--error))',
-      base: {
-        100: 'hsl(var(--base-100))',
-        200: 'hsl(var(--base-200))',
-        300: 'hsl(var(--base-300))',
-        400: 'hsl(var(--base-400))',
-        500: 'hsl(var(--base-500))',
-        600: 'hsl(var(--base-600))',
-        700: 'hsl(var(--base-700))',
-        800: 'hsl(var(--base-800))',
-        900: 'hsl(var(--base-900))',
-      },
-    },
-    fontFamily: {
-      sans: ['Azeret Mono Variable', ...defaultTheme.fontFamily.sans],
-    },
-    fontSize: {
-      inherit: 'inherit',
-      sm: '0.875rem',
-      base: '1rem',
-      lg: '1.125rem',
-      xl: '1.25rem',
-      '2xl': '1.5rem',
-      '3xl': '2rem',
-      '4xl': '3rem',
-      hero: '4rem',
-    },
-    lineHeight: {
-      none: defaultTheme.lineHeight.none,
-      sm: '1.125',
-      md: '1.25',
-      lg: '1.333',
-      xl: '1.5',
-    },
-
     extend: {
-      borderRadius: {
-        inherit: 'inherit',
-        full: '9999px',
-      },
-      borderWidth: {
-        3: '3px',
-      },
-      outlineWidth: {
-        3: '3px',
-      },
-
       // @ts-ignore
-      typography: (theme) => ({
+      typography: {
         DEFAULT: {
           css: {
-            maxWidth: theme('maxWidth.none'),
-            fontSize: theme('fontSize.base'),
-            lineHeight: theme('lineHeight.xl'),
+            maxWidth: 'none',
+            fontSize: 'var(--text-base)',
+            lineHeight: 'var(--leading-xl)',
 
             h1: {
-              '@apply heading-1 mt-8 mb-8': '',
+              fontSize: 'var(--text-hero)',
+              fontWeight: 'var(--font-weight-bold)',
+              lineHeight: 'var(--leading-md)',
+              marginBottom: '--spacing(8)',
             },
             h2: {
-              '@apply heading-2 mt-6 mb-6': '',
+              fontSize: 'var(--text-4xl)',
+              fontWeight: 'var(--font-weight-semibold)',
+              lineHeight: 'var(--leading-lg)',
+              marginTop: '--spacing(6)',
+              marginBottom: '--spacing(6)',
             },
             h3: {
-              '@apply heading-3 mt-4 mb-4': '',
+              fontSize: 'var(--text-3xl)',
+              fontWeight: 'var(--font-weight-medium)',
+              lineHeight: 'var(--leading-lg)',
+              marginTop: '--spacing(4)',
+              marginBottom: '--spacing(4)',
             },
             h4: {
-              '@apply heading-4 mt-2 mb-2': '',
+              fontSize: 'var(--text-2xl)',
+              fontWeight: 'var(--font-weight-medium)',
+              lineHeight: 'var(--leading-md)',
+              marginTop: '--spacing(2)',
+              marginBottom: '--spacing(2)',
             },
             h5: {
-              '@apply heading-5 mt-1 mb-1': '',
+              fontSize: 'var(--text-xl)',
+              fontWeight: 'var(--font-weight-medium)',
+              lineHeight: 'var(--leading-xl)',
+              marginTop: '--spacing(1)',
+              marginBottom: '--spacing(1)',
             },
             h6: {
-              '@apply heading-6 mt-1 mb-1': '',
+              fontSize: 'var(--text-lg)',
+              fontWeight: 'var(--font-weight-medium)',
+              lineHeight: 'var(--leading-xl)',
+              marginTop: '--spacing(1)',
+              marginBottom: '--spacing(1)',
             },
 
             p: {
-              '@apply paragraph': '',
+              color: 'var(--color-base-500)',
             },
-            small: {
-              '@apply small': '',
-            },
-
             mark: {
-              'background-color': theme('colors.primary.DEFAULT'),
-            },
-            pre: {
-              '@apply paragraph': '',
-              borderRadius: theme('borderRadius.none'),
-            },
-            code: {
-              '@apply paragraph': '',
+              backgroundColor: 'var(--color-primary)',
             },
             kbd: {
-              '@apply bg-foreground text-primary': '',
+              color: 'var(--color-primary)',
+              backgroundColor: 'var(--color-foreground)',
             },
 
             img: {
-              '@apply w-full my-0': '',
+              width: '100%',
             },
             hr: {
-              '@apply my-0 border-t-3': '',
+              borderTopWidth: 'var(--border-3)',
             },
 
-            '--tw-prose-body': theme('colors.foreground'),
-            '--tw-prose-headings': theme('colors.foreground'),
-            '--tw-prose-lead': theme('colors.foreground'),
-            '--tw-prose-links': theme('colors.foreground'),
-            '--tw-prose-bold': theme('colors.foreground'),
-            '--tw-prose-counters': theme('colors.foreground'),
-            '--tw-prose-bullets': theme('colors.foreground'),
-            '--tw-prose-hr': theme('colors.foreground'),
-            '--tw-prose-quotes': theme('colors.foreground'),
-            '--tw-prose-quote-borders': theme('colors.foreground'),
-            '--tw-prose-captions': theme('colors.foreground'),
-            '--tw-prose-code': theme('colors.foreground'),
-            '--tw-prose-kbd-shadows': theme('colors.foreground'),
-            '--tw-prose-pre-code': theme('colors.foreground'),
-            '--tw-prose-pre-bg': theme('colors.foreground'),
-            '--tw-prose-th-borders': theme('colors.foreground'),
-            '--tw-prose-td-borders': theme('colors.foreground'),
+            '--tw-prose-body': 'var(--color-foreground)',
+            '--tw-prose-headings': 'var(--color-foreground)',
+            '--tw-prose-lead': 'var(--color-foreground)',
+            '--tw-prose-links': 'var(--color-foreground)',
+            '--tw-prose-bold': 'var(--color-foreground)',
+            '--tw-prose-counters': 'var(--color-foreground)',
+            '--tw-prose-bullets': 'var(--color-foreground)',
+            '--tw-prose-hr': 'var(--color-foreground)',
+            '--tw-prose-quotes': 'var(--color-foreground)',
+            '--tw-prose-quote-borders': 'var(--color-foreground)',
+            '--tw-prose-captions': 'var(--color-foreground)',
+            '--tw-prose-code': 'var(--color-foreground)',
+            '--tw-prose-kbd': 'var(--color-foreground)',
+            '--tw-prose-kbd-shadows': 'var(--color-foreground)',
+            '--tw-prose-pre-code': 'var(--color-foreground)',
+            '--tw-prose-pre-bg': 'var(--color-foreground)',
+            '--tw-prose-th-borders': 'var(--color-foreground)',
+            '--tw-prose-td-borders': 'var(--color-foreground)',
 
-            '--tw-prose-invert-body': theme('colors.background'),
-            '--tw-prose-invert-headings': theme('colors.background'),
-            '--tw-prose-invert-lead': theme('colors.background'),
-            '--tw-prose-invert-links': theme('colors.background'),
-            '--tw-prose-invert-bold': theme('colors.background'),
-            '--tw-prose-invert-counters': theme('colors.background'),
-            '--tw-prose-invert-bullets': theme('colors.background'),
-            '--tw-prose-invert-hr': theme('colors.background'),
-            '--tw-prose-invert-quotes': theme('colors.background'),
-            '--tw-prose-invert-quote-borders': theme('colors.background'),
-            '--tw-prose-invert-captions': theme('colors.background'),
-            '--tw-prose-invert-code': theme('colors.background'),
-            '--tw-prose-invert-kbd-shadows': theme('colors.background'),
-            '--tw-prose-invert-pre-code': theme('colors.background'),
-            '--tw-prose-invert-pre-bg': theme('colors.background'),
-            '--tw-prose-invert-th-borders': theme('colors.background'),
-            '--tw-prose-invert-td-borders': theme('colors.background'),
+            '--tw-prose-invert-body': 'var(--color-background)',
+            '--tw-prose-invert-headings': 'var(--color-background)',
+            '--tw-prose-invert-lead': 'var(--color-background)',
+            '--tw-prose-invert-links': 'var(--color-background)',
+            '--tw-prose-invert-bold': 'var(--color-background)',
+            '--tw-prose-invert-counters': 'var(--color-background)',
+            '--tw-prose-invert-bullets': 'var(--color-background)',
+            '--tw-prose-invert-hr': 'var(--color-background)',
+            '--tw-prose-invert-quotes': 'var(--color-background)',
+            '--tw-prose-invert-quote-borders': 'var(--color-background)',
+            '--tw-prose-invert-captions': 'var(--color-background)',
+            '--tw-prose-invert-code': 'var(--color-background)',
+            '--tw-prose-invert-kbd': 'var(--color-background)',
+            '--tw-prose-invert-kbd-shadows': 'var(--color-background)',
+            '--tw-prose-invert-pre-code': 'var(--color-background)',
+            '--tw-prose-invert-pre-bg': 'var(--color-background)',
+            '--tw-prose-invert-th-borders': 'var(--color-background)',
+            '--tw-prose-invert-td-borders': 'var(--color-background)',
           },
         },
-      }),
+      },
     },
   },
-  plugins: [
-    tailwindTypography,
-    plugin(({ addComponents, theme }) => {
-      addComponents({
-        '.small': {
-          '@apply text-sm': '',
-          lineHeight: theme('lineHeight.xl'),
-        },
-        '.paragraph': {
-          '@apply text-base lg:text-lg': '',
-          lineHeight: theme('lineHeight.xl'),
-          color: theme('colors.base.500'),
-        },
-        '.paragraph-highlight': {
-          '@apply text-base lg:text-lg': '',
-          lineHeight: theme('lineHeight.xl'),
-          fontWeight: theme('fontWeight.semibold'),
-        },
-
-        '.heading-6': {
-          '@apply text-base lg:text-lg': '',
-          lineHeight: theme('lineHeight.xl'),
-          fontWeight: theme('fontWeight.medium'),
-        },
-        '.heading-5': {
-          '@apply text-lg lg:text-xl': '',
-          lineHeight: theme('lineHeight.xl'),
-          fontWeight: theme('fontWeight.medium'),
-        },
-        '.heading-4': {
-          '@apply text-xl lg:text-2xl': '',
-          lineHeight: theme('lineHeight.md'),
-          fontWeight: theme('fontWeight.medium'),
-        },
-        '.heading-3': {
-          '@apply text-2xl lg:text-3xl': '',
-          lineHeight: theme('lineHeight.lg'),
-          fontWeight: theme('fontWeight.medium'),
-        },
-        '.heading-2': {
-          '@apply text-3xl lg:text-4xl': '',
-          lineHeight: theme('lineHeight.lg'),
-          fontWeight: theme('fontWeight.semibold'),
-        },
-        '.heading-1': {
-          '@apply text-4xl lg:text-hero': '',
-          lineHeight: theme('lineHeight.md'),
-          fontWeight: theme('fontWeight.bold'),
-        },
-        '.hero': {
-          '@apply text-4xl lg:text-hero': '',
-          lineHeight: theme('lineHeight.none'),
-          fontWeight: theme('fontWeight.black'),
-        },
-      });
-    }),
-  ],
 };

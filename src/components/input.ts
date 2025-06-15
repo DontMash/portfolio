@@ -23,7 +23,7 @@ export const inputText = cva([
   'bg-transparent',
   'px-5',
   'py-3',
-  'outline-none',
+  'outline-hidden',
   'placeholder:text-base-300',
 ]);
 export const inputCheckbox = cva([
