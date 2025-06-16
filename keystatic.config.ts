@@ -8,6 +8,7 @@ import {
 
 import { pageCollection } from '@/collections/page';
 import { logomark } from '@/components/logomark';
+import { settingsSingleton } from '@/collections/settings';
 
 export default config({
   ui: {
@@ -18,9 +19,7 @@ export default config({
             logomark(BRAND_LOGO ?? '/favicon.svg', `${BRAND_NAME} Logo`),
         }
       : undefined,
-    navigation: {
-      Content: ['pages'],
-    },
+    navigation: ['pages', 'settings'],
   },
   locale: 'en-US',
   storage: import.meta.env.DEV
@@ -37,5 +36,8 @@ export default config({
       },
   collections: {
     pages: pageCollection,
+  },
+  singletons: {
+    settings: settingsSingleton,
   },
 });
