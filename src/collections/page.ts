@@ -22,11 +22,14 @@ export const pageCollection = collection({
   previewUrl: import.meta.env.DEV
     ? '/{slug}'
     : new URL(PREVIEW_SITE).origin + '/{slug}',
-  path: 'src/content/pages/*',
+  path: 'src/content/pages/**',
   entryLayout: 'content',
   format: { contentField: 'content' },
   schema: {
-    title: fields.slug({ name: { label: 'Title' }, slug: { label: 'Path' } }),
+    title: fields.slug({
+      name: { label: 'Title', validation: { isRequired: true } },
+      slug: { label: 'Path' },
+    }),
     description: fields.text({ label: 'Description', multiline: true }),
     seo: fields.object(
       {
@@ -36,7 +39,6 @@ export const pageCollection = collection({
               {
                 title: fields.text({
                   label: 'Title',
-                  validation: { isRequired: true },
                 }),
               },
               { label: 'Basic' },
@@ -99,7 +101,7 @@ export const pageSchema = z.object({
     keywords: z.string().array(),
     openGraph: z.object({
       basic: z.object({
-        title: z.string(),
+        title: z.string().optional(),
       }),
       image: z.object({
         url: z.string().optional(),

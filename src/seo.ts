@@ -30,7 +30,7 @@ export interface SEOProps
 }
 
 export const createSEOProps = (url: URL, props?: SEOProps): AstroSEOProps => {
-  const ogTitle = props?.openGraph.basic?.title ?? BRAND_NAME;
+  const ogTitle = props?.openGraph.basic?.title ?? props?.title ?? BRAND_NAME;
   const ogImageUrl = new URL(
     props?.openGraph.image?.url ?? BRAND_LOGO,
     url.origin,
