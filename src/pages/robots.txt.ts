@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { getCollection } from 'astro:content';
 
 type PolicyItem = {
   userAgent: string;
@@ -6,19 +7,28 @@ type PolicyItem = {
   disallow?: string[];
 };
 
-export const GET: APIRoute = ({ site, url }) => {
+export const GET: APIRoute = async ({ site, url }) => {
   const isValid = site && site.origin === url.origin;
+  const pageContent = await getCollection('pages');
+  const pages = pageContent.filter((page) => page.data.seo.noindex);
+
   const policies: Array<PolicyItem> = isValid
-    ? [{ userAgent: '*', allow: ['/'] }]
+    ? [
+        {
+          userAgent: '*',
+          allow: ['/'],
+          disallow: pages.map((page) => `/${page.id}`),
+        },
+      ]
     : [{ userAgent: '*', disallow: ['/'] }];
   const policyContent = policies
     .map((policy) => {
-      const userAgent = `User-agent: ${policy.userAgent}\n`;
-      const allow =
-        policy.allow?.map((value) => `Allow: ${value}`).join('\n') ?? '';
-      const disallow =
-        policy.disallow?.map((value) => `Disallow: ${value}`).join('\n') ?? '';
-      return userAgent + allow + disallow;
+      const userAgent = `User-agent: ${policy.userAgent}`;
+      const allow = policy.allow?.map((value) => `Allow: ${value}`).join('\n');
+      const disallow = policy.disallow
+        ?.map((value) => `Disallow: ${value}`)
+        .join('\n');
+      return [userAgent, allow, disallow].filter((value) => !!value).join('\n');
     })
     .join('\n');
 

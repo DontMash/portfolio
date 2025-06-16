@@ -40,12 +40,13 @@ export const createSEOProps = (url: URL, props?: SEOProps): AstroSEOProps => {
     props?.openGraph.optional?.description ?? BRAND_DESCRIPTION;
 
   const site = new URL(import.meta.env.SITE);
+  const isProductionOrigin = site.origin === url.origin;
   const defaultProps: AstroSEOProps = {
     titleTemplate: `%s | ${BRAND_NAME}`,
     titleDefault: BRAND_NAME,
     description: BRAND_DESCRIPTION,
-    noindex: site.origin !== url.origin,
-    nofollow: site.origin !== url.origin,
+    noindex: isProductionOrigin ? props?.noindex : true,
+    nofollow: isProductionOrigin ? props?.nofollow : true,
     openGraph: {
       basic: {
         title: ogTitle,

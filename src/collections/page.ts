@@ -67,6 +67,7 @@ export const pageCollection = collection({
           label: 'Keywords',
           itemLabel: (props) => props.value,
         }),
+        noindex: fields.checkbox({ label: 'No index', defaultValue: false }),
       },
       { label: 'SEO' },
     ),
@@ -98,7 +99,6 @@ export const pageSchema = z.object({
   title: z.string(),
   description: z.string().optional(),
   seo: z.object({
-    keywords: z.string().array(),
     openGraph: z.object({
       basic: z.object({
         title: z.string().optional(),
@@ -109,5 +109,7 @@ export const pageSchema = z.object({
       }),
       optional: z.object({ description: z.string().optional() }),
     }),
+    keywords: z.string().array(),
+    noindex: z.boolean().optional(),
   }),
 });
