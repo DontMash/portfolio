@@ -17,7 +17,7 @@ export interface SEOProps
   keywords?: Array<string>;
   openGraph: {
     basic?: {
-      title: string;
+      title?: string;
     };
     image?: {
       url?: string;
