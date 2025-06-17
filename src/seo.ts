@@ -8,7 +8,6 @@ export interface SEOProps
     AstroSEOProps,
     | 'charset'
     | 'extend'
-    | 'languageAlternates'
     | 'openGraph'
     | 'titleDefault'
     | 'titleTemplate'

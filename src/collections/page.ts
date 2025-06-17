@@ -2,6 +2,8 @@ import { collection, fields } from '@keystatic/core';
 import { PREVIEW_SITE } from 'astro:env/client';
 import { z } from 'astro:schema';
 
+import { getLocales } from '@/i18n';
+
 import {
   accordionContent,
   accordionItem,
@@ -31,6 +33,34 @@ export const pageCollection = collection({
       slug: { label: 'Path' },
     }),
     description: fields.text({ label: 'Description', multiline: true }),
+    locales: fields.array(
+      fields.object({
+        locale: fields.text({
+          label: 'Locale',
+          validation: {
+            isRequired: true,
+            length: { min: 2, max: 2 },
+            pattern: {
+              regex: new RegExp(`^${getLocales().join('|')}$`),
+              message: `Locale has to be one of: ${getLocales().join(', ')}`,
+            },
+          },
+        }),
+        ref: fields.relationship({
+          label: 'Page',
+          collection: 'pages',
+          validation: { isRequired: true },
+        }),
+      }),
+      {
+        label: 'Multilingual',
+        description:
+          'A list of references to this page in an alternate language.',
+        slugField: 'locale',
+        itemLabel: ({ fields }) =>
+          `${fields.locale.value} - ${fields.ref.value}`,
+      },
+    ),
     seo: fields.object(
       {
         openGraph: fields.object(
@@ -98,6 +128,12 @@ export const pageCollection = collection({
 export const pageSchema = z.object({
   title: z.string(),
   description: z.string().optional(),
+  locales: z
+    .object({
+      locale: z.string(),
+      ref: z.string(),
+    })
+    .array(),
   seo: z.object({
     openGraph: z.object({
       basic: z.object({

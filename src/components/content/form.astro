@@ -2,6 +2,8 @@
 import { actions, isActionError, isInputError } from 'astro:actions';
 import { Icon } from 'astro-icon/components';
 
+import { defaultLocale, useTranslation, type Locale } from '@/i18n';
+
 import { button } from '@/components/content/button';
 import {
   inputCheckbox,
@@ -10,7 +12,8 @@ import {
   inputText,
 } from '@/components/input';
 
-import Button from '@/components/content/button.astro';
+const locale = Astro.currentLocale as Locale | undefined;
+const t = useTranslation(locale ?? defaultLocale);
 
 const result = Astro.getActionResult(actions.contact);
 ---
@@ -22,8 +25,8 @@ const result = Astro.getActionResult(actions.contact);
   id='form-contact'
   aria-describedby='form-contact-info'
 >
-  <div class='not-prose flex flex-col gap-2'>
-    <div class='paragraph'>
+  <div class='flex flex-col gap-2'>
+    <div>
       <label
         class='data-[invalid]:border-error'
         class:list={[inputLabel()]}
@@ -32,7 +35,7 @@ const result = Astro.getActionResult(actions.contact);
       >
         <div class='ml-5'>
           <Icon name='tabler:user' size={24} />
-          <span class='sr-only'>Name</span>
+          <span class='sr-only'>{t('form.name.title')}</span>
         </div>
         <input
           class='peer'
@@ -41,12 +44,13 @@ const result = Astro.getActionResult(actions.contact);
           name='name'
           id='form-contact-name'
           aria-describedby='form-contact-name-error'
-          placeholder='Name'
+          placeholder={t('form.name.placeholder')}
           minlength={3}
           maxlength={32}
         />
-        <span class='text-base-300 mr-5 hidden peer-placeholder-shown:inline'
-          >(optional)</span
+        <span
+          class='text-base-300 mr-5 hidden shrink-0 peer-placeholder-shown:inline'
+          >({t('form.optional')})</span
         >
       </label>
       <p
@@ -67,7 +71,7 @@ const result = Astro.getActionResult(actions.contact);
       </p>
     </div>
 
-    <div class='paragraph'>
+    <div>
       <label
         class='data-[invalid]:border-error'
         class:list={[inputLabel()]}
@@ -76,7 +80,7 @@ const result = Astro.getActionResult(actions.contact);
       >
         <div class='ml-5'>
           <Icon name='tabler:building' size={24} />
-          <span class='sr-only'>Company</span>
+          <span class='sr-only'>{t('form.company.title')}</span>
         </div>
         <input
           class='peer'
@@ -85,12 +89,13 @@ const result = Astro.getActionResult(actions.contact);
           name='company'
           id='form-contact-company'
           aria-describedby='form-contact-company-error'
-          placeholder='Company'
+          placeholder={t('form.company.placeholder')}
           minlength={3}
           maxlength={32}
         />
-        <span class='text-base-300 mr-5 hidden peer-placeholder-shown:inline'
-          >(optional)</span
+        <span
+          class='text-base-300 mr-5 hidden shrink-0 peer-placeholder-shown:inline'
+          >({t('form.optional')})</span
         >
       </label>
       <p
@@ -111,7 +116,7 @@ const result = Astro.getActionResult(actions.contact);
       </p>
     </div>
 
-    <div class='paragraph'>
+    <div>
       <label
         class='data-[invalid]:border-error'
         class:list={[inputLabel()]}
@@ -120,7 +125,7 @@ const result = Astro.getActionResult(actions.contact);
       >
         <div class='ml-5'>
           <Icon name='tabler:mail' size={24} />
-          <span class='sr-only'>Email</span>
+          <span class='sr-only'>{t('form.email.title')}</span>
         </div>
         <input
           class:list={[inputText()]}
@@ -128,7 +133,7 @@ const result = Astro.getActionResult(actions.contact);
           name='email'
           id='form-contact-email'
           aria-describedby='form-contact-email-error'
-          placeholder='Email'
+          placeholder={t('form.email.placeholder')}
           required
         />
       </label>
@@ -150,7 +155,7 @@ const result = Astro.getActionResult(actions.contact);
       </p>
     </div>
 
-    <div class='paragraph'>
+    <div>
       <label
         class='data-[invalid]:border-error flex-col !items-stretch'
         class:list={[inputLabel()]}
@@ -159,7 +164,7 @@ const result = Astro.getActionResult(actions.contact);
       >
         <div class='flex items-center gap-5 px-5 py-3'>
           <Icon name='tabler:message' size={24} />
-          <span class='sr-only'>Message</span>
+          <span class='sr-only'>{t('form.message.title')}</span>
         </div>
         <div
           class='relative inline-grid break-all whitespace-pre-wrap after:invisible after:col-start-1 after:row-start-1 after:px-5 after:py-3 after:content-[attr(data-value)]'
@@ -172,7 +177,7 @@ const result = Astro.getActionResult(actions.contact);
             oninput='this.parentNode.dataset.value = this.value'
             onfocus='this.parentNode.dataset.value = this.value'
             rows={1}
-            placeholder={"Let's work together..."}
+            placeholder={t('form.message.placeholder')}
             minlength={3}
             maxlength={1024}></textarea>
         </div>
@@ -195,7 +200,7 @@ const result = Astro.getActionResult(actions.contact);
       </p>
     </div>
 
-    <div class='paragraph'>
+    <div>
       <label class='flex gap-2' for='form-contact-terms'>
         <input
           class='data-[invalid]:border-error'
@@ -207,13 +212,7 @@ const result = Astro.getActionResult(actions.contact);
           data-form-input='terms'
           required
         />
-        <span>
-          I have read the <Button
-            class=''
-            href='/privacy'
-            variants={{ kind: 'link' }}>privacy policy</Button
-          > and agree to the processing of my data.
-        </span>
+        <span set:html={t('form.policy')} />
       </label>
       <p
         class:list={[inputError()]}

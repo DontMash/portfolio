@@ -1,36 +1,57 @@
 ---
 import { Icon } from 'astro-icon/components';
 
+import { defaultLocale, useTranslation, type Locale } from '@/i18n';
+
 import Button from '@/components/content/button.astro';
 import Logo from '@/components/logo.astro';
+
+const locale = Astro.currentLocale as Locale | undefined;
+const t = useTranslation(locale ?? defaultLocale);
+
+const localeLinks: Record<
+  Locale,
+  Record<'contact' | 'imprint' | 'privacy', string>
+> = {
+  en: {
+    contact: '/en/contact',
+    imprint: '/en/imprint',
+    privacy: '/en/privacy',
+  },
+  de: {
+    contact: '/de/kontakt',
+    imprint: '/de/impressum',
+    privacy: '/de/datenschutz',
+  },
+};
 ---
 
 <footer class='bg-foreground text-background py-12' role='contentinfo'>
   <div
     class='mx-auto flex min-h-60 max-w-screen-xl flex-col gap-6 px-4 sm:grid sm:grid-cols-2 sm:grid-rows-1 sm:gap-8 sm:px-12'
   >
-    <nav class='flex flex-col items-start gap-6' aria-label='Contact & Socials'>
+    <nav
+      class='flex flex-col items-start gap-6'
+      aria-label={t('footer.nav.socials.label')}
+    >
       <Logo theme='dark' />
 
       <p class='small w-full max-w-96'>
-        Software development is the process of transforming imagination into
-        reality.
+        {t('footer.description')}
       </p>
 
       <ul class='flex flex-wrap gap-2'>
         <li>
           <Button
-            title='Send me an email'
             href='mailto:work@soren.codes'
             variants={{ intent: 'neutral', size: 'icon' }}
           >
             <Icon name='tabler:mail' size={24} />
-            <span class='sr-only'>Mail me</span>
+            <span class='sr-only'>{t('footer.nav.socials.mail')}</span>
           </Button>
         </li>
         <li>
           <Button
-            title='Look at my Ko-fi'
             href='https://ko-fi.com/smaschmann'
             target='_blank'
             rel='noreferrer'
@@ -42,7 +63,6 @@ import Logo from '@/components/logo.astro';
         </li>
         <li>
           <Button
-            title='Look at my GitHub'
             href='https://github.com/dontmash'
             target='_blank'
             rel='noreferrer'
@@ -55,7 +75,6 @@ import Logo from '@/components/logo.astro';
         <li>
           <Button
             href='https://www.linkedin.com/in/smaschmann'
-            title='Look at my LinkedIn'
             target='_blank'
             rel='noreferrer'
             variants={{ intent: 'neutral', size: 'icon' }}
@@ -69,54 +88,60 @@ import Logo from '@/components/logo.astro';
       <span class='small'>©{new Date().getUTCFullYear()} soren.codes</span>
     </nav>
 
-    <nav class='flex flex-col gap-6 sm:text-right' aria-label='Content links'>
+    <nav
+      class='flex flex-col gap-6 sm:text-right'
+      aria-label={t('footer.nav.content.label')}
+    >
       <ul class='flex grow flex-col gap-4'>
         <li>
           <Button
-            title='To the contact information'
-            href='/contact'
+            href={localeLinks[
+              (Astro.currentLocale as Locale | undefined) ?? defaultLocale
+            ]['contact']}
             variants={{ kind: 'link', intent: 'neutral' }}
           >
-            Contact
+            {t('footer.nav.content.contact')}
           </Button>
         </li>
         <li>
           <Button
-            title='To the imprint'
-            href='/imprint'
+            href={localeLinks[
+              (Astro.currentLocale as Locale | undefined) ?? defaultLocale
+            ]['imprint']}
             variants={{ kind: 'link', intent: 'neutral' }}
           >
-            Imprint
+            {t('footer.nav.content.imprint')}
           </Button>
         </li>
         <li>
           <Button
-            title='To the imprint'
-            href='/privacy'
+            href={localeLinks[
+              (Astro.currentLocale as Locale | undefined) ?? defaultLocale
+            ]['privacy']}
             variants={{ kind: 'link', intent: 'neutral' }}
           >
-            Privacy Policy
+            {t('footer.nav.content.privacy')}
           </Button>
         </li>
       </ul>
 
-      <small
-        >Made with <Icon
-          class='text-primary inline align-middle'
-          name='tabler:heart'
-          size={16}
-        /> by me</small
+      <Button
+        class:list={['self-end']}
+        href='https://github.soren.codes/portfolio'
+        target='_blank'
+        variants={{ kind: 'link', intent: 'neutral' }}
       >
+        <small>
+          Made with <Icon class='text-primary' name='tabler:heart' size={16} />
+          by me
+        </small>
+      </Button>
     </nav>
 
     <div class='flex flex-col items-center sm:col-span-2'>
-      <Button
-        title='To the top'
-        href='#top'
-        variants={{ intent: 'neutral', size: 'icon-lg' }}
-      >
+      <Button href='#top' variants={{ intent: 'neutral', size: 'icon-lg' }}>
         <Icon name='tabler:chevron-up' size={32} />
-        <span class='sr-only'>Go back to the top</span>
+        <span class='sr-only'>{t('footer.toTop')}</span>
       </Button>
     </div>
   </div>

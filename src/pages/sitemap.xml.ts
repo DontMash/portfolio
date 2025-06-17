@@ -10,12 +10,21 @@ export const GET: APIRoute = async ({ site, rewrite }) => {
   const pages = pageContent.filter((page) => !page.data.seo.noindex);
 
   const content = pages
-    .map(
-      (page) =>
-        `   <url>
-        <loc>${site}${page.id}</loc>
-    </url>`,
-    )
+    .map((page) => {
+      if (page.data.locales.length < 1) {
+        return `   <url>
+          <loc>${new URL(page.id, site)}</loc>
+    </url>`;
+      }
+
+      return `    <url>
+        <loc>${new URL(page.id, site)}</loc>
+        ${page.data.locales.map(
+          (entry) =>
+            `<xhtml:link rel="alternate" hreflang="${entry.locale}" href="${new URL(entry.ref.replace('/index', ''), site)}" />`,
+        )}
+    </url>`;
+    })
     .join('\n');
 
   return new Response(

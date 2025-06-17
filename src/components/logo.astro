@@ -11,7 +11,7 @@ const { theme = 'light' } = Astro.props;
 
 <Button
   class='-mb-4'
-  href='/'
+  href={`/${Astro.currentLocale}`}
   title='To the frontpage'
   variants={{ kind: 'link' }}
 >

@@ -11,9 +11,10 @@ interface Props {
   seo: SEOProps;
 }
 
-// TODO: feat: add i18n
+// TODO: feat: add alpinejs (accordion, dropdown)
 // TODO: feat: add projects entries
 // TODO: feat: add blog entries
+// TODO: feat: add robots.txt to settings
 // TODO: feat: add more animations / transitions?
 // TODO: feat: add fun bits & pieces / eastereggs
 // TODO: feat: add seo schema data
@@ -27,7 +28,7 @@ interface Props {
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang={Astro.currentLocale}>
   <head>
     <SEO {...Astro.props.seo} />
   </head>
