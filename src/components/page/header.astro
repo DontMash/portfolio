@@ -66,3 +66,18 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
     </div>
   </nav>
 </header>
+
+<script>
+  const select = document.querySelector<HTMLSelectElement>('[data-lang]');
+  if (!select) {
+    throw new Error('Language select not available');
+  }
+  select.addEventListener('change', (event) => {
+    if (!event.currentTarget) {
+      return;
+    }
+    const element = event.currentTarget as HTMLSelectElement;
+    const href = element.value;
+    location.pathname = href;
+  });
+</script>
