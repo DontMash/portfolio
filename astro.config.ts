@@ -7,7 +7,6 @@ import vercel from '@astrojs/vercel';
 import keystatic from '@keystatic/astro';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
-// import icon from 'astro-icon';
 
 import { defaultLocale, getLocales } from './src/i18n';
 
