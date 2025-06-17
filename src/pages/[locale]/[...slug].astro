@@ -15,18 +15,22 @@ import Icon from '@/components/content/icon.astro';
 import Section from '@/components/content/section.astro';
 import Style from '@/components/content/style.astro';
 
-const { slug } = Astro.params;
+const { locale, slug } = Astro.params;
 if (slug === 'index') {
   return Astro.redirect('/');
 }
-const page = await getEntry('pages', slug ?? 'index');
+const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
 if (!page) {
-  return Astro.rewrite('/404');
+  return Astro.rewrite(`/404?locale=${Astro.currentLocale}`);
 }
 const { Content } = await render(page);
 const seo = createSEOProps(Astro.url, {
   title: page.data.title,
   description: page.data.description,
+  languageAlternates: page.data.locales.map((entry) => ({
+    href: new URL(entry.ref.replace('/index', ''), Astro.site).href,
+    hrefLang: entry.locale,
+  })),
   ...page.data.seo,
 });
 ---

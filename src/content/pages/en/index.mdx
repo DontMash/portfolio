@@ -1,8 +1,11 @@
 ---
-title: ''
+title: Transforming visions into reality
 description: >-
   Sören Maschmann - software engineer & digital explorer - Transforming visions
   into reality.
+locales:
+  - locale: de
+    ref: de/index
 seo:
   openGraph:
     basic:
@@ -28,6 +31,7 @@ seo:
     - innovative solutions
     - digital explorer
     - problem solver
+  noindex: false
 ---
 <Section max={false} background={false}>
   <Grid kind="left">
@@ -47,7 +51,7 @@ seo:
       </Container>
     </Container>
 
-    <Frame image={{"src":"/src/assets/images/content/pages/index/profile.jpg","alt":"Sören Maschmann"}} border shadow="pop-lg" lazy={false} />
+    <Frame image={{"src":"/src/assets/images/content/pages/en/index/profile.jpg","alt":"Sören Maschmann"}} border shadow="pop-lg" lazy={false} />
   </Grid>
 
   <Container direction="horizontal" center>
@@ -57,7 +61,7 @@ seo:
 
 <Section id="contact" max={false} background>
   <Grid kind="right">
-    <Frame image={{"src":"/src/assets/images/content/pages/index/cover.png","alt":"A composition of shapes representing \"software\"-parts"}} border={false} shadow="none" lazy />
+    <Frame image={{"src":"/src/assets/images/content/pages/en/index/cover.png","alt":"A composition of shapes representing \"software\"-parts"}} border={false} shadow="none" lazy />
 
     <Container direction="vertical" center={false}>
       Code the Future.\
@@ -75,15 +79,7 @@ seo:
   </Grid>
 </Section>
 
-<Section id="form" max background={false}>
-  ## Got questions?
-
-  Thank you for visiting my portfolio! Whether you have a question, want to discuss a potential collaboration, or just want to say hello, I'd love to hear from you:
-
-  <Form />
-</Section>
-
-<Section id="faq" max background>
+<Section id="faq" max background={false}>
   ## Are you still unsure about our project?
 
   Whether your curious about my process or how we can work together: You will find your answer here.
@@ -107,4 +103,12 @@ seo:
       By setting priorities a minimal viable product should be the first goal of our collaboration. Your budget may decide when a project ends.
     </AccordionItem>
   </Accordion>
+</Section>
+
+<Section id="form" max background={false}>
+  ## Got questions?
+
+  Thank you for visiting my portfolio! Whether you have a question, want to discuss a potential collaboration, or just want to say "hello", I'd love to hear from you:
+
+  <Form />
 </Section>

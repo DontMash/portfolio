@@ -1,17 +1,16 @@
-import tailwindTypography from '@tailwindcss/typography';
-import plugin from 'tailwindcss/plugin';
-
 /** @type {import('tailwindcss').Config} */
 export default {
   theme: {
     extend: {
-      // @ts-ignore
       typography: {
         DEFAULT: {
           css: {
             maxWidth: 'none',
             fontSize: 'var(--text-base)',
             lineHeight: 'var(--leading-xl)',
+            wordBreak: 'break-word',
+            hyphens: 'auto',
+            textWrap: 'wrap',
 
             h1: {
               fontSize: 'var(--text-hero)',
@@ -66,6 +65,24 @@ export default {
               backgroundColor: 'var(--color-foreground)',
             },
 
+            a: {
+              fontWeight: 'var(--font-weight-semibold)',
+              transitionProperty: 'color, outline-color',
+              transitionTimingFunction:
+                'var(--default-transition-timing-function)',
+              transitionDuration: 'var(--default-transition-duration)',
+              '&:hover': {
+                color: 'var(--color-primary-active)',
+                textDecoration: 'underline',
+              },
+              '&:focus-visible': {
+                color: 'var(--color-primary-hover)',
+                outlineColor: 'var(--color-primary-hover)',
+                outlineStyle: 'dashed',
+                outlineWidth: 'var(--border-3)',
+                textDecoration: 'underline',
+              },
+            },
             img: {
               width: '100%',
             },

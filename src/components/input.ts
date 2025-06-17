@@ -40,6 +40,7 @@ export const inputCheckbox = cva([
   'transition',
   'checked:bg-primary',
   'focus-visible:outline-dashed',
+  'focus-visible:outline-current',
   'focus-visible:outline-3',
   'focus-visible:outline-offset-2',
 ]);
@@ -47,6 +48,7 @@ export const inputError = cva([
   'text-error',
   'paragraph',
   'mt-1',
+  'mb-1',
   'before:inline-block',
   'before:content-[""]',
 ]);

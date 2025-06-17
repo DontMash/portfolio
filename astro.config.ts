@@ -7,6 +7,8 @@ import keystatic from '@keystatic/astro';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 
+import { defaultLocale, getLocales } from './src/i18n';
+
 export default defineConfig({
   site: 'https://www.soren.codes',
   output: 'server',
@@ -65,6 +67,12 @@ export default defineConfig({
     },
   },
   redirects: {
-    '/contact': '/#contact',
+    '/contact': '/en/#contact',
+    '/en/contact': '/en/#contact',
+    '/de/kontakt': '/de/#contact',
+  },
+  i18n: {
+    locales: getLocales().map((value) => value.code),
+    defaultLocale,
   },
 });

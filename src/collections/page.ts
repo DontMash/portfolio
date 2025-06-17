@@ -2,6 +2,8 @@ import { collection, fields } from '@keystatic/core';
 import { PREVIEW_SITE } from 'astro:env/client';
 import { z } from 'astro:schema';
 
+import { getLocales, isLocaleCode } from '@/i18n';
+
 import {
   accordionContent,
   accordionItem,
@@ -22,12 +24,43 @@ export const pageCollection = collection({
   previewUrl: import.meta.env.DEV
     ? '/{slug}'
     : new URL(PREVIEW_SITE).origin + '/{slug}',
-  path: 'src/content/pages/*',
+  path: 'src/content/pages/**',
   entryLayout: 'content',
   format: { contentField: 'content' },
   schema: {
-    title: fields.slug({ name: { label: 'Title' }, slug: { label: 'Path' } }),
+    title: fields.slug({
+      name: { label: 'Title', validation: { isRequired: true } },
+      slug: { label: 'Path' },
+    }),
     description: fields.text({ label: 'Description', multiline: true }),
+    locales: fields.array(
+      fields.object({
+        locale: fields.text({
+          label: 'Locale',
+          validation: {
+            isRequired: true,
+            length: { min: 2, max: 2 },
+            pattern: {
+              regex: new RegExp(`^${getLocales().join('|')}$`),
+              message: `Locale has to be one of: ${getLocales().join(', ')}`,
+            },
+          },
+        }),
+        ref: fields.relationship({
+          label: 'Page',
+          collection: 'pages',
+          validation: { isRequired: true },
+        }),
+      }),
+      {
+        label: 'Multilingual',
+        description:
+          'A list of references to this page in an alternate language.',
+        slugField: 'locale',
+        itemLabel: ({ fields }) =>
+          `${fields.locale.value} - ${fields.ref.value}`,
+      },
+    ),
     seo: fields.object(
       {
         openGraph: fields.object(
@@ -36,7 +69,6 @@ export const pageCollection = collection({
               {
                 title: fields.text({
                   label: 'Title',
-                  validation: { isRequired: true },
                 }),
               },
               { label: 'Basic' },
@@ -65,6 +97,7 @@ export const pageCollection = collection({
           label: 'Keywords',
           itemLabel: (props) => props.value,
         }),
+        noindex: fields.checkbox({ label: 'No index', defaultValue: false }),
       },
       { label: 'SEO' },
     ),
@@ -95,11 +128,16 @@ export const pageCollection = collection({
 export const pageSchema = z.object({
   title: z.string(),
   description: z.string().optional(),
+  locales: z
+    .object({
+      locale: z.string().refine((value) => isLocaleCode(value)),
+      ref: z.string(),
+    })
+    .array(),
   seo: z.object({
-    keywords: z.string().array(),
     openGraph: z.object({
       basic: z.object({
-        title: z.string(),
+        title: z.string().optional(),
       }),
       image: z.object({
         url: z.string().optional(),
@@ -107,5 +145,7 @@ export const pageSchema = z.object({
       }),
       optional: z.object({ description: z.string().optional() }),
     }),
+    keywords: z.string().array(),
+    noindex: z.boolean().optional(),
   }),
 });

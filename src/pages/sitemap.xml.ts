@@ -1,26 +1,30 @@
 import type { APIRoute } from 'astro';
+import { getCollection } from 'astro:content';
 
-export const GET: APIRoute = ({ site, rewrite }) => {
+export const GET: APIRoute = async ({ site, rewrite }) => {
   if (!site) {
     return rewrite('/404');
   }
 
-  const pageFiles = import.meta.glob('../content/pages/**/*.mdx');
-  const pages = Object.keys(pageFiles).map((pageFile) => {
-    return pageFile
-      .slice(0, -'.mdx'.length)
-      .replace('/index', '')
-      .replace('../content/pages', site.origin);
-  });
-  console.log(pageFiles, pages);
+  const pageContent = await getCollection('pages');
+  const pages = pageContent.filter((page) => !page.data.seo.noindex);
 
   const content = pages
-    .map(
-      (page) =>
-        `   <url>
-        <loc>${page}</loc>
-    </url>`,
-    )
+    .map((page) => {
+      if (page.data.locales.length < 1) {
+        return `   <url>
+          <loc>${new URL(page.id, site)}</loc>
+    </url>`;
+      }
+
+      return `    <url>
+        <loc>${new URL(page.id, site)}</loc>
+        ${page.data.locales.map(
+          (entry) =>
+            `<xhtml:link rel="alternate" hreflang="${entry.locale}" href="${new URL(entry.ref.replace('/index', ''), site)}" />`,
+        )}
+    </url>`;
+    })
     .join('\n');
 
   return new Response(
