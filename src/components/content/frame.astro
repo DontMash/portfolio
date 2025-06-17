@@ -16,11 +16,7 @@ const { caption, image, lazy } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/images/content/**/*.{jpeg,jpg,png,gif}',
 );
-if (!images[image.src])
-  throw new Error(
-    `"${image.src}" does not exist in glob: "src/assets/images/content/**/*.{jpeg,jpg,png,gif}"`,
-  );
-const imageMetaData = (await images[image.src]()).default;
+const imageMetaData = images[image.src] && (await images[image.src]()).default;
 ---
 
 {
