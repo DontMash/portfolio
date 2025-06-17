@@ -8,6 +8,9 @@ export default {
             maxWidth: 'none',
             fontSize: 'var(--text-base)',
             lineHeight: 'var(--leading-xl)',
+            wordBreak: 'break-word',
+            hyphens: 'auto',
+            textWrap: 'wrap',
 
             h1: {
               fontSize: 'var(--text-hero)',
