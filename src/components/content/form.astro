@@ -239,7 +239,15 @@ const result = Astro.getActionResult(actions.contact);
   </div>
 
   <p
-    class='paragraph-highlight data-[form-message=error]:text-error data-[form-message=success]:text-primary before:inline-block before:content-[""]'
+    class:list={[
+      'paragraph-highlight',
+      'mt-1',
+      'mb-1',
+      'before:inline-block',
+      'before:content-[""]',
+      'data-[form-message=error]:text-error',
+      'data-[form-message=success]:text-primary',
+    ]}
     id='form-contact-info'
     data-form-message={isActionError(result?.error) ? 'error' : 'success'}
   >
