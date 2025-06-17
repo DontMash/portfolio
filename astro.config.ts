@@ -72,7 +72,7 @@ export default defineConfig({
     '/de/kontakt': '/de/#contact',
   },
   i18n: {
-    locales: getLocales(),
+    locales: getLocales().map((value) => value.code),
     defaultLocale,
   },
 });

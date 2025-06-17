@@ -4,9 +4,9 @@ import { Icon } from 'astro-icon/components';
 
 import {
   defaultLocale,
-  localeLabels,
+  getLabelForLocale,
   useTranslation,
-  type Locale,
+  type LocaleCode,
 } from '@/i18n';
 
 import Button from '@/components/content/button.astro';
@@ -14,7 +14,7 @@ import { button } from '@/components/content/button';
 import Logo from '@/components/logo.astro';
 
 const currentLocale =
-  (Astro.currentLocale as Locale | undefined) ?? defaultLocale;
+  (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale;
 const t = useTranslation(currentLocale);
 
 const { locale, slug } = Astro.params;
@@ -32,16 +32,16 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
       {
         page && page.data.locales.length && (
           <select class:list={[button({ kind: 'link' })]} name='lang' data-lang>
-            <option label={localeLabels[currentLocale]} value={page.id}>
-              {localeLabels[currentLocale]}
+            <option label={getLabelForLocale(currentLocale)} value={page.id}>
+              {getLabelForLocale(currentLocale)}
             </option>
 
             {page.data.locales.map((entry) => (
               <option
-                label={localeLabels[entry.locale as Locale]}
+                label={getLabelForLocale(entry.locale)}
                 value={entry.ref.replace('/index', '')}
               >
-                {localeLabels[entry.locale as Locale]}
+                {getLabelForLocale(entry.locale)}
               </option>
             ))}
           </select>

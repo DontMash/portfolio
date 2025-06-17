@@ -2,7 +2,7 @@
 import { actions, isActionError, isInputError } from 'astro:actions';
 import { Icon } from 'astro-icon/components';
 
-import { defaultLocale, useTranslation, type Locale } from '@/i18n';
+import { defaultLocale, useTranslation, type LocaleCode } from '@/i18n';
 
 import { button } from '@/components/content/button';
 import {
@@ -12,8 +12,8 @@ import {
   inputText,
 } from '@/components/input';
 
-const locale = Astro.currentLocale as Locale | undefined;
-const t = useTranslation(locale ?? defaultLocale);
+const currentLocale = Astro.currentLocale as LocaleCode | undefined;
+const t = useTranslation(currentLocale ?? defaultLocale);
 
 const result = Astro.getActionResult(actions.contact);
 ---

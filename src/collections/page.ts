@@ -2,7 +2,7 @@ import { collection, fields } from '@keystatic/core';
 import { PREVIEW_SITE } from 'astro:env/client';
 import { z } from 'astro:schema';
 
-import { getLocales } from '@/i18n';
+import { getLocales, isLocaleCode } from '@/i18n';
 
 import {
   accordionContent,
@@ -130,7 +130,7 @@ export const pageSchema = z.object({
   description: z.string().optional(),
   locales: z
     .object({
-      locale: z.string(),
+      locale: z.string().refine((value) => isLocaleCode(value)),
       ref: z.string(),
     })
     .array(),

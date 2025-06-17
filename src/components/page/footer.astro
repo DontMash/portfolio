@@ -1,16 +1,16 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-import { defaultLocale, useTranslation, type Locale } from '@/i18n';
+import { defaultLocale, useTranslation, type LocaleCode } from '@/i18n';
 
 import Button from '@/components/content/button.astro';
 import Logo from '@/components/logo.astro';
 
-const locale = Astro.currentLocale as Locale | undefined;
+const locale = Astro.currentLocale as LocaleCode | undefined;
 const t = useTranslation(locale ?? defaultLocale);
 
 const localeLinks: Record<
-  Locale,
+  LocaleCode,
   Record<'contact' | 'imprint' | 'privacy', string>
 > = {
   en: {
@@ -96,7 +96,7 @@ const localeLinks: Record<
         <li>
           <Button
             href={localeLinks[
-              (Astro.currentLocale as Locale | undefined) ?? defaultLocale
+              (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
             ]['contact']}
             variants={{ kind: 'link', intent: 'neutral' }}
           >
@@ -106,7 +106,7 @@ const localeLinks: Record<
         <li>
           <Button
             href={localeLinks[
-              (Astro.currentLocale as Locale | undefined) ?? defaultLocale
+              (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
             ]['imprint']}
             variants={{ kind: 'link', intent: 'neutral' }}
           >
@@ -116,7 +116,7 @@ const localeLinks: Record<
         <li>
           <Button
             href={localeLinks[
-              (Astro.currentLocale as Locale | undefined) ?? defaultLocale
+              (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
             ]['privacy']}
             variants={{ kind: 'link', intent: 'neutral' }}
           >

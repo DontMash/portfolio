@@ -1,6 +1,26 @@
-const locales = ['en', 'de'] as const;
+const localeDefault = {
+  code: 'en',
+  language: 'English',
+} as const;
+export const defaultLocale = localeDefault['code'];
+const locales = [
+  localeDefault,
+  {
+    code: 'de',
+    language: 'Deutsch',
+  },
+] as const;
 export type Locale = (typeof locales)[number];
-export const defaultLocale = locales[0];
+export type LocaleCode = Locale['code'];
+
+export const isLocaleCode = (value: string): value is LocaleCode => {
+  const codes = locales.map((locale) => locale.code);
+  return codes.find((code) => value === code) !== undefined;
+};
+export const getLocales = (): Array<Locale> => [...locales];
+export const getLabelForLocale = (code: LocaleCode) =>
+  (locales.find((locale) => locale.code === code) ?? localeDefault).language;
+
 const localization = {
   en: {
     'header.nav.label': 'Main',
@@ -63,15 +83,9 @@ const localization = {
     'form.message.placeholder': 'Lass uns gemeinsam...',
   },
 } as const;
-export const localeLabels: Record<Locale, string> = {
-  en: 'English',
-  de: 'Deutsch',
-};
 
-export const getLocales = (): Array<string> => [...locales];
-
-export const useTranslation = (lang: keyof typeof localization) => {
+export const useTranslation = (locale: keyof typeof localization) => {
   return function t(key: keyof (typeof localization)[typeof defaultLocale]) {
-    return localization[lang][key] ?? localization[defaultLocale][key];
+    return localization[locale][key] ?? localization[defaultLocale][key];
   };
 };
