@@ -65,6 +65,24 @@ export default {
               backgroundColor: 'var(--color-foreground)',
             },
 
+            a: {
+              fontWeight: 'var(--font-weight-semibold)',
+              transitionProperty: 'color, outline-color',
+              transitionTimingFunction:
+                'var(--default-transition-timing-function)',
+              transitionDuration: 'var(--default-transition-duration)',
+              '&:hover': {
+                color: 'var(--color-primary-active)',
+                textDecoration: 'underline',
+              },
+              '&:focus-visible': {
+                color: 'var(--color-primary-hover)',
+                outlineColor: 'var(--color-primary-hover)',
+                outlineStyle: 'dashed',
+                outlineWidth: 'var(--border-3)',
+                textDecoration: 'underline',
+              },
+            },
             img: {
               width: '100%',
             },
