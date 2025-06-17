@@ -14,9 +14,20 @@ type Props = JSX.AnchorHTMLAttributes & {
 };
 
 const props = Astro.props;
+
+const getAttributes = (props: Props): JSX.AnchorHTMLAttributes => {
+  const value = { ...props };
+  delete value.text;
+  delete value.icon;
+  delete value.variants;
+  return value;
+};
 ---
 
-<a class:list={['not-prose', props.class, button(props.variants)]} {...props}>
+<a
+  class:list={['not-prose', props.class, button(props.variants)]}
+  {...getAttributes(props)}
+>
   <slot>
     {props.icon && props.icon.before && <Icon name={props.icon.before} />}
     {
