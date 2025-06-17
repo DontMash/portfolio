@@ -5,10 +5,13 @@ import { cva, type VariantProps } from 'class-variance-authority';
 export const style = cva([], {
   variants: {
     color: {
+      none: null,
       primary: 'text-primary',
     },
     typography: {
-      none: '',
+      none: null,
+      'heading-1': 'heading-1',
+      'heading-2': 'heading-2',
       'heading-3': 'heading-3',
     },
   },
@@ -38,13 +41,18 @@ export const styleContent = mark({
   schema: {
     color: fields.select({
       label: 'Color',
-      options: [{ label: 'Primary', value: 'primary' }],
-      defaultValue: 'primary',
+      options: [
+        { label: 'None', value: 'none' },
+        { label: 'Primary', value: 'primary' },
+      ],
+      defaultValue: 'none',
     }),
     typography: fields.select({
       label: 'Typography',
       options: [
         { label: 'None', value: 'none' },
+        { label: 'Heading 1', value: 'heading-1' },
+        { label: 'Heading 2', value: 'heading-2' },
         { label: 'Heading 3', value: 'heading-3' },
       ],
       defaultValue: 'none',
