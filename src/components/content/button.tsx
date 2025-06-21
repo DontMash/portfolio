@@ -16,6 +16,7 @@ const buttonBase = cva(
     'focus-visible:outline-dashed',
     'focus-visible:outline-3',
     'focus-visible:outline-offset-2',
+    'cursor-pointer',
   ],
   {
     variants: {
@@ -160,7 +161,7 @@ export const buttonContent = inline({
   ),
   ContentView: ({ value }) => (
     <>
-      <button style={{ display: 'inline-flex', gap: '1em' }}>
+      <button style={{ display: 'inline-flex', gap: '1em' }} type='button'>
         {value.icon?.before && <i>Before: {value.icon.before}</i>}{' '}
         {value.text ? <>{value.text}</> : <i>Button</i>}{' '}
         {value.icon?.after && <i>After: {value.icon.after}</i>}

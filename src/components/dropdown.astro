@@ -1,0 +1,40 @@
+---
+import { button } from '@/components/content/button';
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div
+  class='relative'
+  x-data='collapsible'
+  x-id={`["dropdown-${id}"]`}
+  @keydown.escape.prevent.stop='close($refs.button)'
+  @focusin.window='!$refs.panel.contains($event.target) && close()'
+>
+  <button
+    class:list={[button({ kind: 'link', intent: 'primary' })]}
+    type='button'
+    x-ref='button'
+    x-bind:aria-expanded='state'
+    x-bind:aria-controls={`$id("dropdown-${id}")`}
+    @click='toggle'
+  >
+    <slot name='button' />
+  </button>
+
+  <div
+    class='bg-background absolute left-0 mt-2 w-full border-3'
+    x-ref='panel'
+    x-show='state'
+    x-bind:id={`$id("dropdown-${id}")`}
+    x-transition
+    x-cloak
+    @click.outside='close($refs.button)'
+  >
+    <slot />
+  </div>
+</div>

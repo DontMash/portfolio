@@ -1,19 +1,23 @@
 ---
 import { Icon } from 'astro-icon/components';
 
+import { defaultLocale, useTranslation, type LocaleCode } from '@/i18n';
+import { createSEOProps } from '@/seo';
+
 import Layout from '@/layouts/layout.astro';
 import Button from '@/components/content/button.astro';
 import Section from '@/components/content/section.astro';
 import Container from '@/components/content/container.astro';
-import { createSEOProps } from '@/seo';
+
+const locale = Astro.currentLocale as LocaleCode | undefined;
+const t = useTranslation(locale ?? defaultLocale);
 
 const seo = createSEOProps(Astro.url, {
   title: '404',
   openGraph: {
-    basic: { title: '404 - Not Found' },
+    basic: { title: t('404.title') },
     optional: {
-      description:
-        'In this case you may not have found what you were looking for. If so be sure to get in touch with me!',
+      description: t('404.description'),
     },
   },
 });
@@ -23,38 +27,27 @@ const seo = createSEOProps(Astro.url, {
   <Section max>
     <Container center>
       <div>
-        <h1
-          class='flex flex-col justify-center gap-4 divide-y-4 divide-foreground text-center text-hero sm:flex-row sm:gap-12 sm:divide-x-4 sm:divide-y-0'
-        >
-          <span> 404 </span>
-          <span class='pt-4 sm:pl-12 sm:pt-0'> Not Found </span>
-        </h1>
+        <h1 class='text-hero text-center'>{t('404.title')}</h1>
 
         <p class='text-center text-lg'>
-          In this case you may not have found what you were looking for. If so
-          be sure to get in touch with me!
+          {t('404.description')}
         </p>
       </div>
 
       <ul class='not-prose flex flex-wrap justify-center gap-4'>
         <li>
           <Button
-            href='/'
-            title='Back'
+            href={`/${Astro.currentLocale}`}
             variants={{ intent: 'accent', shadow: 'pop' }}
           >
             <Icon name='tabler:arrow-left' size={24} />
-            Go back
+            {t('404.back')}
           </Button>
         </li>
         <li>
-          <Button
-            href='/#form'
-            title='To the contact form'
-            variants={{ shadow: 'pop' }}
-          >
+          <Button href='/#form' variants={{ shadow: 'pop' }}>
             <Icon name='tabler:at' size={24} />
-            Say Hello
+            {t('404.contact')}
           </Button>
         </li>
       </ul>

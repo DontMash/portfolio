@@ -1,5 +1,6 @@
 import { defineConfig, envField } from 'astro/config';
 
+import alpinejs from '@astrojs/alpinejs';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
@@ -7,17 +8,20 @@ import keystatic from '@keystatic/astro';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 
+import { defaultLocale, getLocales } from './src/i18n';
+
 export default defineConfig({
   site: 'https://www.soren.codes',
   output: 'server',
   adapter: vercel(),
   integrations: [
+    alpinejs({ entrypoint: '@/alpine' }),
     icon({
       iconDir: 'src/assets/icons',
     }),
-    react(),
-    mdx(),
     ...(process.env.KEYSTATIC_SKIP ? [] : [keystatic()]),
+    mdx(),
+    react(),
   ],
   vite: {
     plugins: [tailwindcss()],
@@ -65,6 +69,12 @@ export default defineConfig({
     },
   },
   redirects: {
-    '/contact': '/#contact',
+    '/contact': '/en/#contact',
+    '/en/contact': '/en/#contact',
+    '/de/kontakt': '/de/#contact',
+  },
+  i18n: {
+    locales: getLocales().map((value) => value.code),
+    defaultLocale,
   },
 });

@@ -1,21 +1,68 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { getEntry } from 'astro:content';
+import Icon from '@/components/content/icon.astro';
+
+import {
+  defaultLocale,
+  getLabelForLocale,
+  useTranslation,
+  type LocaleCode,
+} from '@/i18n';
 
 import Button from '@/components/content/button.astro';
+import Dropdown from '@/components/dropdown.astro';
 import Logo from '@/components/logo.astro';
+
+const currentLocale =
+  (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale;
+const t = useTranslation(currentLocale);
+
+const { locale, slug } = Astro.params;
+const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
 ---
 
-<header class='sticky left-0 top-0 z-50 border-b-3 bg-background' role="banner">
-  <nav class='mx-auto flex h-20 max-w-screen-xl items-center px-4 sm:px-12' aria-label="Main">
+<header class='bg-background sticky top-0 left-0 z-50 border-b-3' role='banner'>
+  <nav
+    class='mx-auto flex h-20 max-w-screen-xl items-center px-4 sm:px-12'
+    aria-label={t('header.nav.label')}
+  >
     <Logo />
 
-    <Button
-      class='ml-auto hidden sm:inline-flex'
-      title='To the contact information'
-      href='/#form'
-    >
-      <Icon name='tabler:at' size={24} />
-      <span>Say hello</span>
-    </Button>
+    <div class='ml-auto flex items-center gap-8'>
+      {
+        page && page.data.locales.length && (
+          <Dropdown id='language'>
+            <Fragment slot='button'>
+              <Icon name='tabler:language' />
+              <span>{getLabelForLocale(currentLocale)}</span>
+              <Icon
+                name='tabler:caret-down'
+                class='transition data-[open]:rotate-180'
+                x-bind:data-open='state'
+              />
+            </Fragment>
+
+            <span class='hover:bg-foreground hover:text-background inline-flex w-full border-b-3 p-2 transition'>
+              {getLabelForLocale(currentLocale)}
+              <Icon class='ml-auto' name='tabler:check' />
+            </span>
+            {page?.data.locales.map((entry) => (
+              <a
+                class='hover:bg-foreground hover:text-background focus-visible:bg-foreground focus-visible:text-background focus-visible:outline-foreground inline-block w-full p-2 transition focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-dashed'
+                href={`/${entry.ref.replace('/index', '')}`}
+              >
+                {getLabelForLocale(entry.locale)}
+              </a>
+            ))}
+          </Dropdown>
+        )
+      }
+      <div class='hidden sm:block'>
+        <Button href={`/${Astro.currentLocale}/#form`}>
+          <Icon name='tabler:at' />
+          <span>{t('header.nav.cta')}</span>
+        </Button>
+      </div>
+    </div>
   </nav>
 </header>

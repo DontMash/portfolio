@@ -8,7 +8,6 @@ export interface SEOProps
     AstroSEOProps,
     | 'charset'
     | 'extend'
-    | 'languageAlternates'
     | 'openGraph'
     | 'titleDefault'
     | 'titleTemplate'
@@ -17,7 +16,7 @@ export interface SEOProps
   keywords?: Array<string>;
   openGraph: {
     basic?: {
-      title: string;
+      title?: string;
     };
     image?: {
       url?: string;
@@ -30,7 +29,7 @@ export interface SEOProps
 }
 
 export const createSEOProps = (url: URL, props?: SEOProps): AstroSEOProps => {
-  const ogTitle = props?.openGraph.basic?.title ?? BRAND_NAME;
+  const ogTitle = props?.openGraph.basic?.title ?? props?.title ?? BRAND_NAME;
   const ogImageUrl = new URL(
     props?.openGraph.image?.url ?? BRAND_LOGO,
     url.origin,
@@ -40,12 +39,13 @@ export const createSEOProps = (url: URL, props?: SEOProps): AstroSEOProps => {
     props?.openGraph.optional?.description ?? BRAND_DESCRIPTION;
 
   const site = new URL(import.meta.env.SITE);
+  const isProductionOrigin = site.origin === url.origin;
   const defaultProps: AstroSEOProps = {
     titleTemplate: `%s | ${BRAND_NAME}`,
     titleDefault: BRAND_NAME,
     description: BRAND_DESCRIPTION,
-    noindex: site.origin !== url.origin,
-    nofollow: site.origin !== url.origin,
+    noindex: isProductionOrigin ? props?.noindex : true,
+    nofollow: isProductionOrigin ? props?.nofollow : true,
     openGraph: {
       basic: {
         title: ogTitle,

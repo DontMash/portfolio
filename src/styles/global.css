@@ -23,12 +23,12 @@
   --font-sans: 'Azeret Mono Variable';
 
   --text-*: initial;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 2rem;
+  --text-sm: 1rem;
+  --text-base: 1.125rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.5rem;
   --text-4xl: 3rem;
   --text-hero: 4rem;
 
@@ -73,9 +73,8 @@
   [data-icon] {
     @apply inline-block;
   }
-
-  main[role=main] > * + * {
-    @apply border-t-3;
+  [x-cloak] {
+    display: none !important;
   }
 
   small {
@@ -100,7 +99,7 @@
   @apply leading-xl text-sm;
 }
 @utility paragraph {
-  @apply leading-xl text-lg;
+  @apply leading-xl text-base;
 }
 @utility paragraph-highlight {
   @apply leading-xl text-lg font-semibold;
