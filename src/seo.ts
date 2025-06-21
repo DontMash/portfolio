@@ -3,6 +3,8 @@ import { BRAND_DESCRIPTION, BRAND_TWITTER } from 'astro:env/server';
 import type { SEOProps as AstroSEOProps } from 'astro-seo';
 import _ from 'lodash';
 
+import { isProductionOrigin } from '@/utils';
+
 export interface SEOProps
   extends Omit<
     AstroSEOProps,
@@ -39,13 +41,13 @@ export const createSEOProps = (url: URL, props?: SEOProps): AstroSEOProps => {
     props?.openGraph.optional?.description ?? BRAND_DESCRIPTION;
 
   const site = new URL(import.meta.env.SITE);
-  const isProductionOrigin = site.origin === url.origin;
+  const isValid = isProductionOrigin(url, site);
   const defaultProps: AstroSEOProps = {
     titleTemplate: `%s | ${BRAND_NAME}`,
     titleDefault: BRAND_NAME,
     description: BRAND_DESCRIPTION,
-    noindex: isProductionOrigin ? props?.noindex : true,
-    nofollow: isProductionOrigin ? props?.nofollow : true,
+    noindex: isValid ? props?.noindex : true,
+    nofollow: isValid ? props?.nofollow : true,
     openGraph: {
       basic: {
         title: ogTitle,

@@ -4,14 +4,14 @@ import '@/styles/global.css';
 
 import { SEO, type SEOProps } from 'astro-seo';
 
-import Header from '@/components/page/header.astro';
 import Footer from '@/components/page/footer.astro';
+import Header from '@/components/page/header.astro';
+import Toolbar from '@/components/page/toolbar.astro';
 
 interface Props {
   seo: SEOProps;
 }
 
-// TODO: feat: add toolbar for cms access (page & dashboard)
 // TODO: feat: add robots.txt to settings
 // TODO: chore: use prose modifier instead of config
 // TODO: feat: add projects entries
@@ -43,6 +43,8 @@ interface Props {
     >
       <slot />
     </main>
+
+    <Toolbar />
 
     <Footer />
   </body>

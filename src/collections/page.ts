@@ -149,3 +149,16 @@ export const pageSchema = z.object({
     noindex: z.boolean().optional(),
   }),
 });
+
+export const getPageId = (locale?: string, slug?: string) => {
+  return slug ? `${locale}/${slug}` : `${locale}`;
+};
+export const getPagePath = (id: string) => {
+  return id.replace('/index', '');
+};
+export const getPageEntryPath = (locale?: string, slug?: string) => {
+  const id = getPageId(locale, slug);
+  const encodedId = encodeURIComponent(slug ? id : id + '/index');
+  const branch = import.meta.env.DEV ? '' : '/branch/preview';
+  return `/keystatic${branch}/collection/pages/item/${encodedId}`;
+};
