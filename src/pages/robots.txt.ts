@@ -1,3 +1,4 @@
+import { isProductionOrigin } from '@/utils';
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
@@ -8,7 +9,7 @@ type PolicyItem = {
 };
 
 export const GET: APIRoute = async ({ site, url }) => {
-  const isValid = site && site.origin === url.origin;
+  const isValid = isProductionOrigin(url, site);
   const pageContent = await getCollection('pages');
   const pages = pageContent.filter((page) => page.data.seo.noindex);
 

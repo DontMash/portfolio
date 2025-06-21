@@ -1,0 +1,49 @@
+---
+import { getPageEntryPath, getPageId, getPagePath } from '@/collections/page';
+import { isProductionOrigin } from '@/utils';
+
+import Button from '@/components/content/button.astro';
+import Icon from '@/components/content/icon.astro';
+
+const { locale, slug } = Astro.params;
+const id = getPageId(locale, slug);
+const path = getPagePath(id);
+const entryPath = getPageEntryPath(locale, slug);
+---
+
+{
+  !isProductionOrigin(Astro.url, Astro.site) && (
+    <div class='fixed right-8 bottom-8 flex flex-col items-end gap-2'>
+      <Button
+        href={import.meta.env.DEV ? entryPath : new URL(entryPath, Astro.site)}
+        target='_blank'
+        variants={{ intent: 'accent', shadow: 'pop' }}
+      >
+        <Icon name='tabler:edit' />
+        <span>Edit page</span>
+      </Button>
+      <Button
+        href={
+          import.meta.env.DEV
+            ? '/keystatic'
+            : new URL('keystatic/branch/preview', Astro.site)
+        }
+        target='_blank'
+        variants={{ intent: 'accent', shadow: 'pop' }}
+      >
+        <Icon name='tabler:layout-dashboard' />
+        <span>Go to dashboard</span>
+      </Button>
+      {!import.meta.env.DEV && (
+        <Button
+          href={new URL(path, 'http://localhost:4321')}
+          target='_blank'
+          variants={{ intent: 'accent', shadow: 'pop' }}
+        >
+          <Icon name='tabler:source-code' />
+          <span>Go to Local</span>
+        </Button>
+      )}
+    </div>
+  )
+}
