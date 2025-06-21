@@ -1,8 +1,11 @@
-import { isProductionOrigin } from '@/utils';
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
-type PolicyItem = {
+import { settingsSchema } from '@/collections/settings';
+import settingsContent from '@/content/settings.json';
+import { isProductionOrigin } from '@/utils';
+
+export type PolicyItem = {
   userAgent: string;
   allow?: string[];
   disallow?: string[];
@@ -12,14 +15,15 @@ export const GET: APIRoute = async ({ site, url }) => {
   const isValid = isProductionOrigin(url, site);
   const pageContent = await getCollection('pages');
   const pages = pageContent.filter((page) => page.data.seo.noindex);
+  const settings = settingsSchema.safeParse(settingsContent);
 
   const policies: Array<PolicyItem> = isValid
     ? [
         {
           userAgent: '*',
-          allow: ['/'],
           disallow: pages.map((page) => `/${page.id}`),
         },
+        ...(settings.success ? settings.data.robots : []),
       ]
     : [{ userAgent: '*', disallow: ['/'] }];
   const policyContent = policies
@@ -31,7 +35,7 @@ export const GET: APIRoute = async ({ site, url }) => {
         .join('\n');
       return [userAgent, allow, disallow].filter((value) => !!value).join('\n');
     })
-    .join('\n');
+    .join('\n\n');
 
   const sitemapContent = isValid
     ? `\n\nSitemap: ${new URL('sitemap.xml', url.origin)}`

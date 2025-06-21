@@ -6,6 +6,46 @@ export const settingsSingleton = singleton({
   path: 'src/content/settings',
   format: 'json',
   schema: {
+    robots: fields.array(
+      fields.object({
+        userAgent: fields.text({
+          label: 'User-Agent',
+          description:
+            'Defines a user-agent to apply the ruleset to (wildcard characters available).',
+          validation: { isRequired: true },
+        }),
+        allow: fields.array(
+          fields.text({
+            label: 'Path',
+            description:
+              'A relative path to the resource (wildcard characters available).',
+          }),
+          {
+            label: 'Allow',
+            description: 'Optional list of allowed paths.',
+            itemLabel: ({ value }) => value,
+          },
+        ),
+        disallow: fields.array(
+          fields.text({
+            label: 'Path',
+            description:
+              'A relative path to the resource (wildcard characters available).',
+          }),
+          {
+            label: 'Disallow',
+            description: 'Optional list of disallowed paths.',
+          },
+        ),
+      }),
+      {
+        label: 'robots.txt',
+        description:
+          'Used to explicitly allow/disallow crawlers to gather data from your site.',
+        slugField: 'userAgent',
+        itemLabel: ({ fields }) => fields.userAgent.value,
+      },
+    ),
     llms: fields.mdx.inline({
       label: 'llms.txt',
       description:
@@ -24,5 +64,12 @@ export const settingsSingleton = singleton({
 });
 
 export const settingsSchema = z.object({
+  robots: z
+    .object({
+      userAgent: z.string(),
+      allow: z.string().array().optional(),
+      disallow: z.string().array().optional(),
+    })
+    .array(),
   llms: z.string().optional(),
 });
