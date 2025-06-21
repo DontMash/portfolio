@@ -27,7 +27,7 @@ const { id } = Astro.props;
   </button>
 
   <div
-    class='bg-background absolute left-0 mt-2 w-full divide-y-3 border-3'
+    class='bg-background absolute left-0 mt-2 w-full border-3'
     x-ref='panel'
     x-show='state'
     x-bind:id={`$id("dropdown-${id}")`}
