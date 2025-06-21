@@ -104,6 +104,7 @@ export const pageCollection = collection({
     content: fields.mdx({
       label: 'Content',
       options: {
+        code: false,
         image: {
           directory: 'src/assets/images/content/pages',
           publicPath: '@/assets/images/content/pages/',
