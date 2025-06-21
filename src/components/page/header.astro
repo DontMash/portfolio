@@ -49,7 +49,7 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
             {page?.data.locales.map((entry) => (
               <a
                 class='hover:bg-foreground hover:text-background focus-visible:bg-foreground focus-visible:text-background focus-visible:outline-foreground inline-block w-full p-2 transition focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-dashed'
-                href={entry.ref.replace('/index', '')}
+                href={`/${entry.ref.replace('/index', '')}`}
               >
                 {getLabelForLocale(entry.locale)}
               </a>
