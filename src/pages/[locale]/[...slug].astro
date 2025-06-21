@@ -19,7 +19,8 @@ const { locale, slug } = Astro.params;
 if (slug === 'index') {
   return Astro.redirect('/');
 }
-const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
+const id = slug ? `${locale}/${slug}` : `${locale}`;
+const page = await getEntry('pages', id);
 if (!page) {
   return Astro.rewrite(`/404?locale=${Astro.currentLocale}`);
 }

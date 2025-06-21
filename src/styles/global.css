@@ -73,9 +73,8 @@
   [data-icon] {
     @apply inline-block;
   }
-
-  main[role=main] > * + * {
-    @apply border-t-3;
+  [x-cloak] {
+    display: none !important;
   }
 
   small {

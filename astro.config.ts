@@ -1,5 +1,6 @@
 import { defineConfig, envField } from 'astro/config';
 
+import alpinejs from '@astrojs/alpinejs';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
@@ -14,12 +15,13 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   integrations: [
+    alpinejs({ entrypoint: '@/alpine' }),
     icon({
       iconDir: 'src/assets/icons',
     }),
-    react(),
-    mdx(),
     ...(process.env.KEYSTATIC_SKIP ? [] : [keystatic()]),
+    mdx(),
+    react(),
   ],
   vite: {
     plugins: [tailwindcss()],

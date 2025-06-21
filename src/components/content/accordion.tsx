@@ -3,7 +3,7 @@ import { repeating, wrapper } from '@keystatic/core/content-components';
 
 export const accordionContent = repeating({
   label: 'Accordion',
-  description: 'Used to provide a list of collapsible texts with titles.',
+  description: 'Used to provide a set of collapsible texts with titles.',
   icon: (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -22,7 +22,12 @@ export const accordionContent = repeating({
     </svg>
   ),
   schema: {
-    name: fields.text({ label: 'Name' }),
+    multiple: fields.checkbox({
+      label: 'Multiple',
+      defaultValue: false,
+      description:
+        'Should it be possible to open more than one item at a time?',
+    }),
   },
   children: ['AccordionItem'],
 });
@@ -50,9 +55,6 @@ export const accordionItem = wrapper({
     title: fields.text({
       label: 'Title',
       validation: { isRequired: true },
-    }),
-    name: fields.text({
-      label: 'Name',
     }),
   },
 });

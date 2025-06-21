@@ -16,6 +16,7 @@ const buttonBase = cva(
     'focus-visible:outline-dashed',
     'focus-visible:outline-3',
     'focus-visible:outline-offset-2',
+    'cursor-pointer',
   ],
   {
     variants: {
