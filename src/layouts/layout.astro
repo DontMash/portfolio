@@ -12,7 +12,8 @@ interface Props {
   seo: SEOProps;
 }
 
-// TODO: chore: use prose modifier instead of config
+// TODO: feat: add kbd content component
+// TODO: feat: add themes
 // TODO: feat: add projects entries
 // TODO: feat: add blog entries
 // TODO: feat: add rss feed
@@ -37,7 +38,7 @@ interface Props {
     <Header />
 
     <main
-      class='dots prose mx-auto flex min-h-screen max-w-screen-xl flex-col divide-y-3 xl:border-x-3'
+      class='dots prose-a:paragraph-highlight prose-a:transition prose-a:hover:text-primary-hover prose-a:focus-visible:text-primary-hover prose-a:focus-visible:outline-current prose-a:focus-visible:outline-3 prose-a:focus-visible:outline-dashed prose-hr:border-t-3 prose-img:w-full prose-kbd:bg-foreground prose-h1:heading-1 prose-h1:mb-8 prose-h2:heading-2 prose-h2:my-6 prose-h3:heading-3 prose-h3:my-4 prose-h4:heading-4 prose-p:text-base-600 prose-h4:my-2 prose-h5:heading-5 prose-h5:my-1 prose-h6:heading-6 prose-h6:my-1 prose mx-auto flex min-h-screen max-w-screen-xl flex-col divide-y-3 xl:border-x-3'
       role='main'
     >
       <slot />

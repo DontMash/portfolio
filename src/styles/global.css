@@ -80,19 +80,9 @@
   small {
     @apply small;
   }
-}
-
-@utility dots {
-  --dot-size: 1px;
-  --dot-spacing: 48px;
-
-  background-image: radial-gradient(
-    circle at var(--dot-size) var(--dot-size),
-    --alpha(var(--color-foreground) / 30%) var(--dot-size),
-    transparent 0
-  );
-  background-size: var(--dot-spacing) var(--dot-spacing);
-  background-position: 50%;
+  mark {
+    @apply bg-primary;
+  }
 }
 
 @utility small {
@@ -124,4 +114,17 @@
 }
 @utility hero {
   @apply text-hero leading-none font-black;
+}
+
+@utility dots {
+  --dot-size: 1px;
+  --dot-spacing: 48px;
+
+  background-image: radial-gradient(
+    circle at var(--dot-size) var(--dot-size),
+    --alpha(var(--color-foreground) / 30%) var(--dot-size),
+    transparent 0
+  );
+  background-size: var(--dot-spacing) var(--dot-spacing);
+  background-position: 50%;
 }
