@@ -85,6 +85,9 @@
   }
 }
 
+@utility anchor {
+  @apply paragraph-highlight hover:text-primary-hover focus-visible:text-primary-hover transition focus-visible:outline-3 focus-visible:outline-current focus-visible:outline-dashed;
+}
 @utility small {
   @apply leading-xl text-sm;
 }
@@ -95,22 +98,22 @@
   @apply leading-xl text-lg font-semibold;
 }
 @utility heading-6 {
-  @apply leading-xl text-lg font-medium;
+  @apply leading-xl text-lg font-medium my-1;
 }
 @utility heading-5 {
-  @apply leading-xl text-xl font-medium;
+  @apply leading-xl text-xl font-medium my-1;
 }
 @utility heading-4 {
-  @apply leading-md text-2xl font-medium;
+  @apply leading-md text-2xl font-medium my-2;
 }
 @utility heading-3 {
-  @apply leading-lg text-3xl font-medium;
+  @apply leading-lg text-3xl font-medium my-4;
 }
 @utility heading-2 {
-  @apply leading-lg text-4xl font-semibold;
+  @apply leading-lg text-4xl font-semibold my-6;
 }
 @utility heading-1 {
-  @apply leading-md text-hero font-bold;
+  @apply leading-md text-hero font-bold my-8;
 }
 @utility hero {
   @apply text-hero leading-none font-black;
