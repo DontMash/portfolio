@@ -3,8 +3,9 @@ import { cva, cx, type VariantProps } from 'class-variance-authority';
 
 import { shadow as shadowBase, type ShadowProps } from '@/components/shadow';
 import { fields } from '@keystatic/core';
+import { defaultTheme, themes } from '@/theme';
 
-const frameBase = cva(['text-foreground'], {
+const frameBase = cva(['text-(--color-foreground)'], {
   variants: {
     border: {
       false: null,
@@ -38,33 +39,50 @@ export const frameContent = block({
       />
     </svg>
   ),
-  ContentView: ({ value }) =>
-    value.image.src && (
-      <figure style={{ margin: 0 }}>
-        <img
-          style={{ width: '100%' }}
-          src={URL.createObjectURL(
-            new Blob([value.image.src?.data], {
-              type: `image/${value.image.src.extension}`,
-            }),
-          )}
-          alt={value.image.alt}
-        />
-        {value.caption && <figcaption>{value.caption}</figcaption>}
-      </figure>
-    ),
+  ContentView: ({ value }) => {
+    const image = value.images[0];
+    return (
+      image?.src && (
+        <figure style={{ margin: 0 }}>
+          <img
+            style={{ width: '100%' }}
+            src={URL.createObjectURL(
+              new Blob([image.src.data], {
+                type: `image/${image.src.extension}`,
+              }),
+            )}
+            alt={image.alt}
+          />
+          {value.caption && <figcaption>{value.caption}</figcaption>}
+        </figure>
+      )
+    );
+  },
   schema: {
-    image: fields.object(
+    images: fields.array(
+      fields.object(
+        {
+          theme: fields.select({
+            label: 'Theme',
+            options: themes.map((theme) => ({ label: theme, value: theme })),
+            defaultValue: defaultTheme,
+          }),
+          src: fields.image({
+            label: 'File',
+            validation: { isRequired: true },
+            directory: 'src/assets/images/content/pages',
+            publicPath: '/src/assets/images/content/pages/',
+          }),
+          alt: fields.text({ label: 'Alt', validation: { isRequired: true } }),
+        },
+        { label: 'Image' },
+      ),
       {
-        src: fields.image({
-          label: 'File',
-          validation: { isRequired: true },
-          directory: 'src/assets/images/content/pages',
-          publicPath: '/src/assets/images/content/pages/',
-        }),
-        alt: fields.text({ label: 'Alt', validation: { isRequired: true } }),
+        label: 'Images',
+        validation: { length: { min: 1, max: themes.length } },
+        itemLabel: ({ fields }) =>
+          `${fields.theme.value} - ${fields.src.value?.filename} : ${fields.alt.value}`,
       },
-      { label: 'Image' },
     ),
     caption: fields.text({ label: 'Caption' }),
     border: fields.checkbox({ label: 'Border' }),

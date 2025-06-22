@@ -34,6 +34,7 @@ const localization = {
     'footer.nav.content.contact': 'Contact',
     'footer.nav.content.imprint': 'Imprint',
     'footer.nav.content.privacy': 'Privacy Policy',
+    'footer.nav.mention.label': 'Mentions',
     '404.title': '404 - Not found',
     '404.description':
       'In this case you may not have found what you were looking for. If so be sure to get in touch with me!',
@@ -64,6 +65,7 @@ const localization = {
     'footer.nav.content.contact': 'Kontakt',
     'footer.nav.content.imprint': 'Impressum',
     'footer.nav.content.privacy': 'Datenschutz',
+    'footer.nav.mention.label': 'Erwähnungen',
     '404.title': '404 - Nicht gefunden',
     '404.description':
       'In diesem Fall haben du vielleicht nicht das gefunden, wonach du gesucht hast. Wenn dem so ist, solltest du dich mit mir in Verbindung setzen!',

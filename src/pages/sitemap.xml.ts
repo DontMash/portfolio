@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
+import { getPagePath } from '@/collections/page';
+
 export const GET: APIRoute = async ({ site, rewrite }) => {
   if (!site) {
     return rewrite('/404');
@@ -21,7 +23,7 @@ export const GET: APIRoute = async ({ site, rewrite }) => {
         <loc>${new URL(page.id, site)}</loc>
         ${page.data.locales.map(
           (entry) =>
-            `<xhtml:link rel="alternate" hreflang="${entry.locale}" href="${new URL(entry.ref.replace('/index', ''), site)}" />`,
+            `<xhtml:link rel="alternate" hreflang="${entry.locale}" href="${new URL(getPagePath(entry.ref), site)}" />`,
         )}
     </url>`;
     })

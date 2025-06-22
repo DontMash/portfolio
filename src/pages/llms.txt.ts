@@ -1,10 +1,10 @@
 import type { APIRoute } from 'astro';
 import { settingsSchema } from '@/collections/settings';
 import settingsContent from '@/content/settings.json';
+import { isProductionOrigin } from '@/utils';
 
 export const GET: APIRoute = async ({ rewrite, site, url }) => {
-  const isValid = site && site.origin === url.origin;
-  if (isValid) {
+  if (isProductionOrigin(url, site)) {
     return rewrite('/404');
   }
 

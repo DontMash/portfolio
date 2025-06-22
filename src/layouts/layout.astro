@@ -4,22 +4,20 @@ import '@/styles/global.css';
 
 import { SEO, type SEOProps } from 'astro-seo';
 
-import Header from '@/components/page/header.astro';
 import Footer from '@/components/page/footer.astro';
+import Header from '@/components/page/header.astro';
+import Toolbar from '@/components/page/toolbar.astro';
 
 interface Props {
   seo: SEOProps;
 }
 
-// TODO: feat: add toolbar for cms access (page & dashboard)
-// TODO: feat: add robots.txt to settings
-// TODO: chore: use prose modifier instead of config
-// TODO: feat: add projects entries
 // TODO: feat: add blog entries
 // TODO: feat: add rss feed
+// TODO: feat: add seo schema data
+// TODO: feat: add projects entries
 // TODO: feat: add more animations / transitions?
 // TODO: feat: add fun bits & pieces / eastereggs
-// TODO: feat: add seo schema data
 // TODO: feat: add form configurator
 // TODO: feat: add video component
 // TODO: feat: add youtube embed component
@@ -30,19 +28,33 @@ interface Props {
 ---
 
 <!doctype html>
-<html lang={Astro.currentLocale}>
+<html lang={Astro.currentLocale} x-data x-bind:data-theme='$store.theme.get()'>
   <head>
     <SEO {...Astro.props.seo} />
+    <script is:inline>
+      // set initial theme state
+      const item = localStorage.getItem('_x_state');
+      const themeState = JSON.parse(item);
+      const theme =
+        themeState !== 'auto'
+          ? themeState
+          : window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+      document.documentElement.dataset.theme = theme;
+    </script>
   </head>
   <body id='top'>
     <Header />
 
     <main
-      class='dots prose mx-auto flex min-h-screen max-w-screen-xl flex-col divide-y-3 xl:border-x-3'
+      class='dots prose dark:prose-p:text-base-300 prose-a:anchor prose-hr:border-t-3 prose-img:w-full prose-kbd:bg-foreground prose-p:text-base-600 prose-h1:heading-1 prose-h2:heading-2 prose-h3:heading-3 prose-h4:heading-4 prose-h5:heading-5 prose-h6:heading-6 mx-auto flex min-h-screen max-w-screen-xl flex-col divide-y-3 xl:border-x-3'
       role='main'
     >
       <slot />
     </main>
+
+    <Toolbar />
 
     <Footer />
   </body>

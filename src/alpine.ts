@@ -1,8 +1,58 @@
-import type { Alpine } from 'alpinejs';
+import type { Alpine, AlpineComponent, InterceptorObject } from 'alpinejs';
 import collapse from '@alpinejs/collapse';
+import persist from '@alpinejs/persist';
+
+import { defaultTheme, type Theme, type ThemeState } from '@/theme';
 
 export default (Alpine: Alpine) => {
   Alpine.plugin(collapse);
+  Alpine.plugin(persist);
+
+  type AlpineThemeStore = AlpineComponent<{
+    state: InterceptorObject<ThemeState>;
+    get: () => Theme;
+    set: (value: Theme) => void;
+    isDefault: () => boolean;
+    invert: () => Theme;
+    toggle: () => void;
+  }>;
+  Alpine.store('theme', {
+    state: Alpine.$persist<ThemeState>('auto'),
+    init() {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      mediaQuery.addEventListener('change', (event) => {
+        if (this.state !== 'auto') {
+          return;
+        }
+        // overwrite for change detection - value doesnt matter
+        this.state = 'light';
+        this.state = 'auto';
+      });
+    },
+    isDefault() {
+      return this.get() === defaultTheme;
+    },
+    invert() {
+      return this.isDefault() ? 'dark' : 'light';
+    },
+    get() {
+      switch (this.state) {
+        case 'light':
+        case 'dark':
+          return this.state;
+        default:
+          return window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+      }
+    },
+    set(value: Theme) {
+      this.state = value;
+    },
+    toggle() {
+      this.state = this.isDefault() ? 'dark' : 'light';
+    },
+  } satisfies AlpineThemeStore);
 
   Alpine.data('collapsible', () => ({
     state: false,

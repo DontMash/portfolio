@@ -18,6 +18,11 @@
   --color-orange-300: oklch(0.6695 0.2183 30.08);
   --color-peach-100: oklch(0.9649 0.018 39.4);
   --color-peach-200: oklch(0.9304 0.0367 39.32);
+  --color-azure-100: oklch(0.5676 0.148 248.82);
+  --color-azure-200: oklch(0.5257 0.1352 248.43);
+  --color-azure-300: oklch(0.4777 0.1226 248.48);
+  --color-cobalt-100: oklch(0.3867 0.1085 268.94);
+  --color-cobalt-200: oklch(0.3552 0.0969 269.49);
   --color-error: oklch(0.6296 0.2557 25.81);
 
   --font-sans: 'Azeret Mono Variable';
@@ -40,7 +45,6 @@
 
   --border-3: 3px;
 
-  --shadow-*: initial;
   --shadow-pop-none: 0px 0px 0 0 currentColor;
   --shadow-pop-md: 8px 8px 0 0 currentColor;
   --shadow-pop-lg: 16px 16px 0 0 currentColor;
@@ -65,11 +69,31 @@
   --color-muted-foreground: var(--color-base-900);
 }
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @layer base {
   :root {
-    @apply bg-background text-foreground scroll-pt-20 scroll-smooth;
+    @apply scroll-pt-20 scroll-smooth bg-(--color-background) text-(--color-foreground);
   }
 
+  [data-theme='dark'] {
+    --color-background: var(--color-base-900);
+    --color-foreground: var(--color-base-100);
+    --color-primary: var(--color-azure-100);
+    --color-primary-hover: var(--color-azure-200);
+    --color-primary-active: var(--color-azure-300);
+    --color-primary-foreground: var(--color-base-100);
+    --color-accent: var(--color-base-900);
+    --color-accent-hover: var(--color-cobalt-200);
+    --color-accent-active: var(--color-cobalt-300);
+    --color-accent-foreground: var(--color-base-100);
+    --color-neutral: var(--color-base-100);
+    --color-neutral-hover: var(--color-base-200);
+    --color-neutral-active: var(--color-base-300);
+    --color-neutral-foreground: var(--color-base-900);
+    --color-muted: var(--color-base-800);
+    --color-muted-foreground: var(--color-base-100);
+  }
   [data-icon] {
     @apply inline-block;
   }
@@ -80,6 +104,43 @@
   small {
     @apply small;
   }
+  mark {
+    @apply bg-primary;
+  }
+}
+
+@utility anchor {
+  @apply paragraph-highlight transition hover:text-(--color-primary) focus-visible:text-(--color-primary) focus-visible:outline-3 focus-visible:outline-current focus-visible:outline-dashed;
+}
+@utility small {
+  @apply leading-xl text-sm;
+}
+@utility paragraph {
+  @apply leading-xl text-base;
+}
+@utility paragraph-highlight {
+  @apply leading-xl text-lg font-semibold;
+}
+@utility heading-6 {
+  @apply leading-xl my-1 text-lg font-medium;
+}
+@utility heading-5 {
+  @apply leading-xl my-1 text-xl font-medium;
+}
+@utility heading-4 {
+  @apply leading-md my-2 text-2xl font-medium;
+}
+@utility heading-3 {
+  @apply leading-lg my-4 text-3xl font-medium;
+}
+@utility heading-2 {
+  @apply leading-lg my-6 text-4xl font-semibold;
+}
+@utility heading-1 {
+  @apply leading-md text-hero my-8 font-bold;
+}
+@utility hero {
+  @apply text-hero leading-none font-black;
 }
 
 @utility dots {
@@ -93,35 +154,4 @@
   );
   background-size: var(--dot-spacing) var(--dot-spacing);
   background-position: 50%;
-}
-
-@utility small {
-  @apply leading-xl text-sm;
-}
-@utility paragraph {
-  @apply leading-xl text-base;
-}
-@utility paragraph-highlight {
-  @apply leading-xl text-lg font-semibold;
-}
-@utility heading-6 {
-  @apply leading-xl text-lg font-medium;
-}
-@utility heading-5 {
-  @apply leading-xl text-xl font-medium;
-}
-@utility heading-4 {
-  @apply leading-md text-2xl font-medium;
-}
-@utility heading-3 {
-  @apply leading-lg text-3xl font-medium;
-}
-@utility heading-2 {
-  @apply leading-lg text-4xl font-semibold;
-}
-@utility heading-1 {
-  @apply leading-md text-hero font-bold;
-}
-@utility hero {
-  @apply text-hero leading-none font-black;
 }

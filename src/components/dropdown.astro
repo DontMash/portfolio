@@ -1,5 +1,6 @@
 ---
 import { button } from '@/components/content/button';
+import Icon from '@/components/content/icon.astro';
 
 interface Props {
   id: string;
@@ -24,10 +25,15 @@ const { id } = Astro.props;
     @click='toggle'
   >
     <slot name='button' />
+    <Icon
+      name='tabler:caret-down'
+      class='transition data-[open]:rotate-180'
+      x-bind:data-open='state'
+    />
   </button>
 
   <div
-    class='bg-background absolute left-0 mt-2 w-full border-3'
+    class='absolute right-0 mt-2 w-full min-w-40 border-3 bg-(--color-background)'
     x-ref='panel'
     x-show='state'
     x-bind:id={`$id("dropdown-${id}")`}

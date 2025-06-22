@@ -14,6 +14,7 @@ import { formContent } from '@/components/content/form';
 import { frameContent } from '@/components/content/frame';
 import { gridContent } from '@/components/content/grid';
 import { iconContent } from '@/components/content/icon';
+import { kbdContent } from '@/components/content/kbd';
 import { sectionContent } from '@/components/content/section';
 import { styleContent } from '@/components/content/style';
 
@@ -104,6 +105,7 @@ export const pageCollection = collection({
     content: fields.mdx({
       label: 'Content',
       options: {
+        code: false,
         image: {
           directory: 'src/assets/images/content/pages',
           publicPath: '@/assets/images/content/pages/',
@@ -118,6 +120,7 @@ export const pageCollection = collection({
         Frame: frameContent,
         Grid: gridContent,
         Icon: iconContent,
+        Kbd: kbdContent,
         Section: sectionContent,
         Style: styleContent,
       },
@@ -149,3 +152,16 @@ export const pageSchema = z.object({
     noindex: z.boolean().optional(),
   }),
 });
+
+export const getPageId = (locale?: string, slug?: string) => {
+  return slug ? `${locale}/${slug}` : `${locale}`;
+};
+export const getPagePath = (id: string) => {
+  return id.replace('/index', '');
+};
+export const getPageEntryPath = (locale?: string, slug?: string) => {
+  const id = getPageId(locale, slug);
+  const encodedId = encodeURIComponent(slug ? id : id + '/index');
+  const branch = import.meta.env.DEV ? '' : '/branch/preview';
+  return `/keystatic${branch}/collection/pages/item/${encodedId}`;
+};
