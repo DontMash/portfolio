@@ -3,23 +3,29 @@ import { Icon } from 'astro-icon/components';
 
 import Button from '@/components/content/button.astro';
 
-export type Props = {
-  theme?: 'light' | 'dark';
+const attributes = {
+  title: 'Logomark of soren.codes',
+  width: 132,
+  height: 48,
 };
-const { theme = 'light' } = Astro.props;
 ---
 
 <Button
   class='-mb-4'
   href={`/${Astro.currentLocale}`}
-  title='To the frontpage'
   variants={{ kind: 'link' }}
 >
   <Icon
-    name=`logomark_${theme}`
-    title='Logomark of soren.codes'
-    width={132}
-    height={48}
+    name=`logomark_light`
+    {...attributes}
+    x-show='theme === "light"'
+    x-cloak
+  />
+  <Icon
+    name=`logomark_dark`
+    {...attributes}
+    x-show='theme === "dark"'
+    x-cloak
   />
   <span class='sr-only'>Go to the frontpage</span>
 </Button>

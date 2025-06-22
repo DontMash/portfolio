@@ -12,7 +12,7 @@ interface Props {
   seo: SEOProps;
 }
 
-// TODO: feat: add themes
+// TODO: feat: add theme variant images
 // TODO: feat: add projects entries
 // TODO: feat: add blog entries
 // TODO: feat: add rss feed
@@ -29,7 +29,7 @@ interface Props {
 ---
 
 <!doctype html>
-<html lang={Astro.currentLocale}>
+<html lang={Astro.currentLocale} x-bind:data-theme='theme' x-data='theme'>
   <head>
     <SEO {...Astro.props.seo} />
   </head>
@@ -37,7 +37,7 @@ interface Props {
     <Header />
 
     <main
-      class='dots prose prose-a:anchor prose-hr:border-t-3 prose-img:w-full prose-kbd:bg-foreground prose-p:text-base-600 prose-h1:heading-1 prose-h2:heading-2 prose-h3:heading-3 prose-h4:heading-4 prose-h5:heading-5 prose-h6:heading-6 mx-auto flex min-h-screen max-w-screen-xl flex-col divide-y-3 xl:border-x-3'
+      class='dots prose dark:prose-p:text-base-300 prose-a:anchor prose-hr:border-t-3 prose-img:w-full prose-kbd:bg-foreground prose-p:text-base-600 prose-h1:heading-1 prose-h2:heading-2 prose-h3:heading-3 prose-h4:heading-4 prose-h5:heading-5 prose-h6:heading-6 mx-auto flex min-h-screen max-w-screen-xl flex-col divide-y-3 xl:border-x-3'
       role='main'
     >
       <slot />

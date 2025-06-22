@@ -26,7 +26,11 @@ const localeLinks: Record<
 };
 ---
 
-<footer class='bg-foreground text-background py-12' role='contentinfo'>
+<footer
+  class='bg-(--color-foreground) py-12 text-(--color-background)'
+  role='contentinfo'
+  x-data='{ theme: $data.invert() }'
+>
   <div
     class='mx-auto flex min-h-60 max-w-screen-xl flex-col gap-6 px-4 sm:grid sm:grid-cols-2 sm:grid-rows-1 sm:gap-8 sm:px-12'
   >
@@ -34,7 +38,7 @@ const localeLinks: Record<
       class='flex flex-col items-start gap-6'
       aria-label={t('footer.nav.socials.label')}
     >
-      <Logo theme='dark' />
+      <Logo />
 
       <p class='small w-full max-w-96'>
         {t('footer.description')}
@@ -126,13 +130,17 @@ const localeLinks: Record<
       </ul>
 
       <Button
-        class:list={['self-end']}
+        class:list={['self-start', 'sm:self-end']}
         href='https://github.com/dontmash/portfolio'
         target='_blank'
         variants={{ kind: 'link', intent: 'neutral' }}
       >
         <small>
-          Made with <Icon class='text-primary' name='tabler:heart' size={16} />
+          Made with <Icon
+            class='text-(--color-primary)'
+            name='tabler:heart'
+            size={16}
+          />
           by me
         </small>
       </Button>

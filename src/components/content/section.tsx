@@ -15,7 +15,7 @@ export const section = {
       },
       background: {
         false: null,
-        true: 'bg-muted',
+        true: 'bg-(--color-muted)',
       },
     },
     defaultVariants: { x: true, y: true, background: false },
