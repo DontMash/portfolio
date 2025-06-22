@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
+import Icon from '@/components/content/icon.astro';
 
 import { defaultLocale, useTranslation, type LocaleCode } from '@/i18n';
 
@@ -137,11 +137,7 @@ const localeLinks: Record<
         variants={{ kind: 'link', intent: 'neutral' }}
       >
         <small>
-          Made with <Icon
-            class='text-(--color-primary)'
-            name='tabler:heart'
-            size={16}
-          />
+          Made with <Icon class='text-(--color-primary)' name='tabler:heart' />
           by me
         </small>
       </Button>
