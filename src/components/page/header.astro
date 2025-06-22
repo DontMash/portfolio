@@ -46,6 +46,7 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
           class:list={[dropdownItem()]}
           @click='$store.theme.set("light")'
         >
+          <Icon name='tabler:sun' />
           <span>Light</span>
           <Icon
             class='ml-auto'
@@ -54,6 +55,7 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
           />
         </button>
         <button class:list={[dropdownItem()]} @click='$store.theme.set("dark")'>
+          <Icon name='tabler:moon' />
           <span>Dark</span>
           <Icon
             class='ml-auto'
@@ -62,6 +64,7 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
           />
         </button>
         <button class:list={[dropdownItem()]} @click='$store.theme.set("auto")'>
+          <Icon name='tabler:device-desktop' />
           <span>System</span>
           <Icon
             class='ml-auto'
@@ -76,7 +79,7 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
           <Dropdown id='language'>
             <Fragment slot='button'>
               <Icon name='tabler:language' />
-              <span>{getLabelForLocale(currentLocale)}</span>
+              <span class='sr-only'>{getLabelForLocale(currentLocale)}</span>
             </Fragment>
 
             <span class:list={[dropdownItem()]}>
