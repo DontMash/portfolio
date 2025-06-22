@@ -13,7 +13,7 @@ const entryPath = getPageEntryPath(locale, slug);
 
 {
   !isProductionOrigin(Astro.url, Astro.site) && (
-    <div class='fixed right-8 bottom-8 flex flex-col items-end gap-2'>
+    <div class='fixed right-8 bottom-8 z-50 flex flex-col items-end gap-2'>
       <Button
         href={import.meta.env.DEV ? entryPath : new URL(entryPath, Astro.site)}
         target='_blank'
