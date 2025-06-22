@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@alpinejs/collapse": "^3.14.9",
+    "@alpinejs/persist": "^3.14.9",
     "@astrojs/alpinejs": "^0.4.8",
     "@astrojs/mdx": "^4.3.0",
     "@astrojs/react": "^4.3.0",
@@ -39,6 +40,7 @@
     "@tailwindcss/vite": "^4.1.10",
     "@types/alpinejs": "^3.13.11",
     "@types/alpinejs__collapse": "^3.13.4",
+    "@types/alpinejs__persist": "^3.13.4",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@typescript-eslint/parser": "^8.34.0",

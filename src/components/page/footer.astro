@@ -3,8 +3,8 @@ import { Icon } from 'astro-icon/components';
 
 import { defaultLocale, useTranslation, type LocaleCode } from '@/i18n';
 
-import Button from '@/components/content/button.astro';
 import Logo from '@/components/logo.astro';
+import Button from '@/components/content/button.astro';
 
 const locale = Astro.currentLocale as LocaleCode | undefined;
 const t = useTranslation(locale ?? defaultLocale);
@@ -29,7 +29,8 @@ const localeLinks: Record<
 <footer
   class='bg-(--color-foreground) py-12 text-(--color-background)'
   role='contentinfo'
-  x-data='{ theme: $data.invert() }'
+  x-data='{ theme: $store.theme.invert() }'
+  x-init='$watch("$store.theme.state", (value) => (theme = $store.theme.invert()))'
 >
   <div
     class='mx-auto flex min-h-60 max-w-screen-xl flex-col gap-6 px-4 sm:grid sm:grid-cols-2 sm:grid-rows-1 sm:gap-8 sm:px-12'

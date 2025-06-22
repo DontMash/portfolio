@@ -1,7 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
-import Icon from '@/components/content/icon.astro';
 
+import { getPagePath } from '@/collections/page';
 import {
   defaultLocale,
   getLabelForLocale,
@@ -9,10 +9,11 @@ import {
   type LocaleCode,
 } from '@/i18n';
 
-import Button from '@/components/content/button.astro';
 import Dropdown from '@/components/dropdown.astro';
+import { dropdownItem } from '@/components/dropdown';
 import Logo from '@/components/logo.astro';
-import { getPagePath } from '@/collections/page';
+import Button from '@/components/content/button.astro';
+import Icon from '@/components/content/icon.astro';
 
 const currentLocale =
   (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale;
@@ -29,10 +30,47 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
   <nav
     class='mx-auto flex h-20 max-w-screen-xl items-center px-4 sm:px-12'
     aria-label={t('header.nav.label')}
+    x-data='{ theme: $store.theme.get() }'
+    x-init='$watch("$store.theme.state", (value) => (theme = $store.theme.get()))'
   >
     <Logo />
 
-    <div class='ml-auto flex items-center gap-8'>
+    <div class='ml-auto flex items-center gap-4'>
+      <Dropdown id='theme'>
+        <Fragment slot='button'>
+          <Icon name='tabler:contrast-filled' />
+          <span class='sr-only' x-text='$store.theme.get()'></span>
+        </Fragment>
+
+        <button
+          class:list={[dropdownItem()]}
+          @click='$store.theme.set("light")'
+        >
+          <span>Light</span>
+          <Icon
+            class='ml-auto'
+            name='tabler:check'
+            x-show='$store.theme.state === "light"'
+          />
+        </button>
+        <button class:list={[dropdownItem()]} @click='$store.theme.set("dark")'>
+          <span>Dark</span>
+          <Icon
+            class='ml-auto'
+            name='tabler:check'
+            x-show='$store.theme.state === "dark"'
+          />
+        </button>
+        <button class:list={[dropdownItem()]} @click='$store.theme.set("auto")'>
+          <span>System</span>
+          <Icon
+            class='ml-auto'
+            name='tabler:check'
+            x-show='$store.theme.state === "auto"'
+          />
+        </button>
+      </Dropdown>
+
       {
         page && page.data.locales.length && (
           <Dropdown id='language'>
@@ -41,13 +79,13 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
               <span>{getLabelForLocale(currentLocale)}</span>
             </Fragment>
 
-            <span class='inline-flex w-full border-b-3 p-2 transition select-none hover:bg-(--color-foreground) hover:text-(--color-background)'>
+            <span class:list={[dropdownItem()]}>
               {getLabelForLocale(currentLocale)}
               <Icon class='ml-auto' name='tabler:check' />
             </span>
             {page?.data.locales.map((entry) => (
               <a
-                class='inline-block w-full p-2 transition hover:bg-(--color-foreground) hover:text-(--color-background) focus-visible:bg-(--color-foreground) focus-visible:text-(--color-background) focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-(--color-foreground) focus-visible:outline-dashed'
+                class:list={[dropdownItem()]}
                 href={`/${getPagePath(entry.ref)}`}
               >
                 {getLabelForLocale(entry.locale)}
@@ -56,6 +94,7 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
           </Dropdown>
         )
       }
+
       <div class='hidden sm:block'>
         <Button href={`/${Astro.currentLocale}/#form`}>
           <Icon name='tabler:at' />
