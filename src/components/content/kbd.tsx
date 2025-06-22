@@ -3,6 +3,7 @@ import { inline } from '@keystatic/core/content-components';
 
 export const kbdContent = inline({
   label: 'Keyboard',
+  description: 'Used to display a set of input keys.',
   icon: (
     <svg
       xmlns='http://www.w3.org/2000/svg'
