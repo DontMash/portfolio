@@ -45,7 +45,6 @@
 
   --border-3: 3px;
 
-  --shadow-*: initial;
   --shadow-pop-none: 0px 0px 0 0 currentColor;
   --shadow-pop-md: 8px 8px 0 0 currentColor;
   --shadow-pop-lg: 16px 16px 0 0 currentColor;
