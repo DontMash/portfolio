@@ -29,9 +29,21 @@ interface Props {
 ---
 
 <!doctype html>
-<html lang={Astro.currentLocale} x-bind:data-theme='theme' x-data='theme'>
+<html lang={Astro.currentLocale} x-data x-bind:data-theme='$store.theme.get()'>
   <head>
     <SEO {...Astro.props.seo} />
+    <script is:inline>
+      // set initial theme state
+      const item = localStorage.getItem('_x_state');
+      const themeState = JSON.parse(item);
+      const theme =
+        themeState !== 'auto'
+          ? themeState
+          : window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+      document.documentElement.dataset.theme = theme;
+    </script>
   </head>
   <body id='top'>
     <Header />
