@@ -21,6 +21,8 @@ export const GET: APIRoute = async ({ site, url }) => {
     ? [
         {
           userAgent: '*',
+          allow:
+            settings.success && settings.data.robots.length ? undefined : ['/'],
           disallow: pages.map((page) => `/${page.id}`),
         },
         ...(settings.success ? settings.data.robots : []),
@@ -28,6 +30,12 @@ export const GET: APIRoute = async ({ site, url }) => {
     : [{ userAgent: '*', disallow: ['/'] }];
   const policyContent = policies
     .map((policy) => {
+      const hasAllowList = policy.allow && policy.allow.length;
+      const hasDisallowList = policy.disallow && policy.disallow.length;
+      if (!hasAllowList && !hasDisallowList) {
+        return undefined;
+      }
+      
       const userAgent = `User-agent: ${policy.userAgent}`;
       const allow = policy.allow?.map((value) => `Allow: ${value}`).join('\n');
       const disallow = policy.disallow
@@ -35,6 +43,7 @@ export const GET: APIRoute = async ({ site, url }) => {
         .join('\n');
       return [userAgent, allow, disallow].filter((value) => !!value).join('\n');
     })
+    .filter((value) => !!value)
     .join('\n\n');
 
   const sitemapContent = isValid
