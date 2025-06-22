@@ -93,55 +93,77 @@ const localeLinks: Record<
       <span class='small'>©{new Date().getUTCFullYear()} soren.codes</span>
     </nav>
 
-    <nav
-      class='flex flex-col gap-6 sm:text-right'
-      aria-label={t('footer.nav.content.label')}
-    >
-      <ul class='flex grow flex-col gap-4'>
-        <li>
-          <Button
-            href={localeLinks[
-              (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
-            ]['contact']}
-            variants={{ kind: 'link', intent: 'neutral' }}
-          >
-            {t('footer.nav.content.contact')}
-          </Button>
-        </li>
-        <li>
-          <Button
-            href={localeLinks[
-              (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
-            ]['imprint']}
-            variants={{ kind: 'link', intent: 'neutral' }}
-          >
-            {t('footer.nav.content.imprint')}
-          </Button>
-        </li>
-        <li>
-          <Button
-            href={localeLinks[
-              (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
-            ]['privacy']}
-            variants={{ kind: 'link', intent: 'neutral' }}
-          >
-            {t('footer.nav.content.privacy')}
-          </Button>
-        </li>
-      </ul>
+    <div class='flex flex-col gap-6 sm:text-right'>
+      <nav aria-label={t('footer.nav.content.label')}>
+        <ul class='flex grow flex-col gap-4'>
+          <li>
+            <Button
+              href={localeLinks[
+                (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
+              ]['contact']}
+              variants={{ kind: 'link', intent: 'neutral' }}
+            >
+              {t('footer.nav.content.contact')}
+            </Button>
+          </li>
+          <li>
+            <Button
+              href={localeLinks[
+                (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
+              ]['imprint']}
+              variants={{ kind: 'link', intent: 'neutral' }}
+            >
+              {t('footer.nav.content.imprint')}
+            </Button>
+          </li>
+          <li>
+            <Button
+              href={localeLinks[
+                (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
+              ]['privacy']}
+              variants={{ kind: 'link', intent: 'neutral' }}
+            >
+              {t('footer.nav.content.privacy')}
+            </Button>
+          </li>
+        </ul>
+      </nav>
 
-      <Button
-        class:list={['self-start', 'sm:self-end']}
-        href='https://github.com/dontmash/portfolio'
-        target='_blank'
-        variants={{ kind: 'link', intent: 'neutral' }}
-      >
-        <small>
-          Made with <Icon class='text-(--color-primary)' name='tabler:heart' />
-          by me
-        </small>
-      </Button>
-    </nav>
+      <nav class='mt-auto' aria-label={t('footer.nav.mention.label')}>
+        <ul class='flex grow flex-col gap-4'>
+          <li>
+            <Button
+              href='https://github.com/dontmash/portfolio'
+              target='_blank'
+              variants={{ kind: 'link', intent: 'neutral' }}
+            >
+              <small>
+                Made with <Icon
+                  class='text-(--color-primary)'
+                  name='tabler:heart'
+                />
+                by me
+              </small>
+            </Button>
+          </li>
+          <li>
+            <Button
+              href='https://schwarzrobin.de/'
+              target='_blank'
+              variants={{ kind: 'link', intent: 'neutral' }}
+            >
+              <small>
+                Designed with <Icon
+                  class='text-(--color-primary)'
+                  name='tabler:flame'
+                />
+                by rob
+              </small>
+            </Button>
+          </li>
+        </ul>
+      </nav>
+    </div>
 
     <div class='flex flex-col items-center sm:col-span-2'>
       <Button href='#top' variants={{ intent: 'neutral', size: 'icon-lg' }}>
