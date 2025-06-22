@@ -14,6 +14,7 @@ import { formContent } from '@/components/content/form';
 import { frameContent } from '@/components/content/frame';
 import { gridContent } from '@/components/content/grid';
 import { iconContent } from '@/components/content/icon';
+import { kbdContent } from '@/components/content/kbd';
 import { sectionContent } from '@/components/content/section';
 import { styleContent } from '@/components/content/style';
 
@@ -119,6 +120,7 @@ export const pageCollection = collection({
         Frame: frameContent,
         Grid: gridContent,
         Icon: iconContent,
+        Kbd: kbdContent,
         Section: sectionContent,
         Style: styleContent,
       },
