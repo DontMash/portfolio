@@ -6,7 +6,7 @@ export const style = cva([], {
   variants: {
     color: {
       none: null,
-      primary: 'text-primary',
+      primary: 'text-(--color-primary)',
     },
     typography: {
       none: null,

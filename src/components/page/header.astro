@@ -22,7 +22,10 @@ const { locale, slug } = Astro.params;
 const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
 ---
 
-<header class='bg-background sticky top-0 left-0 z-50 border-b-3' role='banner'>
+<header
+  class='sticky top-0 left-0 z-50 border-b-3 bg-(--color-background)'
+  role='banner'
+>
   <nav
     class='mx-auto flex h-20 max-w-screen-xl items-center px-4 sm:px-12'
     aria-label={t('header.nav.label')}
@@ -36,20 +39,15 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
             <Fragment slot='button'>
               <Icon name='tabler:language' />
               <span>{getLabelForLocale(currentLocale)}</span>
-              <Icon
-                name='tabler:caret-down'
-                class='transition data-[open]:rotate-180'
-                x-bind:data-open='state'
-              />
             </Fragment>
 
-            <span class='hover:bg-foreground hover:text-background inline-flex w-full border-b-3 p-2 transition'>
+            <span class='inline-flex w-full border-b-3 p-2 transition select-none hover:bg-(--color-foreground) hover:text-(--color-background)'>
               {getLabelForLocale(currentLocale)}
               <Icon class='ml-auto' name='tabler:check' />
             </span>
             {page?.data.locales.map((entry) => (
               <a
-                class='hover:bg-foreground hover:text-background focus-visible:bg-foreground focus-visible:text-background focus-visible:outline-foreground inline-block w-full p-2 transition focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-dashed'
+                class='inline-block w-full p-2 transition hover:bg-(--color-foreground) hover:text-(--color-background) focus-visible:bg-(--color-foreground) focus-visible:text-(--color-background) focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-(--color-foreground) focus-visible:outline-dashed'
                 href={`/${getPagePath(entry.ref)}`}
               >
                 {getLabelForLocale(entry.locale)}

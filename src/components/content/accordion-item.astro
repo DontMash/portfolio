@@ -12,7 +12,7 @@ const { title } = Astro.props;
 >
   <h3 class='!m-0'>
     <button
-      class='group paragraph-highlight after:bg-primary relative flex w-full cursor-pointer gap-4 border-b-3 p-4 text-left after:absolute after:top-[calc(100%+var(--border-3))] after:right-0 after:left-1 after:h-[var(--border-3)] after:w-full focus-visible:outline-3 focus-visible:outline-current focus-visible:outline-dashed'
+      class='group paragraph-highlight relative flex w-full cursor-pointer gap-4 border-b-3 p-4 text-left after:absolute after:top-[calc(100%+var(--border-3))] after:right-0 after:left-1 after:h-(--border-3) after:w-full after:bg-(--color-primary) focus-visible:outline-3 focus-visible:outline-current focus-visible:outline-dashed'
       type='button'
       x-bind:id='$id("accordion-item-button")'
       x-bind:data-state='state'

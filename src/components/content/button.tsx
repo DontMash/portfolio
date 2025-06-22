@@ -32,9 +32,9 @@ const buttonBase = cva(
         link: ['hover:underline', 'focus-visible:underline'],
       },
       intent: {
-        primary: ['text-primary-foreground'],
-        accent: ['text-accent-foreground'],
-        neutral: ['text-neutral-foreground'],
+        primary: ['text-(--color-primary-foreground)'],
+        accent: ['text-(--color-accent-foreground)'],
+        neutral: ['text-(--color-neutral-foreground)'],
       },
       size: {
         md: [],
@@ -72,30 +72,30 @@ const buttonBase = cva(
         kind: 'default',
         intent: 'primary',
         class: [
-          'bg-primary',
-          'hover:bg-primary-hover',
-          'focus-visible:bg-primary-hover',
-          'active:bg-primary-active',
+          'bg-(--color-primary)',
+          'hover:bg-(--color-primary-hover)',
+          'focus-visible:bg-(--color-primary-hover)',
+          'active:bg-(--color-primary-active)',
         ],
       },
       {
         kind: 'default',
         intent: 'accent',
         class: [
-          'bg-accent',
-          'hover:bg-accent-hover',
-          'focus-visible:bg-accent-hover',
-          'active:bg-accent-active',
+          'bg-(--color-accent)',
+          'hover:bg-(--color-accent-hover)',
+          'focus-visible:bg-(--color-accent-hover)',
+          'active:bg-(--color-accent-active)',
         ],
       },
       {
         kind: 'default',
         intent: 'neutral',
         class: [
-          'bg-neutral',
-          'hover:bg-neutral-hover',
-          'focus-visible:bg-neutral-hover',
-          'active:bg-neutral-active',
+          'bg-(--color-neutral)',
+          'hover:bg-(--color-neutral-hover)',
+          'focus-visible:bg-(--color-neutral-hover)',
+          'active:bg-(--color-neutral-active)',
         ],
       },
 
@@ -103,9 +103,9 @@ const buttonBase = cva(
         kind: 'link',
         intent: ['primary', 'accent', 'neutral'],
         class: [
-          'hover:text-primary-hover',
-          'focus-visible:text-primary-hover',
-          'active:text-primary-active',
+          'hover:text-(--color-primary)',
+          'focus-visible:text-(--color-primary)',
+          'active:text-(--color-primary-hover)',
         ],
       },
 

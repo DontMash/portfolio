@@ -4,6 +4,19 @@ import collapse from '@alpinejs/collapse';
 export default (Alpine: Alpine) => {
   Alpine.plugin(collapse);
 
+  Alpine.data('theme', () => ({
+    theme: 'light',
+    isLight() {
+      return this.theme === 'light';
+    },
+    invert() {
+      return this.isLight() ? 'dark' : 'light';
+    },
+    toggle() {
+      this.theme = this.isLight() ? 'dark' : 'light';
+    },
+  }));
+
   Alpine.data('collapsible', () => ({
     state: false,
     toggle() {
