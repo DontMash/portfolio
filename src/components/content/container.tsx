@@ -2,7 +2,7 @@ import { fields } from '@keystatic/core';
 import { wrapper } from '@keystatic/core/content-components';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-export const container = cva(['flex', 'flex-wrap', 'gap-4'], {
+export const container = cva(['flex', 'flex-wrap'], {
   variants: {
     direction: {
       horizontal: null,
@@ -11,6 +11,10 @@ export const container = cva(['flex', 'flex-wrap', 'gap-4'], {
     center: {
       false: null,
       true: ['justify-center'],
+    },
+    spacing: {
+      false: null,
+      true: ['gap-4'],
     },
   },
   defaultVariants: { center: null },
@@ -47,5 +51,6 @@ export const containerContent = wrapper({
       defaultValue: 'horizontal',
     }),
     center: fields.checkbox({ label: 'Center', defaultValue: false }),
+    spacing: fields.checkbox({ label: 'Spacing', defaultValue: false }),
   },
 });

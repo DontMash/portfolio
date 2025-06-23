@@ -35,14 +35,14 @@ seo:
 ---
 <Section max={false} background={false}>
   <Grid kind="left">
-    <Container direction="vertical" center={false}>
+    <Container direction="vertical" center={false} spacing={false}>
       # <Style color="primary" typography="heading-3">Hi, I'm Søren</Style>
 
       ## Software engineer & digital explorer
 
       Transforming visions into reality, one line of code at a time. We can shape the future together with innovation, precision, and passion.
 
-      <Container direction="horizontal" center={false}>
+      <Container direction="horizontal" center={false} spacing>
         <Button href="#form" target="" text="Say hello" icon={{"before":"tabler:at"}} variants={{"intent":"primary","size":"md","shadow":"pop"}} />
 
         <Button href="https://github.com/dontmash" target="_blank" text="Github - soren.codes" icon={{"before":"tabler:brand-github"}} variants={{"intent":"accent","size":"icon","shadow":"pop"}} />
@@ -54,7 +54,7 @@ seo:
     <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/en/index/profile.jpg","alt":"Sören Maschmann"}]} border shadow="pop-lg" lazy={false} />
   </Grid>
 
-  <Container direction="horizontal" center>
+  <Container direction="horizontal" center spacing={false}>
     <Button href="#contact" target="" text="Go to contact" icon={{"before":"tabler:chevron-down"}} variants={{"intent":"accent","size":"icon","shadow":"none"}} />
   </Container>
 </Section>
@@ -63,14 +63,14 @@ seo:
   <Grid kind="right">
     <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/en/index/cover.png","alt":"A composition of shapes representing \"software\"-parts."},{"theme":"dark","src":"/src/assets/images/content/pages/en/index/cover_dark.png","alt":"A composition of shapes representing \"software\"-parts."}]} border={false} shadow="none" lazy />
 
-    <Container direction="vertical" center={false}>
+    <Container direction="vertical" center={false} spacing={false}>
       Code the Future.\
       Innovate. Together.
       -------------------
 
       Let's work together to turn innovative ideas into products for the future! To get in touch with me and start our journey, choose one of the options below.
 
-      <Container direction="horizontal" center={false}>
+      <Container direction="horizontal" center={false} spacing>
         <Button href="mailto:work@soren.codes" target="" text="Mail me" icon={{"before":"tabler:mail"}} variants={{"intent":"primary","size":"md","shadow":"pop"}} />
 
         <Button href="https://ko-fi.com/smaschmann" target="_blank" text="Ko-fi - soren.codes" icon={{"before":"simple-icons:kofi"}} variants={{"intent":"accent","size":"icon","shadow":"pop"}} />&#x20;
