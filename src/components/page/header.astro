@@ -65,7 +65,7 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
         </button>
         <button class:list={[dropdownItem()]} @click='$store.theme.set("auto")'>
           <Icon name='tabler:device-desktop' />
-          <span>System</span>
+          <span>Auto</span>
           <Icon
             class='ml-auto'
             name='tabler:check'
