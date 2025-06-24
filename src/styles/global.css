@@ -4,7 +4,7 @@
 
 @theme {
   --color-*: initial;
-  --color-base-100: oklch(1 0 0);
+  --color-base-100: oklch(0.9623 0 0);
   --color-base-200: oklch(0.9157 0 0);
   --color-base-300: oklch(0.8294 0 0);
   --color-base-400: oklch(0.6409 0 0);
