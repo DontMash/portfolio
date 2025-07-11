@@ -4,7 +4,7 @@ import { Picture } from 'astro:assets';
 
 import type { Theme } from '@/theme';
 
-import { frame, type FrameProps } from './frame';
+import { frameVariant, type FrameProps } from './frame.variant';
 
 type FrameImage = {
   theme: Theme;
@@ -19,13 +19,13 @@ type Props = FrameProps & {
 
 const { caption, images, lazy } = Astro.props;
 const contentImages = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/images/content/**/*.{jpeg,jpg,png,gif}',
+  '/src/assets/images/content/**/*.{jpeg,jpg,png,gif}'
 );
 const imageMetaDataEntries = (
   await Promise.all(
     images
       .filter((image) => !!contentImages[image.src])
-      .map((image) => contentImages[image.src]()),
+      .map((image) => contentImages[image.src]())
   )
 ).map((value) => value.default);
 ---
@@ -42,7 +42,7 @@ const imageMetaDataEntries = (
         x-cloak
       >
         <Picture
-          class:list={[frame(Astro.props)]}
+          class:list={[frameVariant(Astro.props)]}
           src={import.meta.env.DEV ? image.src : imageMetaData.src}
           alt={image.alt}
           width={imageMetaData.width}
