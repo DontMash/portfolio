@@ -7,7 +7,7 @@ import {
 } from 'astro:env/client';
 
 import { pageCollection } from '@/collections/page';
-import { logomark } from '@/components/logomark';
+import { logomark } from '@/components/content/logomark.content';
 import { settingsSingleton } from '@/collections/settings';
 
 export default config({
