@@ -1,0 +1,11 @@
+---
+import { gridVariant, type GridProps } from './grid.content';
+
+type Props = GridProps;
+
+const props = Astro.props;
+---
+
+<div class:list={[gridVariant(props)]}>
+  <slot />
+</div>

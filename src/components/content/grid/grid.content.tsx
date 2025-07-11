@@ -2,7 +2,7 @@ import { fields } from '@keystatic/core';
 import { wrapper } from '@keystatic/core/content-components';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-export const grid = cva(
+export const gridVariant = cva(
   [
     'flex',
     'flex-col',
@@ -22,7 +22,7 @@ export const grid = cva(
     defaultVariants: { kind: 'left' },
   },
 );
-export type GridProps = VariantProps<typeof grid>;
+export type GridProps = VariantProps<typeof gridVariant>;
 
 export const gridContent = wrapper({
   label: 'Grid',
