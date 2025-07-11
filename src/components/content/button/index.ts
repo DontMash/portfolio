@@ -1,3 +1,3 @@
 export { default as Button } from './button.astro';
-export { buttonContent as content } from './button.content';
-export { buttonVariant as variant } from './button.variant';
+export { buttonContent } from './button.content';
+export { buttonVariant } from './button.variant';
