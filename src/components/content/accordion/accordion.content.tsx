@@ -31,7 +31,7 @@ export const accordionContent = repeating({
   },
   children: ['AccordionItem'],
 });
-export const accordionItem = wrapper({
+export const accordionItemContent = wrapper({
   label: 'Accordion Item',
   icon: (
     <svg

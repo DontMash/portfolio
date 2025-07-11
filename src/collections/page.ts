@@ -6,7 +6,7 @@ import { getLocales, isLocaleCode } from '@/i18n';
 
 import {
   accordionContent,
-  accordionItem,
+  accordionItemContent,
 } from '@/components/content/accordion/accordion.content';
 import { buttonContent } from '@/components/content/button/button.content';
 import { containerContent } from '@/components/content/container';
@@ -113,7 +113,7 @@ export const pageCollection = collection({
       },
       components: {
         Accordion: accordionContent,
-        AccordionItem: accordionItem,
+        AccordionItem: accordionItemContent,
         Button: buttonContent,
         Container: containerContent,
         Form: formContent,
