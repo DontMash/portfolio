@@ -9,7 +9,7 @@ import {
   accordionItemContent,
 } from '@/components/content/accordion/accordion.content';
 import { buttonContent } from '@/components/content/button/button.content';
-import { containerContent } from '@/components/content/container';
+import { containerContent } from '@/components/content/container/container.content';
 import { formContent } from '@/components/content/form';
 import { frameContent } from '@/components/content/frame';
 import { gridContent } from '@/components/content/grid';

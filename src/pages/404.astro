@@ -6,8 +6,8 @@ import { createSEOProps } from '@/seo';
 
 import Layout from '@/layouts/layout.astro';
 import { Button } from '@/components/content/button';
+import { Container } from '@/components/content/container';
 import Section from '@/components/content/section.astro';
-import Container from '@/components/content/container.astro';
 
 const locale = Astro.currentLocale as LocaleCode | undefined;
 const t = useTranslation(locale ?? defaultLocale);
