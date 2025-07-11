@@ -10,7 +10,7 @@ import {
 } from '@/components/content/accordion/accordion.content';
 import { buttonContent } from '@/components/content/button/button.content';
 import { containerContent } from '@/components/content/container/container.content';
-import { formContent } from '@/components/content/form';
+import { formContent } from '@/components/content/form/form.content';
 import { frameContent } from '@/components/content/frame';
 import { gridContent } from '@/components/content/grid';
 import { iconContent } from '@/components/content/icon';
