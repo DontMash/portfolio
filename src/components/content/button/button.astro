@@ -1,6 +1,6 @@
 ---
 import type { JSX } from 'astro/jsx-runtime';
-import { button, type ButtonProps } from './button';
+import { buttonVariant, type ButtonProps } from './button.variant';
 
 import Icon from '@/components/content/icon.astro';
 
@@ -25,7 +25,7 @@ const getAttributes = (props: Props): JSX.AnchorHTMLAttributes => {
 ---
 
 <a
-  class:list={['not-prose', props.class, button(props.variants)]}
+  class:list={['not-prose', props.class, buttonVariant(props.variants)]}
   {...getAttributes(props)}
 >
   <slot>

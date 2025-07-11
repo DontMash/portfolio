@@ -1,5 +1,5 @@
 ---
-import { button } from '@/components/content/button';
+import { buttonVariant } from '@/components/content/button/button.variant';
 import Icon from '@/components/content/icon.astro';
 
 interface Props {
@@ -17,7 +17,7 @@ const { id } = Astro.props;
   @focusin.window='!$refs.panel.contains($event.target) && close()'
 >
   <button
-    class:list={[button({ kind: 'link', intent: 'primary' })]}
+    class:list={[buttonVariant({ kind: 'link', intent: 'primary' })]}
     type='button'
     x-ref='button'
     x-bind:aria-expanded='state'

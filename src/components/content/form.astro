@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon/components';
 
 import { defaultLocale, useTranslation, type LocaleCode } from '@/i18n';
 
-import { button } from '@/components/content/button';
+import { buttonVariant } from '@/components/content/button/button.variant';
 import {
   inputCheckbox,
   inputError,
@@ -232,7 +232,7 @@ const result = Astro.getActionResult(actions.contact);
       </p>
     </div>
 
-    <button class='self-start' class:list={[button({ shadow: 'pop' })]}>
+    <button class='self-start' class:list={[buttonVariant({ shadow: 'pop' })]}>
       Send
     </button>
   </div>
@@ -284,7 +284,7 @@ const result = Astro.getActionResult(actions.contact);
       return result;
     }, {});
   const messageElement = form.querySelector(
-    '[data-form-message]',
+    '[data-form-message]'
   ) as HTMLElement;
 
   form.addEventListener('submit', async (event: SubmitEvent) => {
@@ -298,10 +298,10 @@ const result = Astro.getActionResult(actions.contact);
     button.disabled = true;
 
     Object.values(inputElements).forEach(
-      (element) => delete element.dataset.invalid,
+      (element) => delete element.dataset.invalid
     );
     Object.values(errorElements).forEach(
-      (element) => (element.textContent = String()),
+      (element) => (element.textContent = String())
     );
     messageElement.textContent = String();
 

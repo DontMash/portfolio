@@ -8,7 +8,7 @@ import {
   accordionContent,
   accordionItem,
 } from '@/components/content/accordion/accordion.content';
-import { buttonContent } from '@/components/content/button';
+import { buttonContent } from '@/components/content/button/button.content';
 import { containerContent } from '@/components/content/container';
 import { formContent } from '@/components/content/form';
 import { frameContent } from '@/components/content/frame';
