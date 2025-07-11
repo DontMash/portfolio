@@ -12,6 +12,7 @@ interface Props {
   seo: SEOProps;
 }
 
+// TODO: feat: add grain
 // TODO: feat: add blog entries
 // TODO: feat: add rss feed
 // TODO: feat: add seo schema data
@@ -33,10 +34,10 @@ interface Props {
     <SEO {...Astro.props.seo} />
     <script is:inline>
       // set initial theme state
-      const item = localStorage.getItem('_x_state');
+      const item = localStorage.getItem('theme');
       const themeState = JSON.parse(item);
       const theme =
-        themeState !== 'auto'
+        themeState && themeState !== 'auto'
           ? themeState
           : window.matchMedia('(prefers-color-scheme: dark)').matches
             ? 'dark'

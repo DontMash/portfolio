@@ -17,7 +17,7 @@ export default (Alpine: Alpine) => {
     toggle: () => void;
   }>;
   Alpine.store('theme', {
-    state: Alpine.$persist<ThemeState>('auto'),
+    state: Alpine.$persist<ThemeState>('auto').as('theme'),
     init() {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
       mediaQuery.addEventListener('change', (event) => {
