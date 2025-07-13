@@ -10,8 +10,7 @@ import {
 } from '@/i18n';
 
 import { Button } from '@/components/content/button';
-import Dropdown from '@/components/dropdown.astro';
-import { dropdownItem } from '@/components/dropdown';
+import { Dropdown, dropdownItemVariant } from '@/components/dropdown';
 import Logo from '@/components/logo.astro';
 import { Icon } from '@/components/content/icon';
 
@@ -43,7 +42,7 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
         </Fragment>
 
         <button
-          class:list={[dropdownItem()]}
+          class:list={[dropdownItemVariant()]}
           @click='$store.theme.set("light")'
         >
           <Icon name='tabler:sun' />
@@ -54,7 +53,10 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
             x-show='$store.theme.state === "light"'
           />
         </button>
-        <button class:list={[dropdownItem()]} @click='$store.theme.set("dark")'>
+        <button
+          class:list={[dropdownItemVariant()]}
+          @click='$store.theme.set("dark")'
+        >
           <Icon name='tabler:moon' />
           <span>Dark</span>
           <Icon
@@ -63,7 +65,10 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
             x-show='$store.theme.state === "dark"'
           />
         </button>
-        <button class:list={[dropdownItem()]} @click='$store.theme.set("auto")'>
+        <button
+          class:list={[dropdownItemVariant()]}
+          @click='$store.theme.set("auto")'
+        >
           <Icon name='tabler:device-desktop' />
           <span>Auto</span>
           <Icon
@@ -82,13 +87,13 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
               <span class='sr-only'>{getLabelForLocale(currentLocale)}</span>
             </Fragment>
 
-            <span class:list={[dropdownItem()]}>
+            <span class:list={[dropdownItemVariant()]}>
               {getLabelForLocale(currentLocale)}
               <Icon class='ml-auto' name='tabler:check' />
             </span>
             {page?.data.locales.map((entry) => (
               <a
-                class:list={[dropdownItem()]}
+                class:list={[dropdownItemVariant()]}
                 href={`/${getPagePath(entry.ref)}`}
               >
                 {getLabelForLocale(entry.locale)}

@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-export const dropdownItem = cva([
+export const dropdownItemVariant = cva([
   'inline-flex',
   'gap-2',
   'w-full',
