@@ -7,7 +7,7 @@ import { getLocales, isLocaleCode } from '@/i18n';
 import {
   accordionContent,
   accordionItemContent,
-} from '@/components/content/accordion';
+} from '@/components/content/accordion/accordion.content';
 import { buttonContent } from '@/components/content/button/button.content';
 import { containerContent } from '@/components/content/container';
 import { formContent } from '@/components/content/form/form.content';
