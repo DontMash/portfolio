@@ -1,9 +1,0 @@
----
-import { style, type StyleProps } from './style';
-
-type Props = StyleProps;
-
-const { color, typography } = Astro.props;
----
-
-<span class:list={style({ color, typography })}><slot /> </span>

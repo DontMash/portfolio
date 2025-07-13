@@ -1,0 +1,9 @@
+---
+import { styleVariant, type StyleProps } from './style.variant';
+
+type Props = StyleProps;
+
+const { color, typography } = Astro.props;
+---
+
+<span class:list={styleVariant({ color, typography })}><slot /> </span>
