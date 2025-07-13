@@ -14,7 +14,7 @@ import { formContent } from '@/components/content/form/form.content';
 import { frameContent } from '@/components/content/frame';
 import { gridContent } from '@/components/content/grid';
 import { iconContent } from '@/components/content/icon/icon.content';
-import { kbdContent } from '@/components/content/kbd';
+import { kbdContent } from '@/components/content/kbd/kbd.content';
 import { sectionContent } from '@/components/content/section';
 import { styleContent } from '@/components/content/style';
 
