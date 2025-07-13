@@ -13,7 +13,7 @@ import { containerContent } from '@/components/content/container';
 import { formContent } from '@/components/content/form';
 import { frameContent } from '@/components/content/frame';
 import { gridContent } from '@/components/content/grid';
-import { iconContent } from '@/components/content/icon';
+import { iconContent } from '@/components/content/icon/icon.content';
 import { kbdContent } from '@/components/content/kbd';
 import { sectionContent } from '@/components/content/section';
 import { styleContent } from '@/components/content/style';

@@ -3,7 +3,7 @@ import { getPageEntryPath, getPageId, getPagePath } from '@/collections/page';
 import { isProductionOrigin } from '@/utils';
 
 import { Button, buttonVariant } from '@/components/content/button';
-import Icon from '@/components/content/icon.astro';
+import { Icon } from '@/components/content/icon';
 
 const { locale, slug } = Astro.params;
 const id = getPageId(locale, slug);

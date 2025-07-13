@@ -1,8 +1,9 @@
 ---
 import type { JSX } from 'astro/jsx-runtime';
-import { buttonVariant, type ButtonProps } from './button.variant';
 
-import Icon from '@/components/content/icon.astro';
+import { Icon } from '@/components/content/icon';
+
+import { buttonVariant, type ButtonProps } from './button.variant';
 
 type Props = JSX.AnchorHTMLAttributes & {
   text?: string;
