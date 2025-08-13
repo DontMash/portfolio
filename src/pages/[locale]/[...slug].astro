@@ -5,17 +5,16 @@ import { getPageId, getPagePath } from '@/collections/page';
 import { createSEOProps } from '@/seo';
 
 import Layout from '@/layouts/layout.astro';
-import Accordion from '@/components/content/accordion.astro';
-import AccordionItem from '@/components/content/accordion-item.astro';
-import Button from '@/components/content/button.astro';
-import Container from '@/components/content/container.astro';
-import Form from '@/components/content/form.astro';
-import Frame from '@/components/content/frame.astro';
-import Grid from '@/components/content/grid.astro';
-import Icon from '@/components/content/icon.astro';
-import Kbd from '@/components/content/kbd.astro';
-import Section from '@/components/content/section.astro';
-import Style from '@/components/content/style.astro';
+import { Accordion, AccordionItem } from '@/components/content/accordion';
+import { Button } from '@/components/content/button';
+import { Container } from '@/components/content/container';
+import { Form } from '@/components/content/form';
+import { Frame } from '@/components/content/frame';
+import { Grid } from '@/components/content/grid';
+import { Icon } from '@/components/content/icon';
+import { Kbd } from '@/components/content/kbd';
+import { Section } from '@/components/content/section';
+import { Style } from '@/components/content/style';
 
 const { locale, slug } = Astro.params;
 if (slug === 'index') {

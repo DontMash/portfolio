@@ -1,25 +1,5 @@
 import { fields } from '@keystatic/core';
 import { wrapper } from '@keystatic/core/content-components';
-import { cva, type VariantProps } from 'class-variance-authority';
-
-export const container = cva(['flex', 'flex-wrap'], {
-  variants: {
-    direction: {
-      horizontal: null,
-      vertical: ['flex-col'],
-    },
-    center: {
-      false: null,
-      true: ['justify-center'],
-    },
-    spacing: {
-      false: null,
-      true: ['gap-4'],
-    },
-  },
-  defaultVariants: { center: null },
-});
-export type ContainerProps = VariantProps<typeof container>;
 
 export const containerContent = wrapper({
   label: 'Container',

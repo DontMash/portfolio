@@ -2,9 +2,8 @@
 import { getPageEntryPath, getPageId, getPagePath } from '@/collections/page';
 import { isProductionOrigin } from '@/utils';
 
-import Button from '@/components/content/button.astro';
-import Icon from '@/components/content/icon.astro';
-import { button } from '../content/button';
+import { Button, buttonVariant } from '@/components/content/button';
+import { Icon } from '@/components/content/icon';
 
 const { locale, slug } = Astro.params;
 const id = getPageId(locale, slug);
@@ -54,7 +53,7 @@ const entryPath = getPageEntryPath(locale, slug);
       </div>
 
       <button
-        class:list={[button({ intent: 'accent', size: 'icon' })]}
+        class:list={[buttonVariant({ intent: 'accent', size: 'icon' })]}
         @click='toggle'
       >
         <Icon name='tabler:dots' />

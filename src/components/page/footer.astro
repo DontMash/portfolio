@@ -1,10 +1,10 @@
 ---
-import Icon from '@/components/content/icon.astro';
+import { Icon } from '@/components/content/icon';
 
 import { defaultLocale, useTranslation, type LocaleCode } from '@/i18n';
 
 import Logo from '@/components/logo.astro';
-import Button from '@/components/content/button.astro';
+import { Button } from '@/components/content/button';
 
 const locale = Astro.currentLocale as LocaleCode | undefined;
 const t = useTranslation(locale ?? defaultLocale);

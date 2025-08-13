@@ -7,11 +7,13 @@ import { SEO, type SEOProps } from 'astro-seo';
 import Footer from '@/components/page/footer.astro';
 import Header from '@/components/page/header.astro';
 import Toolbar from '@/components/page/toolbar.astro';
+import { isProductionOrigin } from '@/utils';
 
 interface Props {
   seo: SEOProps;
 }
 
+// TODO: feat: add console easteregg
 // TODO: feat: add blog entries
 // TODO: feat: add rss feed
 // TODO: feat: add seo schema data
@@ -24,7 +26,6 @@ interface Props {
 // TODO: chore: add units test?
 // TODO: feat: add page search?
 // TODO: chore: add CI/CD release pipeline
-// TODO: chore: add analytics
 ---
 
 <!doctype html>
@@ -33,22 +34,31 @@ interface Props {
     <SEO {...Astro.props.seo} />
     <script is:inline>
       // set initial theme state
-      const item = localStorage.getItem('_x_state');
+      const item = localStorage.getItem('theme');
       const themeState = JSON.parse(item);
       const theme =
-        themeState !== 'auto'
+        themeState && themeState !== 'auto'
           ? themeState
           : window.matchMedia('(prefers-color-scheme: dark)').matches
             ? 'dark'
             : 'light';
       document.documentElement.dataset.theme = theme;
     </script>
+    {
+      isProductionOrigin(Astro.url, Astro.site) && (
+        <script
+          defer
+          src='https://analytics.work.soren.codes/script.js'
+          data-website-id='00406a6f-0142-4686-86a9-ee5fa379132c'
+        />
+      )
+    }
   </head>
   <body id='top'>
     <Header />
 
     <main
-      class='dots prose dark:prose-p:text-base-300 prose-a:anchor prose-hr:border-t-3 prose-img:w-full prose-kbd:bg-foreground prose-p:text-base-600 prose-h1:heading-1 prose-h2:heading-2 prose-h3:heading-3 prose-h4:heading-4 prose-h5:heading-5 prose-h6:heading-6 mx-auto flex min-h-screen max-w-screen-xl flex-col divide-y-3 xl:border-x-3'
+      class='dots prose dark:prose-p:text-base-300 prose-a:anchor prose-hr:border-t-3 prose-img:w-full prose-kbd:bg-(--color-background) prose-kbd:border-3 prose-kbd:border-(--color-foreground) prose-p:text-base-600 prose-h1:heading-1 prose-h2:heading-2 prose-h3:heading-3 prose-h4:heading-4 prose-h5:heading-5 prose-h6:heading-6 mx-auto flex min-h-screen max-w-screen-xl flex-col divide-y-3 xl:border-x-3'
       role='main'
     >
       <slot />

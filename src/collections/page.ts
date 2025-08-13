@@ -6,14 +6,14 @@ import { getLocales, isLocaleCode } from '@/i18n';
 
 import {
   accordionContent,
-  accordionItem,
-} from '@/components/content/accordion';
-import { buttonContent } from '@/components/content/button';
+  accordionItemContent,
+} from '@/components/content/accordion/accordion.content';
+import { buttonContent } from '@/components/content/button/button.content';
 import { containerContent } from '@/components/content/container';
-import { formContent } from '@/components/content/form';
+import { formContent } from '@/components/content/form/form.content';
 import { frameContent } from '@/components/content/frame';
 import { gridContent } from '@/components/content/grid';
-import { iconContent } from '@/components/content/icon';
+import { iconContent } from '@/components/content/icon/icon.content';
 import { kbdContent } from '@/components/content/kbd';
 import { sectionContent } from '@/components/content/section';
 import { styleContent } from '@/components/content/style';
@@ -113,7 +113,7 @@ export const pageCollection = collection({
       },
       components: {
         Accordion: accordionContent,
-        AccordionItem: accordionItem,
+        AccordionItem: accordionItemContent,
         Button: buttonContent,
         Container: containerContent,
         Form: formContent,

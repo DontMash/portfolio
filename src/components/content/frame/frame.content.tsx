@@ -1,23 +1,7 @@
 import { block } from '@keystatic/core/content-components';
-import { cva, cx, type VariantProps } from 'class-variance-authority';
-
-import { shadow as shadowBase, type ShadowProps } from '@/components/shadow';
 import { fields } from '@keystatic/core';
-import { defaultTheme, themes } from '@/theme';
 
-const frameBase = cva(['text-(--color-foreground)'], {
-  variants: {
-    border: {
-      false: null,
-      true: ['border-3', 'rounded-3xl', 'overflow-hidden'],
-    },
-  },
-  defaultVariants: { border: false },
-});
-type FrameBaseProps = VariantProps<typeof frameBase>;
-export interface FrameProps extends FrameBaseProps, ShadowProps {}
-export const frame = (props?: FrameProps) =>
-  cx(frameBase(props), shadowBase({ shadow: props?.shadow }));
+import { defaultTheme, themes } from '@/theme';
 
 export const frameContent = block({
   label: 'Frame',

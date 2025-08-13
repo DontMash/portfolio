@@ -1,0 +1,11 @@
+---
+import { containerVariant, type ContainerProps } from './container.variant';
+
+type Props = ContainerProps;
+
+const props = Astro.props;
+---
+
+<div class:list={[containerVariant(props)]}>
+  <slot />
+</div>

@@ -24,7 +24,7 @@ export const kbdContent = inline({
     </svg>
   ),
   schema: {
-    key: fields.text({ label: 'Key', validation: { isRequired: true } }),
+    symbol: fields.text({ label: 'Key', validation: { isRequired: true } }),
   },
-  ContentView: ({ value }) => <kbd>{value.key}</kbd>,
+  ContentView: ({ value }) => <kbd>{value.symbol || <i>&lt;key&gt;</i>}</kbd>,
 });
