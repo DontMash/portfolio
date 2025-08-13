@@ -12,6 +12,7 @@ interface Props {
   seo: SEOProps;
 }
 
+// TODO: feat: add console easteregg
 // TODO: feat: add blog entries
 // TODO: feat: add rss feed
 // TODO: feat: add seo schema data
@@ -24,7 +25,6 @@ interface Props {
 // TODO: chore: add units test?
 // TODO: feat: add page search?
 // TODO: chore: add CI/CD release pipeline
-// TODO: chore: add analytics
 ---
 
 <!doctype html>
@@ -43,6 +43,7 @@ interface Props {
             : 'light';
       document.documentElement.dataset.theme = theme;
     </script>
+    <script defer src="https://analytics.work.soren.codes/script.js" data-website-id="00406a6f-0142-4686-86a9-ee5fa379132c"></script>
   </head>
   <body id='top'>
     <Header />
