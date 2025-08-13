@@ -7,6 +7,7 @@ import { SEO, type SEOProps } from 'astro-seo';
 import Footer from '@/components/page/footer.astro';
 import Header from '@/components/page/header.astro';
 import Toolbar from '@/components/page/toolbar.astro';
+import { isProductionOrigin } from '@/utils';
 
 interface Props {
   seo: SEOProps;
@@ -43,7 +44,15 @@ interface Props {
             : 'light';
       document.documentElement.dataset.theme = theme;
     </script>
-    <script defer src="https://analytics.work.soren.codes/script.js" data-website-id="00406a6f-0142-4686-86a9-ee5fa379132c"></script>
+    {
+      isProductionOrigin(Astro.url, Astro.site) && (
+        <script
+          defer
+          src='https://analytics.work.soren.codes/script.js'
+          data-website-id='00406a6f-0142-4686-86a9-ee5fa379132c'
+        />
+      )
+    }
   </head>
   <body id='top'>
     <Header />
