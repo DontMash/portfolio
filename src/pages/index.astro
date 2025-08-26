@@ -1,5 +1,17 @@
 ---
-import { defaultLocale } from '@/i18n';
+import parser from 'accept-language-parser';
 
-return Astro.redirect(`/${defaultLocale}`);
+import { defaultLocale, isLocaleCode } from '@/i18n';
+
+const acceptLanguageHeader = Astro.request.headers.get('Accept-Language');
+if (!acceptLanguageHeader) {
+  return Astro.redirect(`/${defaultLocale}`);
+}
+const acceptedLanguages = parser.parse(acceptLanguageHeader);
+const locale = acceptedLanguages.at(0)?.code;
+if (!locale || !isLocaleCode(locale)) {
+  return Astro.redirect(`/${defaultLocale}`);
+}
+
+return Astro.redirect(`/${locale}`);
 ---
