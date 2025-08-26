@@ -20,7 +20,7 @@ export default (Alpine: Alpine) => {
     state: Alpine.$persist<ThemeState>('auto').as('theme'),
     init() {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      mediaQuery.addEventListener('change', (event) => {
+      mediaQuery.addEventListener('change', () => {
         if (this.state !== 'auto') {
           return;
         }

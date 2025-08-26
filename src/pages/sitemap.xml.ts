@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
-import { getPagePath } from '@/collections/page';
+import { getPagePath } from '@/collections/page.collection';
 
 export const GET: APIRoute = async ({ site, rewrite }) => {
   if (!site) {

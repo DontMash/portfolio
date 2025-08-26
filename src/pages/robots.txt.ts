@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
-import { settingsSchema } from '@/collections/settings';
+import { settingsSchema } from '@/collections/settings.singleton';
 import settingsContent from '@/content/settings.json';
 import { isProductionOrigin } from '@/utils';
 

@@ -1,8 +1,7 @@
 import { collection, fields } from '@keystatic/core';
 import { PREVIEW_SITE } from 'astro:env/client';
-import { z } from 'astro:schema';
 
-import { getLocales, isLocaleCode } from '@/i18n';
+import { getLocales } from '@/i18n';
 
 import {
   accordionContent,
@@ -126,31 +125,6 @@ export const pageCollection = collection({
       },
     }),
   },
-});
-
-export const pageSchema = z.object({
-  title: z.string(),
-  description: z.string().optional(),
-  locales: z
-    .object({
-      locale: z.string().refine((value) => isLocaleCode(value)),
-      ref: z.string(),
-    })
-    .array(),
-  seo: z.object({
-    openGraph: z.object({
-      basic: z.object({
-        title: z.string().optional(),
-      }),
-      image: z.object({
-        url: z.string().optional(),
-        alt: z.string().optional(),
-      }),
-      optional: z.object({ description: z.string().optional() }),
-    }),
-    keywords: z.string().array(),
-    noindex: z.boolean().optional(),
-  }),
 });
 
 export const getPageId = (locale?: string, slug?: string) => {

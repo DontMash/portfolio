@@ -2,8 +2,8 @@ import { defineConfig, envField } from 'astro/config';
 
 import alpinejs from '@astrojs/alpinejs';
 import mdx from '@astrojs/mdx';
+import node from '@astrojs/node';
 import react from '@astrojs/react';
-import vercel from '@astrojs/vercel';
 import keystatic from '@keystatic/astro';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
@@ -13,7 +13,7 @@ import { defaultLocale, getLocales } from './src/i18n';
 export default defineConfig({
   site: 'https://www.soren.codes',
   output: 'server',
-  adapter: vercel(),
+  adapter: node({ mode: 'standalone' }),
   integrations: [
     alpinejs({ entrypoint: '@/alpine' }),
     icon({

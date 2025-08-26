@@ -6,9 +6,9 @@ import {
   REPO_OWNER,
 } from 'astro:env/client';
 
-import { pageCollection } from '@/collections/page';
+import { pageCollection } from '@/collections/page.collection';
 import { logomark } from '@/components/content/logomark.content';
-import { settingsSingleton } from '@/collections/settings';
+import { settingsSingleton } from '@/collections/settings.singleton';
 
 export default config({
   ui: {
