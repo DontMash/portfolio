@@ -1,10 +1,5 @@
 import { config } from '@keystatic/core';
-import {
-  BRAND_LOGO,
-  BRAND_NAME,
-  REPO_NAME,
-  REPO_OWNER,
-} from 'astro:env/client';
+import { BRAND_LOGO, BRAND_NAME, REPOSITORY } from 'astro:env/client';
 
 import { pageCollection } from '@/collections/page.collection';
 import { logomark } from '@/components/content/logomark.content';
@@ -28,10 +23,7 @@ export default config({
       }
     : {
         kind: 'github',
-        repo: {
-          owner: REPO_OWNER,
-          name: REPO_NAME,
-        },
+        repo: REPOSITORY as `${string}/${string}`,
         branchPrefix: 'preview',
       },
   collections: {
