@@ -32,11 +32,7 @@ export default defineConfig({
         context: 'client',
         access: 'public',
       }),
-      REPO_OWNER: envField.string({
-        context: 'client',
-        access: 'public',
-      }),
-      REPO_NAME: envField.string({
+      REPOSITORY: envField.string({
         context: 'client',
         access: 'public',
       }),
