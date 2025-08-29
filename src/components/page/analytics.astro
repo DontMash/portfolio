@@ -1,0 +1,13 @@
+---
+import { isProductionOrigin } from '@/utils';
+---
+{
+  isProductionOrigin(Astro.url, Astro.site) && (
+    <script
+      is:inline
+      defer
+      src='https://analytics.work.soren.codes/script.js'
+      data-website-id='00406a6f-0142-4686-86a9-ee5fa379132c'
+    />
+  )
+}
