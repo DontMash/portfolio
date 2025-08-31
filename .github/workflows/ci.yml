@@ -32,16 +32,17 @@ jobs:
           push: true
           tags: registry.work.soren.codes/portfolio:latest
           build-args: |
+            PREVIEW_SITE=${{ vars.PREVIEW_SITE }}
             REPOSITORY=${ GITHUB_REPOSITORY }
-            PREVIEW_SITE=${{ secrets.PREVIEW_SITE }}
-            KEYSTATIC_GITHUB_CLIENT_ID=${{ secrets.KEYSTATIC_GITHUB_CLIENT_ID }}
-            KEYSTATIC_GITHUB_CLIENT_SECRET=${{ secrets.KEYSTATIC_GITHUB_CLIENT_SECRET }}
-            KEYSTATIC_SECRET=${{ secrets.KEYSTATIC_SECRET }}
-            PUBLIC_KEYSTATIC_GITHUB_APP_SLUG=${{ secrets.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG }}
-            RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
-            EMAIL_USER=${{ secrets.EMAIL_USER }}
-            EMAIL_TARGET=${{ secrets.EMAIL_TARGET }}
             BRAND_NAME=${{ vars.BRAND_NAME }}
             BRAND_DESCRIPTION=${{ vars.BRAND_DESCRIPTION }}
             BRAND_LOGO=${{ vars.BRAND_LOGO }}
             BRAND_TWITTER=${{ vars.BRAND_TWITTER }}
+            EMAIL_USER=${{ vars.EMAIL_USER }}
+            EMAIL_TARGET=${{ vars.EMAIL_TARGET }}
+          secrets: |
+            "KEYSTATIC_GITHUB_CLIENT_ID=${{ secrets.KEYSTATIC_GITHUB_CLIENT_ID }}"
+            "KEYSTATIC_GITHUB_CLIENT_SECRET=${{ secrets.KEYSTATIC_GITHUB_CLIENT_SECRET }}"
+            "KEYSTATIC_SECRET=${{ secrets.KEYSTATIC_SECRET }}"
+            "PUBLIC_KEYSTATIC_GITHUB_APP_SLUG=${{ secrets.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG }}"
+            "RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}"
