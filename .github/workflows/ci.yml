@@ -46,3 +46,8 @@ jobs:
             "KEYSTATIC_SECRET=${{ secrets.KEYSTATIC_SECRET }}"
             "PUBLIC_KEYSTATIC_GITHUB_APP_SLUG=${{ secrets.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG }}"
             "RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}"
+
+      - name: Deploy
+        uses: distributhor/workflow-webhook@v3
+        with:
+          webhook_url: ${{ secrets.DEPLOY_WEBHOOK_URL }}
