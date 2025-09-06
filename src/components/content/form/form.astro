@@ -313,8 +313,6 @@ const result = Astro.getActionResult(actions.contact);
       }
       if (isInputError(error)) {
         Object.entries(error.fields).forEach(([field, issues]) => {
-          console.log(issues);
-
           const inputElement = inputElements[field];
           if (inputElement) {
             inputElement.dataset.invalid = String(true);
