@@ -2,6 +2,7 @@
 import { getEntry, render } from 'astro:content';
 
 import { getPageId, getPagePath } from '@/collections/page.collection';
+import type { SEOProps as AstroSEOProps } from 'astro-seo';
 import { createSEOProps } from '@/seo';
 
 import Layout from '@/layouts/layout.astro';
@@ -26,13 +27,21 @@ if (!page) {
   return Astro.rewrite(`/404?locale=${Astro.currentLocale}`);
 }
 const { Content } = await render(page);
+const languageAlternates: AstroSEOProps['languageAlternates'] =
+  page.data.locales.map((entry) => ({
+    href: new URL(getPagePath(entry.ref), Astro.site),
+    hrefLang: entry.locale,
+  }));
+if (Astro.site) {
+  languageAlternates.push({
+    href: Astro.site,
+    hrefLang: 'x-default',
+  });
+}
 const seo = createSEOProps(Astro.url, {
   title: page.data.title,
   description: page.data.description,
-  languageAlternates: page.data.locales.map((entry) => ({
-    href: new URL(getPagePath(entry.ref), Astro.site).href,
-    hrefLang: entry.locale,
-  })),
+  languageAlternates,
   ...page.data.seo,
 });
 ---
