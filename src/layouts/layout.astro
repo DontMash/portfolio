@@ -4,21 +4,24 @@ import '@/styles/global.css';
 
 import { SEO, type SEOProps } from 'astro-seo';
 
+import Analytics from '@/components/page/analytics.astro';
 import Footer from '@/components/page/footer.astro';
 import Header from '@/components/page/header.astro';
+import Motd from '@/components/page/motd.astro';
+import Theme from '@/components/page/theme.astro';
 import Toolbar from '@/components/page/toolbar.astro';
-import { isProductionOrigin } from '@/utils';
 
 interface Props {
   seo: SEOProps;
 }
 
-// TODO: feat: add console easteregg
 // TODO: feat: add blog entries
 // TODO: feat: add rss feed
 // TODO: feat: add vCard download
+// TODO: feat: llms.txt for each page
 // TODO: feat: add seo schema data
 // TODO: feat: add projects entries
+// TODO: feat: add analytics events
 // TODO: feat: add more animations / transitions?
 // TODO: feat: add fun bits & pieces / eastereggs
 // TODO: feat: add form configurator
@@ -26,35 +29,21 @@ interface Props {
 // TODO: feat: add youtube embed component
 // TODO: chore: add units test?
 // TODO: feat: add page search?
-// TODO: chore: add CI/CD release pipeline
 ---
 
 <!doctype html>
+<!--
+Handcrafted with Astro, TailwindCSS, AlpineJS & KeystaticCMS.
+Managed & hosted on Hetzner in Germany.
+Interested to see how it works for you?
+https://www.soren.codes#contact
+-->
 <html lang={Astro.currentLocale} x-data x-bind:data-theme='$store.theme.get()'>
   <head>
     <SEO {...Astro.props.seo} />
-    <script is:inline>
-      // set initial theme state
-      const item = localStorage.getItem('theme');
-      const themeState = JSON.parse(item);
-      const theme =
-        themeState && themeState !== 'auto'
-          ? themeState
-          : window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : 'light';
-      document.documentElement.dataset.theme = theme;
-    </script>
-    {
-      isProductionOrigin(Astro.url, Astro.site) && (
-        <script
-          is:inline
-          defer
-          src='https://analytics.work.soren.codes/script.js'
-          data-website-id='00406a6f-0142-4686-86a9-ee5fa379132c'
-        />
-      )
-    }
+    <Theme />
+    <Analytics />
+    <Motd />
   </head>
   <body id='top'>
     <Header />

@@ -41,6 +41,7 @@ export const createSEOProps = (url: URL, props?: SEOProps): AstroSEOProps => {
     props?.openGraph.optional?.description ?? BRAND_DESCRIPTION;
 
   const site = new URL(import.meta.env.SITE);
+
   const isValid = isProductionOrigin(url, site);
   const defaultProps: AstroSEOProps = {
     titleTemplate: `%s | ${BRAND_NAME}`,
@@ -48,6 +49,12 @@ export const createSEOProps = (url: URL, props?: SEOProps): AstroSEOProps => {
     description: BRAND_DESCRIPTION,
     noindex: isValid ? props?.noindex : true,
     nofollow: isValid ? props?.nofollow : true,
+    languageAlternates: [
+      {
+        href: site,
+        hrefLang: 'x-default',
+      },
+    ],
     openGraph: {
       basic: {
         title: ogTitle,
@@ -81,7 +88,16 @@ export const createSEOProps = (url: URL, props?: SEOProps): AstroSEOProps => {
     },
   };
 
-  const result = _.merge(defaultProps, props);
+  const result = _.mergeWith(defaultProps, props, (objValue, srcValue, key) => {
+    if (key == 'noindex' || key == 'nofollow') {
+      return objValue;
+    }
+    if (_.isArray(objValue)) {
+      return objValue.concat(srcValue);
+    }
+    return undefined;
+  });
+  
   if (props?.keywords && result.extend?.meta) {
     result.extend.meta = [
       ...result.extend.meta,

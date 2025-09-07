@@ -30,7 +30,7 @@ const seo = createSEOProps(Astro.url, {
   title: page.data.title,
   description: page.data.description,
   languageAlternates: page.data.locales.map((entry) => ({
-    href: new URL(getPagePath(entry.ref), Astro.site).href,
+    href: new URL(getPagePath(entry.ref), Astro.site),
     hrefLang: entry.locale,
   })),
   ...page.data.seo,
