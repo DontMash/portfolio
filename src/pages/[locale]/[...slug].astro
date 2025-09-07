@@ -1,10 +1,12 @@
 ---
 import { getEntry, render } from 'astro:content';
+import _ from 'lodash';
 
 import { getPageId, getPagePath } from '@/collections/page.collection';
 import { createSEOProps } from '@/seo';
 
 import Layout from '@/layouts/layout.astro';
+import Breadcrumb from '@/components/breadcrumb.astro';
 import { Accordion, AccordionItem } from '@/components/content/accordion';
 import { Button } from '@/components/content/button';
 import { Container } from '@/components/content/container';
@@ -38,6 +40,8 @@ const seo = createSEOProps(Astro.url, {
 ---
 
 <Layout {seo}>
+  <Breadcrumb />
+
   <Content
     components={{
       Accordion,

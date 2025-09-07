@@ -1,0 +1,45 @@
+---
+import _ from 'lodash';
+
+import { useTranslation, defaultLocale, type LocaleCode } from '@/i18n';
+
+import { Icon } from '@/components/content/icon';
+import { sectionVariant } from '@/components/content/section';
+
+let pathname = Astro.url.pathname.slice(1);
+pathname = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+const paths = pathname.split('/');
+
+const t = useTranslation((Astro.currentLocale as LocaleCode) ?? defaultLocale);
+---
+
+{
+  paths.length > 1 && (
+    <nav
+      class:list={[sectionVariant.base({ y: false }), 'not-prose']}
+      aria-label={t('breadcrumb.label')}
+    >
+      <ol class='flex items-center gap-2 py-4'>
+        <li class='p-0'>
+          <a class='anchor' href={`/${Astro.currentLocale}`}>
+            <Icon name='tabler:home' />
+          </a>
+        </li>
+        {paths.slice(1).map((crumb, index, array) => (
+          <>
+            <li class='flex items-center gap-2 p-0'>
+              <Icon name='tabler:chevron-right' />
+              <a
+                class='anchor'
+                href={`/${paths.slice(0, paths.length - index).join('/')}`}
+                aria-current={index >= array.length - 1 ? 'page' : undefined}
+              >
+                {_.capitalize(crumb)}
+              </a>
+            </li>
+          </>
+        ))}
+      </ol>
+    </nav>
+  )
+}

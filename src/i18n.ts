@@ -52,6 +52,7 @@ const localization = {
     'form.email.placeholder': 'Email',
     'form.message.title': 'Message',
     'form.message.placeholder': "Let's work together...",
+    'breadcrumb.label': 'Breadcrumb',
   },
   de: {
     'header.nav.label': 'Haupt',
@@ -83,6 +84,7 @@ const localization = {
     'form.email.placeholder': 'E-Mail',
     'form.message.title': 'Nachricht',
     'form.message.placeholder': 'Lass uns gemeinsam...',
+    'breadcrumb.label': 'Brotkrumennavigation',
   },
 } as const;
 
