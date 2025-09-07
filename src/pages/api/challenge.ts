@@ -4,6 +4,7 @@ import { createChallenge } from 'altcha-lib';
 
 export const GET: APIRoute = async () => {
   const challenge = await createChallenge({
+    expires: new Date(Date.now() + 3600000),
     hmacKey: CAPTCHA_KEY,
   });
   return new Response(JSON.stringify(challenge), {

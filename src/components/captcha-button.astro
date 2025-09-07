@@ -3,7 +3,7 @@ import { buttonVariant } from '@/components/content/button/button.variant';
 import { Icon } from '@/components/content/icon';
 ---
 
-<div x-data='captcha' x-init='verify'>
+<div x-data='captcha' x-init='challenge'>
   <input type='hidden' name='captcha' required x-bind:value='result' />
 
   <button

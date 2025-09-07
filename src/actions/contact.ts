@@ -56,8 +56,12 @@ export default defineAction({
     const client = new Resend(RESEND_API_KEY);
 
     try {
-      const validSolution = await verifySolution(input.captcha, CAPTCHA_KEY);
-      const validSignature = await verifyServerSignature(
+      const validSolution = await verifySolution(
+        input.captcha,
+        CAPTCHA_KEY,
+        true,
+      );
+      const { verified: validSignature } = await verifyServerSignature(
         input.captcha,
         CAPTCHA_KEY,
       );

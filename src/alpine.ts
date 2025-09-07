@@ -77,14 +77,14 @@ export default (Alpine: Alpine) => {
     | { state: 'none' | 'loading'; result: undefined; error: undefined }
     | { state: 'completed'; result: string; error: undefined }
     | ({ state: 'failed'; result: undefined; error: string } & {
-        verify: () => Promise<void>;
+        challenge: () => Promise<void>;
       }),
     []
   >('captcha', () => ({
     state: 'none',
     result: undefined,
     error: undefined,
-    async verify() {
+    async challenge() {
       try {
         console.info('Challenge started.');
 
@@ -92,7 +92,7 @@ export default (Alpine: Alpine) => {
         this.result = undefined;
         this.error = undefined;
 
-        const response = await fetch('/api/verify');
+        const response = await fetch('/api/challenge');
         if (response.status != 200) {
           throw new Error('Failed to fetch challenge.');
         }
