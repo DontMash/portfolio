@@ -33,7 +33,7 @@ jobs:
           tags: registry.work.soren.codes/portfolio:latest
           build-args: |
             PREVIEW_SITE=${{ vars.PREVIEW_SITE }}
-            REPOSITORY=${ GITHUB_REPOSITORY }
+            REPOSITORY=${{ github.repository }}
             BRAND_NAME=${{ vars.BRAND_NAME }}
             BRAND_DESCRIPTION=${{ vars.BRAND_DESCRIPTION }}
             BRAND_LOGO=${{ vars.BRAND_LOGO }}
