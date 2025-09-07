@@ -1,5 +1,11 @@
+import { verifyServerSignature, verifySolution } from 'altcha-lib';
 import { ActionError, defineAction } from 'astro:actions';
-import { EMAIL_TARGET, EMAIL_USER, RESEND_API_KEY } from 'astro:env/server';
+import {
+  CAPTCHA_KEY,
+  EMAIL_TARGET,
+  EMAIL_USER,
+  RESEND_API_KEY,
+} from 'astro:env/server';
 import { z } from 'astro:schema';
 import { Resend } from 'resend';
 
@@ -21,6 +27,7 @@ export const CONTACT_FORM_SCHEMA = z
       .min(3, { message: 'Message must contain at least 3 characters.' })
       .max(1024, { message: 'Message must contain at most 1024 characters.' }),
     terms: z.boolean(),
+    captcha: z.string(),
   })
   .refine(
     (value) => {
@@ -49,6 +56,19 @@ export default defineAction({
     const client = new Resend(RESEND_API_KEY);
 
     try {
+      const validSolution = await verifySolution(input.captcha, CAPTCHA_KEY);
+      const validSignature = await verifyServerSignature(
+        input.captcha,
+        CAPTCHA_KEY,
+      );
+      const verified = validSolution && validSignature;
+      if (!verified) {
+        throw new ActionError({
+          code: 'BAD_REQUEST',
+          message: 'Failed to verify you.',
+        });
+      }
+
       const result = await client.emails.send({
         from: `${EMAIL_USER} <${EMAIL_TARGET}>`,
         to: EMAIL_TARGET,
@@ -57,7 +77,11 @@ export default defineAction({
       });
 
       if (result.error) {
-        throw new Error(result.error.message, { cause: result.error.name });
+        throw new ActionError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: result.error.message,
+          stack: result.error.name,
+        });
       }
 
       console.info('Message sent: %s', result.data?.id);
@@ -66,7 +90,7 @@ export default defineAction({
 
       throw new ActionError({
         code: 'INTERNAL_SERVER_ERROR',
-        message: 'Error on sending the form',
+        message: 'Error while sending the form',
       });
     }
 

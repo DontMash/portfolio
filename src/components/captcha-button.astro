@@ -1,0 +1,20 @@
+---
+import { buttonVariant } from '@/components/content/button/button.variant';
+import { Icon } from '@/components/content/icon';
+---
+
+<div x-data='captcha' x-init='verify'>
+  <input type='hidden' name='captcha' required x-bind:value='result' />
+
+  <button
+    class:list={[buttonVariant({ shadow: 'pop' }), 'group']}
+    x-bind:disabled="state !== 'completed'"
+    x-bind:data-active="state === 'loading'"
+  >
+    <Icon
+      class='hidden group-data-[active=true]:inline-block group-data-[active=true]:animate-spin'
+      name='tabler:loader-2'
+    />
+    Send
+  </button>
+</div>

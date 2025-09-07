@@ -39,31 +39,6 @@ const buttonBase = cva(
         icon: ['size-12', 'p-2'],
         'icon-lg': ['size-16', 'p-2'],
       },
-      shadow: {
-        none: ['shadow-none'],
-        pop: [
-          'mb-2',
-          'shadow-pop-md',
-          'hover:translate-x-2',
-          'hover:translate-y-2',
-          'hover:shadow-pop-none',
-          'focus-visible:translate-x-2',
-          'focus-visible:translate-y-2',
-          'focus-visible:shadow-pop-none',
-          'disabled:hover:transform-none',
-          'disabled:hover:shadow-pop-md',
-        ],
-        'pop-lg': [
-          'mb-4',
-          'shadow-pop-lg',
-          'hover:translate-x-4',
-          'hover:translate-y-4',
-          'hover:shadow-none',
-          'focus-visible:translate-x-4',
-          'focus-visible:translate-y-4',
-          'focus-visible:shadow-none',
-        ],
-      },
     },
     compoundVariants: [
       {
