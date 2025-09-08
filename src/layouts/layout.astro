@@ -5,6 +5,7 @@ import '@/styles/global.css';
 import { SEO, type SEOProps } from 'astro-seo';
 
 import Analytics from '@/components/page/analytics.astro';
+import Breadcrumb from '@/components/breadcrumb.astro';
 import Footer from '@/components/page/footer.astro';
 import Header from '@/components/page/header.astro';
 import Motd from '@/components/page/motd.astro';
@@ -15,7 +16,11 @@ interface Props {
   seo: SEOProps;
 }
 
-// TODO: feat: add blog entries
+// TODO: feat: add technologies section
+// TODO: feat: add services section
+// TODO: feat: add projects section
+// TODO: feat: add blog
+// TODO: feat: add blog section
 // TODO: feat: add rss feed
 // TODO: feat: add vCard download
 // TODO: feat: llms.txt for each page
@@ -54,6 +59,8 @@ https://www.soren.codes#contact
       class='dots prose dark:prose-p:text-base-300 prose-a:anchor prose-hr:border-t-3 prose-img:w-full prose-kbd:bg-(--color-background) prose-kbd:border-3 prose-kbd:border-(--color-foreground) prose-p:text-base-600 prose-h1:heading-1 prose-h2:heading-2 prose-h3:heading-3 prose-h4:heading-4 prose-h5:heading-5 prose-h6:heading-6 mx-auto flex min-h-screen max-w-screen-xl flex-col divide-y-3 xl:border-x-3'
       role='main'
     >
+      <Breadcrumb />
+
       <slot />
     </main>
 
