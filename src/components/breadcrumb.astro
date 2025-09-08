@@ -23,6 +23,7 @@ const t = useTranslation((Astro.currentLocale as LocaleCode) ?? defaultLocale);
         <li class='p-0'>
           <a class='anchor' href={`/${Astro.currentLocale}`}>
             <Icon name='tabler:home' />
+            <span class='sr-only'>{t('breadcrumb.home.label')}</span>
           </a>
         </li>
         {paths.slice(1).map((crumb, index, array) => (
@@ -34,7 +35,7 @@ const t = useTranslation((Astro.currentLocale as LocaleCode) ?? defaultLocale);
                 href={`/${paths.slice(0, paths.length - index).join('/')}`}
                 aria-current={index >= array.length - 1 ? 'page' : undefined}
               >
-                {_.capitalize(crumb)}
+                {_.capitalize(decodeURI(crumb))}
               </a>
             </li>
           </>

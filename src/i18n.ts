@@ -40,6 +40,7 @@ const localization = {
       'In this case you may not have found what you were looking for. If so be sure to get in touch with me!',
     '404.back': 'Go back',
     '404.contact': 'Say hello',
+    'logo.href.label': 'Go to the frontpage',
     'form.send': 'Send',
     'form.policy':
       'I have read the <a href="/en/privacy">privacy policy</a> and agree to the processing of my data.',
@@ -53,6 +54,7 @@ const localization = {
     'form.message.title': 'Message',
     'form.message.placeholder': "Let's work together...",
     'breadcrumb.label': 'Breadcrumb',
+    'breadcrumb.home.label': 'Go to the frontpage',
   },
   de: {
     'header.nav.label': 'Haupt',
@@ -72,6 +74,7 @@ const localization = {
       'In diesem Fall haben du vielleicht nicht das gefunden, wonach du gesucht hast. Wenn dem so ist, solltest du dich mit mir in Verbindung setzen!',
     '404.back': 'Zurück',
     '404.contact': 'Schreib mir',
+    'logo.href.label': 'Gehe zur Startseite',
     'form.send': 'Absenden',
     'form.policy':
       'Ich habe die <a href="/de/datenschutz">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu.',
@@ -85,6 +88,7 @@ const localization = {
     'form.message.title': 'Nachricht',
     'form.message.placeholder': 'Lass uns gemeinsam...',
     'breadcrumb.label': 'Brotkrumennavigation',
+    'breadcrumb.home.label': 'Gehe zur Startseite',
   },
 } as const;
 
