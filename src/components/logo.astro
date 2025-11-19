@@ -1,6 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
 
+import { defaultLocale, useTranslation, type LocaleCode } from '@/i18n';
+
 import { Button } from '@/components/content/button';
 
 const attributes = {
@@ -8,6 +10,8 @@ const attributes = {
   width: 132,
   height: 48,
 };
+
+const t = useTranslation((Astro.currentLocale as LocaleCode) ?? defaultLocale);
 ---
 
 <Button
@@ -27,5 +31,5 @@ const attributes = {
     x-show='theme === "dark"'
     x-cloak
   />
-  <span class='sr-only'>Go to the frontpage</span>
+  <span class='sr-only'>{t('logo.href.label')}</span>
 </Button>

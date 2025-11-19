@@ -1,10 +1,10 @@
 ---
-import '@fontsource-variable/azeret-mono';
 import '@/styles/global.css';
 
 import { SEO, type SEOProps } from 'astro-seo';
 
 import Analytics from '@/components/page/analytics.astro';
+import Breadcrumb from '@/components/breadcrumb.astro';
 import Footer from '@/components/page/footer.astro';
 import Header from '@/components/page/header.astro';
 import Motd from '@/components/page/motd.astro';
@@ -15,8 +15,18 @@ interface Props {
   seo: SEOProps;
 }
 
+// TODO: feat: add technologies section
+// TypeScript, React, Svelte, AlpineJS Astro, Node, TailwindCSS, KeystaticCMS, Docker, Capacitor, Electron, Drizzle, BetterAuth, PocketBase
+// TODO: feat: add services section
+// Website (Presence), Web Apps, Desktop Apps, Mobile Apps, SaaS, Consulting, Product Owner
+// TODO: feat: add services pages
+// TODO: feat: add projects section
+// Portfolio, slashwhy, Oak Horizon, SMS Management, Shapez Vortex
 // TODO: feat: add blog entries
+// Websites are rocket-science (Astro), Web is the future, IMPO AI, Software Development & Scrum, Content Management & Versioning - Why one system for both matters (KeystaticCMS)
+// TODO: feat: add blog section
 // TODO: feat: add rss feed
+// TODO: feat: add usp section
 // TODO: feat: add vCard download
 // TODO: feat: llms.txt for each page
 // TODO: feat: add seo schema data
@@ -27,6 +37,8 @@ interface Props {
 // TODO: feat: add form configurator
 // TODO: feat: add video component
 // TODO: feat: add youtube embed component
+// TODO: chore: update README
+// TODO: chore: update GitHub Repository information
 // TODO: chore: add units test?
 // TODO: feat: add page search?
 ---
@@ -52,6 +64,8 @@ https://www.soren.codes#contact
       class='dots prose dark:prose-p:text-base-300 prose-a:anchor prose-hr:border-t-3 prose-img:w-full prose-kbd:bg-(--color-background) prose-kbd:border-3 prose-kbd:border-(--color-foreground) prose-p:text-base-600 prose-h1:heading-1 prose-h2:heading-2 prose-h3:heading-3 prose-h4:heading-4 prose-h5:heading-5 prose-h6:heading-6 mx-auto flex min-h-screen max-w-screen-xl flex-col divide-y-3 xl:border-x-3'
       role='main'
     >
+      <Breadcrumb />
+
       <slot />
     </main>
 
@@ -60,3 +74,19 @@ https://www.soren.codes#contact
     <Footer />
   </body>
 </html>
+
+<style is:global>
+  /* azeret-mono-latin-wght-normal */
+  @font-face {
+    font-family: 'Azeret Mono Variable';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url(@fontsource-variable/azeret-mono/files/azeret-mono-latin-wght-normal.woff2)
+      format('woff2-variations');
+    unicode-range:
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+      U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+      U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+</style>

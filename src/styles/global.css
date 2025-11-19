@@ -25,7 +25,7 @@
   --color-cobalt-200: oklch(0.3552 0.0969 269.49);
   --color-error: oklch(0.6296 0.2557 25.81);
 
-  --font-sans: 'Azeret Mono Variable';
+  --font-mono: 'Azeret Mono Variable', monospace;
 
   --text-*: initial;
   --text-sm: 1rem;
@@ -45,7 +45,7 @@
 
   --border-3: 3px;
 
-  --shadow-pop-none: 0px 0px 0 0 currentColor;
+  --shadow-pop-sm: 4px 4px 0 0 currentColor;
   --shadow-pop-md: 8px 8px 0 0 currentColor;
   --shadow-pop-lg: 16px 16px 0 0 currentColor;
 }
@@ -73,7 +73,7 @@
 
 @layer base {
   :root {
-    @apply scroll-pt-20 scroll-smooth bg-(--color-background) text-(--color-foreground);
+    @apply scroll-pt-20 scroll-smooth bg-(--color-background) font-mono text-(--color-foreground);
   }
 
   [data-theme='dark'] {
