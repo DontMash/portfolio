@@ -5,6 +5,7 @@
       "name": "portfolio",
       "dependencies": {
         "@alpinejs/collapse": "^3.14.9",
+        "@alpinejs/intersect": "^3.15.2",
         "@alpinejs/persist": "^3.14.9",
         "@astrojs/alpinejs": "0.4.9",
         "@astrojs/mdx": "4.3.11",
@@ -35,6 +36,7 @@
         "@types/accept-language-parser": "^1.5.8",
         "@types/alpinejs": "^3.13.11",
         "@types/alpinejs__collapse": "^3.13.4",
+        "@types/alpinejs__intersect": "^3.13.4",
         "@types/alpinejs__persist": "^3.13.4",
         "@types/react": "^19.1.8",
         "@types/react-dom": "^19.1.6",
@@ -56,6 +58,8 @@
     "@0no-co/graphql.web": ["@0no-co/graphql.web@1.1.2", "", { "peerDependencies": { "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0" }, "optionalPeers": ["graphql"] }, "sha512-N2NGsU5FLBhT8NZ+3l2YrzZSHITjNXNuDhC4iDiikv0IujaJ0Xc6xIxQZ/Ek3Cb+rgPjnLHYyJm11tInuJn+cw=="],
 
     "@alpinejs/collapse": ["@alpinejs/collapse@3.14.9", "", {}, "sha512-cUjbBVo4KR/CfFg0cLB+Q7a8SnjmD4MdxmtZvFjh25Dlf/ZWYPSPx/28b+aAykuX/SUoDPQRmdFiVVvq+iILHw=="],
+
+    "@alpinejs/intersect": ["@alpinejs/intersect@3.15.2", "", {}, "sha512-Q2X1/u82QXoet4n9+EBpat+CeVZ3TWGkyX+tNPf9SFQER1Y8ou8IZLCEoNIywWoAAbiUtKB8SAeoAZwXhNX4SQ=="],
 
     "@alpinejs/persist": ["@alpinejs/persist@3.14.9", "", {}, "sha512-Td9hWEUtFFguYCRjXhq06sDultW21wXUnVro7YWJm+vjGu/nV/v3hepOXyYVjkGvH/F+zjx5UkzWXXzr3UiQ/w=="],
 
@@ -678,6 +682,8 @@
     "@types/alpinejs": ["@types/alpinejs@3.13.11", "", {}, "sha512-3KhGkDixCPiLdL3Z/ok1GxHwLxEWqQOKJccgaQL01wc0EVM2tCTaqlC3NIedmxAXkVzt/V6VTM8qPgnOHKJ1MA=="],
 
     "@types/alpinejs__collapse": ["@types/alpinejs__collapse@3.13.4", "", { "dependencies": { "@types/alpinejs": "*" } }, "sha512-kUBJWEDrHahD2Tb1lrir7iNTGN9ukvoJFjOY41EGC7F21E1KMSch5NrGgE0sqINrRT3lf1UZm3wxB3CNjJHBwg=="],
+
+    "@types/alpinejs__intersect": ["@types/alpinejs__intersect@3.13.4", "", { "dependencies": { "@types/alpinejs": "*" } }, "sha512-yoX6WO7AleeULOQvPz7rrx7FJmu6l033bM7QiGcWyvZjqF2KIut99ByUZO6OWUQuYmbRjxsKthGiUYNaAywHiA=="],
 
     "@types/alpinejs__persist": ["@types/alpinejs__persist@3.13.4", "", { "dependencies": { "@types/alpinejs": "*" } }, "sha512-H+cW7294EV5fGmIGD3BCJme54//KyWxZcP4uI9pk6W7fECR5hEwdO7j7wogz0o4vapS/kXiXiAjuqC9F+W0Vpw=="],
 

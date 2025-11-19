@@ -1,5 +1,6 @@
 import type { Alpine } from 'alpinejs';
 import collapse from '@alpinejs/collapse';
+import intersect from '@alpinejs/intersect';
 import persist from '@alpinejs/persist';
 
 import { create as createTheme } from '@/theme';
@@ -8,6 +9,7 @@ import captcha from '@/components/captcha/captcha';
 
 export default (Alpine: Alpine) => {
   Alpine.plugin(collapse);
+  Alpine.plugin(intersect);
   Alpine.plugin(persist);
 
   Alpine.store('theme', createTheme(Alpine));
