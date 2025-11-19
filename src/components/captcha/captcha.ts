@@ -17,6 +17,17 @@ export default () =>
     state: 'none',
     result: undefined,
     error: undefined,
+    init() {
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            this.challenge();
+            observer.unobserve(this.$el);
+          }
+        });
+      });
+      observer.observe(this.$el);
+    },
     async challenge() {
       try {
         console.info('Challenge started.');

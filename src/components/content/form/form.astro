@@ -28,7 +28,7 @@ const result = Astro.getActionResult(actions.contact);
   <div class='flex flex-col gap-2'>
     <div>
       <label
-        class='data-[invalid]:border-error'
+        class='data-invalid:border-error'
         class:list={[inputLabel()]}
         for='form-contact-name'
         data-form-input='name'
@@ -73,7 +73,7 @@ const result = Astro.getActionResult(actions.contact);
 
     <div>
       <label
-        class='data-[invalid]:border-error'
+        class='data-invalid:border-error'
         class:list={[inputLabel()]}
         for='form-contact-company'
         data-form-input='company'
@@ -118,7 +118,7 @@ const result = Astro.getActionResult(actions.contact);
 
     <div>
       <label
-        class='data-[invalid]:border-error'
+        class='data-invalid:border-error'
         class:list={[inputLabel()]}
         for='form-contact-email'
         data-form-input='email'
@@ -157,7 +157,7 @@ const result = Astro.getActionResult(actions.contact);
 
     <div>
       <label
-        class='data-[invalid]:border-error flex-col !items-stretch'
+        class='data-invalid:border-error flex-col !items-stretch'
         class:list={[inputLabel()]}
         for='form-contact-message'
         data-form-input='messages'
@@ -203,7 +203,7 @@ const result = Astro.getActionResult(actions.contact);
     <div>
       <label class='flex gap-2' for='form-contact-terms'>
         <input
-          class='data-[invalid]:border-error'
+          class='data-invalid:border-error'
           class:list={[inputCheckbox()]}
           type='checkbox'
           name='terms'
@@ -282,7 +282,7 @@ const result = Astro.getActionResult(actions.contact);
       return result;
     }, {});
   const messageElement = form.querySelector(
-    '[data-form-message]'
+    '[data-form-message]',
   ) as HTMLElement;
 
   form.addEventListener('submit', async (event: SubmitEvent) => {
@@ -296,10 +296,10 @@ const result = Astro.getActionResult(actions.contact);
     button.disabled = true;
 
     Object.values(inputElements).forEach(
-      (element) => delete element.dataset.invalid
+      (element) => delete element.dataset.invalid,
     );
     Object.values(errorElements).forEach(
-      (element) => (element.textContent = String())
+      (element) => (element.textContent = String()),
     );
     messageElement.textContent = String();
 
