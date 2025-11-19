@@ -1,4 +1,4 @@
-import { verifyServerSignature, verifySolution } from 'altcha-lib';
+import { verifySolution } from 'altcha-lib';
 import { ActionError, defineAction } from 'astro:actions';
 import {
   CAPTCHA_KEY,
@@ -56,16 +56,7 @@ export default defineAction({
     const client = new Resend(RESEND_API_KEY);
 
     try {
-      const validSolution = await verifySolution(
-        input.captcha,
-        CAPTCHA_KEY,
-        true,
-      );
-      const { verified: validSignature } = await verifyServerSignature(
-        input.captcha,
-        CAPTCHA_KEY,
-      );
-      const verified = validSolution && validSignature;
+      const verified = await verifySolution(input.captcha, CAPTCHA_KEY, true);
       if (!verified) {
         throw new ActionError({
           code: 'BAD_REQUEST',
