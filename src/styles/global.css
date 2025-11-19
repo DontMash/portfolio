@@ -2,20 +2,6 @@
 @plugin '@tailwindcss/typography';
 @config '@/../tailwind.config.js';
 
-/* azeret-mono-latin-wght-normal */
-@font-face {
-  font-family: 'Azeret Mono Variable';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  src: url(@fontsource-variable/azeret-mono/files/azeret-mono-latin-wght-normal.woff2)
-    format('woff2-variations');
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
-    U+2215, U+FEFF, U+FFFD;
-}
-
 @theme {
   --color-*: initial;
   --color-base-100: oklch(0.9623 0 0);
@@ -39,7 +25,7 @@
   --color-cobalt-200: oklch(0.3552 0.0969 269.49);
   --color-error: oklch(0.6296 0.2557 25.81);
 
-  --font-sans: 'Azeret Mono Variable';
+  --font-mono: 'Azeret Mono Variable', monospace;
 
   --text-*: initial;
   --text-sm: 1rem;
@@ -87,7 +73,7 @@
 
 @layer base {
   :root {
-    @apply scroll-pt-20 scroll-smooth bg-(--color-background) text-(--color-foreground);
+    @apply scroll-pt-20 scroll-smooth bg-(--color-background) font-mono text-(--color-foreground);
   }
 
   [data-theme='dark'] {
