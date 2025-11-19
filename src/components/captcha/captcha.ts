@@ -1,5 +1,6 @@
 import type { AlpineComponent } from 'alpinejs';
-import { solveChallenge } from 'altcha-lib';
+import { solveChallengeWorkers } from 'altcha-lib';
+import ChallengeWorker from 'altcha-lib/worker?worker';
 import type { Challenge, Payload } from 'altcha-lib/types';
 
 type AlpineCaptchaComponent = AlpineComponent<
@@ -31,8 +32,13 @@ export default () =>
         }
 
         const data = (await response.json()) as Challenge;
-        const solve = solveChallenge(data.challenge, data.salt);
-        const solution = await solve.promise;
+        const solve = solveChallengeWorkers(
+          () => new ChallengeWorker(),
+          4,
+          data.challenge,
+          data.salt,
+        );
+        const solution = await solve;
         if (!solution) {
           throw new Error('Failed to solve challenge.');
         }
