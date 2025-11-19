@@ -24,22 +24,29 @@ export const frameContent = block({
     </svg>
   ),
   ContentView: ({ value }) => {
-    const image = value.images[0];
     return (
-      image?.src && (
-        <figure style={{ margin: 0 }}>
-          <img
-            style={{ width: '100%' }}
-            src={URL.createObjectURL(
-              new Blob([image.src.data], {
-                type: `image/${image.src.extension}`,
-              }),
-            )}
-            alt={image.alt}
-          />
-          {value.caption && <figcaption>{value.caption}</figcaption>}
-        </figure>
-      )
+      <figure style={{ margin: 0 }}>
+        {value.images.map(
+          (image) =>
+            image.src && (
+              <>
+                <img
+                  style={{ width: '100%' }}
+                  src={URL.createObjectURL(
+                    new Blob([image.src.data], {
+                      type: `image/${image.src.extension}`,
+                    }),
+                  )}
+                  alt={image.alt}
+                />
+                {image.theme && <p>Theme: {image.theme}</p>}
+                {image.alt && <p>Alt: {image.alt}</p>}
+              </>
+            ),
+        )}
+        {!value.lazy && <p>Lazy loading disabled</p>}
+        {value.caption && <figcaption>{value.caption}</figcaption>}
+      </figure>
     );
   },
   schema: {

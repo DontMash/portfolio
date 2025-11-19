@@ -19,15 +19,11 @@ type Props = FrameProps & {
 
 const { caption, images, lazy } = Astro.props;
 const contentImages = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/images/content/**/*.{jpeg,jpg,png,gif}'
+  '/src/assets/images/content/**/*.{jpeg,jpg,png,gif}',
 );
-const imageMetaDataEntries = (
-  await Promise.all(
-    images
-      .filter((image) => !!contentImages[image.src])
-      .map((image) => contentImages[image.src]())
-  )
-).map((value) => value.default);
+const imageMetaDataEntries = images
+  .filter((image) => !!contentImages[image.src])
+  .map((image) => contentImages[image.src]);
 ---
 
 {
@@ -43,10 +39,8 @@ const imageMetaDataEntries = (
       >
         <Picture
           class:list={[frameVariant(Astro.props)]}
-          src={import.meta.env.DEV ? image.src : imageMetaData.src}
+          src={imageMetaData()}
           alt={image.alt}
-          width={imageMetaData.width}
-          height={imageMetaData.height}
           formats={['webp']}
           loading={lazy ? 'lazy' : 'eager'}
           fetchpriority={!lazy ? 'high' : undefined}
