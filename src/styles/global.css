@@ -122,31 +122,31 @@
   @apply leading-xl text-sm;
 }
 @utility paragraph {
-  @apply leading-xl text-base;
+  @apply leading-xl text-sm sm:text-base;
 }
 @utility paragraph-highlight {
-  @apply leading-xl text-lg font-semibold;
+  @apply leading-xl text-base font-semibold sm:text-lg;
 }
 @utility heading-6 {
-  @apply leading-xl my-1 text-lg font-medium;
+  @apply leading-xl my-1 text-base font-medium first:mt-0 last:mb-0 sm:text-lg;
 }
 @utility heading-5 {
-  @apply leading-xl my-1 text-xl font-medium;
+  @apply leading-xl my-1 text-lg font-medium first:mt-0 last:mb-0 sm:text-xl;
 }
 @utility heading-4 {
-  @apply leading-md my-2 text-2xl font-medium;
+  @apply leading-md my-2 text-xl font-medium first:mt-0 last:mb-0 sm:text-2xl;
 }
 @utility heading-3 {
-  @apply leading-lg my-4 text-3xl font-medium;
+  @apply leading-lg my-4 text-2xl font-medium first:mt-0 last:mb-0 sm:text-3xl;
 }
 @utility heading-2 {
-  @apply leading-lg my-6 text-4xl font-semibold;
+  @apply leading-lg my-6 text-3xl font-semibold first:mt-0 last:mb-0 sm:text-4xl;
 }
 @utility heading-1 {
-  @apply leading-md text-hero my-8 font-bold;
+  @apply leading-md sm:text-hero my-8 text-4xl font-bold first:mt-0 last:mb-0;
 }
 @utility hero {
-  @apply text-hero leading-none font-black;
+  @apply sm:text-hero text-4xl leading-none font-black;
 }
 
 @utility dots {
