@@ -4,7 +4,8 @@ export const styleVariant = cva([], {
   variants: {
     color: {
       none: null,
-      primary: 'text-(--color-primary)',
+      primary:
+        'text-(--color-primary) selection:text-(--color-primary-foreground)',
     },
     typography: {
       none: null,
