@@ -15,9 +15,10 @@ type Props = FrameProps & {
   images: Array<FrameImage>;
   caption?: string;
   lazy: boolean;
+  margin: boolean;
 };
 
-const { caption, images, lazy } = Astro.props;
+const { caption, images, lazy, margin } = Astro.props;
 const contentImages = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/images/content/**/*.{jpeg,jpg,png,gif,svg}',
 );
@@ -34,12 +35,12 @@ const imageMetaDataEntries = images
     const image = images[index];
     return (
       <figure
-        class='flex items-center'
+        class:list={[frameVariant.base(Astro.props)]}
         x-show={`$store.theme.get() === "${image.theme}" || ${images.length} === 1`}
         x-cloak
       >
         <Picture
-          class:list={[frameVariant(Astro.props)]}
+          class:list={[frameVariant.content(Astro.props)]}
           src={imageMetaData()}
           alt={image.alt}
           formats={['webp']}

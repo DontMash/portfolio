@@ -2,7 +2,14 @@ import { cva, cx, type VariantProps } from 'class-variance-authority';
 
 import { shadow as shadowBase, type ShadowProps } from '@/components/shadow';
 
-const frameBase = cva(['text-(--color-foreground)'], {
+const base = cva(['flex', 'items-center'], {
+  variants: {
+    margin: {
+      false: ['m-0!'],
+    },
+  },
+});
+const frameContent = cva(['text-(--color-foreground)'], {
   variants: {
     border: {
       false: null,
@@ -11,7 +18,17 @@ const frameBase = cva(['text-(--color-foreground)'], {
   },
   defaultVariants: { border: false },
 });
-type FrameBaseProps = VariantProps<typeof frameBase>;
-export interface FrameProps extends FrameBaseProps, ShadowProps {}
-export const frameVariant = (props?: FrameProps) =>
-  cx(frameBase(props), shadowBase({ shadow: props?.shadow }));
+const content = (props?: FrameProps) =>
+  cx(frameContent(props), shadowBase({ shadow: props?.shadow }));
+export const frameVariant = {
+  base,
+  content,
+};
+
+type FrameBaseProps = VariantProps<typeof frameVariant.base>;
+type FrameContentProps = VariantProps<typeof frameContent>;
+
+export interface FrameProps
+  extends FrameBaseProps,
+    FrameContentProps,
+    ShadowProps {}
