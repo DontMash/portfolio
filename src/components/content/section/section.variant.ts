@@ -13,7 +13,7 @@ export const sectionVariant = {
       },
       background: {
         false: null,
-        true: 'bg-(--color-muted)',
+        true: 'bg-(--color-layer-1)',
       },
     },
     defaultVariants: { x: true, y: true, background: false },
