@@ -26,15 +26,15 @@ export const frameContent = block({
   ContentView: ({ value }) => {
     return (
       <figure style={{ margin: 0 }}>
-        {value.images.map(
-          (image) =>
+        {value.images.map((image) => {
+          return (
             image.src && (
               <>
                 <img
                   style={{ width: '100%' }}
                   src={URL.createObjectURL(
                     new Blob([image.src.data], {
-                      type: `image/${image.src.extension}`,
+                      type: `image/${image.src.extension === 'svg' ? 'svg+xml' : image.src.extension}`,
                     }),
                   )}
                   alt={image.alt}
@@ -42,8 +42,9 @@ export const frameContent = block({
                 {image.theme && <p>Theme: {image.theme}</p>}
                 {image.alt && <p>Alt: {image.alt}</p>}
               </>
-            ),
-        )}
+            )
+          );
+        })}
         {!value.lazy && <p>Lazy loading disabled</p>}
         {value.caption && <figcaption>{value.caption}</figcaption>}
       </figure>

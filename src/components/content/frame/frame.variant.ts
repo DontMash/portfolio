@@ -6,7 +6,7 @@ const frameBase = cva(['text-(--color-foreground)'], {
   variants: {
     border: {
       false: null,
-      true: ['border-3', 'rounded-3xl', 'overflow-hidden'],
+      true: ['border-3', 'overflow-hidden'],
     },
   },
   defaultVariants: { border: false },

@@ -19,7 +19,7 @@ type Props = FrameProps & {
 
 const { caption, images, lazy } = Astro.props;
 const contentImages = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/images/content/**/*.{jpeg,jpg,png,gif}',
+  '/src/assets/images/content/**/*.{jpeg,jpg,png,gif,svg}',
 );
 const imageMetaDataEntries = images
   .filter((image) => !!contentImages[image.src])
@@ -34,6 +34,7 @@ const imageMetaDataEntries = images
     const image = images[index];
     return (
       <figure
+        class='flex items-center'
         x-show={`$store.theme.get() === "${image.theme}" || ${images.length} === 1`}
         x-cloak
       >
