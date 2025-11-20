@@ -25,6 +25,9 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ['@keystatic/astro'],
+    },
   },
   env: {
     schema: {
