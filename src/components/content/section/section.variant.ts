@@ -9,7 +9,7 @@ export const sectionVariant = {
       },
       y: {
         false: null,
-        true: ['py-12', 'sm:py-24'],
+        true: ['py-16', 'sm:py-24'],
       },
       background: {
         false: null,
