@@ -78,6 +78,7 @@ export const frameContent = block({
     ),
     caption: fields.text({ label: 'Caption' }),
     border: fields.checkbox({ label: 'Border' }),
+    margin: fields.checkbox({ label: 'Margin', defaultValue: true }),
     shadow: fields.select({
       label: 'Shadow',
       options: [
