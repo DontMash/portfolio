@@ -31,6 +31,7 @@ export const accordionContent = repeating({
   },
   children: ['AccordionItem'],
 });
+
 export const accordionItemContent = wrapper({
   label: 'Accordion Item',
   icon: (
@@ -55,6 +56,15 @@ export const accordionItemContent = wrapper({
     title: fields.text({
       label: 'Title',
       validation: { isRequired: true },
+    }),
+    heading: fields.select({
+      label: 'Heading',
+      options: [
+        { label: 'Heading 2', value: 'heading-2' },
+        { label: 'Heading 3', value: 'heading-3' },
+        { label: 'Heading 4', value: 'heading-4' },
+      ],
+      defaultValue: 'heading-3',
     }),
   },
 });
