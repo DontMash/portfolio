@@ -25,10 +25,11 @@ export const containerContent = wrapper({
     direction: fields.select({
       label: 'Direction',
       options: [
+        { label: 'None', value: 'none' },
         { label: 'Horizontal', value: 'horizontal' },
         { label: 'Vertical', value: 'vertical' },
       ],
-      defaultValue: 'horizontal',
+      defaultValue: 'none',
     }),
     center: fields.checkbox({ label: 'Center', defaultValue: false }),
     spacing: fields.checkbox({ label: 'Spacing', defaultValue: false }),
