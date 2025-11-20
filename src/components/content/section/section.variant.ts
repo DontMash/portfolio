@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
 export const sectionVariant = {
-  base: cva([], {
+  base: cva(['space-y-8'], {
     variants: {
       x: {
         false: null,
