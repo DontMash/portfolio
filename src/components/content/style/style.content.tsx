@@ -21,6 +21,9 @@ export const styleContent = mark({
       />
     </svg>
   ),
+  style: {
+    background: '#ffee5744',
+  },
   schema: {
     color: fields.select({
       label: 'Color',
