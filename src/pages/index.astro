@@ -2,6 +2,7 @@
 import parser from 'accept-language-parser';
 
 import { defaultLocale, isLocaleCode } from '@/i18n';
+defaultLocale;
 
 const acceptLanguageHeader = Astro.request.headers.get('Accept-Language');
 if (!acceptLanguageHeader) {
@@ -13,6 +14,5 @@ if (!locale || !isLocaleCode(locale)) {
   return Astro.redirect(`/${defaultLocale}`);
 }
 
-defaultLocale;
 return Astro.redirect(`/${locale}`);
 ---
