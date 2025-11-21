@@ -2,7 +2,7 @@ import { cva, cx, type VariantProps } from 'class-variance-authority';
 
 import { shadow as shadowBase, type ShadowProps } from '@/components/shadow';
 
-const base = cva(['flex', 'items-center'], {
+const base = cva(['flex', 'items-center', 'justify-center'], {
   variants: {
     margin: {
       false: ['m-0!'],

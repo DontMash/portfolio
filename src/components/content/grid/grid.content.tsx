@@ -31,5 +31,13 @@ export const gridContent = wrapper({
       ],
       defaultValue: 'three',
     }),
+    border: fields.checkbox({
+      label: 'Border',
+      defaultValue: true,
+    }),
+    background: fields.checkbox({
+      label: 'Background',
+      defaultValue: true,
+    }),
   },
 });

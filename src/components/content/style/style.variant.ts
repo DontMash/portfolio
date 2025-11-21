@@ -15,5 +15,9 @@ export const styleVariant = cva([], {
       'heading-4': 'heading-4',
     },
   },
+  defaultVariants: {
+    color: 'none',
+    typography: 'none',
+  },
 });
 export type StyleProps = VariantProps<typeof styleVariant>;

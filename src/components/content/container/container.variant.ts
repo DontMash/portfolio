@@ -18,19 +18,24 @@ export const containerVariant = cva([], {
   },
   compoundVariants: [
     {
+      direction: 'none',
+      center: true,
+      class: ['text-center'],
+    },
+    {
       direction: ['horizontal', 'vertical'],
       center: true,
       class: ['justify-center'],
     },
     {
-      direction: ['horizontal', 'vertical'],
-      spacing: true,
-      class: ['gap-4'],
-    },
-    {
       direction: 'none',
       spacing: false,
       class: ['space-y-4'],
+    },
+    {
+      direction: ['horizontal', 'vertical'],
+      spacing: true,
+      class: ['gap-4'],
     },
   ],
   defaultVariants: { center: null },
