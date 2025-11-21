@@ -15,10 +15,9 @@ type Props = FrameProps & {
   images: Array<FrameImage>;
   caption?: string;
   lazy: boolean;
-  margin: boolean;
 };
 
-const { caption, images, lazy, margin } = Astro.props;
+const { caption, images, lazy } = Astro.props;
 const contentImages = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/images/content/**/*.{jpeg,jpg,png,gif,svg}',
 );
