@@ -29,7 +29,10 @@ export const frameContent = block({
         {value.images.map((image) => {
           return (
             image.src && (
-              <>
+              <details>
+                <summary style={{ marginBottom: '16px', cursor: 'pointer' }}>
+                  Preview - {image.theme} - {image.alt}
+                </summary>
                 <img
                   style={{ width: '100%' }}
                   src={URL.createObjectURL(
@@ -39,9 +42,7 @@ export const frameContent = block({
                   )}
                   alt={image.alt}
                 />
-                {image.theme && <p>Theme: {image.theme}</p>}
-                {image.alt && <p>Alt: {image.alt}</p>}
-              </>
+              </details>
             )
           );
         })}
