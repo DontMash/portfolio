@@ -1,9 +1,16 @@
 ---
 import { Icon as AstroIcon } from 'astro-icon/components';
 
-type Props = Parameters<typeof AstroIcon>[0];
+type Size = 'default' | 'large' | 'text';
+type Props = Parameters<typeof AstroIcon>[0] & { size?: Size };
 
 const props = Astro.props;
+const sizes: Record<Size, string | number> = {
+  default: 24,
+  large: 32,
+  text: '1em',
+};
+const size = sizes[props.size ?? 'default'];
 ---
 
-<AstroIcon aria-hidden size={24} {...props} />
+<AstroIcon aria-hidden {...props} size={size} />

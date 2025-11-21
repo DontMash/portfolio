@@ -1,10 +1,10 @@
 ---
 import { actions, isActionError, isInputError } from 'astro:actions';
-import { Icon } from 'astro-icon/components';
 
 import { defaultLocale, useTranslation, type LocaleCode } from '@/i18n';
 
 import CaptchaButton from '@/components/captcha/captcha-button.astro';
+import { Icon } from '@/components/content/icon';
 import {
   inputCheckbox,
   inputError,
@@ -34,7 +34,7 @@ const result = Astro.getActionResult(actions.contact);
         data-form-input='name'
       >
         <div class='ml-5'>
-          <Icon name='tabler:user' size={24} />
+          <Icon name='tabler:user' />
           <span class='sr-only'>{t('form.name.title')}</span>
         </div>
         <input
@@ -79,7 +79,7 @@ const result = Astro.getActionResult(actions.contact);
         data-form-input='company'
       >
         <div class='ml-5'>
-          <Icon name='tabler:building' size={24} />
+          <Icon name='tabler:building' />
           <span class='sr-only'>{t('form.company.title')}</span>
         </div>
         <input
@@ -124,7 +124,7 @@ const result = Astro.getActionResult(actions.contact);
         data-form-input='email'
       >
         <div class='ml-5'>
-          <Icon name='tabler:mail' size={24} />
+          <Icon name='tabler:mail' />
           <span class='sr-only'>{t('form.email.title')}</span>
         </div>
         <input
@@ -157,13 +157,13 @@ const result = Astro.getActionResult(actions.contact);
 
     <div>
       <label
-        class='data-invalid:border-error flex-col !items-stretch'
+        class='data-invalid:border-error flex-col items-stretch!'
         class:list={[inputLabel()]}
         for='form-contact-message'
         data-form-input='messages'
       >
         <div class='flex items-center gap-5 px-5 py-3'>
-          <Icon name='tabler:message' size={24} />
+          <Icon name='tabler:message' />
           <span>{t('form.message.title')}</span>
         </div>
         <div

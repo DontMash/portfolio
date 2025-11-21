@@ -28,5 +28,19 @@ export const iconContent = inline({
       defaultValue: 'tabler:error-404',
       validation: { isRequired: true },
     }),
+    size: fields.select({
+      label: 'Size',
+      options: [
+        {
+          label: 'Default',
+          value: 'default',
+        },
+        {
+          label: 'Text',
+          value: 'text',
+        },
+      ],
+      defaultValue: 'default',
+    }),
   },
 });
