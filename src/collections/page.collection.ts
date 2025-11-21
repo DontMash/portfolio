@@ -8,6 +8,7 @@ import {
   accordionItemContent,
 } from '@/components/content/accordion/accordion.content';
 import { buttonContent } from '@/components/content/button/button.content';
+import { columnContent } from '@/components/content/column';
 import { containerContent } from '@/components/content/container';
 import { formContent } from '@/components/content/form/form.content';
 import { frameContent } from '@/components/content/frame';
@@ -114,6 +115,7 @@ export const pageCollection = collection({
         Accordion: accordionContent,
         AccordionItem: accordionItemContent,
         Button: buttonContent,
+        Column: columnContent,
         Container: containerContent,
         Form: formContent,
         Frame: frameContent,

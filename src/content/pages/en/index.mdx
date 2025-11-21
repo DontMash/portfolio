@@ -33,12 +33,12 @@ seo:
     - problem solver
   noindex: false
 ---
-<Section max={false} background={false}>
-  <Grid kind="left">
-    <Container direction="vertical" center={false} spacing={false}>
-      # <Style color="primary" typography="heading-3">Hi, I'm Søren</Style>
-
-      ## Software engineer & digital explorer
+<Section id="hero" max={false} background={false}>
+  <Column kind="left">
+    <Container direction="none" center={false} spacing={false}>
+      <Style color="primary" typography="heading-3">Hi, I'm Søren</Style>\
+      <Style color="none" typography="heading-2">Software engineer & digital explorer</Style>
+      =======================================================================================
 
       Transforming visions into reality, one line of code at a time. We can shape the future together with innovation, precision, and passion.
 
@@ -52,7 +52,7 @@ seo:
     </Container>
 
     <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/en/index/profile.jpg","alt":"Sören Maschmann"}]} border margin={false} shadow="none" lazy={false} />
-  </Grid>
+  </Column>
 
   <Container direction="horizontal" center spacing={false}>
     <Button href="#contact" target="" text="Go to contact" icon={{"before":"tabler:chevron-down"}} variants={{"intent":"accent","size":"icon","shadow":"none"}} />
@@ -60,22 +60,48 @@ seo:
 </Section>
 
 <Section id="contact" max={false} background>
-  <Grid kind="right">
+  <Column kind="right">
     <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/en/index/cover.png","alt":"A composition of shapes representing \"software\"-parts."},{"theme":"dark","src":"/src/assets/images/content/pages/en/index/cover_dark.png","alt":"A composition of shapes representing \"software\"-parts."}]} border={false} margin={false} shadow="none" lazy />
 
-    <Container direction="vertical" center={false} spacing={false}>
+    <Container direction="none" center={false} spacing={false}>
       Code the Future.\
-      Innovate. Together.
-      -------------------
+      Innovate. <Style color="primary" typography="none">Together.</Style>
+      --------------------------------------------------------------------
 
       Let's work together to turn innovative ideas into products for the future! To get in touch with me and start our journey, choose one of the options below.
 
       <Container direction="horizontal" center={false} spacing>
         <Button href="mailto:work@soren.codes" target="" text="Mail me" icon={{"before":"tabler:mail"}} variants={{"intent":"primary","size":"md","shadow":"pop"}} />
 
-        <Button href="https://ko-fi.com/smaschmann" target="_blank" text="Ko-fi - soren.codes" icon={{"before":"simple-icons:kofi"}} variants={{"intent":"accent","size":"icon","shadow":"pop"}} />&#x20;
+        <Button href="https://ko-fi.com/smaschmann" target="_blank" text="Ko-fi - soren.codes" icon={{"before":"simple-icons:kofi"}} variants={{"intent":"accent","size":"icon","shadow":"pop"}} />
       </Container>
     </Container>
+  </Column>
+</Section>
+
+<Section id="technologies" max background={false}>
+  ## <Style color="primary" typography="none">Tech Stack:</Style> Fast, Reliable, Hochwertig
+
+  This is an excerpt of the various technologies I like to use. Each tool and framework is carefully selected based on hands-on experience and proven results.&#x20;
+
+  <Grid columns="three">
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/en/index/ts-lettermark-dark.svg","alt":"TypeScript - strongly typed language -  Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/en/index/ts-lettermark-light.svg","alt":"TypeScript - stark typisierte Programmiersprache -  Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/en/index/deno_light_transparent.svg","alt":"Deno - secure JavaScript runtime - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/en/index/deno_dark_transparent.svg","alt":"Deno - secure JavaScript runtime - Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/en/index/docker-logo-dark.svg","alt":"Docker - container platform - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/en/index/docker-logo-light.svg","alt":"Docker - container platform - Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/en/index/astro-logo-dark.svg","alt":"astro - web framework -  Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/en/index/astro-logo-light.svg","alt":"astro - web framework -  Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/en/index/tailwindcss-logotype-dark.svg","alt":"tailwindcss - utility-first CSS framework - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/en/index/tailwindcss-logotype-light.svg","alt":"tailwindcss - utility-first CSS framework - Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/en/index/drizzle-logo-dark.svg","alt":"drizzle - type-safe ORM - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/en/index/drizzle-logo-light.svg","alt":"drizzle - type-safe ORM - Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/en/index/svelte-logomark-dark.svg","alt":"Svelte - compiled ui framework - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/en/index/svelte-logomark-light.svg","alt":"Svelte - compiled ui framework - Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/en/index/alpine-logomark-dark.svg","alt":"Alpine.js - lightweight ui framework - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/en/index/alpine-logomark-light.svg","alt":"Alpine.js - lightweight ui framework - Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/en/index/react-logomark-dark.svg","alt":"React - common ui framework - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/en/index/react-logomark-light.svg","alt":"React - common ui framework - Logo"}]} border={false} margin shadow="none" lazy />
   </Grid>
 </Section>
 

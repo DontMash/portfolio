@@ -1,9 +1,9 @@
 import { fields } from '@keystatic/core';
 import { wrapper } from '@keystatic/core/content-components';
 
-export const gridContent = wrapper({
-  label: 'Grid',
-  description: 'Used to layout content in a grid structure.',
+export const columnContent = wrapper({
+  label: 'Column',
+  description: 'Used to layout content in an uneven column structure.',
   icon: (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -17,19 +17,18 @@ export const gridContent = wrapper({
         stroke-linecap='round'
         stroke-linejoin='round'
         stroke-width='2'
-        d='M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm0 6h16m-8-8v16'
+        d='M3 4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm9-1v18'
       />
     </svg>
   ),
   schema: {
-    columns: fields.select({
-      label: 'Columns',
+    kind: fields.select({
+      label: 'Kind',
       options: [
-        { label: '2', value: 'two' },
-        { label: '3', value: 'three' },
-        { label: '4', value: 'four' },
+        { label: 'Left', value: 'left' },
+        { label: 'Right', value: 'right' },
       ],
-      defaultValue: 'three',
+      defaultValue: 'left',
     }),
   },
 });

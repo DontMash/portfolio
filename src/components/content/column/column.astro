@@ -1,0 +1,11 @@
+---
+import { columnVariant, type ColumnProps } from './column.variant';
+
+type Props = ColumnProps;
+
+const props = Astro.props;
+---
+
+<div class:list={[columnVariant(props)]}>
+  <slot />
+</div>

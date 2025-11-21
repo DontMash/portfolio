@@ -34,12 +34,12 @@ seo:
     - Problemlöser
   noindex: false
 ---
-<Section max={false} background={false}>
-  <Grid kind="left">
-    <Container direction="vertical" center={false} spacing={false}>
-      # <Style color="primary" typography="heading-3">Hi, ich bin Søren</Style>
-
-      ## Softwareingenieur & digitaler Entdecker
+<Section id="hero" max={false} background={false}>
+  <Column kind="left">
+    <Container direction="none" center={false} spacing={false}>
+      <Style color="primary" typography="heading-3">Hi, I'm Søren</Style>\
+      <Style color="none" typography="heading-2">Softwareingenieur & digitaler Entdecker</Style>
+      ==========================================================================================
 
       Ich setze Visionen in die Realität um, eine Codezeile nach der anderen. Mit Innovation, Präzision und Leidenschaft können wir gemeinsam die Zukunft gestalten.
 
@@ -53,7 +53,7 @@ seo:
     </Container>
 
     <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/de/index/profile.jpg","alt":"Sören Maschmann"}]} border margin={false} shadow="none" lazy={false} />
-  </Grid>
+  </Column>
 
   <Container direction="horizontal" center spacing={false}>
     <Button href="#contact" target="" text="Zu Kontakt" icon={{"before":"tabler:chevron-down"}} variants={{"intent":"accent","size":"icon","shadow":"none"}} />
@@ -61,13 +61,13 @@ seo:
 </Section>
 
 <Section id="contact" max={false} background>
-  <Grid kind="right">
+  <Column kind="right">
     <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/de/index/cover.png","alt":"Eine Komposition aus Formen, die Teile einer \"Software\" abbilden sollen."},{"theme":"dark","src":"/src/assets/images/content/pages/de/index/cover_dark.png","alt":"Eine Komposition aus Formen, die Teile einer \"Software\" abbilden sollen."}]} border={false} margin={false} shadow="none" lazy />
 
     <Container direction="vertical" center={false} spacing={false}>
       Entwicklung.\
-      &#x20;Zukunft. Gemeinsam.
-      -------------------------
+      Zukunft. <Style color="primary" typography="none">Gemeinsam.</Style>
+      --------------------------------------------------------------------
 
       Lass uns zusammen daran arbeiten, innovative Ideen in Produkte für die Zukunft zu verwandeln! Um mit mir in Kontakt zu treten und unsere Reise zu beginnen, wähle eine der unten stehenden Optionen.
 
@@ -77,6 +77,32 @@ seo:
         <Button href="https://ko-fi.com/smaschmann" target="_blank" text="Ko-fi - soren.codes" icon={{"before":"simple-icons:kofi"}} variants={{"intent":"accent","size":"icon","shadow":"pop"}} />&#x20;
       </Container>
     </Container>
+  </Column>
+</Section>
+
+<Section id="technologies" max background={false}>
+  ## <Style color="primary" typography="none">Tech Stack:</Style> Schnell, Zuverlässig, High-Quality
+
+  Dies ist ein Auszug aus den verschiedenen Technologien, die ich gerne verwende. Jedes Tool und jedes Framework wurde sorgfältig auf der Grundlage praktischer Erfahrungen und bewährter Lösungen ausgewählt.
+
+  <Grid columns="three">
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/de/index/ts-lettermark-dark.svg","alt":"TypeScript - stark typisierte Programmiersprache -  Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/de/index/ts-lettermark-light.svg","alt":"TypeScript - stark typisierte Programmiersprache -  Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/de/index/deno_light_transparent.svg","alt":"Deno - sichere JavaScript Laufzeitumgebung - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/de/index/deno_dark_transparent.svg","alt":"Deno - sichere JavaScript Laufzeitumgebung - Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/de/index/docker-logo-dark.svg","alt":"Docker - Container Plattform - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/de/index/docker-logo-light.svg","alt":"Docker - Container Plattform - Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/de/index/astro-logo-dark.svg","alt":"astro - Web-Framework -  Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/de/index/astro-logo-light.svg","alt":"astro - Web-Framework -  Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/de/index/tailwindcss-logotype-dark.svg","alt":"tailwindcss - nutzenorientiertes CSS-Framework - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/de/index/tailwindcss-logotype-light.svg","alt":"tailwindcss - nutzenorientiertes CSS-Framework - Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/de/index/drizzle-logo-dark.svg","alt":"drizzle - type-safe ORM - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/de/index/drizzle-logo-light.svg","alt":"drizzle - type-safe ORM - Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/de/index/svelte-logomark-dark.svg","alt":"Svelte - kompiliertes UI-Framework - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/de/index/svelte-logomark-light.svg","alt":"Svelte - kompiliertes UI-Framework - Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/de/index/alpine-logomark-dark.svg","alt":"Alpine.js - leichtgewichtiges UI-Framework - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/de/index/alpine-logomark-light.svg","alt":"Alpine.js - leichtgewichtiges UI-Framework - Logo"}]} border={false} margin shadow="none" lazy />
+
+    <Frame images={[{"theme":"light","src":"/src/assets/images/content/pages/de/index/react-logomark-dark.svg","alt":"React - allgemeines UI-Framework - Logo"},{"theme":"dark","src":"/src/assets/images/content/pages/de/index/react-logomark-light.svg","alt":"React - allgemeines UI-Framework - Logo"}]} border={false} margin shadow="none" lazy />
   </Grid>
 </Section>
 
