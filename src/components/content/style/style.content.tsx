@@ -40,6 +40,7 @@ export const styleContent = mark({
         { label: 'Heading 1', value: 'heading-1' },
         { label: 'Heading 2', value: 'heading-2' },
         { label: 'Heading 3', value: 'heading-3' },
+        { label: 'Heading 4', value: 'heading-4' },
       ],
       defaultValue: 'none',
     }),
