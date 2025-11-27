@@ -1,16 +1,26 @@
-export default (initialState = false) => ({
-  state: initialState,
-  toggle() {
-    this.state = !this.state;
-  },
-  open() {
-    this.state = true;
-  },
-  close(focusElement?: HTMLElement) {
-    this.state = false;
+import type { AlpineComponent } from 'alpinejs';
 
-    if (focusElement) {
-      focusElement.focus();
-    }
-  },
-});
+export default (initialState: boolean = false) =>
+  ({
+    state: initialState,
+    toggle() {
+      if (this.state) {
+        return this.close();
+      }
+
+      this.$refs.button?.focus();
+
+      this.state = true;
+    },
+    close(focusElement?: HTMLElement) {
+      if (!this.state) return;
+
+      this.state = false;
+
+      focusElement && focusElement.focus();
+    },
+  }) satisfies AlpineComponent<{
+    state: boolean;
+    toggle: () => void;
+    close: () => void;
+  }>;

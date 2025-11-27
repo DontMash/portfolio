@@ -35,7 +35,7 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
     <Logo />
 
     <div class='ml-auto flex items-center gap-4'>
-      <Dropdown id='theme'>
+      <Dropdown>
         <Fragment slot='button'>
           <Icon name='tabler:contrast-filled' />
           <span class='sr-only' x-text='$store.theme.get()'></span>
@@ -81,7 +81,7 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
 
       {
         page && page.data.locales.length && (
-          <Dropdown id='language'>
+          <Dropdown>
             <Fragment slot='button'>
               <Icon name='tabler:language' />
               <span class='sr-only'>{getLabelForLocale(currentLocale)}</span>

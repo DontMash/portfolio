@@ -1,18 +1,12 @@
 ---
 import { buttonVariant } from '@/components/content/button';
 import { Icon } from '@/components/content/icon';
-
-interface Props {
-  id: string;
-}
-
-const { id } = Astro.props;
 ---
 
 <div
   class='relative'
   x-data='collapsible'
-  x-id={`["dropdown-${id}"]`}
+  x-id='["dropdown-button"]'
   @keydown.escape.prevent.stop='close($refs.button)'
   @focusin.window='!$refs.panel.contains($event.target) && close()'
 >
@@ -21,7 +15,7 @@ const { id } = Astro.props;
     type='button'
     x-ref='button'
     x-bind:aria-expanded='state'
-    x-bind:aria-controls={`$id("dropdown-${id}")`}
+    x-bind:aria-controls='$id("dropdown-button")'
     @click='toggle'
   >
     <slot name='button' />
@@ -35,8 +29,8 @@ const { id } = Astro.props;
   <div
     class='absolute right-0 mt-2 w-full min-w-40 border-3 bg-(--color-background)'
     x-ref='panel'
+    x-bind:id='$id("dropdown-button")'
     x-show='state'
-    x-bind:id={`$id("dropdown-${id}")`}
     x-transition
     x-cloak
     @click.outside='close($refs.button)'

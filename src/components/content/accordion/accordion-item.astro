@@ -14,7 +14,7 @@ const Heading = headings[heading];
 ---
 
 <div
-  x-data='collapsible'
+  x-data='accordion'
   x-id='["accordion-item-button", "accordion-item-content"]'
 >
   <Heading class:list={['m-0!']}>
@@ -22,11 +22,10 @@ const Heading = headings[heading];
       class='group paragraph-highlight relative flex w-full cursor-pointer gap-4 border-b-3 p-4 text-left after:absolute after:top-[calc(100%+3px)] after:right-0 after:left-1 after:h-[3px] after:w-full after:bg-(--color-primary) focus-visible:outline-3 focus-visible:outline-current focus-visible:outline-dashed'
       type='button'
       x-bind:id='$id("accordion-item-button")'
-      x-bind:data-state='state'
-      x-bind:aria-expanded='state'
+      x-bind:data-state='expanded'
+      x-bind:aria-expanded='expanded'
       x-bind:aria-controls='$id("accordion-item-content")'
-      x-init='!multiple && $watch("current", (value) => value !== $id("accordion-item-button") && close())'
-      @click='() => { current = $id("accordion-item-button"); toggle(); }'
+      @click='expanded = !expanded'
     >
       <span>{title}</span>
       <Icon
@@ -39,7 +38,7 @@ const Heading = headings[heading];
     <section
       role='region'
       x-bind:id='$id("accordion-item-content")'
-      x-show='state'
+      x-show='expanded'
       x-cloak
       x-collapse
       x-bind:aria-labelledby='$id("accordion-item-button")'

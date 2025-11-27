@@ -21,14 +21,7 @@ export const accordionContent = repeating({
       />
     </svg>
   ),
-  schema: {
-    multiple: fields.checkbox({
-      label: 'Multiple',
-      defaultValue: false,
-      description:
-        'Should it be possible to open more than one item at a time?',
-    }),
-  },
+  schema: {},
   children: ['AccordionItem'],
 });
 

@@ -58,6 +58,7 @@ const entryPath = getPageEntryPath(locale, slug);
 
       <button
         class:list={[buttonVariant({ intent: 'accent', size: 'icon' })]}
+        x-ref='button'
         @click='toggle'
       >
         <Icon name='tabler:dots' />
