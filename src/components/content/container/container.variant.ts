@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
-export const containerVariant = cva([], {
+export const containerVariant = cva(['max-w-screen-lg'], {
   variants: {
     direction: {
       none: null,
