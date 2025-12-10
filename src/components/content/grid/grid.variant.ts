@@ -5,14 +5,9 @@ export const gridVariant = cva(
   {
     variants: {
       columns: {
-        two: ['grid-cols-1', 'sm:grid-cols-2'],
-        three: ['grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-3'],
-        four: [
-          'grid-cols-1',
-          'sm:grid-cols-2',
-          'md:grid-cols-3',
-          'lg:grid-cols-4',
-        ],
+        two: ['grid-cols-1', 'md:grid-cols-2'],
+        three: ['grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3'],
+        four: ['grid-cols-1', 'lg:grid-cols-2', 'xl:grid-cols-4'],
       },
       border: {
         true: ['*:p-12', 'sm:*:p-4', '*:border-3'],
