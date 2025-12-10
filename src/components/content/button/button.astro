@@ -18,9 +18,13 @@ const props = Astro.props;
 
 const getAttributes = (props: Props): JSX.AnchorHTMLAttributes => {
   const value = { ...props };
+
   delete value.text;
   delete value.icon;
   delete value.variants;
+
+  value.target = value.target?.length ? value.target : null;
+  
   return value;
 };
 ---
