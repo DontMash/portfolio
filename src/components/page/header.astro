@@ -104,7 +104,7 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
       }
 
       <div class='hidden sm:block'>
-        <Button href={`/${Astro.currentLocale}/#form`}>
+        <Button href={`/${Astro.currentLocale}#form`}>
           <Icon name='tabler:at' />
           <span>{t('header.nav.cta')}</span>
         </Button>
