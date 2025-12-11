@@ -10,7 +10,7 @@ export const gridVariant = cva(
         four: ['grid-cols-1', 'lg:grid-cols-2', 'xl:grid-cols-4'],
       },
       border: {
-        true: ['*:p-12', 'sm:*:p-4', '*:border-3'],
+        true: ['*:p-8', 'sm:*:p-4', '*:border-3'],
         false: null,
       },
       background: {
