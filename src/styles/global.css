@@ -109,6 +109,9 @@
     display: none !important;
   }
 
+  a {
+    @apply hover:underline focus-visible:underline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-current focus-visible:outline-dashed;
+  }
   small {
     @apply small;
   }
