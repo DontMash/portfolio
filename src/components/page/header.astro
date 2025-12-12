@@ -24,7 +24,9 @@ const { locale, slug } = Astro.params;
 const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
 
 const navigation = navigationSchema.safeParse(navigationContent);
-const navigationItems = navigation.success && navigation.data.header.filter(item => item.locale === currentLocale);
+const navigationItems =
+  navigation.success &&
+  navigation.data.header.filter((item) => item.locale === currentLocale);
 ---
 
 <header
@@ -32,7 +34,7 @@ const navigationItems = navigation.success && navigation.data.header.filter(item
   role='banner'
 >
   <nav
-    class='mx-auto flex h-20 max-w-screen-xl items-center border-x-3 px-4 sm:px-12'
+    class='mx-auto flex h-20 max-w-screen-xl items-center px-4 sm:px-12 xl:border-x-3'
     aria-label={t('header.nav.label')}
     x-data='{ theme: $store.theme.get() }'
     x-init='$watch("$store.theme.state", (value) => (theme = $store.theme.get()))'
