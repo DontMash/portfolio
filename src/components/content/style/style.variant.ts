@@ -5,7 +5,7 @@ export const styleVariant = cva(['not-prose'], {
     color: {
       none: null,
       primary:
-        'text-(--color-primary) selection:text-(--color-primary-foreground)',
+        'text-(--color-primary)',
     },
     typography: {
       none: null,

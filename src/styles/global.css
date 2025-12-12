@@ -77,7 +77,7 @@
 
 @layer base {
   :root {
-    @apply scroll-pt-20 scroll-smooth bg-(--color-background) font-mono text-(--color-foreground) selection:bg-(--color-accent-active);
+    @apply scroll-pt-20 scroll-smooth bg-(--color-background) font-mono text-(--color-foreground) selection:bg-(--color-accent-active) selection:text-(--color-foreground);
   }
 
   [data-theme='dark'] {
@@ -121,7 +121,7 @@
 }
 
 @utility anchor {
-  @apply paragraph-highlight transition hover:text-(--color-primary) focus-visible:text-(--color-primary) focus-visible:outline-3 focus-visible:outline-current focus-visible:outline-dashed;
+  @apply paragraph-highlight transition hover:text-(--color-primary) hover:underline focus-visible:underline focus-visible:text-(--color-primary) focus-visible:outline-3 focus-visible:outline-current focus-visible:outline-dashed;
 }
 @utility small {
   @apply leading-xl text-sm;
