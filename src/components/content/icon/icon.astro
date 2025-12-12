@@ -13,4 +13,4 @@ const sizes: Record<Size, string | number> = {
 const size = sizes[props.size ?? 'default'];
 ---
 
-<AstroIcon aria-hidden {...props} size={size} />
+<AstroIcon {...props} class:list={['min-w-fit']} size={size} aria-hidden />
