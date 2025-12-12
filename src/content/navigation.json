@@ -45,5 +45,50 @@
       ]
     }
   ],
-  "footer": []
+  "footer": [
+    {
+      "title": "Contact",
+      "locale": "en",
+      "link": {
+        "page": "de/index",
+        "params": "#contact"
+      }
+    },
+    {
+      "title": "Imprint",
+      "locale": "en",
+      "link": {
+        "page": "en/imprint"
+      }
+    },
+    {
+      "title": "Privacy Policy",
+      "locale": "en",
+      "link": {
+        "page": "en/privacy"
+      }
+    },
+    {
+      "title": "Kontakt",
+      "locale": "de",
+      "link": {
+        "page": "de/index",
+        "params": "#contact"
+      }
+    },
+    {
+      "title": "Impressum",
+      "locale": "de",
+      "link": {
+        "page": "de/impressum"
+      }
+    },
+    {
+      "title": "Datenschutz",
+      "locale": "de",
+      "link": {
+        "page": "de/datenschutz"
+      }
+    }
+  ]
 }

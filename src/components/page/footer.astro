@@ -1,29 +1,21 @@
 ---
 import { Icon } from '@/components/content/icon';
 
+import { getPagePath } from '@/collections/page.collection';
+import { navigationSchema } from '@/collections/navigation.schema';
+import navigationContent from '@/content/navigation.json';
 import { defaultLocale, useTranslation, type LocaleCode } from '@/i18n';
 
 import Logo from '@/components/logo.astro';
-import { Button } from '@/components/content/button';
+import { Button, buttonVariant } from '@/components/content/button';
 
 const locale = Astro.currentLocale as LocaleCode | undefined;
 const t = useTranslation(locale ?? defaultLocale);
 
-const localeLinks: Record<
-  LocaleCode,
-  Record<'contact' | 'imprint' | 'privacy', string>
-> = {
-  en: {
-    contact: '/en/contact',
-    imprint: '/en/imprint',
-    privacy: '/en/privacy',
-  },
-  de: {
-    contact: '/de/kontakt',
-    imprint: '/de/impressum',
-    privacy: '/de/datenschutz',
-  },
-};
+const navigation = navigationSchema.safeParse(navigationContent);
+const navigationItems =
+  navigation.success &&
+  navigation.data.footer.filter((item) => item.locale === locale);
 ---
 
 <footer
@@ -95,38 +87,24 @@ const localeLinks: Record<
 
     <div class='flex flex-col gap-6 sm:text-right'>
       <nav aria-label={t('footer.nav.content.label')}>
-        <ul class='flex grow flex-col gap-4'>
-          <li>
-            <Button
-              href={localeLinks[
-                (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
-              ]['contact']}
-              variants={{ kind: 'link', intent: 'neutral' }}
-            >
-              {t('footer.nav.content.contact')}
-            </Button>
-          </li>
-          <li>
-            <Button
-              href={localeLinks[
-                (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
-              ]['imprint']}
-              variants={{ kind: 'link', intent: 'neutral' }}
-            >
-              {t('footer.nav.content.imprint')}
-            </Button>
-          </li>
-          <li>
-            <Button
-              href={localeLinks[
-                (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
-              ]['privacy']}
-              variants={{ kind: 'link', intent: 'neutral' }}
-            >
-              {t('footer.nav.content.privacy')}
-            </Button>
-          </li>
-        </ul>
+        {
+          navigationItems && navigationItems.length > 0 && (
+            <ul class='flex grow flex-col gap-4'>
+              {navigationItems.map((item) => (
+                <li>
+                  <a
+                    class:list={[
+                      buttonVariant({ kind: 'link', intent: 'neutral' }),
+                    ]}
+                    href={`/${getPagePath(item.link.page.id)}${item.link.params ?? ''}`}
+                  >
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )
+        }
       </nav>
 
       <nav class='mt-auto' aria-label={t('footer.nav.mention.label')}>

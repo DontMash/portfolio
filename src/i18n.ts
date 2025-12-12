@@ -31,9 +31,6 @@ const localization = {
     'footer.nav.socials.label': 'Contacts & Socials',
     'footer.nav.socials.mail': 'Mail me',
     'footer.nav.content.label': 'Further contents',
-    'footer.nav.content.contact': 'Contact',
-    'footer.nav.content.imprint': 'Imprint',
-    'footer.nav.content.privacy': 'Privacy Policy',
     'footer.nav.mention.label': 'Mentions',
     '404.title': '404 - Not found',
     '404.description':
@@ -65,9 +62,6 @@ const localization = {
     'footer.nav.socials.label': 'Kontakt & soziale Medien',
     'footer.nav.socials.mail': 'Schreib mir',
     'footer.nav.content.label': 'Weitere Inhalte',
-    'footer.nav.content.contact': 'Kontakt',
-    'footer.nav.content.imprint': 'Impressum',
-    'footer.nav.content.privacy': 'Datenschutz',
     'footer.nav.mention.label': 'Erwähnungen',
     '404.title': '404 - Nicht gefunden',
     '404.description':
