@@ -1,20 +1,26 @@
 ---
 import _ from 'lodash';
 
+import { getPagePath } from '@/collections/page.collection';
 import { useTranslation, defaultLocale, type LocaleCode } from '@/i18n';
 
 import { Icon } from '@/components/content/icon';
 import { sectionVariant } from '@/components/content/section';
+import { getCollection } from 'astro:content';
 
 let pathname = Astro.url.pathname.slice(1);
 pathname = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
-const paths = pathname.split('/');
+const identifier = pathname
+  .split('/')
+  .map((_, index, array) => array.slice(0, index + 1).join('/'));
+
+const pages = await getCollection('pages');
 
 const t = useTranslation((Astro.currentLocale as LocaleCode) ?? defaultLocale);
 ---
 
 {
-  paths.length > 1 && (
+  identifier.length > 1 && (
     <nav
       class:list={[sectionVariant.base({ y: false }), 'not-prose']}
       aria-label={t('breadcrumb.label')}
@@ -26,20 +32,26 @@ const t = useTranslation((Astro.currentLocale as LocaleCode) ?? defaultLocale);
             <span class='sr-only'>{t('breadcrumb.home.label')}</span>
           </a>
         </li>
-        {paths.slice(1).map((crumb, index, array) => (
-          <>
-            <li class='flex items-center gap-2 p-0'>
-              <Icon name='tabler:chevron-right' />
-              <a
-                class='anchor'
-                href={`/${paths.slice(0, paths.length - index).join('/')}`}
-                aria-current={index >= array.length - 1 ? 'page' : undefined}
-              >
-                {_.capitalize(decodeURI(crumb))}
-              </a>
-            </li>
-          </>
-        ))}
+        {identifier.slice(1).map((value, index, array) =>
+          pages
+            .filter((page) => page.id === value)
+            .map((page) => (
+              <>
+                <li class='flex items-center gap-2 p-0'>
+                  <Icon name='tabler:chevron-right' />
+                  <a
+                    class='anchor'
+                    href={`/${getPagePath(value)}`}
+                    aria-current={
+                      index >= array.length - 1 ? 'page' : undefined
+                    }
+                  >
+                    {page.data.title}
+                  </a>
+                </li>
+              </>
+            ))
+        )}
       </ol>
     </nav>
   )
