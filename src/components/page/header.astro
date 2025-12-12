@@ -2,6 +2,8 @@
 import { getEntry } from 'astro:content';
 
 import { getPagePath } from '@/collections/page.collection';
+import { navigationSchema } from '@/collections/navigation.schema';
+import navigationContent from '@/content/navigation.json';
 import {
   defaultLocale,
   getLabelForLocale,
@@ -9,7 +11,7 @@ import {
   type LocaleCode,
 } from '@/i18n';
 
-import { Button } from '@/components/content/button';
+import { Button, buttonVariant } from '@/components/content/button';
 import { Dropdown, dropdownItemVariant } from '@/components/dropdown';
 import Logo from '@/components/logo.astro';
 import { Icon } from '@/components/content/icon';
@@ -20,6 +22,9 @@ const t = useTranslation(currentLocale);
 
 const { locale, slug } = Astro.params;
 const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
+
+const navigation = navigationSchema.safeParse(navigationContent);
+const navigationItems = navigation.success && navigation.data.header.filter(item => item.locale === currentLocale);
 ---
 
 <header
@@ -27,12 +32,53 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
   role='banner'
 >
   <nav
-    class='mx-auto flex h-20 max-w-screen-xl items-center px-4 sm:px-12'
+    class='mx-auto flex h-20 max-w-screen-xl items-center border-x-3 px-4 sm:px-12'
     aria-label={t('header.nav.label')}
     x-data='{ theme: $store.theme.get() }'
     x-init='$watch("$store.theme.state", (value) => (theme = $store.theme.get()))'
   >
     <Logo />
+
+    {
+      navigationItems && navigationItems.length > 0 && (
+        <ul class='ml-12 flex h-full divide-x-3 border-x-3'>
+          {navigationItems.map((item) => {
+            const link = item.links.at(0);
+            if (!link) return null;
+
+            if (item.links.length < 2) {
+              return (
+                <li class='flex h-full items-center px-4'>
+                  <a
+                    class:list={[buttonVariant({ kind: 'link' })]}
+                    href={`/${getPagePath(link.page.id)}${link.params ?? ''}`}
+                  >
+                    {item.title}
+                  </a>
+                </li>
+              );
+            }
+
+            return (
+              <li class='flex h-full items-center px-4'>
+                <Dropdown>
+                  <Fragment slot='button'>{item.title}</Fragment>
+
+                  {item.links.map(async (link) => (
+                    <a
+                      class:list={[dropdownItemVariant()]}
+                      href={`/${getPagePath(link.page.id)}${link.params ?? ''}`}
+                    >
+                      {(await getEntry('pages', link.page.id))?.data.title}
+                    </a>
+                  ))}
+                </Dropdown>
+              </li>
+            );
+          })}
+        </ul>
+      )
+    }
 
     <div class='ml-auto flex items-center gap-4'>
       <Dropdown>

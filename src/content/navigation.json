@@ -1,0 +1,49 @@
+{
+  "header": [
+    {
+      "title": "Services",
+      "description": "Expertise for your solution.",
+      "locale": "en",
+      "links": [
+        {
+          "page": "en/index",
+          "params": "#services"
+        }
+      ]
+    },
+    {
+      "title": "Technologies",
+      "description": "A tech stack to match.",
+      "locale": "en",
+      "links": [
+        {
+          "page": "en/index",
+          "params": "#technologies"
+        }
+      ]
+    },
+    {
+      "title": "Leistungen",
+      "description": "Expertise für deine Lösungen.",
+      "locale": "de",
+      "links": [
+        {
+          "page": "de/index",
+          "params": "#services"
+        }
+      ]
+    },
+    {
+      "title": "Technologien",
+      "description": "Ein passender Tech Stack für jedes Projekt.",
+      "locale": "de",
+      "links": [
+        {
+          "page": "de/index",
+          "params": "#technologies"
+        }
+      ]
+    }
+  ],
+  "footer": []
+}

@@ -2,8 +2,9 @@ import { config } from '@keystatic/core';
 import { BRAND_LOGO, BRAND_NAME, REPOSITORY } from 'astro:env/client';
 
 import { pageCollection } from '@/collections/page.collection';
-import { logomark } from '@/components/content/logomark.content';
+import { navigationSingleton } from '@/collections/navigation.singleton';
 import { settingsSingleton } from '@/collections/settings.singleton';
+import { logomark } from '@/components/content/logomark.content';
 
 export default config({
   ui: {
@@ -14,7 +15,7 @@ export default config({
             logomark(BRAND_LOGO ?? '/favicon.svg', `${BRAND_NAME} Logo`),
         }
       : undefined,
-    navigation: ['pages', 'settings'],
+    navigation: ['pages', 'navigation', 'settings'],
   },
   locale: 'en-US',
   storage: import.meta.env.DEV
@@ -30,6 +31,7 @@ export default config({
     pages: pageCollection,
   },
   singletons: {
+    navigation: navigationSingleton,
     settings: settingsSingleton,
   },
 });

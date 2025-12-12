@@ -27,7 +27,7 @@ const localeLinks: Record<
 ---
 
 <footer
-  class='bg-(--color-foreground) py-12 text-(--color-background)'
+  class='bg-(--color-foreground) py-12 text-(--color-background) selection:bg-(--color-neutral-active) selection:text-(--color-background)'
   role='contentinfo'
   x-data='{ theme: $store.theme.invert() }'
   x-init='$watch("$store.theme.state", (value) => (theme = $store.theme.invert()))'
