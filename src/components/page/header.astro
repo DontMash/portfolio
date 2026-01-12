@@ -36,14 +36,14 @@ const navigationItems =
   <nav
     class='mx-auto flex h-20 max-w-screen-xl items-center px-4 sm:px-12 xl:border-x-3'
     aria-label={t('header.nav.label')}
-    x-data='{ theme: $store.theme.get() }'
+    x-data='{ theme: $store.theme.get()}'
     x-init='$watch("$store.theme.state", (value) => (theme = $store.theme.get()))'
   >
     <Logo />
 
     {
       navigationItems && navigationItems.length > 0 && (
-        <ul class='ml-12 flex h-full divide-x-3 border-x-3'>
+        <ul class='ml-12 hidden h-full divide-x-3 border-x-3 lg:flex'>
           {navigationItems.map((item) => {
             const link = item.links.at(0);
             if (!link) return null;
@@ -151,12 +151,15 @@ const navigationItems =
         )
       }
 
-      <div class='hidden sm:block'>
-        <Button href={`/${Astro.currentLocale}#form`}>
-          <Icon name='tabler:at' />
-          <span>{t('header.nav.cta')}</span>
-        </Button>
-      </div>
+      <Button class='!hidden lg:!inline-block' href={`/${Astro.currentLocale}#form`}>
+        <Icon name='tabler:at' />
+        <span>{t('header.nav.cta')}</span>
+      </Button>
+
+      <Button class='inline-block lg:hidden' href={`/${Astro.currentLocale}#form`}>
+        <Icon name='tabler:menu-2' />
+        <span>{t('header.nav.menu')}</span>
+      </Button>
     </div>
   </nav>
 </header>

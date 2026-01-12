@@ -25,6 +25,7 @@ const localization = {
   en: {
     'header.nav.label': 'Main',
     'header.nav.cta': 'Say hello',
+    'header.nav.menu': 'Menu',
     'footer.description':
       'Software development is the process of transforming visions into reality.',
     'footer.toTop': 'Go back to the top',
@@ -56,6 +57,7 @@ const localization = {
   de: {
     'header.nav.label': 'Haupt',
     'header.nav.cta': 'Schreib mir',
+    'header.nav.menu': 'Menü',
     'footer.description':
       'Softwareentwicklung beschreibt den Prozess der Umsetzung von Ideen in die Realität.',
     'footer.toTop': 'Zurück nach oben',

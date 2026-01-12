@@ -1,7 +1,8 @@
-import type { Alpine, AlpineComponent } from 'alpinejs';
+import type { Alpine } from 'alpinejs';
 import collapse from '@alpinejs/collapse';
 import intersect from '@alpinejs/intersect';
 import persist from '@alpinejs/persist';
+import resize from '@alpinejs/resize';
 
 import { create as createTheme } from '@/theme';
 import { accordion } from '@/components/content/accordion';
@@ -12,6 +13,7 @@ export default (Alpine: Alpine) => {
   Alpine.plugin(collapse);
   Alpine.plugin(intersect);
   Alpine.plugin(persist);
+  Alpine.plugin(resize);
 
   Alpine.store('theme', createTheme(Alpine));
 
