@@ -3,11 +3,14 @@
   "name": "portfolio",
   "version": "0.0.1",
   "scripts": {
-    "format": "prettier . --write",
+    "fmt": "prettier . --check",
+    "fmt:fix": "prettier . --write",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "check": "tsc --noEmit && astro check",
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

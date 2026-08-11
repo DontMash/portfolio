@@ -2,11 +2,11 @@
 node_modules
 /dist
 /.astro
-/.vercel
 /package
 .env
 .env.*
 !.env.example
+/.agents
 
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
