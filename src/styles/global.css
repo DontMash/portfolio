@@ -18,11 +18,13 @@
   --color-orange-300: oklch(0.6695 0.2183 30.08);
   --color-peach-100: oklch(0.9649 0.018 39.4);
   --color-peach-200: oklch(0.9304 0.0367 39.32);
+  --color-peach-300: oklch(0.8985 0.0549 39.26);
   --color-azure-100: oklch(0.5676 0.148 248.82);
   --color-azure-200: oklch(0.5257 0.1352 248.43);
   --color-azure-300: oklch(0.4777 0.1226 248.48);
   --color-cobalt-100: oklch(0.3867 0.1085 268.94);
   --color-cobalt-200: oklch(0.3552 0.0969 269.49);
+  --color-cobalt-300: oklch(0.3261 0.0881 269.8);
   --color-error: oklch(0.6296 0.2557 25.81);
 
   --font-mono: 'Azeret Mono Variable', monospace;
