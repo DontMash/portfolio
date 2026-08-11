@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
 @plugin '@tailwindcss/typography';
 @config '@/../tailwind.config.js';
 
@@ -55,6 +56,17 @@
 @theme inline {
   --color-background: var(--color-base-100);
   --color-foreground: var(--color-base-900);
+  --color-card: var(--color-background);
+  --color-card-foreground: var(--color-foreground);
+  --color-popover: var(--color-background);
+  --color-popover-foreground: var(--color-foreground);
+  --color-border: var(--color-foreground);
+  --color-input: var(--color-foreground);
+  --color-ring: var(--color-foreground);
+  --color-destructive: var(--color-error);
+  --color-destructive-foreground: var(--color-base-100);
+  --color-secondary: var(--color-accent);
+  --color-secondary-foreground: var(--color-accent-foreground);
   --color-primary: var(--color-orange-100);
   --color-primary-hover: var(--color-orange-200);
   --color-primary-active: var(--color-orange-300);
@@ -99,8 +111,49 @@
   [data-icon] {
     @apply inline-block;
   }
-  [x-cloak] {
-    display: none !important;
+  .theme-logo-dark {
+    display: none;
+  }
+  [data-theme='dark'] .theme-logo-light {
+    display: none;
+  }
+  [data-theme='dark'] .theme-logo-dark {
+    display: block;
+  }
+  [data-theme='light'] [data-theme-logo='invert'] .theme-logo-light {
+    display: none;
+  }
+  [data-theme='light'] [data-theme-logo='invert'] .theme-logo-dark {
+    display: block;
+  }
+  [data-theme='dark'] [data-theme-logo='invert'] .theme-logo-light {
+    display: block;
+  }
+  [data-theme='dark'] [data-theme-logo='invert'] .theme-logo-dark {
+    display: none;
+  }
+  [data-theme='light'] [data-frame-theme='dark'][data-frame-single='false'],
+  [data-theme='dark'] [data-frame-theme='light'][data-frame-single='false'] {
+    display: none;
+  }
+  [data-accordion-panel] {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 200ms ease;
+  }
+  [data-accordion-panel] > div {
+    overflow: hidden;
+  }
+  [data-accordion-panel][data-state='open'] {
+    grid-template-rows: 1fr;
+  }
+  [data-accordion-panel][data-state='closed'] {
+    visibility: hidden;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-accordion-panel] {
+      transition: none;
+    }
   }
 
   small {

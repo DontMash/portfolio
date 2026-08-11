@@ -16,7 +16,7 @@ interface Props {
 }
 
 // TODO: feat: add technologies section
-// TypeScript, React, Svelte, AlpineJS Astro, Node, TailwindCSS, KeystaticCMS, Docker, Capacitor, Electron, Drizzle, BetterAuth, PocketBase
+// TypeScript, React, Astro, Node, TailwindCSS, KeystaticCMS, Docker, Capacitor, Electron, Drizzle, BetterAuth, PocketBase
 // TODO: feat: add services section
 // Website (Presence), Web Apps, Desktop Apps, Mobile Apps, SaaS, Consulting, Product Owner
 // TODO: feat: add services pages
@@ -45,12 +45,12 @@ interface Props {
 
 <!doctype html>
 <!--
-Handcrafted with Astro, TailwindCSS, AlpineJS & KeystaticCMS.
+Handcrafted with Astro, TailwindCSS, React & KeystaticCMS.
 Managed & hosted on Hetzner in Germany.
 Interested to see how it works for you?
 https://www.soren.codes#contact
 -->
-<html lang={Astro.currentLocale} x-data x-bind:data-theme='$store.theme.get()'>
+<html lang={Astro.currentLocale}>
   <head>
     <SEO {...Astro.props.seo} />
     <Theme />

@@ -1,35 +1,36 @@
 ---
-import { Icon } from 'astro-icon/components';
+import logoDark from '@/assets/icons/logomark_dark.svg';
+import logoLight from '@/assets/icons/logomark_light.svg';
 
 import { defaultLocale, useTranslation, type LocaleCode } from '@/i18n';
+import { buttonVariant } from '@/components/ui/button';
 
-import { Button } from '@/components/content/button';
-
-const attributes = {
-  title: 'Logomark of soren.codes',
-  width: 132,
-  height: 48,
+type Props = {
+  invert?: boolean;
 };
 
+const { invert = false } = Astro.props;
 const t = useTranslation((Astro.currentLocale as LocaleCode) ?? defaultLocale);
 ---
 
-<Button
-  class='-mb-4'
+<a
+  class:list={['-mb-4', buttonVariant({ kind: 'link' })]}
   href={`/${Astro.currentLocale}`}
-  variants={{ kind: 'link' }}
+  data-theme-logo={invert ? 'invert' : undefined}
 >
-  <Icon
-    name=`logomark_light`
-    {...attributes}
-    x-show='theme === "light"'
-    x-cloak
+  <img
+    class='theme-logo-light'
+    src={logoLight.src}
+    alt=''
+    width='132'
+    height='48'
   />
-  <Icon
-    name=`logomark_dark`
-    {...attributes}
-    x-show='theme === "dark"'
-    x-cloak
+  <img
+    class='theme-logo-dark'
+    src={logoDark.src}
+    alt=''
+    width='132'
+    height='48'
   />
   <span class='sr-only'>{t('logo.href.label')}</span>
-</Button>
+</a>

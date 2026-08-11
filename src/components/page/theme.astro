@@ -1,12 +1,20 @@
 <script is:inline>
-  // set initial theme state
-  const item = localStorage.getItem('theme');
-  const themeState = JSON.parse(item);
-  const theme =
-    themeState && themeState !== 'auto'
-      ? themeState
-      : window.matchMedia('(prefers-color-scheme: dark)').matches
+  const stored = localStorage.getItem('theme');
+  let themeState = 'auto';
+
+  try {
+    const parsed = stored ? JSON.parse(stored) : 'auto';
+    if (parsed === 'light' || parsed === 'dark' || parsed === 'auto') {
+      themeState = parsed;
+    }
+  } catch {
+    themeState = 'auto';
+  }
+
+  document.documentElement.dataset.theme =
+    themeState === 'auto'
+      ? window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
-        : 'light';
-  document.documentElement.dataset.theme = theme;
+        : 'light'
+      : themeState;
 </script>

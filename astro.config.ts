@@ -1,12 +1,10 @@
 import { defineConfig, envField } from 'astro/config';
 
-import alpinejs from '@astrojs/alpinejs';
 import mdx from '@astrojs/mdx';
 import node from '@astrojs/node';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 import tailwindcss from '@tailwindcss/vite';
-import icon from 'astro-icon';
 
 import { defaultLocale, getLocales } from './src/i18n';
 
@@ -15,10 +13,6 @@ export default defineConfig({
   output: 'server',
   adapter: node({ mode: 'standalone' }),
   integrations: [
-    alpinejs({ entrypoint: '@/alpine' }),
-    icon({
-      iconDir: 'src/assets/icons',
-    }),
     ...(process.env.KEYSTATIC_SKIP ? [] : [keystatic()]),
     mdx(),
     react(),

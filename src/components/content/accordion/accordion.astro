@@ -1,11 +1,20 @@
 ---
-interface Props {
+import AccordionEnhancer from './accordion-enhancer';
+
+type Props = {
   multiple?: boolean;
-}
+};
 
 const { multiple = false } = Astro.props;
+const rootId = `accordion-${crypto.randomUUID()}`;
 ---
 
-<div class='space-y-4' x-data={`{ current: undefined, multiple: ${multiple} }`}>
+<div
+  id={rootId}
+  data-accordion
+  data-accordion-multiple={multiple ? 'true' : 'false'}
+  class='flex w-full flex-col gap-4'
+>
   <slot />
+  <AccordionEnhancer client:visible {rootId} />
 </div>

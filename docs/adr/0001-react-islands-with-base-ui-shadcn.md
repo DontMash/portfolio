@@ -1,0 +1,7 @@
+---
+status: proposed
+---
+
+# Use React islands with shadcn components on Base UI
+
+The portfolio will replace Alpine-owned browser interactions with React islands while retaining Astro server rendering. Application-facing visual components will be project-owned shadcn source generated and managed through the shadcn CLI, using Base UI as the primitive foundation; direct Base UI usage stays behind the visual-component boundary. The current visual appearance will be preserved and expressed through shadcn semantic variables and conventions, rather than replaced with shadcn defaults. Cross-island shared interaction state, especially the three-state theme preference, will use Nano Stores; local surface state remains local to its React island. The existing pre-hydration theme initialization remains, and `.astro` presentation responds through the document theme attribute where possible. The generated shadcn Button becomes the shared button implementation for interactions and forms; content links remain semantic anchors styled with its variant utilities. Tabler icons will use `@tabler/icons-react` everywhere, including static Astro-rendered components, rather than maintaining separate icon implementations. This preserves the existing Astro/content architecture while choosing a coherent, accessible React component foundation instead of mixing primitive libraries or rewriting the whole site as a React application.

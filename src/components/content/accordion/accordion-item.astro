@@ -1,29 +1,30 @@
 ---
 import { Icon } from '@/components/content/icon';
 
-type Props = { title: string; name?: string };
+type Props = {
+  title: string;
+};
 
 const { title } = Astro.props;
+const id = crypto.randomUUID();
+const triggerId = `accordion-trigger-${id}`;
+const panelId = `accordion-panel-${id}`;
 ---
 
-<div
-  x-data='collapsible'
-  x-id='["accordion-item-button", "accordion-item-content"]'
->
+<div data-accordion-item data-state='closed'>
   <h3 class='!m-0'>
     <button
       class='group paragraph-highlight relative flex w-full cursor-pointer gap-4 border-b-3 p-4 text-left after:absolute after:top-[calc(100%+var(--border-3))] after:right-0 after:left-1 after:h-(--border-3) after:w-full after:bg-(--color-primary) focus-visible:outline-3 focus-visible:outline-current focus-visible:outline-dashed'
       type='button'
-      x-bind:id='$id("accordion-item-button")'
-      x-bind:data-state='state'
-      x-bind:aria-expanded='state'
-      x-bind:aria-controls='$id("accordion-item-content")'
-      x-init='!multiple && $watch("current", (value) => value !== $id("accordion-item-button") && close())'
-      @click='() => { current = $id("accordion-item-button"); toggle(); }'
+      id={triggerId}
+      data-accordion-trigger
+      data-state='closed'
+      aria-expanded='false'
+      aria-controls={panelId}
     >
       <span>{title}</span>
       <Icon
-        class='ml-auto min-w-fit self-end transition group-data-[state]:rotate-180'
+        class='ml-auto min-w-fit self-end transition group-data-[state=open]:rotate-180'
         name='tabler:caret-down'
       />
     </button>
@@ -31,11 +32,12 @@ const { title } = Astro.props;
 
   <section
     role='region'
-    x-bind:id='$id("accordion-item-content")'
-    x-show='state'
-    x-cloak
-    x-collapse
-    x-bind:aria-labelledby='$id("accordion-item-button")'
+    id={panelId}
+    data-accordion-panel
+    data-state='closed'
+    hidden
+    aria-hidden='true'
+    aria-labelledby={triggerId}
   >
     <div class='px-4 pt-4 [&>*]:first:mt-0 [&>*]:last:mb-0'>
       <slot />

@@ -34,8 +34,8 @@ const imageMetaDataEntries = images
     const image = images[index];
     return (
       <figure
-        x-show={`$store.theme.get() === "${image.theme}" || ${images.length} === 1`}
-        x-cloak
+        data-frame-theme={image.theme}
+        data-frame-single={images.length === 1 ? 'true' : 'false'}
       >
         <Picture
           class:list={[frameVariant(Astro.props)]}

@@ -9,10 +9,11 @@ import {
   type LocaleCode,
 } from '@/i18n';
 
-import { Button } from '@/components/content/button';
-import { Dropdown, dropdownItemVariant } from '@/components/dropdown';
-import Logo from '@/components/logo.astro';
+import { buttonVariant } from '@/components/ui/button';
 import { Icon } from '@/components/content/icon';
+import Logo from '@/components/logo.astro';
+import LocaleMenu from '@/components/page/locale-menu';
+import ThemeMenu from '@/components/page/theme-menu';
 
 const currentLocale =
   (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale;
@@ -20,6 +21,11 @@ const t = useTranslation(currentLocale);
 
 const { locale, slug } = Astro.params;
 const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
+const localeOptions = page?.data.locales.map((entry) => ({
+  label: getLabelForLocale(entry.locale),
+  href: `/${getPagePath(entry.ref)}`,
+  current: entry.locale === currentLocale,
+}));
 ---
 
 <header
@@ -29,85 +35,30 @@ const page = await getEntry('pages', slug ? `${locale}/${slug}` : `${locale}`);
   <nav
     class='mx-auto flex h-20 max-w-screen-xl items-center px-4 sm:px-12'
     aria-label={t('header.nav.label')}
-    x-data='{ theme: $store.theme.get() }'
-    x-init='$watch("$store.theme.state", (value) => (theme = $store.theme.get()))'
   >
     <Logo />
 
     <div class='ml-auto flex items-center gap-4'>
-      <Dropdown id='theme'>
-        <Fragment slot='button'>
-          <Icon name='tabler:contrast-filled' />
-          <span class='sr-only' x-text='$store.theme.get()'></span>
-        </Fragment>
-
-        <button
-          class:list={[dropdownItemVariant()]}
-          @click='$store.theme.set("light")'
-        >
-          <Icon name='tabler:sun' />
-          <span>Light</span>
-          <Icon
-            class='ml-auto'
-            name='tabler:check'
-            x-show='$store.theme.state === "light"'
-          />
-        </button>
-        <button
-          class:list={[dropdownItemVariant()]}
-          @click='$store.theme.set("dark")'
-        >
-          <Icon name='tabler:moon' />
-          <span>Dark</span>
-          <Icon
-            class='ml-auto'
-            name='tabler:check'
-            x-show='$store.theme.state === "dark"'
-          />
-        </button>
-        <button
-          class:list={[dropdownItemVariant()]}
-          @click='$store.theme.set("auto")'
-        >
-          <Icon name='tabler:device-desktop' />
-          <span>Auto</span>
-          <Icon
-            class='ml-auto'
-            name='tabler:check'
-            x-show='$store.theme.state === "auto"'
-          />
-        </button>
-      </Dropdown>
+      <ThemeMenu client:load />
 
       {
-        page && page.data.locales.length && (
-          <Dropdown id='language'>
-            <Fragment slot='button'>
-              <Icon name='tabler:language' />
-              <span class='sr-only'>{getLabelForLocale(currentLocale)}</span>
-            </Fragment>
-
-            <span class:list={[dropdownItemVariant()]}>
-              {getLabelForLocale(currentLocale)}
-              <Icon class='ml-auto' name='tabler:check' />
-            </span>
-            {page?.data.locales.map((entry) => (
-              <a
-                class:list={[dropdownItemVariant()]}
-                href={`/${getPagePath(entry.ref)}`}
-              >
-                {getLabelForLocale(entry.locale)}
-              </a>
-            ))}
-          </Dropdown>
+        localeOptions && localeOptions.length > 0 && (
+          <LocaleMenu
+            client:load
+            currentLabel={getLabelForLocale(currentLocale)}
+            options={localeOptions}
+          />
         )
       }
 
       <div class='hidden sm:block'>
-        <Button href={`/${Astro.currentLocale}/#form`}>
+        <a
+          class:list={[buttonVariant()]}
+          href={`/${Astro.currentLocale}/#form`}
+        >
           <Icon name='tabler:at' />
           <span>{t('header.nav.cta')}</span>
-        </Button>
+        </a>
       </div>
     </div>
   </nav>

@@ -1,10 +1,9 @@
 ---
-import { Icon } from '@/components/content/icon';
-
 import { defaultLocale, useTranslation, type LocaleCode } from '@/i18n';
 
+import { buttonVariant } from '@/components/ui/button';
+import { Icon } from '@/components/content/icon';
 import Logo from '@/components/logo.astro';
-import { Button } from '@/components/content/button';
 
 const locale = Astro.currentLocale as LocaleCode | undefined;
 const t = useTranslation(locale ?? defaultLocale);
@@ -24,13 +23,15 @@ const localeLinks: Record<
     privacy: '/de/datenschutz',
   },
 };
+
+const currentLocale = locale ?? defaultLocale;
+const linkClass = buttonVariant({ kind: 'link', intent: 'neutral' });
 ---
 
 <footer
   class='bg-(--color-foreground) py-12 text-(--color-background)'
   role='contentinfo'
-  x-data='{ theme: $store.theme.invert() }'
-  x-init='$watch("$store.theme.state", (value) => (theme = $store.theme.invert()))'
+  data-theme-invert
 >
   <div
     class='mx-auto flex min-h-60 max-w-screen-xl flex-col gap-6 px-4 sm:grid sm:grid-cols-2 sm:grid-rows-1 sm:gap-8 sm:px-12'
@@ -39,7 +40,7 @@ const localeLinks: Record<
       class='flex flex-col items-start gap-6'
       aria-label={t('footer.nav.socials.label')}
     >
-      <Logo />
+      <Logo invert />
 
       <p class='small w-full max-w-96'>
         {t('footer.description')}
@@ -47,46 +48,46 @@ const localeLinks: Record<
 
       <ul class='flex flex-wrap gap-2'>
         <li>
-          <Button
+          <a
+            class:list={[buttonVariant({ intent: 'neutral', size: 'icon' })]}
             href='mailto:work@soren.codes'
-            variants={{ intent: 'neutral', size: 'icon' }}
           >
             <Icon name='tabler:mail' size={24} />
             <span class='sr-only'>{t('footer.nav.socials.mail')}</span>
-          </Button>
+          </a>
         </li>
         <li>
-          <Button
+          <a
+            class:list={[buttonVariant({ intent: 'neutral', size: 'icon' })]}
             href='https://ko-fi.com/smaschmann'
             target='_blank'
             rel='noreferrer'
-            variants={{ intent: 'neutral', size: 'icon' }}
           >
             <Icon name='simple-icons:kofi' size={24} />
             <span class='sr-only outline'>Ko-fi - soren.codes</span>
-          </Button>
+          </a>
         </li>
         <li>
-          <Button
+          <a
+            class:list={[buttonVariant({ intent: 'neutral', size: 'icon' })]}
             href='https://github.com/dontmash'
             target='_blank'
             rel='noreferrer'
-            variants={{ intent: 'neutral', size: 'icon' }}
           >
             <Icon name='tabler:brand-github' size={24} />
             <span class='sr-only'>GitHub - soren.codes</span>
-          </Button>
+          </a>
         </li>
         <li>
-          <Button
+          <a
+            class:list={[buttonVariant({ intent: 'neutral', size: 'icon' })]}
             href='https://www.linkedin.com/in/smaschmann'
             target='_blank'
             rel='noreferrer'
-            variants={{ intent: 'neutral', size: 'icon' }}
           >
             <Icon name='tabler:brand-linkedin' size={24} />
             <span class='sr-only'>LinkedIn - Sören Maschmann</span>
-          </Button>
+          </a>
         </li>
       </ul>
 
@@ -97,34 +98,28 @@ const localeLinks: Record<
       <nav aria-label={t('footer.nav.content.label')}>
         <ul class='flex grow flex-col gap-4'>
           <li>
-            <Button
-              href={localeLinks[
-                (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
-              ]['contact']}
-              variants={{ kind: 'link', intent: 'neutral' }}
+            <a
+              class:list={[linkClass]}
+              href={localeLinks[currentLocale].contact}
             >
               {t('footer.nav.content.contact')}
-            </Button>
+            </a>
           </li>
           <li>
-            <Button
-              href={localeLinks[
-                (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
-              ]['imprint']}
-              variants={{ kind: 'link', intent: 'neutral' }}
+            <a
+              class:list={[linkClass]}
+              href={localeLinks[currentLocale].imprint}
             >
               {t('footer.nav.content.imprint')}
-            </Button>
+            </a>
           </li>
           <li>
-            <Button
-              href={localeLinks[
-                (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
-              ]['privacy']}
-              variants={{ kind: 'link', intent: 'neutral' }}
+            <a
+              class:list={[linkClass]}
+              href={localeLinks[currentLocale].privacy}
             >
               {t('footer.nav.content.privacy')}
-            </Button>
+            </a>
           </li>
         </ul>
       </nav>
@@ -132,10 +127,10 @@ const localeLinks: Record<
       <nav class='mt-auto' aria-label={t('footer.nav.mention.label')}>
         <ul class='flex grow flex-col gap-4'>
           <li>
-            <Button
+            <a
+              class:list={[linkClass]}
               href='https://github.com/dontmash/portfolio'
               target='_blank'
-              variants={{ kind: 'link', intent: 'neutral' }}
             >
               <small>
                 Made with <Icon
@@ -144,13 +139,13 @@ const localeLinks: Record<
                 />
                 by me
               </small>
-            </Button>
+            </a>
           </li>
           <li>
-            <Button
+            <a
+              class:list={[linkClass]}
               href='https://schwarzrobin.de/'
               target='_blank'
-              variants={{ kind: 'link', intent: 'neutral' }}
             >
               <small>
                 Designed with <Icon
@@ -159,17 +154,20 @@ const localeLinks: Record<
                 />
                 by rob
               </small>
-            </Button>
+            </a>
           </li>
         </ul>
       </nav>
     </div>
 
     <div class='flex flex-col items-center sm:col-span-2'>
-      <Button href='#top' variants={{ intent: 'neutral', size: 'icon-lg' }}>
+      <a
+        class:list={[buttonVariant({ intent: 'neutral', size: 'icon-lg' })]}
+        href='#top'
+      >
         <Icon name='tabler:chevron-up' size={32} />
         <span class='sr-only'>{t('footer.toTop')}</span>
-      </Button>
+      </a>
     </div>
   </div>
 </footer>

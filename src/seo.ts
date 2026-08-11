@@ -5,16 +5,15 @@ import _ from 'lodash';
 
 import { isProductionOrigin } from '@/utils';
 
-export interface SEOProps
-  extends Omit<
-    AstroSEOProps,
-    | 'charset'
-    | 'extend'
-    | 'openGraph'
-    | 'titleDefault'
-    | 'titleTemplate'
-    | 'twitter'
-  > {
+export interface SEOProps extends Omit<
+  AstroSEOProps,
+  | 'charset'
+  | 'extend'
+  | 'openGraph'
+  | 'titleDefault'
+  | 'titleTemplate'
+  | 'twitter'
+> {
   keywords?: Array<string>;
   openGraph: {
     basic?: {
@@ -97,7 +96,7 @@ export const createSEOProps = (url: URL, props?: SEOProps): AstroSEOProps => {
     }
     return undefined;
   });
-  
+
   if (props?.keywords && result.extend?.meta) {
     result.extend.meta = [
       ...result.extend.meta,

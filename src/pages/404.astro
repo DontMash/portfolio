@@ -1,12 +1,11 @@
 ---
-import { Icon } from 'astro-icon/components';
-
 import { defaultLocale, useTranslation, type LocaleCode } from '@/i18n';
 import { createSEOProps } from '@/seo';
 
 import Layout from '@/layouts/layout.astro';
-import { Button } from '@/components/content/button';
+import { buttonVariant } from '@/components/ui/button';
 import { Container } from '@/components/content/container';
+import { Icon } from '@/components/content/icon';
 import { Section } from '@/components/content/section';
 
 const locale = Astro.currentLocale as LocaleCode | undefined;
@@ -36,19 +35,19 @@ const seo = createSEOProps(Astro.url, {
 
       <ul class='not-prose flex flex-wrap justify-center gap-4'>
         <li>
-          <Button
+          <a
+            class:list={[buttonVariant({ intent: 'accent', shadow: 'pop' })]}
             href={`/${Astro.currentLocale}`}
-            variants={{ intent: 'accent', shadow: 'pop' }}
           >
             <Icon name='tabler:arrow-left' size={24} />
             {t('404.back')}
-          </Button>
+          </a>
         </li>
         <li>
-          <Button href='/#form' variants={{ shadow: 'pop' }}>
+          <a class:list={[buttonVariant({ shadow: 'pop' })]} href='/#form'>
             <Icon name='tabler:at' size={24} />
             {t('404.contact')}
-          </Button>
+          </a>
         </li>
       </ul>
     </Container>

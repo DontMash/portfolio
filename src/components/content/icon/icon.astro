@@ -1,9 +1,86 @@
 ---
-import { Icon as AstroIcon } from 'astro-icon/components';
+import {
+  IconArrowLeft,
+  IconAt,
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBuilding,
+  IconCaretDown,
+  IconCheck,
+  IconChevronDown,
+  IconChevronRight,
+  IconChevronUp,
+  IconCode,
+  IconContrastFilled,
+  IconDeviceDesktop,
+  IconDots,
+  IconEdit,
+  IconFlame,
+  IconHeart,
+  IconHome,
+  IconLanguage,
+  IconLayoutDashboard,
+  IconLoader2,
+  IconMail,
+  IconMapPin,
+  IconMessage,
+  IconMoon,
+  IconNumber,
+  IconQuestionMark,
+  IconSignRight,
+  IconSun,
+  IconUser,
+  IconCoffee,
+} from '@tabler/icons-react';
 
-type Props = Parameters<typeof AstroIcon>[0];
+const icons = {
+  'tabler:arrow-left': IconArrowLeft,
+  'tabler:at': IconAt,
+  'tabler:brand-github': IconBrandGithub,
+  'tabler:brand-linkedin': IconBrandLinkedin,
+  'tabler:building': IconBuilding,
+  'tabler:caret-down': IconCaretDown,
+  'tabler:check': IconCheck,
+  'tabler:chevron-down': IconChevronDown,
+  'tabler:chevron-right': IconChevronRight,
+  'tabler:chevron-up': IconChevronUp,
+  'tabler:code': IconCode,
+  'tabler:contrast-filled': IconContrastFilled,
+  'tabler:device-desktop': IconDeviceDesktop,
+  'tabler:dots': IconDots,
+  'tabler:edit': IconEdit,
+  'tabler:flame': IconFlame,
+  'tabler:heart': IconHeart,
+  'tabler:home': IconHome,
+  'tabler:language': IconLanguage,
+  'tabler:layout-dashboard': IconLayoutDashboard,
+  'tabler:loader-2': IconLoader2,
+  'tabler:mail': IconMail,
+  'tabler:map-pin': IconMapPin,
+  'tabler:message': IconMessage,
+  'tabler:moon': IconMoon,
+  'tabler:number': IconNumber,
+  'tabler:sign-right': IconSignRight,
+  'tabler:sun': IconSun,
+  'tabler:user': IconUser,
+  'simple-icons:kofi': IconCoffee,
+} as const;
 
-const props = Astro.props;
+type Props = {
+  name: string;
+  size?: number | string;
+  class?: string;
+  title?: string;
+};
+
+const { name, size = 24, class: className, title } = Astro.props;
+const IconComponent = icons[name as keyof typeof icons] ?? IconQuestionMark;
 ---
 
-<AstroIcon aria-hidden size={24} {...props} />
+<IconComponent
+  aria-hidden={title ? undefined : true}
+  className={className}
+  size={size}
+  stroke={2}
+  title={title}
+/>

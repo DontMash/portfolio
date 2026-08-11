@@ -1,63 +1,52 @@
 ---
-import { getPageEntryPath, getPageId, getPagePath } from '@/collections/page.collection';
+import {
+  getPageEntryPath,
+  getPageId,
+  getPagePath,
+} from '@/collections/page.collection';
 import { isProductionOrigin } from '@/utils';
 
-import { Button, buttonVariant } from '@/components/content/button';
-import { Icon } from '@/components/content/icon';
+import Toolbar from '@/components/page/toolbar';
+
+type ToolbarLink = {
+  href: string;
+  label: string;
+  icon: 'edit' | 'dashboard' | 'code';
+};
 
 const { locale, slug } = Astro.params;
 const id = getPageId(locale, slug);
 const path = getPagePath(id);
 const entryPath = getPageEntryPath(locale, slug);
+const links: ToolbarLink[] = [
+  {
+    href: import.meta.env.DEV
+      ? entryPath
+      : new URL(entryPath, Astro.site).toString(),
+    label: 'Edit page',
+    icon: 'edit',
+  },
+  {
+    href: import.meta.env.DEV
+      ? '/keystatic'
+      : new URL('keystatic/branch/preview', Astro.site).toString(),
+    label: 'Go to dashboard',
+    icon: 'dashboard',
+  },
+  ...(!import.meta.env.DEV
+    ? [
+        {
+          href: new URL(path, 'http://localhost:4321').toString(),
+          label: 'Go to Local',
+          icon: 'code' as const,
+        },
+      ]
+    : []),
+];
 ---
 
 {
   !isProductionOrigin(Astro.url, Astro.site) && (
-    <div
-      class='fixed right-4 bottom-4 z-50 hidden flex-col items-end gap-2 border border-(--color-foreground)/30 p-8 shadow-2xl backdrop-blur-sm sm:flex'
-      x-data='collapsible'
-    >
-      <div class='flex flex-col items-end gap-2' x-show='state' x-transition>
-        <Button
-          href={
-            import.meta.env.DEV ? entryPath : new URL(entryPath, Astro.site)
-          }
-          target='_blank'
-          variants={{ intent: 'accent', shadow: 'pop' }}
-        >
-          <Icon name='tabler:edit' />
-          <span>Edit page</span>
-        </Button>
-        <Button
-          href={
-            import.meta.env.DEV
-              ? '/keystatic'
-              : new URL('keystatic/branch/preview', Astro.site)
-          }
-          target='_blank'
-          variants={{ intent: 'accent', shadow: 'pop' }}
-        >
-          <Icon name='tabler:layout-dashboard' />
-          <span>Go to dashboard</span>
-        </Button>
-        {!import.meta.env.DEV && (
-          <Button
-            href={new URL(path, 'http://localhost:4321')}
-            target='_blank'
-            variants={{ intent: 'accent', shadow: 'pop' }}
-          >
-            <Icon name='tabler:source-code' />
-            <span>Go to Local</span>
-          </Button>
-        )}
-      </div>
-
-      <button
-        class:list={[buttonVariant({ intent: 'accent', size: 'icon' })]}
-        @click='toggle'
-      >
-        <Icon name='tabler:dots' />
-      </button>
-    </div>
+    <Toolbar client:load links={links} />
   )
 }

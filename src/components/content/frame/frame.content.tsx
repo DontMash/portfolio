@@ -33,9 +33,12 @@ export const frameContent = block({
                 <img
                   style={{ width: '100%' }}
                   src={URL.createObjectURL(
-                    new Blob([image.src.data], {
-                      type: `image/${image.src.extension}`,
-                    }),
+                    new Blob(
+                      [new Uint8Array(image.src.data).buffer as ArrayBuffer],
+                      {
+                        type: `image/${image.src.extension}`,
+                      },
+                    ),
                   )}
                   alt={image.alt}
                 />
