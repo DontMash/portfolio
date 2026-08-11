@@ -136,6 +136,12 @@
   [data-theme='dark'] [data-frame-theme='light'][data-frame-single='false'] {
     display: none;
   }
+  [data-slot='toolbar-content'] {
+    border: 1px solid
+      color-mix(in oklab, var(--color-foreground) 30%, transparent);
+    box-shadow: var(--shadow-pop-lg);
+    backdrop-filter: blur(4px);
+  }
   [data-accordion-panel] {
     display: grid;
     grid-template-rows: 0fr;

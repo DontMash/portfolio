@@ -37,6 +37,7 @@ export default function LocaleMenu({ currentLabel, options }: Props) {
             option.current ? (
               <DropdownMenuItem
                 disabled
+                nativeButton={false}
                 key={option.href}
                 render={<span aria-current='page' />}
               >
@@ -46,6 +47,7 @@ export default function LocaleMenu({ currentLabel, options }: Props) {
             ) : (
               <DropdownMenuItem
                 key={option.href}
+                nativeButton={false}
                 render={<a href={option.href} />}
               >
                 <span>{option.label}</span>
