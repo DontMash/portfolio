@@ -8,45 +8,28 @@ import { isProductionOrigin } from '@/utils';
 
 import Toolbar from '@/components/page/toolbar';
 
-type ToolbarLink = {
-  href: string;
-  label: string;
-  icon: 'edit' | 'dashboard' | 'code';
-};
-
 const { locale, slug } = Astro.params;
 const id = getPageId(locale, slug);
 const path = getPagePath(id);
 const entryPath = getPageEntryPath(locale, slug);
-const links: ToolbarLink[] = [
-  {
-    href: import.meta.env.DEV
-      ? entryPath
-      : new URL(entryPath, Astro.site).toString(),
-    label: 'Edit page',
-    icon: 'edit',
-  },
-  {
-    href: import.meta.env.DEV
-      ? '/keystatic'
-      : new URL('keystatic/branch/preview', Astro.site).toString(),
-    label: 'Go to dashboard',
-    icon: 'dashboard',
-  },
-  ...(!import.meta.env.DEV
-    ? [
-        {
-          href: new URL(path, 'http://localhost:4321').toString(),
-          label: 'Go to Local',
-          icon: 'code' as const,
-        },
-      ]
-    : []),
-];
+const editHref = import.meta.env.DEV
+  ? entryPath
+  : new URL(entryPath, Astro.site).toString();
+const dashboardHref = import.meta.env.DEV
+  ? '/keystatic'
+  : new URL('keystatic/branch/preview', Astro.site).toString();
+const localHref = import.meta.env.DEV
+  ? undefined
+  : new URL(path, 'http://localhost:4321').toString();
 ---
 
 {
   !isProductionOrigin(Astro.url, Astro.site) && (
-    <Toolbar client:load links={links} />
+    <Toolbar
+      client:load
+      editHref={editHref}
+      dashboardHref={dashboardHref}
+      localHref={localHref}
+    />
   )
 }

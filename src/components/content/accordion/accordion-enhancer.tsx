@@ -15,8 +15,13 @@ export default function AccordionEnhancer({ rootId }: Props) {
       root.querySelectorAll<HTMLButtonElement>('[data-accordion-trigger]'),
     );
     const multiple = root.dataset.accordionMultiple === 'true';
+    const closeTimers = new Map<HTMLElement, number>();
 
-    const setExpanded = (trigger: HTMLButtonElement, expanded: boolean) => {
+    const setExpanded = (
+      trigger: HTMLButtonElement,
+      expanded: boolean,
+      immediate = false,
+    ) => {
       const panelId = trigger.getAttribute('aria-controls');
       const panel = panelId ? document.getElementById(panelId) : null;
       const item = trigger.closest<HTMLElement>('[data-accordion-item]');
@@ -24,10 +29,29 @@ export default function AccordionEnhancer({ rootId }: Props) {
       trigger.setAttribute('aria-expanded', String(expanded));
       trigger.dataset.state = expanded ? 'open' : 'closed';
       item?.setAttribute('data-state', expanded ? 'open' : 'closed');
+
       if (panel) {
+        const previousTimer = closeTimers.get(panel);
+        if (previousTimer) {
+          window.clearTimeout(previousTimer);
+        }
+
         panel.hidden = false;
         panel.dataset.state = expanded ? 'open' : 'closed';
         panel.setAttribute('aria-hidden', String(!expanded));
+
+        if (!expanded) {
+          const hide = () => {
+            if (panel.dataset.state === 'closed') {
+              panel.hidden = true;
+            }
+          };
+          if (immediate) {
+            hide();
+          } else {
+            closeTimers.set(panel, window.setTimeout(hide, 200));
+          }
+        }
       }
     };
 
@@ -76,12 +100,13 @@ export default function AccordionEnhancer({ rootId }: Props) {
 
     triggers.forEach((trigger) => {
       const expanded = trigger.getAttribute('aria-expanded') === 'true';
-      setExpanded(trigger, expanded);
+      setExpanded(trigger, expanded, true);
       trigger.addEventListener('click', onClick);
       trigger.addEventListener('keydown', onKeyDown);
     });
 
     return () => {
+      closeTimers.forEach((timer) => window.clearTimeout(timer));
       triggers.forEach((trigger) => {
         trigger.removeEventListener('click', onClick);
         trigger.removeEventListener('keydown', onKeyDown);

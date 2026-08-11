@@ -79,7 +79,7 @@ export default function CaptchaButton({ children = 'Send' }: Props) {
       <input type='hidden' name='captcha' required value={result} />
       <Button
         type='submit'
-        variant='primary'
+        variant='default'
         shadow='pop'
         disabled={status !== 'completed'}
         aria-busy={status === 'loading'}
@@ -88,6 +88,7 @@ export default function CaptchaButton({ children = 'Send' }: Props) {
       >
         <IconLoader2
           aria-hidden
+          data-icon='inline-start'
           className='hidden group-data-[active=true]:inline-block group-data-[active=true]:animate-spin'
         />
         {children}

@@ -3,14 +3,15 @@ import parser from 'accept-language-parser';
 
 import { defaultLocale, isLocaleCode } from '@/i18n';
 
+const fallbackPath = `/${defaultLocale}`;
 const acceptLanguageHeader = Astro.request.headers.get('Accept-Language');
 if (!acceptLanguageHeader) {
-  return Astro.redirect(`/${defaultLocale}`);
+  return Astro.redirect(fallbackPath);
 }
 const acceptedLanguages = parser.parse(acceptLanguageHeader);
 const locale = acceptedLanguages.at(0)?.code;
 if (!locale || !isLocaleCode(locale)) {
-  return Astro.redirect(`/${defaultLocale}`);
+  return Astro.redirect(fallbackPath);
 }
 
 return Astro.redirect(`/${locale}`);

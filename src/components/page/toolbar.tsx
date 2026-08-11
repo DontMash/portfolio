@@ -12,42 +12,45 @@ import {
 } from '@/components/ui/collapsible';
 import { buttonVariant } from '@/components/ui/button';
 
-type Link = {
-  href: string;
-  label: string;
-  icon: 'edit' | 'dashboard' | 'code';
-};
-
 type Props = {
-  links: Link[];
+  editHref: string;
+  dashboardHref: string;
+  localHref?: string;
 };
 
-const linkIcons = {
-  edit: IconEdit,
-  dashboard: IconLayoutDashboard,
-  code: IconCode,
-};
-
-export default function Toolbar({ links }: Props) {
+export default function Toolbar({ editHref, dashboardHref, localHref }: Props) {
   return (
     <Collapsible className='fixed right-4 bottom-4 z-50 hidden sm:flex sm:flex-col sm:items-end sm:gap-2'>
       <CollapsibleContent className='flex flex-col items-end gap-2 border border-(--color-foreground)/30 p-8 shadow-2xl backdrop-blur-sm'>
-        {links.map((link) => {
-          const Icon = linkIcons[link.icon];
-
-          return (
-            <a
-              className={buttonVariant({ intent: 'accent', shadow: 'pop' })}
-              href={link.href}
-              key={link.href}
-              target='_blank'
-              rel='noreferrer'
-            >
-              <Icon aria-hidden />
-              {link.label}
-            </a>
-          );
-        })}
+        <a
+          className={buttonVariant({ intent: 'accent', shadow: 'pop' })}
+          href={editHref}
+          target='_blank'
+          rel='noreferrer'
+        >
+          <IconEdit aria-hidden />
+          Edit page
+        </a>
+        <a
+          className={buttonVariant({ intent: 'accent', shadow: 'pop' })}
+          href={dashboardHref}
+          target='_blank'
+          rel='noreferrer'
+        >
+          <IconLayoutDashboard aria-hidden />
+          Go to dashboard
+        </a>
+        {localHref && (
+          <a
+            className={buttonVariant({ intent: 'accent', shadow: 'pop' })}
+            href={localHref}
+            target='_blank'
+            rel='noreferrer'
+          >
+            <IconCode aria-hidden />
+            Go to Local
+          </a>
+        )}
       </CollapsibleContent>
       <CollapsibleTrigger
         aria-label='Toggle preview toolbar'

@@ -34,19 +34,6 @@ const buttonVariants = cva(buttonBase, {
         'focus-visible:bg-(--color-primary-hover)',
         'active:bg-(--color-primary-active)',
       ],
-      primary: [
-        'rounded-full',
-        'border-3',
-        'no-underline',
-        'align-middle',
-        'disabled:bg-base-300',
-        'disabled:cursor-not-allowed',
-        'bg-(--color-primary)',
-        'text-(--color-primary-foreground)',
-        'hover:bg-(--color-primary-hover)',
-        'focus-visible:bg-(--color-primary-hover)',
-        'active:bg-(--color-primary-active)',
-      ],
       accent: [
         'rounded-full',
         'border-3',
@@ -116,7 +103,14 @@ export interface ButtonProps extends ButtonVariantProps, ShadowProps {
 export const buttonVariant = (props?: ButtonProps) =>
   cn(
     buttonVariants({
-      variant: props?.kind === 'link' ? 'link' : (props?.intent ?? 'primary'),
+      variant:
+        props?.kind === 'link'
+          ? 'link'
+          : props?.intent === 'accent'
+            ? 'accent'
+            : props?.intent === 'neutral'
+              ? 'neutral'
+              : 'default',
       size: props?.size,
       shadow: props?.shadow,
     }),

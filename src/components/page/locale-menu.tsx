@@ -3,6 +3,7 @@ import { IconCheck, IconLanguage } from '@tabler/icons-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
@@ -31,25 +32,27 @@ export default function LocaleMenu({ currentLabel, options }: Props) {
         <span className='sr-only'>{currentLabel}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end'>
-        {options.map((option) =>
-          option.current ? (
-            <DropdownMenuItem
-              disabled
-              key={option.href}
-              render={<span aria-current='page' />}
-            >
-              <span>{option.label}</span>
-              <IconCheck aria-hidden className='ml-auto' />
-            </DropdownMenuItem>
-          ) : (
-            <DropdownMenuItem
-              key={option.href}
-              render={<a href={option.href} />}
-            >
-              <span>{option.label}</span>
-            </DropdownMenuItem>
-          ),
-        )}
+        <DropdownMenuGroup>
+          {options.map((option) =>
+            option.current ? (
+              <DropdownMenuItem
+                disabled
+                key={option.href}
+                render={<span aria-current='page' />}
+              >
+                <span>{option.label}</span>
+                <IconCheck aria-hidden className='ml-auto' />
+              </DropdownMenuItem>
+            ) : (
+              <DropdownMenuItem
+                key={option.href}
+                render={<a href={option.href} />}
+              >
+                <span>{option.label}</span>
+              </DropdownMenuItem>
+            ),
+          )}
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -10,6 +10,7 @@ import { useStore } from '@nanostores/react';
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
@@ -40,23 +41,25 @@ export default function ThemeMenu() {
         <span className='sr-only'>{preference}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end'>
-        <DropdownMenuRadioGroup
-          value={preference}
-          onValueChange={(value) => setTheme(value as ThemeState)}
-        >
-          <DropdownMenuRadioItem value='light'>
-            <IconSun aria-hidden />
-            <span>Light</span>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value='dark'>
-            <IconMoon aria-hidden />
-            <span>Dark</span>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value='auto'>
-            <IconDeviceDesktop aria-hidden />
-            <span>Auto</span>
-          </DropdownMenuRadioItem>
-        </DropdownMenuRadioGroup>
+        <DropdownMenuGroup>
+          <DropdownMenuRadioGroup
+            value={preference}
+            onValueChange={(value) => setTheme(value as ThemeState)}
+          >
+            <DropdownMenuRadioItem value='light'>
+              <IconSun aria-hidden />
+              <span>Light</span>
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value='dark'>
+              <IconMoon aria-hidden />
+              <span>Dark</span>
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value='auto'>
+              <IconDeviceDesktop aria-hidden />
+              <span>Auto</span>
+            </DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   );
