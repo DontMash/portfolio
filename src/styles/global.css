@@ -51,6 +51,10 @@
   --shadow-pop-sm: 4px 4px 0 0 currentColor;
   --shadow-pop-md: 8px 8px 0 0 currentColor;
   --shadow-pop-lg: 16px 16px 0 0 currentColor;
+
+  --z-header: 50;
+  --z-global-overlay: 50;
+  --z-overlay: 60;
 }
 
 @theme inline {
@@ -136,37 +140,11 @@
   [data-theme='dark'] [data-frame-theme='light'][data-frame-single='false'] {
     display: none;
   }
-  [data-slot='toolbar-content'] {
-    border: 1px solid
-      color-mix(in oklab, var(--color-foreground) 30%, transparent);
-    box-shadow: var(--shadow-pop-lg);
-    backdrop-filter: blur(4px);
-  }
-  [data-accordion-panel] {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 200ms ease;
-  }
-  [data-accordion-panel] > div {
-    overflow: hidden;
-  }
-  [data-accordion-panel][data-state='open'] {
-    grid-template-rows: 1fr;
-  }
-  [data-accordion-panel][data-state='closed'] {
-    visibility: hidden;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    [data-accordion-panel] {
-      transition: none;
-    }
-  }
-
   small {
     @apply small;
   }
   mark {
-    @apply bg-primary;
+    @apply bg-(--color-primary);
   }
 }
 

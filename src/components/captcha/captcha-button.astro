@@ -1,5 +1,17 @@
 ---
 import CaptchaButton from './captcha-button';
+
+type Status = 'none' | 'loading' | 'completed' | 'failed';
+type StatusMessages = Partial<Record<Status, string>>;
+
+type Props = {
+  retryLabel?: string;
+  statusMessages?: StatusMessages;
+};
+
+const { retryLabel = 'Retry', statusMessages } = Astro.props;
 ---
 
-<CaptchaButton client:visible><slot /></CaptchaButton>
+<CaptchaButton client:visible {retryLabel} {statusMessages}
+  ><slot /></CaptchaButton
+>

@@ -6,8 +6,10 @@ import { Menu as MenuPrimitive } from '@base-ui/react/menu';
 import { cn } from '@/lib/utils';
 import { IconChevronRight, IconCheck } from '@tabler/icons-react';
 
-function DropdownMenu({ ...props }: MenuPrimitive.Root.Props) {
-  return <MenuPrimitive.Root data-slot='dropdown-menu' {...props} />;
+function DropdownMenu({ modal = false, ...props }: MenuPrimitive.Root.Props) {
+  return (
+    <MenuPrimitive.Root data-slot='dropdown-menu' modal={modal} {...props} />
+  );
 }
 
 function DropdownMenuPortal({ ...props }: MenuPrimitive.Portal.Props) {
@@ -33,7 +35,7 @@ function DropdownMenuContent({
   return (
     <MenuPrimitive.Portal>
       <MenuPrimitive.Positioner
-        className='isolate outline-none'
+        className='isolate z-(--z-overlay) outline-none'
         align={align}
         alignOffset={alignOffset}
         side={side}
@@ -42,7 +44,7 @@ function DropdownMenuContent({
         <MenuPrimitive.Popup
           data-slot='dropdown-menu-content'
           className={cn(
-            'data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-closed:animate-out border-foreground bg-background text-foreground max-h-(--available-height) w-(--anchor-width) min-w-40 origin-(--transform-origin) overflow-x-hidden overflow-y-auto border-3 p-0 duration-100 outline-none data-closed:overflow-hidden',
+            'data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-closed:animate-out max-h-(--available-height) w-(--anchor-width) min-w-40 origin-(--transform-origin) overflow-x-hidden overflow-y-auto border-3 border-(--color-foreground) bg-(--color-background) p-0 text-(--color-foreground) duration-100 outline-none data-closed:overflow-hidden',
             className,
           )}
           {...props}
@@ -68,7 +70,7 @@ function DropdownMenuLabel({
       data-slot='dropdown-menu-label'
       data-inset={inset}
       className={cn(
-        'text-muted-foreground px-1.5 py-1 text-xs font-medium data-inset:pl-7',
+        'px-1.5 py-1 text-xs font-medium text-(--color-muted-foreground) data-inset:pl-7',
         className,
       )}
       {...props}
@@ -91,7 +93,7 @@ function DropdownMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "group/dropdown-menu-item data-[variant=destructive]:text-error focus:bg-foreground focus:text-background data-[variant=destructive]:focus:bg-foreground data-[variant=destructive]:focus:text-background relative inline-flex w-full cursor-default items-center gap-2 px-2 py-2 text-sm outline-hidden transition select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-7 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "group/dropdown-menu-item data-[variant=destructive]:text-error relative inline-flex w-full cursor-default items-center gap-2 px-2 py-2 text-sm outline-hidden transition select-none focus:bg-(--color-foreground) focus:text-(--color-background) data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-7 data-[variant=destructive]:focus:bg-(--color-foreground) data-[variant=destructive]:focus:text-(--color-background) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -116,7 +118,7 @@ function DropdownMenuSubTrigger({
       data-slot='dropdown-menu-sub-trigger'
       data-inset={inset}
       className={cn(
-        "focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-popup-open:bg-accent data-popup-open:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none data-inset:pl-7 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none focus:bg-(--color-accent) focus:text-(--color-accent-foreground) not-data-[variant=destructive]:focus:**:text-(--color-accent-foreground) data-inset:pl-7 data-open:bg-(--color-accent) data-open:text-(--color-accent-foreground) data-popup-open:bg-(--color-accent) data-popup-open:text-(--color-accent-foreground) [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -139,7 +141,7 @@ function DropdownMenuSubContent({
     <DropdownMenuContent
       data-slot='dropdown-menu-sub-content'
       className={cn(
-        'bg-popover text-popover-foreground ring-foreground/10 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 w-auto min-w-[96px] rounded-lg p-1 shadow-lg ring-1 duration-100',
+        'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 w-auto min-w-[96px] rounded-lg bg-(--color-background) p-1 text-(--color-foreground) shadow-lg ring-1 ring-(--color-foreground)/10 duration-100',
         className,
       )}
       align={align}
@@ -231,7 +233,7 @@ function DropdownMenuSeparator({
   return (
     <MenuPrimitive.Separator
       data-slot='dropdown-menu-separator'
-      className={cn('bg-border -mx-1 my-1 h-px', className)}
+      className={cn('-mx-1 my-1 h-px bg-(--color-foreground)', className)}
       {...props}
     />
   );
@@ -245,7 +247,7 @@ function DropdownMenuShortcut({
     <span
       data-slot='dropdown-menu-shortcut'
       className={cn(
-        'text-muted-foreground group-focus/dropdown-menu-item:text-accent-foreground ml-auto text-xs tracking-widest',
+        'ml-auto text-xs tracking-widest text-(--color-muted-foreground) group-focus/dropdown-menu-item:text-(--color-accent-foreground)',
         className,
       )}
       {...props}

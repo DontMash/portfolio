@@ -25,7 +25,11 @@ export default function LocaleMenu({ currentLabel, options }: Props) {
     <DropdownMenu>
       <DropdownMenuTrigger
         aria-label={`Language: ${currentLabel}`}
-        className={buttonVariant({ kind: 'link', intent: 'primary' })}
+        className={buttonVariant({
+          kind: 'link',
+          intent: 'primary',
+          size: 'icon',
+        })}
         type='button'
       >
         <IconLanguage aria-hidden />

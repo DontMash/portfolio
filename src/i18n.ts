@@ -42,6 +42,11 @@ const localization = {
     '404.contact': 'Say hello',
     'logo.href.label': 'Go to the frontpage',
     'form.send': 'Send',
+    'form.retry': 'Retry',
+    'form.captcha.preparing': 'Preparing verification.',
+    'form.captcha.verifying': 'Verifying your submission.',
+    'form.captcha.complete': 'Verification complete.',
+    'form.captcha.failed': 'Verification failed. Retry to try again.',
     'form.policy':
       'I have read the <a href="/en/privacy">privacy policy</a> and agree to the processing of my data.',
     'form.optional': 'optional',
@@ -76,6 +81,11 @@ const localization = {
     '404.contact': 'Schreib mir',
     'logo.href.label': 'Gehe zur Startseite',
     'form.send': 'Absenden',
+    'form.retry': 'Erneut versuchen',
+    'form.captcha.preparing': 'Verifizierung wird vorbereitet.',
+    'form.captcha.verifying': 'Deine Anfrage wird verifiziert.',
+    'form.captcha.complete': 'Verifizierung abgeschlossen.',
+    'form.captcha.failed': 'Verifizierung fehlgeschlagen. Erneut versuchen.',
     'form.policy':
       'Ich habe die <a href="/de/datenschutz">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu.',
     'form.optional': 'optional',

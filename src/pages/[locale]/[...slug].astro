@@ -4,7 +4,7 @@ import { getPageId, getPagePath } from '@/collections/page.collection';
 import { createSEOProps } from '@/seo';
 
 import Layout from '@/layouts/layout.astro';
-import { Accordion, AccordionItem } from '@/components/content/accordion';
+import { Accordion } from '@/components/content/accordion';
 import { Button } from '@/components/content/button';
 import { Container } from '@/components/content/container';
 import { Form } from '@/components/content/form';
@@ -40,7 +40,6 @@ const seo = createSEOProps(Astro.url, {
   <Content
     components={{
       Accordion,
-      AccordionItem,
       Button,
       Container,
       Form,

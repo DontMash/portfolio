@@ -1,26 +1,31 @@
 import { fields } from '@keystatic/core';
-import { repeating, wrapper } from '@keystatic/core/content-components';
+import { IconList } from '@tabler/icons-react';
+import { block } from '@keystatic/core/content-components';
 
-export const accordionContent = repeating({
+const accordionItemFields = {
+  title: fields.text({
+    label: 'Title',
+    validation: { isRequired: true },
+  }),
+  body: fields.array(
+    fields.text({
+      label: 'Paragraph',
+      multiline: true,
+      validation: { isRequired: true },
+    }),
+    {
+      label: 'Answer paragraphs',
+      description: 'Add one paragraph per item to preserve readable spacing.',
+      validation: { length: { min: 1 } },
+      itemLabel: ({ value }) => value.slice(0, 60),
+    },
+  ),
+};
+
+export const accordionContent = block({
   label: 'Accordion',
   description: 'Used to provide a set of collapsible texts with titles.',
-  icon: (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='24'
-      height='24'
-      viewBox='0 0 24 24'
-    >
-      <path
-        fill='none'
-        stroke='currentColor'
-        stroke-linecap='round'
-        stroke-linejoin='round'
-        stroke-width='2'
-        d='M13 5h8m-8 4h5m-5 6h8m-8 4h5M3 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm0 10a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z'
-      />
-    </svg>
-  ),
+  icon: <IconList aria-hidden />,
   schema: {
     multiple: fields.checkbox({
       label: 'Multiple',
@@ -28,33 +33,11 @@ export const accordionContent = repeating({
       description:
         'Should it be possible to open more than one item at a time?',
     }),
-  },
-  children: ['AccordionItem'],
-});
-export const accordionItemContent = wrapper({
-  label: 'Accordion Item',
-  icon: (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='24'
-      height='24'
-      viewBox='0 0 24 24'
-    >
-      <path
-        fill='none'
-        stroke='currentColor'
-        stroke-linecap='round'
-        stroke-linejoin='round'
-        stroke-width='2'
-        d='M4 15h16M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm0 15h12'
-      />
-    </svg>
-  ),
-  forSpecificLocations: true,
-  schema: {
-    title: fields.text({
-      label: 'Title',
-      validation: { isRequired: true },
+    items: fields.array(fields.object(accordionItemFields), {
+      label: 'Items',
+      description: 'Add the questions and their answer paragraphs.',
+      validation: { length: { min: 1 } },
+      itemLabel: ({ fields }) => fields.title.value,
     }),
   },
 });

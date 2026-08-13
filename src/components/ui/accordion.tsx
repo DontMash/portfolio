@@ -33,7 +33,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot='accordion-trigger'
         className={cn(
-          'group after:bg-primary relative flex w-full cursor-pointer gap-4 border-b-3 p-4 text-left after:absolute after:top-[calc(100%+var(--border-3))] after:right-0 after:left-1 after:h-(--border-3) after:w-full focus-visible:outline-3 focus-visible:outline-current focus-visible:outline-dashed',
+          'group paragraph-highlight relative flex w-full cursor-pointer gap-4 border-b-3 p-4 text-left after:absolute after:top-[calc(100%+var(--border-3))] after:right-0 after:left-1 after:h-(--border-3) after:w-full after:bg-(--color-primary) focus-visible:outline-3 focus-visible:outline-current focus-visible:outline-dashed',
           className,
         )}
         {...props}
@@ -41,7 +41,8 @@ function AccordionTrigger({
         {children}
         <IconCaretDown
           aria-hidden
-          className='ml-auto min-w-fit self-end transition group-aria-expanded:rotate-180'
+          data-icon='inline-end'
+          className='ml-auto min-w-fit self-end transition group-data-panel-open:rotate-180'
         />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
@@ -56,8 +57,11 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Panel
       data-slot='accordion-content'
-      data-accordion-panel
-      className='data-open:animate-accordion-down data-closed:animate-accordion-up overflow-hidden'
+      keepMounted
+      className={cn(
+        'data-open:animate-accordion-down data-closed:animate-accordion-up overflow-hidden motion-reduce:animate-none',
+        className,
+      )}
       {...props}
     >
       <div

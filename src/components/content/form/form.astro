@@ -16,6 +16,12 @@ const currentLocale = Astro.currentLocale as LocaleCode | undefined;
 const t = useTranslation(currentLocale ?? defaultLocale);
 
 const result = Astro.getActionResult(actions.contact);
+const captchaMessages = {
+  none: t('form.captcha.preparing'),
+  loading: t('form.captcha.verifying'),
+  completed: t('form.captcha.complete'),
+  failed: t('form.captcha.failed'),
+};
 ---
 
 <form
@@ -232,7 +238,12 @@ const result = Astro.getActionResult(actions.contact);
       </p>
     </div>
 
-    <CaptchaButton>Send</CaptchaButton>
+    <div class='self-start'>
+      <CaptchaButton
+        retryLabel={t('form.retry')}
+        statusMessages={captchaMessages}>{t('form.send')}</CaptchaButton
+      >
+    </div>
   </div>
 
   <p
@@ -243,7 +254,7 @@ const result = Astro.getActionResult(actions.contact);
       'before:inline-block',
       'before:content-[""]',
       'data-[form-message=error]:text-error',
-      'data-[form-message=success]:text-primary',
+      'data-[form-message=success]:text-(--color-primary)',
     ]}
     id='form-contact-info'
     data-form-message={isActionError(result?.error) ? 'error' : 'success'}

@@ -34,7 +34,11 @@ export default function ThemeMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger
         aria-label={`Theme: ${preference}`}
-        className={buttonVariant({ kind: 'link', intent: 'primary' })}
+        className={buttonVariant({
+          kind: 'link',
+          intent: 'primary',
+          size: 'icon',
+        })}
         type='button'
       >
         <IconContrastFilled aria-hidden />

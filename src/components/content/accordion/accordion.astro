@@ -1,20 +1,12 @@
 ---
-import AccordionEnhancer from './accordion-enhancer';
+import AccordionInteractive, { type AccordionItemData } from './accordion';
 
 type Props = {
   multiple?: boolean;
+  items: readonly AccordionItemData[];
 };
 
-const { multiple = false } = Astro.props;
-const rootId = `accordion-${crypto.randomUUID()}`;
+const { multiple = false, items } = Astro.props;
 ---
 
-<div
-  id={rootId}
-  data-accordion
-  data-accordion-multiple={multiple ? 'true' : 'false'}
-  class='flex w-full flex-col gap-4'
->
-  <slot />
-  <AccordionEnhancer client:visible {rootId} />
-</div>
+<AccordionInteractive client:load {multiple} {items} />
