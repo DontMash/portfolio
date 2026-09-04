@@ -54,7 +54,6 @@
   --shadow-pop-lg: 16px 16px 0 0 currentColor;
 
   --z-header: 50;
-  --z-global-overlay: 50;
   --z-overlay: 60;
 }
 
@@ -113,7 +112,7 @@
     --color-muted: var(--color-base-800);
     --color-muted-foreground: var(--color-base-100);
   }
-  [data-icon] {
+  .tabler-icon {
     @apply inline-block;
   }
   .theme-logo-dark {

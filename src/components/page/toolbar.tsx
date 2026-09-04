@@ -5,8 +5,6 @@ import {
   IconLayoutDashboard,
 } from '@tabler/icons-react';
 
-import './toolbar.css';
-
 import {
   Collapsible,
   CollapsibleContent,
@@ -22,9 +20,9 @@ type Props = {
 
 export default function Toolbar({ editHref, dashboardHref, localHref }: Props) {
   return (
-    <Collapsible className='fixed right-4 bottom-4 z-(--z-global-overlay) hidden sm:flex sm:flex-col sm:items-end sm:gap-2'>
+    <Collapsible className='fixed right-4 bottom-4 hidden sm:flex sm:flex-col sm:items-end sm:gap-2'>
       <CollapsibleContent
-        className='flex max-h-[calc(100dvh-2rem)] max-w-[calc(100vw-2rem)] flex-col items-end gap-2 overflow-x-hidden overflow-y-auto p-8'
+        className='bg-background/20 flex flex-col items-end gap-2 border-3 p-8 backdrop-blur-lg'
         data-slot='toolbar-content'
       >
         <a

@@ -1,6 +1,0 @@
-[data-slot='toolbar-content'] {
-  border: 1px solid
-    color-mix(in oklab, var(--color-foreground) 30%, transparent);
-  box-shadow: var(--shadow-pop-lg);
-  backdrop-filter: blur(4px);
-}
