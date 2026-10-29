@@ -60,6 +60,7 @@ const createMarkdownResponse = (body: string, status = 200): Response =>
     status,
     headers: {
       'Content-Type': 'text/markdown; charset=utf-8',
+      Vary: 'Accept',
     },
   });
 

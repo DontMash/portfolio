@@ -1,6 +1,7 @@
 import { mock } from 'bun:test';
 
 process.env.SITE = 'https://www.soren.codes';
+process.env.PUBLIC_BRAND_NAME = 'soren.codes';
 
 mock.module('astro:env/client', () => ({
   BRAND_NAME: 'soren.codes',

@@ -6,7 +6,6 @@ import { createMarkdownNotFoundResponse, renderMarkdownPage } from '@/markdown';
 export const onRequest = defineMiddleware(async (context, next) => {
   const { request, url, currentLocale } = context;
   const acceptsMarkdown = prefersMarkdown(request.headers.get('Accept'));
-  context.locals.prefersMarkdown = acceptsMarkdown;
 
   if (acceptsMarkdown) {
     const markdown = await renderMarkdownPage(url.pathname, url.origin);
@@ -15,9 +14,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
         status: 200,
         headers: {
           'Content-Type': 'text/markdown; charset=utf-8',
+          Vary: 'Accept',
         },
       });
-      appendVaryAccept(response.headers);
       return response;
     }
   }
@@ -25,9 +24,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const response = await next();
 
   if (response.status === 404 && acceptsMarkdown) {
-    const markdownResponse = createMarkdownNotFoundResponse(url, currentLocale);
-    appendVaryAccept(markdownResponse.headers);
-    return markdownResponse;
+    return createMarkdownNotFoundResponse(url, currentLocale);
   }
 
   appendVaryAccept(response.headers);

@@ -55,8 +55,9 @@ https://www.soren.codes#contact
   <head>
     <SEO {...Astro.props.seo} />
     <script
+      is:inline
       type='application/ld+json'
-      set:html={createSchemaMarkup(Astro.url)}
+      set:html={createSchemaMarkup()}
     />
     <Theme />
     <Analytics />
