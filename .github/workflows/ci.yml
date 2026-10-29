@@ -32,12 +32,14 @@ jobs:
           KEYSTATIC_SKIP: 'true'
           PREVIEW_SITE: 'https://preview.soren.codes'
           REPOSITORY: ${{ github.repository }}
-          BRAND_NAME: ${{ vars.BRAND_NAME }}
-          BRAND_DESCRIPTION: ${{ vars.BRAND_DESCRIPTION }}
-          BRAND_LOGO: ${{ vars.BRAND_LOGO }}
-          BRAND_TWITTER: ${{ vars.BRAND_TWITTER }}
-          EMAIL_USER: ${{ vars.EMAIL_USER }}
-          EMAIL_TARGET: ${{ vars.EMAIL_TARGET }}
+          BRAND_NAME: soren.codes
+          BRAND_DESCRIPTION: 'Software engineer & digital explorer'
+          BRAND_LOGO: /favicon.svg
+          BRAND_TWITTER: ''
+          EMAIL_USER: work@soren.codes
+          EMAIL_TARGET: work@soren.codes
+          RESEND_API_KEY: ci-placeholder
+          CAPTCHA_KEY: ci-placeholder
         run: bun run build
 
   build:
