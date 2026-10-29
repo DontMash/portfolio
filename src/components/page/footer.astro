@@ -11,14 +11,16 @@ const t = useTranslation(locale ?? defaultLocale);
 
 const localeLinks: Record<
   LocaleCode,
-  Record<'contact' | 'imprint' | 'privacy', string>
+  Record<'about' | 'contact' | 'imprint' | 'privacy', string>
 > = {
   en: {
+    about: '/en/about',
     contact: '/en/contact',
     imprint: '/en/imprint',
     privacy: '/en/privacy',
   },
   de: {
+    about: '/de/ueber',
     contact: '/de/kontakt',
     imprint: '/de/impressum',
     privacy: '/de/datenschutz',
@@ -96,6 +98,16 @@ const localeLinks: Record<
     <div class='flex flex-col gap-6 sm:text-right'>
       <nav aria-label={t('footer.nav.content.label')}>
         <ul class='flex grow flex-col gap-4'>
+          <li>
+            <Button
+              href={localeLinks[
+                (Astro.currentLocale as LocaleCode | undefined) ?? defaultLocale
+              ]['about']}
+              variants={{ kind: 'link', intent: 'neutral' }}
+            >
+              {t('footer.nav.content.about')}
+            </Button>
+          </li>
           <li>
             <Button
               href={localeLinks[

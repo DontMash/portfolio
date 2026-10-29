@@ -3,6 +3,7 @@ import '@/styles/global.css';
 
 import { SEO, type SEOProps } from 'astro-seo';
 
+import { createSchemaMarkup } from '@/schema-data';
 import Analytics from '@/components/page/analytics.astro';
 import Breadcrumb from '@/components/breadcrumb.astro';
 import Footer from '@/components/page/footer.astro';
@@ -53,6 +54,10 @@ https://www.soren.codes#contact
 <html lang={Astro.currentLocale} x-data x-bind:data-theme='$store.theme.get()'>
   <head>
     <SEO {...Astro.props.seo} />
+    <script
+      type='application/ld+json'
+      set:html={createSchemaMarkup(Astro.url)}
+    />
     <Theme />
     <Analytics />
     <Motd />

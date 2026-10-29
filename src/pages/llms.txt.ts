@@ -13,5 +13,9 @@ export const GET: APIRoute = async ({ rewrite, site, url }) => {
     return rewrite('/404');
   }
 
-  return new Response(settings.data.llms);
+  return new Response(settings.data.llms, {
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+    },
+  });
 };
