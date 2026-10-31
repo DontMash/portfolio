@@ -24,7 +24,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const response = await next();
 
   if (response.status === 404 && acceptsMarkdown) {
-    return createMarkdownNotFoundResponse(url, currentLocale);
+    return await createMarkdownNotFoundResponse(url, currentLocale);
   }
 
   appendVaryAccept(response.headers);

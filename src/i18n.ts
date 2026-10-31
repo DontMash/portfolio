@@ -41,6 +41,8 @@ const localization = {
       'In this case you may not have found what you were looking for. If so be sure to get in touch with me!',
     '404.back': 'Go back',
     '404.contact': 'Say hello',
+    '404.markdown.intro':
+      'The requested page `{path}` could not be found on {brand}. It may have been moved, renamed, or never existed. Check the sitemap or llms.txt for available pages, or reach out via [work@soren.codes](mailto:work@soren.codes).',
     'logo.href.label': 'Go to the frontpage',
     'form.send': 'Send',
     'form.policy':
@@ -76,6 +78,8 @@ const localization = {
       'In diesem Fall haben du vielleicht nicht das gefunden, wonach du gesucht hast. Wenn dem so ist, solltest du dich mit mir in Verbindung setzen!',
     '404.back': 'Zurück',
     '404.contact': 'Schreib mir',
+    '404.markdown.intro':
+      'Die angeforderte Seite `{path}` konnte auf {brand} nicht gefunden werden. Möglicherweise wurde sie verschoben, umbenannt oder hat nie existiert. Prüfe das Sitemap oder die llms.txt für verfügbare Seiten, oder melde dich via [work@soren.codes](mailto:work@soren.codes).',
     'logo.href.label': 'Gehe zur Startseite',
     'form.send': 'Absenden',
     'form.policy':

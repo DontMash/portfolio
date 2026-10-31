@@ -65,8 +65,8 @@ describe('bodyToMarkdown', () => {
 describe('createMarkdownNotFoundResponse', () => {
   const url = new URL('https://www.soren.codes/__ora-404-probe-4bwj1p0w');
 
-  it('returns 404 status with markdown content type', () => {
-    const response = createMarkdownNotFoundResponse(url);
+  it('returns 404 status with markdown content type', async () => {
+    const response = await createMarkdownNotFoundResponse(url);
     expect(response.status).toBe(404);
     expect(response.headers.get('Content-Type')).toBe(
       'text/markdown; charset=utf-8',
@@ -74,23 +74,29 @@ describe('createMarkdownNotFoundResponse', () => {
   });
 
   it('contains at least 20 characters of explanation', async () => {
-    const body = await createMarkdownNotFoundResponse(url).text();
+    const body = await (await createMarkdownNotFoundResponse(url)).text();
     expect(body.trim().length).toBeGreaterThanOrEqual(20);
   });
 
   it('names the missing path', async () => {
-    const body = await createMarkdownNotFoundResponse(url).text();
+    const body = await (await createMarkdownNotFoundResponse(url)).text();
     expect(body).toContain('/__ora-404-probe-4bwj1p0w');
   });
 
   it('links to llms.txt and sitemap', async () => {
-    const body = await createMarkdownNotFoundResponse(url).text();
+    const body = await (await createMarkdownNotFoundResponse(url)).text();
     expect(body).toContain('https://www.soren.codes/llms.txt');
     expect(body).toContain('https://www.soren.codes/sitemap.xml');
   });
 
-  it('links to home page', async () => {
-    const body = await createMarkdownNotFoundResponse(url).text();
-    expect(body).toContain('https://www.soren.codes/en');
+  it('uses the localized 404 title from i18n', async () => {
+    const body = await (await createMarkdownNotFoundResponse(url)).text();
+    expect(body).toContain('# 404 - Not found');
+  });
+
+  it('uses the german copy for the de locale', async () => {
+    const body = await (await createMarkdownNotFoundResponse(url, 'de')).text();
+    expect(body).toContain('# 404 - Nicht gefunden');
+    expect(body).toContain('konnte auf soren.codes nicht gefunden werden');
   });
 });
