@@ -1,54 +1,74 @@
 import { getEntry, type CollectionEntry } from 'astro:content';
 
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkStringify from 'remark-stringify';
+import remarkGfm from 'remark-gfm';
+import remarkMdx from 'remark-mdx';
+import type { Node } from 'unist';
+
+type Tree = Node & { children?: Array<Tree> };
+
 import { BRAND_NAME } from 'astro:env/client';
 import { BRAND_DESCRIPTION } from 'astro:env/server';
 
 import { defaultLocale } from '@/i18n';
 import { getPageId } from '@/collections/page.collection';
 
-const JSX_TAG = /<\/?[A-Z][A-Za-z0-9_]*(?:\s[^<>]*)?\/?>/g;
 const FRONTMATTER = /^---\n[\s\S]*?\n---\n/;
 const ENTITY = /&#x?[0-9a-f]+;/gi;
 
-export const stripMarkdownComponents = (source: string): string =>
-  source.replace(JSX_TAG, '').replace(ENTITY, '');
+const decodeEntities = (source: string): string => source.replace(ENTITY, '');
 
-export const bodyToMarkdown = (source: string): string => {
-  const withoutFrontmatter = source.replace(FRONTMATTER, '');
-  const stripped = stripMarkdownComponents(withoutFrontmatter);
-  const lines = stripped
-    .split('\n')
-    .filter((line) => !line.startsWith('import '))
-    .filter((line) => !line.startsWith('export '));
+// MDX parses imports/exports (mdxjsEsm) and JSX components
+// (mdxJsxFlowElement/mdxJsxTextElement) into dedicated node types.
+// Drop the ESM/expression nodes; for JSX elements keep the
+// markdown-relevant children so content inside components survives.
+const MDX_DROPPED = new Set([
+  'mdxjsEsm',
+  'mdxFlowExpression',
+  'mdxTextExpression',
+]);
+const MDX_JSX = new Set(['mdxJsxFlowElement', 'mdxJsxTextElement']);
 
-  const result: Array<string> = [];
-  let inCodeBlock = false;
+const unwrapMdxNodes = (nodes: Array<Tree>): Array<Tree> =>
+  nodes.flatMap((child) => {
+    if (MDX_DROPPED.has(child.type)) return [];
+    if (MDX_JSX.has(child.type)) {
+      return unwrapMdxNodes(child.children ?? []);
+    }
+    return [child];
+  });
 
-  for (const line of lines) {
-    if (line.trim().startsWith('```')) {
-      inCodeBlock = !inCodeBlock;
-      result.push(line);
-      continue;
-    }
-    if (inCodeBlock) {
-      result.push(line);
-      continue;
-    }
-    if (!line.trim()) {
-      result.push('');
-      continue;
-    }
-    const dedented = line.replace(/^[ \t]+/, '');
-    const heading = /^(#{1,6})[ \t]?(.*)$/.exec(dedented);
-    if (heading) {
-      result.push(`${heading[1]} ${heading[2].trim()}`.trimEnd());
-      continue;
-    }
-    result.push(dedented);
+const normalizeMdxTree = (node: Tree): void => {
+  if (!node.children) return;
+  node.children = unwrapMdxNodes(node.children);
+  for (const child of node.children) {
+    normalizeMdxTree(child);
   }
+};
 
-  return result
-    .join('\n')
+const processor = unified()
+  .use(remarkParse)
+  .use(remarkGfm)
+  .use(remarkMdx)
+  .use(() => (tree: Node) => {
+    normalizeMdxTree(tree as Tree);
+  })
+  .use(remarkStringify, { resourceMarker: ':' } as never);
+
+export const bodyToMarkdown = async (source: string): Promise<string> => {
+  const withoutFrontmatter = source.replace(FRONTMATTER, '');
+  const normalized = withoutFrontmatter
+    // drop import/export statements textually: we never want them in
+    // the output, and parsing them via acorn is unnecessary work
+    .replace(/^(?:import|export)[^\n]*\n?/gm, '')
+    // normalize headings like `###Heading` to `### Heading` so remark
+    // parses them as headings instead of plain text
+    .replace(/^(\s*)(#{1,6})([^\s#])/gm, '$1$2 $3');
+
+  const output = await processor.process(normalized);
+  return decodeEntities(String(output))
     .replace(/\n{3,}/g, '\n\n')
     .trim();
 };
@@ -123,7 +143,7 @@ export const renderMarkdownPage = async (
   const locale = page.id.split('/')[0] ?? defaultLocale;
   const description = page.data.description ?? BRAND_DESCRIPTION ?? '';
   const header = `# ${page.data.title}\n\n> ${description}`;
-  const body = bodyToMarkdown(page.body ?? '');
+  const body = await bodyToMarkdown(page.body ?? '');
   const navigation = createLinkList(origin, locale);
 
   return `${header}\n\n${body}\n\n---\n\n${navigation}\n`;

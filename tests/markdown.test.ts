@@ -1,66 +1,60 @@
 import { describe, expect, it } from 'bun:test';
 
-import {
-  bodyToMarkdown,
-  createMarkdownNotFoundResponse,
-  stripMarkdownComponents,
-} from '@/markdown';
-
-describe('stripMarkdownComponents', () => {
-  it('removes JSX component tags', () => {
-    const source = '<Section max>\n# Hello\n</Section>';
-    expect(stripMarkdownComponents(source).trim()).toBe('# Hello');
-  });
-
-  it('removes self-closing component tags', () => {
-    const source = '<Icon name="tabler:mail" /> text';
-    expect(stripMarkdownComponents(source).trim()).toBe('text');
-  });
-
-  it('keeps lowercase inline html untouched', () => {
-    const source = 'a <b>bold</b> word';
-    expect(stripMarkdownComponents(source)).toBe('a <b>bold</b> word');
-  });
-
-  it('removes html entities', () => {
-    expect(stripMarkdownComponents('a &#x20; b')).toBe('a  b');
-  });
-});
+import { bodyToMarkdown, createMarkdownNotFoundResponse } from '@/markdown';
 
 describe('bodyToMarkdown', () => {
-  it('strips frontmatter', () => {
+  it('strips frontmatter', async () => {
     const source = '---\ntitle: Test\n---\n# Hello';
-    expect(bodyToMarkdown(source)).toBe('# Hello');
+    expect(await bodyToMarkdown(source)).toBe('# Hello');
   });
 
-  it('dedents content inside components', () => {
+  it('removes JSX component tags but keeps their children', async () => {
+    const source = '<Section max>\n# Hello\n</Section>';
+    expect(await bodyToMarkdown(source)).toBe('# Hello');
+  });
+
+  it('removes self-closing component tags', async () => {
+    const source = '<Icon name="tabler:mail" /> text';
+    expect(await bodyToMarkdown(source)).toBe('text');
+  });
+
+  it('unwraps lowercase inline jsx tags, keeping text content', async () => {
+    const source = 'a <b>bold</b> word';
+    expect(await bodyToMarkdown(source)).toBe('a bold word');
+  });
+
+  it('removes html entities', async () => {
+    expect(await bodyToMarkdown('a &#x20; b')).toBe('a   b');
+  });
+
+  it('dedents content inside components', async () => {
     const source = '<Section>\n  ## Heading\n\n  Some text.\n</Section>';
-    expect(bodyToMarkdown(source)).toBe('## Heading\n\nSome text.');
+    expect(await bodyToMarkdown(source)).toBe('## Heading\n\nSome text.');
   });
 
-  it('normalizes heading spacing', () => {
+  it('normalizes heading spacing', async () => {
     const source = '<Section>\n  ###Heading\n</Section>';
-    expect(bodyToMarkdown(source)).toBe('### Heading');
+    expect(await bodyToMarkdown(source)).toBe('### Heading');
   });
 
-  it('preserves code blocks verbatim', () => {
+  it('preserves code blocks verbatim', async () => {
     const source = '```\n  indented code\n```';
-    expect(bodyToMarkdown(source)).toBe('```\n  indented code\n```');
+    expect(await bodyToMarkdown(source)).toBe('```\n  indented code\n```');
   });
 
-  it('collapses multiple blank lines', () => {
+  it('collapses multiple blank lines', async () => {
     const source = 'a\n\n\n\nb';
-    expect(bodyToMarkdown(source)).toBe('a\n\nb');
+    expect(await bodyToMarkdown(source)).toBe('a\n\nb');
   });
 
-  it('removes import and export lines', () => {
+  it('removes import and export lines', async () => {
     const source = "import x from 'y';\nexport const z = 1;\n# Hello";
-    expect(bodyToMarkdown(source)).toBe('# Hello');
+    expect(await bodyToMarkdown(source)).toBe('# Hello');
   });
 
-  it('renders homepage-like mdx', () => {
+  it('renders homepage-like mdx', async () => {
     const source = `<Section max={false} background={false}>\n  <Grid kind="left">\n    <Container direction="vertical">\n      # Hi, I'm S\u00f8ren\n\n      ## Software engineer & digital explorer\n\n      Transforming visions into reality.\n    </Container>\n  </Grid>\n</Section>`;
-    const result = bodyToMarkdown(source);
+    const result = await bodyToMarkdown(source);
     expect(result).toContain("# Hi, I'm S\u00f8ren");
     expect(result).toContain('## Software engineer & digital explorer');
     expect(result).toContain('Transforming visions into reality.');
