@@ -35,7 +35,7 @@ export const GET: APIRoute = async ({ site, url }) => {
       if (!hasAllowList && !hasDisallowList) {
         return undefined;
       }
-      
+
       const userAgent = `User-agent: ${policy.userAgent}`;
       const allow = policy.allow?.map((value) => `Allow: ${value}`).join('\n');
       const disallow = policy.disallow

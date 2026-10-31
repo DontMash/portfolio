@@ -97,7 +97,7 @@ export const createSEOProps = (url: URL, props?: SEOProps): AstroSEOProps => {
     }
     return undefined;
   });
-  
+
   if (props?.keywords && result.extend?.meta) {
     result.extend.meta = [
       ...result.extend.meta,
